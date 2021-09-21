@@ -12,7 +12,24 @@
 
 </head>
 <body>
-	
+
+ <select>
+	<?php 
+   include ("../controlador/conexion.php");
+   
+   $query="SELECT * FROM ficha";
+   $resul=mysqli_query($conn,$query);
+
+   $query2="SELECT * FROM instructor";
+   $result=mysqli_query($conn,$query2);
+
+     while ($row=mysqli_fetch_array($resul)) {
+   ?>
+      <option value="<?php echo $row["ID_F"]?>"><?php echo $row["Nº ficha"]?></option>
+
+    <?php
+}
+    ?>    </select>
 <div style="margin: 0 0 0 0;" class="jumbotron jumbotron-fluid">
   <div class="container">
     <center>
@@ -59,11 +76,19 @@
     <th colspan="4" bgcolor="E69138"><p>fecha</p> <p><input type="date" bgcolor="E69138"></p></th>
   </tr>
     <tr>  <!--fila 2 informacion general-->
-    <th colspan="3" WIDTH="8"HEIGHT="8" bgcolor="CBC3BB"> Grupos <select style="width:200px">
-                                                  <option value="value1">ficha1</option>
-                                                  <option value="value2">ficha2</option>
-                                                  <option value="value3">ficha3</option>
-                                                </select></th>
+    <th colspan="3" WIDTH="8"HEIGHT="8" bgcolor="CBC3BB"> Grupos 
+                                         <select style="width:200px">
+                                              <option value="value1">instructor1</option>
+                                              <option value="value2">instructor2</option>
+                                              <option value="value3">instructor3</option>
+                                         </select> INTRUCTOR <select>
+                                         <?php while ($row2=mysqli_fetch_array($result)) {
+                                         ?>
+                                   <option value="<?php echo $row2["ID"]?>"><?php echo $row2["Nombre"]?></option>
+
+                                        <?php
+                                    }
+                                        ?>    </select>
     <th colspan="7" WIDTH="8"HEIGHT="8" bgcolor="CBC3BB"> Taller <input type="textarea"></th>
     <th colspan="4" WIDTH="8"HEIGHT="8" bgcolor="CBC3BB"> <p><h8> Fecha inicio <input type="date"  style="width:150px"><h8></p>
                                          <p><h8> Fecha fin <input type="date" style="width:150px"><h8></p>
