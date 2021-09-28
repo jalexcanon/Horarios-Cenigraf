@@ -15,6 +15,14 @@
         display: none;
     }
     .img{
-        width: 100%;
+        width: auto;
     }
-}       
+}  
+#abajo{
+    height: 12%;
+    width: 980px;
+    background: orange;
+    position: relative;
+    left: 10px;
+    
+}     

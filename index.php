@@ -65,7 +65,74 @@
 			  <td colspan="4">&nbsp;span 4</td>
 			</tr>
 			<tr>
-			  <td colspan="4">span 4</td>
+			  <td colspan="4"><div class="container">
+  <!-- Trigger the modal with a button -->
+  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Modal Header</h4>
+        </div>
+        <div class="modal-body">
+          <form action="../controlador/reg.php" method="post">
+							<h2 id="lol">Digite: </h2>
+							<label class="lab" for="pnom">Primer Nombre</label>
+							<br>
+							<input class="inp" type="text" name="pnombre" id="pnom" placeholder="Primer Nombre" required="">
+							<br>
+							<label class="lab" for="snom">Segundo Nombre</label>
+							<br>
+							<input class="inp" type="text" name="snombre" id="snom" placeholder="Segundo Nombre opcional">
+							<br>
+							<label class="lab" for="pape">Primer Apellido</label>
+							<br>
+							<input class="inp" type="text" name="papellidos" id="pape" placeholder="Primer Aprellido" required="">
+							<br>
+							<label class="lab" for="sape">Segundo Apellido</label>
+							<br>
+							<input class="inp" type="text" name="sapellidos" id="sape" placeholder="Segundo Aprellido opcional">
+							<br>
+							<label class="lab" for="corr">Correo Electrónico</label>
+							<br>
+							<input class="inp" type="email" name="correo" id="corr" placeholder="Correo Electrónico" required="">
+							<br>
+							<label class="lab" for="con1">Contraseña</label>
+							<br>
+							<input class="inp" type="password" name="contrasena1" id="con1" placeholder="Contraseña" required="">
+							<br>
+							<input type="checkbox" onclick="muestra_oculta()">Ver contraseña
+							<br>
+							<label class="lab" for="con2">Repetir contraseña</label>
+							<br>
+							<input class="inp" type="password" name="contrasena2" id="con2" placeholder="Repetir contraseña" required="">
+							<br>
+							<input class="inp" type="checkbox" onclick="muestra_oculta2()">Ver contraseña
+							<br>
+							<label class="lab" for="cp">Crear Pregunta y Respuesta<br>(Recuperacion de contraseña)</label>
+							<br> 
+					          <input class="inp" id="cp" type="text" name="prg" placeholder="¿Pregunta?" required=""><br><br>
+							<textarea class="inp" type="text" required="" name="repus" placeholder="Respuesta" required=""></textarea>
+							<br>
+							<button class="btn" id="re" type="button" onclick="window.open('../index.php','_Self')">Cancelar</button>
+							<button class="btn" id="ene" type="submit">Registrar</button>
+	</form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
+</div>
+</td>
 			  <td colspan="8">span 8</td>  
 			</tr>
 			<tr>
