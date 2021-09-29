@@ -45,13 +45,15 @@ if (isset($_GET['instructor'])) {
 
 }
 
-
-
-
 $querys="SELECT * FROM instructor where ID=$ins";
 $resultado=mysqli_query($conn,$querys);
 $indsF=$resultado->fetch_assoc();
 
+
+
+$horarios="SELECT * FROM instructor,`6:00-7:40`,dias,ficha WHERE instructor.ID=$ins AND instructor.ID = `6:00-7:40`.`instructor` AND dias.id = `6:00-7:40`.`dia` AND ficha.ID_F= `6:00-7:40`.`ficha`";
+$resul1=mysqli_query($conn,$horarios);
+$db1=$resul1->fetch_assoc();
 
 
 ?>
@@ -61,12 +63,14 @@ $indsF=$resultado->fetch_assoc();
 
 <div class="wrapper">
 	
-        <center>
-             <div class="container">
-                    <img class="img" src="../img/cenigraf.png ">
-                    <img class="img2" src="../img/logo1.png" >
-          </div>
-        </center>
+        <div style="margin: 0 0 0 0;" class="jumbotron jumbotron-fluid">
+            <div class="container">
+              <center>
+                <img class="img" src="../img/cenigraf.png" >
+                <img class="img2" src="../img/logo1.png" >
+              </center>
+            </div>
+        </div>
          
          
          
@@ -149,6 +153,7 @@ $indsF=$resultado->fetch_assoc();
                                                       <option value="value3">Trimestre 5</option>
                                                       <option value="value3">Trimestre 6</option>
                                                  </select>
+                                                 <p>Intructor <?php  echo $indsF["Nombre"]; ?></p>
          <div>
             <!-- Trigger the modal with a button -->
             <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Crear Horario</button>
@@ -167,11 +172,11 @@ $indsF=$resultado->fetch_assoc();
                   </div>
                   <div class="modal-body">
                     <center><h3>Intructor <?php  echo $indsF["Nombre"]; ?></h3></center>
-                   <form class="form-horizontal" action="horarios_beta.php?instructor=<?php echo $ins;?>" method="post">
+                   <form class="form-horizontal" action="../controlador/guardar.php?instructor=<?php echo $ins;?>" method="POST">
                       <div class="form-group">
-                        <label class="control-label col-sm-2" for="fich">Ficha:</label>
+                        <label class="control-label col-sm-2" for="fic">Ficha:</label>
                         <div class="col-sm-10">
-                          <select class="form-control" id="fich" name="fichaaa">
+                          <select class="form-control" id="fic" name="fich">
                             <option value="0">Seleccionar Ficha</option>
                             <?php
                                          while ($row=mysqli_fetch_array($resul)) {
@@ -183,6 +188,37 @@ $indsF=$resultado->fetch_assoc();
                                 ?>
                           </select>
                         </div>
+                        <br>
+                        <label class="control-label col-sm-2" for="di">Día:</label>
+                          <div class="col-sm-10">
+                             <select class="form-control" id="di" name="days">
+                                <option value="0">Seleccionar dia</option>
+                                <option value="1">Lunes</option>
+                                <option value="2">Martes</option>
+                                <option value="3">Miercoles</option>
+                                <option value="4">Jueves</option>
+                                <option value="5">Viernes</option>
+                                <option value="6">Sabado</option>
+                             </select>
+                          </div>
+
+                          <br>
+                        <label class="control-label col-sm-2" for="ho">Hora:</label>
+                          <div class="col-sm-10">
+                             <select class="form-control" id="ho" name="hour">
+                                <option value="0">Seleccionar hora</option>
+                                <option value="1">6:00 - 7:40</option>
+                                <option value="2">8:00 - 9:40</option>
+                                <option value="3">10:00 - 11:40</option>
+                                <option value="4">12:00 - 13:40</option>
+                                <option value="5">14:20 - 16:00</option>
+                                <option value="6">16:20 - 18:00</option>
+                                <option value="7">18:15 - 19:45</option>
+                                <option value="8">20:00 - 21:40</option>
+                             </select>
+                          </div>
+                          
+                        
                       </div>
                   </div>
                       <div class="form-group">
@@ -213,36 +249,78 @@ $indsF=$resultado->fetch_assoc();
             <td colspan="2" bgcolor="E69138">Sabado</td>
           </tr>
           <!--fila 4-->
+
+
+
+
           <form action="../controlador/x.php" method="POST">
           <tr>
             <th colspan="2"> <center> 6:00 - 7:40 </center>
               <td>
-                 
+                 <div style="width: 100px; height: 70px;">
+                   
+                  <?php 
+                  if (isset($db1)) {
+                    if ($db1["dia"]==1) {
+                      echo $db1['Nombre']."<br>";
+                    echo $db1["Nº ficha"]."<br>";
+                    echo $db1["dia"];
+                    
+                    } 
+                  }
+                  
+                   ?>
+                 </div>
               </td>
             </th> 
             <th>
               <td> 
+                    <div style="width: 100px;">
+                   <?php 
+                  if (isset($db1)) {
+                    if ($db1["dia"]==2) {
+                      echo $db1['Nombre']."<br>";
+                    echo $db1["Nº ficha"]."<br>";
+                    echo $db1["dia"];
+                    
+                    } 
+                  }
+                  
+                   ?>
+
+                 </div>
+              </td>
+            </th>
+            <th>
+              <td> 
+                   <div style="width: 100px;">
                    
+
+                 </div>
               </td>
             </th>
             <th>
               <td> 
-                  
-              </td>
-            </th>
-            <th>
-              <td> 
-                  
+                   <div style="width: 100px;">
+                   
+
+                 </div>
               </td>
             </th>
             <th>
               <td>
-              
+               <div style="width: 100px;">
+                   
+
+                 </div>
               </td>
             </th> 
             <th>
               <td> 
+                    <div style="width: 100px;">
                    
+
+                 </div>
               </td>
             </th> 
           </tr> 
@@ -255,32 +333,50 @@ $indsF=$resultado->fetch_assoc();
           <tr>
             <th colspan="2"> <center> 8:00 -9:40 </center>
               <td>
-                 
+                  <div style="width: 100px; height: 70px;">
+                   
+
+                 </div>
               </td>
             </th> 
             <th>
               <td> 
+                    <div style="width: 100px;">
                    
-              </td>
-            </th>
-            <th>
-              <td> 
 
+                 </div>
               </td>
             </th>
             <th>
               <td> 
+                    <div style="width: 100px;">
                    
+
+                 </div>
               </td>
             </th>
             <th>
               <td> 
+                    <div style="width: 100px;">
                    
+
+                 </div>
               </td>
             </th>
             <th>
               <td> 
-                  
+                    <div style="width: 100px;">
+                   
+
+                 </div>
+              </td>
+            </th>
+            <th>
+              <td> 
+                   <div style="width: 100px;">
+                   
+
+                 </div>
               </td>
             </th> 
           </tr>
@@ -294,32 +390,50 @@ $indsF=$resultado->fetch_assoc();
             <tr>
             <th colspan="2"> <center> 10:00 - 11:40 </center>
               <td>
-                  
+                   <div style="width: 100px; height: 70px;">
+                   
+
+                 </div>
               </td>
             </th> 
             <th>
               <td> 
-                  
-              </td>
-            </th>
-            <th>
-              <td> 
+                   <div style="width: 100px;">
                    
+
+                 </div>
               </td>
             </th>
             <th>
               <td> 
+                    <div style="width: 100px;">
                    
+
+                 </div>
               </td>
             </th>
             <th>
               <td> 
-                  
-              </td>
-            </th>
-            <th>
-              <td> 
+                    <div style="width: 100px;">
                    
+
+                 </div>
+              </td>
+            </th>
+            <th>
+              <td> 
+                   <div style="width: 100px;">
+                   
+
+                 </div>
+              </td>
+            </th>
+            <th>
+              <td> 
+                   <div style="width: 100px;">
+                   
+
+                 </div> 
               </td>
             </th> 
           </tr>
@@ -332,32 +446,50 @@ $indsF=$resultado->fetch_assoc();
         <tr>
             <th colspan="2"> <center> 12:00 - 13:40 </center>
               <td>
-                  
+                   <div style="width: 100px; height: 70px;">
+                   
+
+                 </div>
               </td>
             </th> 
             <th>
               <td> 
+                    <div style="width: 100px;">
                    
+
+                 </div>
               </td>
             </th>
             <th>
               <td> 
+                    <div style="width: 100px;">
                    
+
+                 </div>
               </td>
             </th>
             <th>
               <td> 
+                    <div style="width: 100px;">
                    
+
+                 </div>
               </td>
             </th>
             <th>
               <td> 
+                   <div style="width: 100px;">
                    
+
+                 </div> 
               </td>
             </th>
             <th>
               <td> 
+                    <div style="width: 100px;">
                    
+
+                 </div>
               </td>
             </th> 
           </tr>
@@ -370,32 +502,50 @@ $indsF=$resultado->fetch_assoc();
         <tr>
             <th colspan="2"> <center> 14:20 - 16:00 </center>
               <td>
-                  
+                   <div style="width: 100px; height: 70px;">
+                   
+
+                 </div>
               </td>
             </th> 
             <th>
               <td> 
+                    <div style="width: 100px;">
                    
+
+                 </div>
               </td>
             </th>
             <th>
               <td> 
-                  
+                   <div style="width: 100px;">
+                   
+
+                 </div>
               </td>
             </th>
             <th>
               <td> 
+                    <div style="width: 100px;">
                    
+
+                 </div>
               </td>
             </th>
             <th>
               <td> 
+                    <div style="width: 100px;">
                    
+
+                 </div>
               </td>
             </th>
             <th>
               <td> 
+                    <div style="width: 100px;">
                    
+
+                 </div>
               </td>
             </th> 
           </tr>
@@ -408,32 +558,50 @@ $indsF=$resultado->fetch_assoc();
         <tr>
             <th colspan="2"> <center> 16:20 - 18:00 </center>
               <td>
-                  
+                   <div style="width: 100px; height: 70px;">
+                   
+
+                 </div>
               </td>
             </th> 
             <th>
               <td> 
+                    <div style="width: 100px;">
                    
+
+                 </div>
               </td>
             </th>
             <th>
               <td> 
-                  
-              </td>
-            </th>
-            <th>
-              <td> 
-                  
-              </td>
-            </th>
-            <th>
-              <td> 
+                   <div style="width: 100px;">
                    
+
+                 </div>
               </td>
             </th>
             <th>
               <td> 
+                   <div style="width: 100px;">
                    
+
+                 </div>
+              </td>
+            </th>
+            <th>
+              <td> 
+                    <div style="width: 100px;">
+                   
+
+                 </div>
+              </td>
+            </th>
+            <th>
+              <td> 
+                   <div style="width: 100px;">
+                   
+
+                 </div> 
               </td>
             </th> 
           </tr>
@@ -441,18 +609,27 @@ $indsF=$resultado->fetch_assoc();
         <tr>
             <th colspan="2"> <center> 18:15 - 19:45 </center>
               <td>
-                  
+                   <div style="width: 100px; height: 70px;">
+                   
+
+                 </div>
               </td>
             </th> 
             <th>
               <td> 
+                    <div style="width: 100px;">
                    
+
+                 </div>
                     
               </td>
             </th>
             <th>
               <td> 
+                    <div style="width: 100px;">
                    
+
+                 </div>
               </td>
             </th>
             <th>
@@ -462,12 +639,18 @@ $indsF=$resultado->fetch_assoc();
             </th>
             <th>
               <td> 
+                    <div style="width: 100px;">
                    
+
+                 </div>
               </td>
             </th>
             <th>
               <td> 
-                  
+                   <div style="width: 100px;">
+                   
+
+                 </div>
               </td>
             </th> 
           </tr>
@@ -480,48 +663,50 @@ $indsF=$resultado->fetch_assoc();
         <tr>
             <th colspan="2"> <center> 20:00 - 21:40 </center>
               <td>
-                  
+                   <div style="width: 100px; height: 70px;">
+                   
+
+                 </div>
               </td>
             </th> 
             <th>
               <td> 
+                    <div style="width: 100px;">
                    
-              </td>
-            </th>
-            <th>
-              <td> 
-                   
-              </td>
-            </th>
-            <th>
-              <td> 
-                                      
-              </td>
-            </th>
-            <th>
-              <td> 
-                   
-              </td>
-            </th>
-            <th>
-              <td> 
-                   <select style="width:100px">
-                     <option value="0">Selecionar</option><?php
-                     while ($row48=mysqli_fetch_array($result48)) {
-           ?>
-              <option value="<?php echo $row48["ID_F"]?>"><?php echo $row48["Nº ficha"]?></option>
 
-            <?php
-        }
-            ?>
-                  </select>
-                   <br>
-                     <select>
-                        <option value="value1">instructor1</option>
-                        <option value="value2">instructor2</option>
-                        <option value="value3">instructor3</option>
-                     </select>
-                   </br>
+                 </div>
+              </td>
+            </th>
+            <th>
+              <td> 
+                    <div style="width: 100px;">
+                   
+
+                 </div>
+              </td>
+            </th>
+            <th>
+              <td> 
+                        <div style="width: 100px;">
+                   
+
+                 </div>               
+              </td>
+            </th>
+            <th>
+              <td> 
+                   <div style="width: 100px;">
+                   
+
+                 </div> 
+              </td>
+            </th>
+            <th>
+              <td> 
+                    <div style="width: 100px;">
+                   
+
+                 </div> 
               </td>
             </th> 
           </tr>
@@ -559,6 +744,7 @@ $indsF=$resultado->fetch_assoc();
 <script src="../plugins/fullcalendar-timegrid/main.min.js"></script>
 <script src="../plugins/fullcalendar-interaction/main.min.js"></script>
 <script src="../plugins/fullcalendar-bootstrap/main.min.js"></script>
+
 
 
 </body>
