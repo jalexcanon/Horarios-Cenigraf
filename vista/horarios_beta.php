@@ -51,12 +51,34 @@ $indsF=$resultado->fetch_assoc();
 
 
 
-$horarios="SELECT * FROM instructor,`6:00-7:40`,dias,ficha WHERE instructor.ID=$ins AND instructor.ID = `6:00-7:40`.`instructor` AND dias.id = `6:00-7:40`.`dia` AND ficha.ID_F= `6:00-7:40`.`ficha`";
+/*$horarios="SELECT * FROM instructor,`6:00-7:40`,dias,ficha WHERE instructor.ID=$ins AND instructor.ID = `6:00-7:40`.`instructor` AND dias.id = `6:00-7:40`.`dia` AND ficha.ID_F= `6:00-7:40`.`ficha`";
+$resul1=mysqli_query($conn,$horarios);
+$db1=$resul1->fetch_assoc();*/
+
+/*for ($i=1; $i <=6 ; $i++) { 
+$horarios="SELECT * FROM instructor,`6:00-7:40`,dias,ficha WHERE instructor.ID=$ins AND `6:00-7:40`.`dia`=$i AND instructor.ID = `6:00-7:40`.`instructor` AND dias.id = `6:00-7:40`.`dia` AND ficha.ID_F= `6:00-7:40`.`ficha`";
 $resul1=mysqli_query($conn,$horarios);
 $db1=$resul1->fetch_assoc();
+ if (isset($db1)) {
+                    if ($db1["dia"]==1) {
+                      echo $db1['Nombre']."<br>";
+                      echo $db1["Nº ficha"]."<br>";
+                        echo $db1["dia"];
+                    
+                    } 
+                  }
 
 
-?>
+                  if (isset($db1)) {
+                    if ($db1["dia"]==2) {
+                      echo $db1['Nombre']."<br>";
+                      echo $db1["Nº ficha"]."<br>";
+                        echo $db1["dia"];
+                    
+                    } 
+                  }
+}
+?>*/?>
 
 
 <body class="hold-transition sidebar-mini">
@@ -104,8 +126,8 @@ $db1=$resul1->fetch_assoc();
          <!-- prue menu-->
 
 
-        <aside class="main-sidebar sidebar-dark-primary elevation-4" style="position: fixed;">
-            <!-- Brand Logo -->
+       <aside class="main-sidebar sidebar-dark-primary elevation-4" style="position: fixed;">
+            
             <a href="../index.php" class="brand-link">
               <img src="../img/logo1.png"
                    alt="logo1"
@@ -114,9 +136,9 @@ $db1=$resul1->fetch_assoc();
                                  <span class="brand-text font-weight-light">CENIGRAF </span>
             </a>
 
-            <!-- Sidebar -->
+           
             <div class="sidebar">
-              <!-- Sidebar user panel (optional) -->
+              
               <div class="user-panel mt-4 pb-4 mb-4 d-flex">
                 <div class="image">
                   <img src="../img/perfil.png" class="img-circle elevation-2" alt="User Image">
@@ -133,31 +155,10 @@ $db1=$resul1->fetch_assoc();
   <div class="content-wrapper">
     <div class="container">
       
-    
-             <table style="width:92% " border="1px solid black"  bgcolor="white" > <!--86-->
-          <tr>    <!--fila 1 titulo-->
-            <th colspan="10" WIDTH="150" HEIGHT="100" bgcolor="E69138"> <!--<left><img src="img/logotabla.jpg" width="100" height="100"></left>--> 
-              <center><br><h10>SERVICIO NACIONAL DE APRENDIZAJE SENA<h10>
-                     <br><h7>Sistema integrado de gestion<h7>
-                     <br><h10>HORARIOS ACADEMICOS<h10>
-                     <br><h7>Proseso de gestion<h7></center> </th>
-            <th colspan="4" bgcolor="E69138"><p>fecha</p> <p><input type="date" bgcolor="E69138"></p></th>
-          </tr>
-            <tr>  <!--fila 2 informacion general-->
-            <th colspan="3" WIDTH="8"HEIGHT="8" bgcolor="CBC3BB"> Trimestre 
-                                                 <select style="width:200px" >
-                                                      <option value="value1">Trimestre 1</option>
-                                                      <option value="value2">Trimestre 2</option>
-                                                      <option value="value3">Trimestre 3</option>
-                                                      <option value="value3">Trimestre 4</option>
-                                                      <option value="value3">Trimestre 5</option>
-                                                      <option value="value3">Trimestre 6</option>
-                                                 </select>
-                                                 <p>Intructor <?php  echo $indsF["Nombre"]; ?></p>
-         <div>
+      <div>
             <!-- Trigger the modal with a button -->
             <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Crear Horario</button>
-
+            <center><h3>Intructor <?php  echo $indsF["Nombre"]; ?></h3></center>
             <!-- Modal -->
             <div class="modal fade bd-example-modal-lg" id="myModal" role="dialog">
               <div class="modal-dialog modal-lg">
@@ -232,485 +233,580 @@ $db1=$resul1->fetch_assoc();
               </div>
            </div>
         </div>
-                                                 
-                                                  
-            <th colspan="7" WIDTH="8"HEIGHT="8" bgcolor="CBC3BB"> Taller <input type="textarea"></th>
-            <th colspan="4" WIDTH="8"HEIGHT="8" bgcolor="CBC3BB"> <p><h8> Fecha inicio <input type="date"  style="width:150px"><h8></p>
-                                                 <p><h8> Fecha fin <input type="date" style="width:150px"><h8></p>
-            </th>   
-          </tr>
-          <tr>  <!--fila 3 dias-->
-            <td colspan="2" bgcolor="E69138">Horas</td>     
-            <td colspan="2" bgcolor="E69138">Lunes</td>
-            <td colspan="2" bgcolor="E69138">Martes</td>
-            <td colspan="2" bgcolor="E69138">Miercoles</td>
-            <td colspan="2" bgcolor="E69138">Jueves</td>
-            <td colspan="2" bgcolor="E69138">Viernes</td>
-            <td colspan="2" bgcolor="E69138">Sabado</td>
-          </tr>
-          <!--fila 4-->
+       
+    
+            <!--TABLA-------------------------->
+            <div>
+              <table class="table table-bordered">
+                <tr>
+                  <th bgcolor="E69138"><center> Horas</center></th>
+                  <th bgcolor="E69138"><center> Lunes</center></th>
+                  <th bgcolor="E69138"><center> Martes</center></th>
+                  <th bgcolor="E69138"><center> Miercoles</center></th>
+                  <th bgcolor="E69138"><center> Jueves</center></th>
+                  <th bgcolor="E69138"><center> Viernes</center></th>
+                  <th bgcolor="E69138"><center> Sabados</center></th>
+                  <th colspan= "2" bgcolor="E69138"><center> Opciones</center></th>
+                    </tr>
+                    <tr>
+                      <td bgcolor="EFD5BA"> <center>6:00 - 7:40</center></td>
+                       <?php
+                        for ($i=1; $i <=6 ; $i++) { 
+                        $horarios="SELECT * FROM instructor,`6:00-7:40`,dias,ficha WHERE instructor.ID=$ins AND `6:00-7:40`.`dia`=$i AND instructor.ID = `6:00-7:40`.`instructor` AND dias.id = `6:00-7:40`.`dia` AND ficha.ID_F= `6:00-7:40`.`ficha`";
+                        $resul1=mysqli_query($conn,$horarios);
+                        $db1=$resul1->fetch_assoc();
+                         
+                                          if (isset($db1)) {
+                                            if ($db1["dia"]==1) {
+                                            ?>
+                                               <td bgcolor="EFD5BA"> <center>
+                                            <?php 
+                                              echo $db1['Nombre']."<br>";
+                                              echo $db1["Nº ficha"]."<br>";
+                                              echo $db1["dia"];
+                                            ?></center></td><?php
+                                            }else{?> <td bgcolor="EFD5BA"> <center>datos</center></td><?php}
+                                          }else{?> <td bgcolor="EFD5BA"> <center>datos</center></td><?php}
+                                          if (isset($db1)) {
+                                            if ($db1["dia"]==2) {
+                                            ?>
+                                                 <td bgcolor="EFD5BA"> <center>
+                                            <?php 
+                                              echo $db1['Nombre']."<br>";
+                                              echo $db1["Nº ficha"]."<br>";
+                                              echo $db1["dia"];
+                                              ?></center></td><?php
+                                            } 
+                                          }
+                                          if (isset($db1)) {
+                                            if ($db1["dia"]==3) {
+                                            ?>
+                                                 <td bgcolor="EFD5BA"> <center>
+                                            <?php 
+                                              echo $db1['Nombre']."<br>";
+                                              echo $db1["Nº ficha"]."<br>";
+                                              echo $db1["dia"];
+                                              ?></center></td><?php
+                                            } 
+                                          }                             
+                                          if (isset($db1)) {
+                                            if ($db1["dia"]==4) {
+                                            ?>
+                                                 <td bgcolor="EFD5BA"> <center>
+                                            <?php 
+                                              echo $db1['Nombre']."<br>";
+                                              echo $db1["Nº ficha"]."<br>";
+                                              echo $db1["dia"];
+                                              ?></center></td><?php
+                                            } 
+                                          }
+                                          if (isset($db1)) {
+                                            if ($db1["dia"]==5) {
+                                            ?>
+                                                 <td bgcolor="EFD5BA"> <center>
+                                            <?php 
+                                              echo $db1['Nombre']."<br>";
+                                              echo $db1["Nº ficha"]."<br>";
+                                              echo $db1["dia"];
+                                              ?></center></td><?php
+                                            } 
+                                          }
+                                          if (isset($db1)) {
+                                            if ($db1["dia"]==6) {
+                                            ?>
+                                                 <td bgcolor="EFD5BA"> <center>
+                                            <?php 
+                                              echo $db1['Nombre']."<br>";
+                                              echo $db1["Nº ficha"]."<br>";
+                                              echo $db1["dia"];
+                                              ?></center></td><?php
+                                            } 
+                                          }                       
+                        }?>
+                     
+                      <th bgcolor="EFD5BA"><!-- botom modal ... opciones -->
+                    <center><button type="button" class="btn btn-success" data-toggle="modal" data-target="#opcion1">Editar</button>
+                    <!-- Modal -->
+                    <div id="opcion1" class="modal fade" role="dialog">
+                      <div class="modal-dialog">
+                        <!-- Modal contenedor-->
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">opcion 0</h4>
+                          </div>
+                          <div class="modal-body">
+                            <p>opcion 0</p>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">cerrar</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Guardar cambios</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div></th>
+                    <th bgcolor="EFD5BA"> <!-- botom modal ... opciones -->
+                      <center><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#opcion2">Eliminar</button>
+                      <!-- Modal -->
+                      <div id="opcion2" class="modal fade" role="dialog">
+                        <div class="modal-dialog">
+                          <!-- Modal contenedor-->
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <button type="button" class="close" data-dismiss="modal">&times;</button>
+                              <h4 class="modal-title">opcion 1</h4>
+                            </div>
+                            <div class="modal-body">
+                              <p>opcion 1</p>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-default" data-dismiss="modal">cerrar</button>
+                              <button type="button" class="btn btn-default" data-dismiss="modal">Guardar cambios</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div></th>
+                    </tr>
+                    <th bgcolor="E69138"> <center> 7:40 - 8:00 </center></th>
+                    <th colspan="12" WIDTH="50" HEIGHT="50" bgcolor="E69138"><center> DESCANSO </center></th>
+                    <tr>
+                      <td bgcolor="EFD5BA"> <center>8:00 -9:40</center></td>
 
-
-
-
-          <form action="../controlador/x.php" method="POST">
-          <tr>
-            <th colspan="2"> <center> 6:00 - 7:40 </center>
-              <td>
-                 <div style="width: 100px; height: 70px;">
-                   
-                  <?php 
-                  if (isset($db1)) {
-                    if ($db1["dia"]==1) {
-                      echo $db1['Nombre']."<br>";
-                    echo $db1["Nº ficha"]."<br>";
-                    echo $db1["dia"];
-                    
-                    } 
-                  }
-                  
-                   ?>
-                 </div>
-              </td>
-            </th> 
-            <th>
-              <td> 
-                    <div style="width: 100px;">
-                   <?php 
-                  if (isset($db1)) {
-                    if ($db1["dia"]==2) {
-                      echo $db1['Nombre']."<br>";
-                    echo $db1["Nº ficha"]."<br>";
-                    echo $db1["dia"];
-                    
-                    } 
-                  }
-                  
-                   ?>
-
-                 </div>
-              </td>
-            </th>
-            <th>
-              <td> 
-                   <div style="width: 100px;">
-                   
-
-                 </div>
-              </td>
-            </th>
-            <th>
-              <td> 
-                   <div style="width: 100px;">
-                   
-
-                 </div>
-              </td>
-            </th>
-            <th>
-              <td>
-               <div style="width: 100px;">
-                   
-
-                 </div>
-              </td>
-            </th> 
-            <th>
-              <td> 
-                    <div style="width: 100px;">
-                   
-
-                 </div>
-              </td>
-            </th> 
-          </tr> 
-          <!--fila 5-->
-         <tr>
-            <th colspan="2" bgcolor="EFD5BA"> <center> 7:40 - 8:00 </center></th>
-            <th colspan="12" WIDTH="50" HEIGHT="50" bgcolor="E69138"><center> DESCANSO </center></th>
-         </tr>
-          <!--fila 6-->
-          <tr>
-            <th colspan="2"> <center> 8:00 -9:40 </center>
-              <td>
-                  <div style="width: 100px; height: 70px;">
-                   
-
-                 </div>
-              </td>
-            </th> 
-            <th>
-              <td> 
-                    <div style="width: 100px;">
-                   
-
-                 </div>
-              </td>
-            </th>
-            <th>
-              <td> 
-                    <div style="width: 100px;">
-                   
-
-                 </div>
-              </td>
-            </th>
-            <th>
-              <td> 
-                    <div style="width: 100px;">
-                   
-
-                 </div>
-              </td>
-            </th>
-            <th>
-              <td> 
-                    <div style="width: 100px;">
-                   
-
-                 </div>
-              </td>
-            </th>
-            <th>
-              <td> 
-                   <div style="width: 100px;">
-                   
-
-                 </div>
-              </td>
-            </th> 
-          </tr>
-          <!--fila 7-->
-         <tr>
-            <th colspan="2" bgcolor="EFD5BA"> <center> 9:40 - 10:00 </center></th>
-            <th colspan="12" WIDTH="50" HEIGHT="50" bgcolor="E69138"><center> DESCANSO </center></th>
-         </tr>
-          <!--fila 8-->
-         <tr>
-            <tr>
-            <th colspan="2"> <center> 10:00 - 11:40 </center>
-              <td>
-                   <div style="width: 100px; height: 70px;">
-                   
-
-                 </div>
-              </td>
-            </th> 
-            <th>
-              <td> 
-                   <div style="width: 100px;">
-                   
-
-                 </div>
-              </td>
-            </th>
-            <th>
-              <td> 
-                    <div style="width: 100px;">
-                   
-
-                 </div>
-              </td>
-            </th>
-            <th>
-              <td> 
-                    <div style="width: 100px;">
-                   
-
-                 </div>
-              </td>
-            </th>
-            <th>
-              <td> 
-                   <div style="width: 100px;">
-                   
-
-                 </div>
-              </td>
-            </th>
-            <th>
-              <td> 
-                   <div style="width: 100px;">
-                   
-
-                 </div> 
-              </td>
-            </th> 
-          </tr>
-          <!--fila 9-->
-         <tr>
-            <th colspan="2" bgcolor="EFD5BA"> <center> 11:40 - 12:00 </center></th>
-            <th colspan="12" WIDTH="50" HEIGHT="50" bgcolor="E69138"><center> DESCANSO </center></th>
-         </tr>
-          <!--fila 10-->
-        <tr>
-            <th colspan="2"> <center> 12:00 - 13:40 </center>
-              <td>
-                   <div style="width: 100px; height: 70px;">
-                   
-
-                 </div>
-              </td>
-            </th> 
-            <th>
-              <td> 
-                    <div style="width: 100px;">
-                   
-
-                 </div>
-              </td>
-            </th>
-            <th>
-              <td> 
-                    <div style="width: 100px;">
-                   
-
-                 </div>
-              </td>
-            </th>
-            <th>
-              <td> 
-                    <div style="width: 100px;">
-                   
-
-                 </div>
-              </td>
-            </th>
-            <th>
-              <td> 
-                   <div style="width: 100px;">
-                   
-
-                 </div> 
-              </td>
-            </th>
-            <th>
-              <td> 
-                    <div style="width: 100px;">
-                   
-
-                 </div>
-              </td>
-            </th> 
-          </tr>
-          <!--fila 11-->
-         <tr>
-            <th colspan="2" bgcolor="EFD5BA"> <center> 13:40 - 14:20 </center></th>
-            <th colspan="12" WIDTH="50" HEIGHT="50" bgcolor="E69138"><center> ALMUERZO </center></th>
-         </tr>
-          <!--fila 12-->
-        <tr>
-            <th colspan="2"> <center> 14:20 - 16:00 </center>
-              <td>
-                   <div style="width: 100px; height: 70px;">
-                   
-
-                 </div>
-              </td>
-            </th> 
-            <th>
-              <td> 
-                    <div style="width: 100px;">
-                   
-
-                 </div>
-              </td>
-            </th>
-            <th>
-              <td> 
-                   <div style="width: 100px;">
-                   
-
-                 </div>
-              </td>
-            </th>
-            <th>
-              <td> 
-                    <div style="width: 100px;">
-                   
-
-                 </div>
-              </td>
-            </th>
-            <th>
-              <td> 
-                    <div style="width: 100px;">
-                   
-
-                 </div>
-              </td>
-            </th>
-            <th>
-              <td> 
-                    <div style="width: 100px;">
-                   
-
-                 </div>
-              </td>
-            </th> 
-          </tr>
-          <!--fila 13-->
-         <tr>
-            <th colspan="2" bgcolor="EFD5BA"> <center> 16:00 - 16:20 </center></th>
-            <th colspan="12" WIDTH="50" HEIGHT="50" bgcolor="E69138"><center> DESCANSO </center></th>
-         </tr>
-          <!--fila 14-->
-        <tr>
-            <th colspan="2"> <center> 16:20 - 18:00 </center>
-              <td>
-                   <div style="width: 100px; height: 70px;">
-                   
-
-                 </div>
-              </td>
-            </th> 
-            <th>
-              <td> 
-                    <div style="width: 100px;">
-                   
-
-                 </div>
-              </td>
-            </th>
-            <th>
-              <td> 
-                   <div style="width: 100px;">
-                   
-
-                 </div>
-              </td>
-            </th>
-            <th>
-              <td> 
-                   <div style="width: 100px;">
-                   
-
-                 </div>
-              </td>
-            </th>
-            <th>
-              <td> 
-                    <div style="width: 100px;">
-                   
-
-                 </div>
-              </td>
-            </th>
-            <th>
-              <td> 
-                   <div style="width: 100px;">
-                   
-
-                 </div> 
-              </td>
-            </th> 
-          </tr>
-          <!--fila 15-->
-        <tr>
-            <th colspan="2"> <center> 18:15 - 19:45 </center>
-              <td>
-                   <div style="width: 100px; height: 70px;">
-                   
-
-                 </div>
-              </td>
-            </th> 
-            <th>
-              <td> 
-                    <div style="width: 100px;">
-                   
-
-                 </div>
-                    
-              </td>
-            </th>
-            <th>
-              <td> 
-                    <div style="width: 100px;">
-                   
-
-                 </div>
-              </td>
-            </th>
-            <th>
-              <td> 
-                  
-              </td>
-            </th>
-            <th>
-              <td> 
-                    <div style="width: 100px;">
-                   
-
-                 </div>
-              </td>
-            </th>
-            <th>
-              <td> 
-                   <div style="width: 100px;">
-                   
-
-                 </div>
-              </td>
-            </th> 
-          </tr>
-          <!--fila 16-->
-         <tr>
-            <th colspan="2" bgcolor="EFD5BA"> <center> 19:45 - 20:00 </center></th>
-            <th colspan="12" WIDTH="50" HEIGHT="50" bgcolor="E69138"><center> DESCANSO </center></th>
-         </tr>
-          <!--fila 17-->
-        <tr>
-            <th colspan="2"> <center> 20:00 - 21:40 </center>
-              <td>
-                   <div style="width: 100px; height: 70px;">
-                   
-
-                 </div>
-              </td>
-            </th> 
-            <th>
-              <td> 
-                    <div style="width: 100px;">
-                   
-
-                 </div>
-              </td>
-            </th>
-            <th>
-              <td> 
-                    <div style="width: 100px;">
-                   
-
-                 </div>
-              </td>
-            </th>
-            <th>
-              <td> 
-                        <div style="width: 100px;">
-                   
-
-                 </div>               
-              </td>
-            </th>
-            <th>
-              <td> 
-                   <div style="width: 100px;">
-                   
-
-                 </div> 
-              </td>
-            </th>
-            <th>
-              <td> 
-                    <div style="width: 100px;">
-                   
-
-                 </div> 
-              </td>
-            </th> 
-          </tr>
-        </table>
+                      <?php
+                        for ($i=1; $i <=6 ; $i++) { 
+                        $horarios="SELECT * FROM instructor,`8:00-9:40`,dias,ficha WHERE instructor.ID=$ins AND `8:00-9:40`.`dia`=$i AND instructor.ID = `8:00-9:40`.`instructor` AND dias.id = `8:00-9:40`.`dia` AND ficha.ID_F= `8:00-9:40`.`ficha`";
+                        $resul1=mysqli_query($conn,$horarios);
+                        $db2=$resul1->fetch_assoc();
+                         
+                                          if (isset($db2)) {
+                                            if ($db2["dia"]==1) {
+                                            ?>
+                                                 <td bgcolor="EFD5BA"> <center>
+                                            <?php 
+                                              echo $db2['Nombre']."<br>";
+                                              echo $db2["Nº ficha"]."<br>";
+                                              echo $db2["dia"];
+                                            ?></center></td><?php
+                                            }else{?> <td bgcolor="EFD5BA"> <center>datos</center></td><?php}
+                                          }else{?> <td bgcolor="EFD5BA"> <center>datos</center></td><?php}
+                                          if (isset($db2)) {
+                                            if ($db2["dia"]==2) {
+                                            ?>
+                                                 <td bgcolor="EFD5BA"> <center>
+                                            <?php 
+                                              echo $db2['Nombre']."<br>";
+                                              echo $db2["Nº ficha"]."<br>";
+                                              echo $db2["dia"];
+                                              ?></center></td><?php
+                                            } 
+                                          }
+                                          if (isset($db2)) {
+                                            if ($db2["dia"]==3) {
+                                            ?>
+                                                 <td bgcolor="EFD5BA"> <center>
+                                            <?php 
+                                              echo $db2['Nombre']."<br>";
+                                              echo $db2["Nº ficha"]."<br>";
+                                              echo $db2["dia"];
+                                              ?></center></td><?php
+                                            } 
+                                          }                                        
+                                          if (isset($db2)) {
+                                            if ($db1["dia"]==4) {
+                                            ?>
+                                                 <td bgcolor="EFD5BA"> <center>
+                                            <?php 
+                                              echo $db2['Nombre']."<br>";
+                                              echo $db2["Nº ficha"]."<br>";
+                                              echo $db2["dia"];
+                                              ?></center></td><?php
+                                            } 
+                                          }
+                                          if (isset($db2)) {
+                                            if ($db1["dia"]==5) {
+                                            ?>
+                                                 <td bgcolor="EFD5BA"> <center>
+                                            <?php 
+                                              echo $db2['Nombre']."<br>";
+                                              echo $db2["Nº ficha"]."<br>";
+                                              echo $db2["dia"];
+                                              ?></center></td><?php
+                                            } 
+                                          }
+                                          if (isset($db2)) {
+                                            if ($db1["dia"]==6) {
+                                            ?>
+                                                 <td bgcolor="EFD5BA"> <center>
+                                            <?php 
+                                              echo $db2['Nombre']."<br>";
+                                              echo $db2["Nº ficha"]."<br>";
+                                              echo $db2["dia"];
+                                              ?></center></td><?php
+                                            } 
+                                          }                       
+                        }?>
+                     
+                      <th bgcolor="EFD5BA"><!-- botom modal ... opciones -->
+                    <center><button type="button" class="btn btn-success" data-toggle="modal" data-target="#opcion3">Editar</button>
+                    <!-- Modal -->
+                    <div id="opcion3" class="modal fade" role="dialog">
+                      <div class="modal-dialog">
+                        <!-- Modal contenedor-->
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">opcion 2</h4>
+                          </div>
+                          <div class="modal-body">
+                            <p>opcion 2</p>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">cerrar</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Guardar cambios</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div></th>
+                    <th bgcolor="EFD5BA"> <!-- botom modal ... opciones -->
+                      <center><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#opcion4">Eliminar</button>
+                      <!-- Modal -->
+                      <div id="opcion4" class="modal fade" role="dialog">
+                        <div class="modal-dialog">
+                          <!-- Modal contenedor-->
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <button type="button" class="close" data-dismiss="modal">&times;</button>
+                              <h4 class="modal-title">opcion 3</h4>
+                            </div>
+                            <div class="modal-body">
+                              <p>opcion 3</p>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-default" data-dismiss="modal">cerrar</button>
+                              <button type="button" class="btn btn-default" data-dismiss="modal">Guardar cambios</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div></th>
+                    </tr>
+                    <th bgcolor="E69138"> <center> 9:40 - 10:00 </center></th>
+                    <th colspan="12" WIDTH="50" HEIGHT="50" bgcolor="E69138"><center> DESCANSO </center></th>
+                    <tr>
+                      <td bgcolor="EFD5BA"> <center>10:00 - 11:40</center></td>
+                      <td bgcolor="EFD5BA"> <center>datos</center></td>
+                      <td bgcolor="EFD5BA"> <center>datos</center></td>
+                      <td bgcolor="EFD5BA"> <center>datos</center></td>
+                      <td bgcolor="EFD5BA"> <center>datos</center></td>
+                      <td bgcolor="EFD5BA"> <center>datos</center></td>
+                      <td bgcolor="EFD5BA"> <center>datos</center></td>
+                      <th bgcolor="EFD5BA"><!-- botom modal ... opciones -->
+                    <center><button type="button" class="btn btn-success" data-toggle="modal" data-target="#opcion5">Editar</button>
+                    <!-- Modal -->
+                    <div id="opcion5" class="modal fade" role="dialog">
+                      <div class="modal-dialog">
+                        <!-- Modal contenedor-->
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">opcion 4</h4>
+                          </div>
+                          <div class="modal-body">
+                            <p>opcion 4</p>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">cerrar</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Guardar cambios</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div></th>
+                    <th bgcolor="EFD5BA"> <!-- botom modal ... opciones -->
+                      <center><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#opcion6">Eliminar</button>
+                      <!-- Modal -->
+                      <div id="opcion5" class="modal fade" role="dialog">
+                        <div class="modal-dialog">
+                          <!-- Modal contenedor-->
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <button type="button" class="close" data-dismiss="modal">&times;</button>
+                              <h4 class="modal-title">opcion 5</h4>
+                            </div>
+                            <div class="modal-body">
+                              <p>opcion 5</p>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-default" data-dismiss="modal">cerrar</button>
+                              <button type="button" class="btn btn-default" data-dismiss="modal">Guardar cambios</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div></th>
+                    </tr>
+                    <th bgcolor="E69138"> <center> 11:40 - 12:00 </center></th>
+                    <th colspan="12" WIDTH="50" HEIGHT="50" bgcolor="E69138"><center> DESCANSO </center></th>
+                    <tr>
+                      <td bgcolor="EFD5BA"> <center>12:00 - 13:40</center></td>
+                      <td bgcolor="EFD5BA"> <center>datos</center></td>
+                      <td bgcolor="EFD5BA"> <center>datos</center></td>
+                      <td bgcolor="EFD5BA"> <center>datos</center></td>
+                      <td bgcolor="EFD5BA"> <center>datos</center></td>
+                      <td bgcolor="EFD5BA"> <center>datos</center></td>
+                      <td bgcolor="EFD5BA"> <center>datos</center></td>
+                      <th bgcolor="EFD5BA"><!-- botom modal ... opciones -->
+                    <center><button type="button" class="btn btn-success" data-toggle="modal" data-target="#opcion6">Editar</button>
+                    <!-- Modal -->
+                    <div id="opcion6" class="modal fade" role="dialog">
+                      <div class="modal-dialog">
+                        <!-- Modal contenedor-->
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">opcion 6</h4>
+                          </div>
+                          <div class="modal-body">
+                            <p>opcion 6</p>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">cerrar</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Guardar cambios</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div></th>
+                    <th bgcolor="EFD5BA"> <!-- botom modal ... opciones -->
+                      <center><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#opcion7">Eliminar</button>
+                      <!-- Modal -->
+                      <div id="opcion7" class="modal fade" role="dialog">
+                        <div class="modal-dialog">
+                          <!-- Modal contenedor-->
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <button type="button" class="close" data-dismiss="modal">&times;</button>
+                              <h4 class="modal-title">opcion 7</h4>
+                            </div>
+                            <div class="modal-body">
+                              <p>opcion 7</p>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-default" data-dismiss="modal">cerrar</button>
+                              <button type="button" class="btn btn-default" data-dismiss="modal">Guardar cambios</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div></th>
+                    </tr>
+                    <th bgcolor="E69138"> <center> 13:40 - 14:20 </center></th>
+                    <th colspan="12" WIDTH="50" HEIGHT="50" bgcolor="E69138"><center> ALMUERZO </center></th>
+                    <tr>
+                      <td bgcolor="EFD5BA"> <center>14:20 - 16:00 <center></td>
+                        <td bgcolor="EFD5BA"> <center>datos </center></td>
+                        <td bgcolor="EFD5BA"> <center>datos </center></td>
+                        <td bgcolor="EFD5BA"> <center>datos </center></td>
+                        <td bgcolor="EFD5BA"> <center>datos </center></td>
+                        <td bgcolor="EFD5BA"> <center>datos </center></td>
+                        <td bgcolor="EFD5BA"> <center>datos </center></td>
+                        <th bgcolor="EFD5BA"><!-- botom modal ... opciones -->
+                    <center><button type="button" class="btn btn-success" data-toggle="modal" data-target="#opcion8">Editar</button>
+                    <!-- Modal -->
+                    <div id="opcion8" class="modal fade" role="dialog">
+                      <div class="modal-dialog">
+                        <!-- Modal contenedor-->
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">opcion 8</h4>
+                          </div>
+                          <div class="modal-body">
+                            <p>opcion 8</p>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">cerrar</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Guardar cambios</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div></th>
+                    <th bgcolor="EFD5BA"> <!-- botom modal ... opciones -->
+                      <center><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#opcion9">Eliminar</button>
+                      <!-- Modal -->
+                      <div id="opcion9" class="modal fade" role="dialog">
+                        <div class="modal-dialog">
+                          <!-- Modal contenedor-->
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <button type="button" class="close" data-dismiss="modal">&times;</button>
+                              <h4 class="modal-title">opcion 9</h4>
+                            </div>
+                            <div class="modal-body">
+                              <p>opcion 9</p>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-default" data-dismiss="modal">cerrar</button>
+                              <button type="button" class="btn btn-default" data-dismiss="modal">Guardar cambios</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div></th>
+                      </tr>
+                      <th bgcolor="E69138"> <center> 16:00 - 16:20 </center></th>
+                      <th colspan="12" WIDTH="50" HEIGHT="50" bgcolor="E69138"><center> DESCANSO </center></th>
+                      <tr>
+                        <td bgcolor="EFD5BA"><center>16:20 - 18:00</center></td>
+                        <td bgcolor="EFD5BA"><center>Datos</center></td>
+                        <td bgcolor="EFD5BA"><center>Datos</center></td>
+                        <td bgcolor="EFD5BA"><center>Datos</center></td>
+                        <td bgcolor="EFD5BA"><center>Datos</center></td>
+                        <td bgcolor="EFD5BA"><center>Datos</center></td>
+                        <td bgcolor="EFD5BA"><center>Datos</center></td>
+                        <th bgcolor="EFD5BA"><!-- botom modal ... opciones -->
+                    <center><button type="button" class="btn btn-success" data-toggle="modal" data-target="#opcion10">Editar</button>
+                    <!-- Modal -->
+                    <div id="opcion10" class="modal fade" role="dialog">
+                      <div class="modal-dialog">
+                        <!-- Modal contenedor-->
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">opcion 10</h4>
+                          </div>
+                          <div class="modal-body">
+                            <p>opcion 10</p>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">cerrar</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Guardar cambios</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div></th>
+                    <th bgcolor="EFD5BA"> <!-- botom modal ... opciones -->
+                      <center><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#opcion11">Eliminar</button>
+                      <!-- Modal -->
+                      <div id="opcion11" class="modal fade" role="dialog">
+                        <div class="modal-dialog">
+                          <!-- Modal contenedor-->
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <button type="button" class="close" data-dismiss="modal">&times;</button>
+                              <h4 class="modal-title">opcion 11</h4>
+                            </div>
+                            <div class="modal-body">
+                              <p>opcion 11</p>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-default" data-dismiss="modal">cerrar</button>
+                              <button type="button" class="btn btn-default" data-dismiss="modal">Guardar cambios</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div></th>
+                      </tr>
+                      <tr>
+                        <td bgcolor="EFD5BA"><center>18:15 - 19:45</center></td>
+                        <td bgcolor="EFD5BA"><center> Datos </center></td>
+                        <td bgcolor="EFD5BA"><center> Datos </center></td>
+                        <td bgcolor="EFD5BA"><center> Datos </center></td>
+                        <td bgcolor="EFD5BA"><center> Datos </center></td>
+                        <td bgcolor="EFD5BA"><center> Datos </center></td>
+                        <td bgcolor="EFD5BA"><center> Datos </center></td>
+                        <th bgcolor="EFD5BA"><!-- botom modal ... opciones -->
+                    <center><button type="button" class="btn btn-success" data-toggle="modal" data-target="#opcion12">Editar</button>
+                    <!-- Modal -->
+                    <div id="opcion12" class="modal fade" role="dialog">
+                      <div class="modal-dialog">
+                        <!-- Modal contenedor-->
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">opcion 12</h4>
+                          </div>
+                          <div class="modal-body">
+                            <p>opcion 12</p>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">cerrar</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Guardar cambios</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div></th>
+                    <th bgcolor="EFD5BA"> <!-- botom modal ... opciones -->
+                      <center><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#opcion13">Eliminar</button>
+                      <!-- Modal -->
+                      <div id="opcion13" class="modal fade" role="dialog">
+                        <div class="modal-dialog">
+                          <!-- Modal contenedor-->
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <button type="button" class="close" data-dismiss="modal">&times;</button>
+                              <h4 class="modal-title">opcion 13</h4>
+                            </div>
+                            <div class="modal-body">
+                              <p>opcion 13</p>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-default" data-dismiss="modal">cerrar</button>
+                              <button type="button" class="btn btn-default" data-dismiss="modal">Guardar cambios</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div></th>
+                      </tr>
+                      <th bgcolor="E69138"> <center> 19:45 - 20:00 </center></th>
+                      <th colspan="12" WIDTH="50" HEIGHT="50" bgcolor="E69138"><center> DESCANSO </center></th>
+                      <tr>
+                        <td bgcolor="EFD5BA"> <center>20:00 - 21:40</center></td>
+                        <td bgcolor="EFD5BA"> <center> Datos </center></td>
+                        <td bgcolor="EFD5BA"> <center> Datos </center></td>
+                        <td bgcolor="EFD5BA"> <center> Datos </center></td>
+                        <td bgcolor="EFD5BA"> <center> Datos </center></td>
+                        <td bgcolor="EFD5BA"> <center> Datos </center></td>
+                        <td bgcolor="EFD5BA"> <center> Datos </center></td>
+                        <th bgcolor="EFD5BA"><!-- botom modal ... opciones -->
+                    <center><button type="button" class="btn btn-success" data-toggle="modal" data-target="#opcion14">Editar</button>
+                    <!-- Modal -->
+                    <div id="opcion14" class="modal fade" role="dialog">
+                      <div class="modal-dialog">
+                        <!-- Modal contenedor-->
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">opcion 14</h4>
+                          </div>
+                          <div class="modal-body">
+                            <p>opcion 14</p>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">cerrar</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Guardar cambios</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div></th>
+                    <th bgcolor="EFD5BA"> <!-- botom modal ... opciones -->
+                      <center><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#opcion15">Eliminar</button>
+                      <!-- Modal -->
+                      <div id="opcion15" class="modal fade" role="dialog">
+                        <div class="modal-dialog">
+                          <!-- Modal contenedor-->
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <button type="button" class="close" data-dismiss="modal">&times;</button>
+                              <h4 class="modal-title">opcion 15</h4>
+                            </div>
+                            <div class="modal-body">
+                              <p>opcion 15</p>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-default" data-dismiss="modal">cerrar</button>
+                              <button type="button" class="btn btn-default" data-dismiss="modal">Guardar cambios</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div></th>
+                      </tr>
+                    </table>
+                  </div>
       </div>
   </div>
 
