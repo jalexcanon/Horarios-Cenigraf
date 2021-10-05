@@ -373,7 +373,7 @@ $db1=$resul1->fetch_assoc();
                       <td bgcolor="EFD5BA"> <center>8:00 -9:40</center></td>
 
                       <?php
-                        for ($i=1; $i <=6 ; $i++) { 
+                       for ($i=1; $i <=6 ; $i++) { 
                         $horarios="SELECT * FROM instructor,`8:00-9:40`,dias,ficha WHERE instructor.ID=$ins AND `8:00-9:40`.`dia`=$i AND instructor.ID = `8:00-9:40`.`instructor` AND dias.id = `8:00-9:40`.`dia` AND ficha.ID_F= `8:00-9:40`.`ficha`";
                         $resul1=mysqli_query($conn,$horarios);
                         $db2=$resul1->fetch_assoc();
@@ -412,7 +412,7 @@ $db1=$resul1->fetch_assoc();
                                             } 
                                           }                                        
                                           if (isset($db2)) {
-                                            if ($db1["dia"]==4) {
+                                            if ($db2["dia"]==4) {
                                             ?>
                                                  <td bgcolor="EFD5BA"> <center>
                                             <?php 
@@ -423,7 +423,7 @@ $db1=$resul1->fetch_assoc();
                                             } 
                                           }
                                           if (isset($db2)) {
-                                            if ($db1["dia"]==5) {
+                                            if ($db2["dia"]==5) {
                                             ?>
                                                  <td bgcolor="EFD5BA"> <center>
                                             <?php 
@@ -434,7 +434,7 @@ $db1=$resul1->fetch_assoc();
                                             } 
                                           }
                                           if (isset($db2)) {
-                                            if ($db1["dia"]==6) {
+                                            if ($db2["dia"]==6) {
                                             ?>
                                                  <td bgcolor="EFD5BA"> <center>
                                             <?php 
@@ -444,7 +444,7 @@ $db1=$resul1->fetch_assoc();
                                               ?></center></td><?php
                                             } 
                                           }                       
-                        }?>
+                       } ?>
                      
                       <th bgcolor="EFD5BA"><!-- botom modal ... opciones -->
                     <center><button type="button" class="btn btn-success" data-toggle="modal" data-target="#opcion3">Editar</button>
@@ -493,12 +493,7 @@ $db1=$resul1->fetch_assoc();
                     <th colspan="12" WIDTH="50" HEIGHT="50" bgcolor="E69138"><center> DESCANSO </center></th>
                     <tr>
                       <td bgcolor="EFD5BA"> <center>10:00 - 11:40</center></td>
-                      <td bgcolor="EFD5BA"> <center>datos</center></td>
-                      <td bgcolor="EFD5BA"> <center>datos</center></td>
-                      <td bgcolor="EFD5BA"> <center>datos</center></td>
-                      <td bgcolor="EFD5BA"> <center>datos</center></td>
-                      <td bgcolor="EFD5BA"> <center>datos</center></td>
-                      <td bgcolor="EFD5BA"> <center>datos</center></td>
+                      
                       <th bgcolor="EFD5BA"><!-- botom modal ... opciones -->
                     <center><button type="button" class="btn btn-success" data-toggle="modal" data-target="#opcion5">Editar</button>
                     <!-- Modal -->
@@ -546,12 +541,56 @@ $db1=$resul1->fetch_assoc();
                     <th colspan="12" WIDTH="50" HEIGHT="50" bgcolor="E69138"><center> DESCANSO </center></th>
                     <tr>
                       <td bgcolor="EFD5BA"> <center>12:00 - 13:40</center></td>
-                      <td bgcolor="EFD5BA"> <center>datos</center></td>
-                      <td bgcolor="EFD5BA"> <center>datos</center></td>
-                      <td bgcolor="EFD5BA"> <center>datos</center></td>
-                      <td bgcolor="EFD5BA"> <center>datos</center></td>
-                      <td bgcolor="EFD5BA"> <center>datos</center></td>
-                      <td bgcolor="EFD5BA"> <center>datos</center></td>
+                      
+                      <?php 
+                        $lol = array(1,2,3,4,5,6);
+
+
+                        foreach ($lol as $jg) {
+
+                      $hora="SELECT * FROM instructor,`8:00-9:40`,dias,ficha WHERE instructor.ID=$ins AND `8:00-9:40`.`dia`=$jg AND instructor.ID = `8:00-9:40`.`instructor` AND dias.id = `8:00-9:40`.`dia` AND ficha.ID_F= `8:00-9:40`.`ficha`";
+                        $resu=mysqli_query($conn,$hora);
+                        $dbs=$resu->fetch_assoc();
+                         
+                                         
+                                           if (isset($dbs)) {
+                                            if ($dbs["dia"]==1) {
+                                            ?>
+                                                 <td bgcolor="EFD5BA"> <center>
+                                            <?php 
+                                              echo $dbs['Nombre']."<br>";
+                                              echo $dbs["Nº ficha"]."<br>";
+                                              echo $dbs["dia"];
+                                              ?></center></td><?php
+                                            } 
+                                          }
+                                           if (isset($dbs)) {
+                                            if ($dbs["dia"]==5) {
+                                            ?>
+                                                 <td bgcolor="EFD5BA"> <center>
+                                            <?php 
+                                              echo $dbs['Nombre']."<br>";
+                                              echo $dbs["Nº ficha"]."<br>";
+                                              echo $dbs["dia"];
+                                              ?></center></td><?php
+                                            } 
+                                          }
+                                          if (isset($dbs)) {
+                                            if ($dbs["dia"]==6) {
+                                            ?>
+                                                 <td bgcolor="EFD5BA"> <center>
+                                            <?php 
+                                              echo $dbs['Nombre']."<br>";
+                                              echo $dbs["Nº ficha"]."<br>";
+                                              echo $dbs["dia"];
+                                              ?></center></td><?php
+                                            } 
+                                          }
+                                          
+                                          
+                                            
+                        }
+                      ?>
                       <th bgcolor="EFD5BA"><!-- botom modal ... opciones -->
                     <center><button type="button" class="btn btn-success" data-toggle="modal" data-target="#opcion6">Editar</button>
                     <!-- Modal -->
@@ -599,12 +638,7 @@ $db1=$resul1->fetch_assoc();
                     <th colspan="12" WIDTH="50" HEIGHT="50" bgcolor="E69138"><center> ALMUERZO </center></th>
                     <tr>
                       <td bgcolor="EFD5BA"> <center>14:20 - 16:00 <center></td>
-                        <td bgcolor="EFD5BA"> <center>datos </center></td>
-                        <td bgcolor="EFD5BA"> <center>datos </center></td>
-                        <td bgcolor="EFD5BA"> <center>datos </center></td>
-                        <td bgcolor="EFD5BA"> <center>datos </center></td>
-                        <td bgcolor="EFD5BA"> <center>datos </center></td>
-                        <td bgcolor="EFD5BA"> <center>datos </center></td>
+                        
                         <th bgcolor="EFD5BA"><!-- botom modal ... opciones -->
                     <center><button type="button" class="btn btn-success" data-toggle="modal" data-target="#opcion8">Editar</button>
                     <!-- Modal -->
@@ -809,7 +843,78 @@ $db1=$resul1->fetch_assoc();
                   </div>
       </div>
   </div>
+<div class="container">
+  <table class="table table-bordered">
 
+
+  <?php 
+
+    echo "
+       
+             
+            <th>Horarios</th>
+            <th>Lunes</th>
+            <th>Martes</th>
+            <th>Miercoles</th>
+            <th>Jueves</th>
+            <th>Viernes</th>
+            <th>Sabado</th>          
+           
+        ";
+
+            echo "
+       
+             
+            
+            <tr><td>6:00 - 7:40</td></tr>
+            <tr><td>6:00 - 7:40</td></tr>
+            <tr><td>6:00 - 7:40</td></tr>
+            <tr><td>6:00 - 7:40</td></tr>
+            <tr><td>6:00 - 7:40</td></tr>
+            <tr><td>6:00 - 7:40</td></tr>          
+           
+        ";
+                              
+                              $days = array(0,1,2,3,4,5,6,);
+                              $hours = array(0,1,2,3,4,5,6,7);
+
+                            $dia = array( 
+                                '<tr><td>Lunes</td></tr>',
+                                '<tr><td>Martes</td></tr>',
+                                '<tr><td>Miercoles</td></tr>',
+                                '<tr><td>Jueves</td></tr>',
+                                '<tr><td>Viernes</td></tr>',
+                                '<tr><td>Sabado</td></tr>',); 
+                             
+                            
+                              foreach ($hours as $hour) {
+                                  echo "<tr>";
+                                  foreach ($days as $day) {
+                                      ?>
+
+                                       <td bgcolor="EFD5BA">
+
+                                      <?php
+                          $query = "SELECT * FROM horarios,ficha,instructor,dias,horas WHERE horarios.dia=$day AND horarios.hora=$hour AND horarios.dia=dias.id AND horarios.ficha=ficha.ID_F AND horarios.instructor = instructor.ID AND horarios.hora = horas.id_h and horarios.instructor=$ins";
+                                      $result = mysqli_query($conn, $query);
+                                      $row = mysqli_fetch_assoc($result);
+                                      if (isset($row)) {
+                                          echo $row['dia']."<br>";
+                                          echo $row['Nombre']."<br>";
+                                          echo $row['hora'];
+                                      }
+                                      ?>
+
+                                      </td>
+                                      <?php                                     
+                                  }
+                                  echo "</tr>";
+                              }
+
+                              echo "</table>";
+                             
+                        ?>
+</div>
 
 
 
