@@ -81,7 +81,7 @@ $db1=$resul1->fetch_assoc();
 ?>*/?>
 
 
-<body class="hold-transition sidebar-mini">
+<body class="hold-transition sidebar-mini" style="">
 
 <div class="wrapper">
 	
@@ -155,7 +155,7 @@ $db1=$resul1->fetch_assoc();
   <div class="content-wrapper">
     <div class="container">
       
-      <div>
+      
             <!-- Trigger the modal with a button -->
             <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Crear Horario</button>
             <center><h3>Intructor <?php  echo $indsF["Nombre"]; ?></h3></center>
@@ -233,10 +233,11 @@ $db1=$resul1->fetch_assoc();
               </div>
            </div>
         </div>
-       
-    
+          
+
+
             <!--TABLA-------------------------->
-            <div>
+            <div class="container">
               <table class="table table-bordered">
                 <tr>
                   <th bgcolor="E69138"><center> Horas</center></th>
@@ -841,67 +842,153 @@ $db1=$resul1->fetch_assoc();
                       </tr>
                     </table>
                   </div>
-      </div>
-  </div>
-<div class="container">
-  <table class="table table-bordered">
 
+   
+          
+         <div class="container">
+              <table class="table table-bordered">
+                <tr>
+                  <th bgcolor="E69138" ><center>Horas</center></th>
+                  <th bgcolor="E69138" width="200" ><center>Lunes</center></th>
+                  <th bgcolor="E69138" ><center>Martes</center></th>
+                  <th bgcolor="E69138" ><center>Miercoles</center></th>
+                  <th bgcolor="E69138" ><center>Jueves</center></th>
+                  <th bgcolor="E69138" ><center>Viernes</center></th>
+                  <th bgcolor="E69138" ><center>Sabado</center></th>
+                </tr>
 
-  <?php 
+                <tr></tr>
+                  <th bgcolor="E69138" WIDTH="200" HEIGHT="100"> <center>6:00 - 7:40</center></th>
+                  <td WIDTH="200" HEIGHT="100">&nbsp</td>
+                  <td WIDTH="200" HEIGHT="100">&nbsp</td>
+                  <td WIDTH="200" HEIGHT="100">&nbsp</td>
+                  <td WIDTH="200" HEIGHT="100">&nbsp</td>
+                  <td WIDTH="200" HEIGHT="100">&nbsp</td>
+                  <td WIDTH="200" HEIGHT="100">&nbsp</td>
+                </tr>
+                  <tr>
+                    <th bgcolor="E69138" WIDTH="200" HEIGHT="100"> <center> 7:40 - 8:00 </center></th>
+                    <th colspan="12" WIDTH="50" HEIGHT="50" bgcolor="E69138" style = "position: relative; z-index: 1"><center> DESCANSO </center></th>
+                  </tr>
+                <tr>
+                  <th bgcolor="E69138" WIDTH="200" HEIGHT="100"> <center>8:00-9:40</center></th>
+                  <td WIDTH="200" HEIGHT="100">&nbsp</td>
+                  <td WIDTH="200" HEIGHT="100">&nbsp</td>
+                  <td WIDTH="200" HEIGHT="100">&nbsp</td>
+                  <td WIDTH="200" HEIGHT="100">&nbsp</td>
+                  <td WIDTH="200" HEIGHT="100">&nbsp</td>
+                  <td WIDTH="200" HEIGHT="100">&nbsp</td>
+                </tr>
+                   <tr>
+                    <th bgcolor="E69138" WIDTH="200" HEIGHT="100"> <center> 9:40 - 10:00 </center></th>
+                    <th colspan="12" WIDTH="50" HEIGHT="50" bgcolor="E69138" style = "position: relative; z-index: 1"><center> DESCANSO </center></th>
+                  </tr>
+                <tr>
+                  <th bgcolor="E69138" WIDTH="200" HEIGHT="100"> <center>10:00-11:40</center></th>
+                  <td WIDTH="200" HEIGHT="100">&nbsp</td>
+                  <td WIDTH="200" HEIGHT="100">&nbsp</td>
+                  <td WIDTH="200" HEIGHT="100">&nbsp</td>
+                  <td WIDTH="200" HEIGHT="100">&nbsp</td>
+                  <td WIDTH="200" HEIGHT="100">&nbsp</td>
+                  <td WIDTH="200" HEIGHT="100">&nbsp</td>
+                </tr>
+                   <tr>
+                    <th bgcolor="E69138" WIDTH="200" HEIGHT="100"> <center> 11:40 - 12:00 </center></th>
+                    <th colspan="12" WIDTH="50" HEIGHT="50" bgcolor="E69138" style = "position: relative; z-index: 1"><center> DESCANSO </center></th>
+                   </tr>
+                   <th bgcolor="E69138" WIDTH="200" HEIGHT="100"> <center>12:00-13:40</center></th>
+                  <td WIDTH="200" HEIGHT="100">&nbsp</td>
+                  <td WIDTH="200" HEIGHT="100">&nbsp</td>
+                  <td WIDTH="200" HEIGHT="100">&nbsp</td>
+                  <td WIDTH="200" HEIGHT="100">&nbsp</td>
+                  <td WIDTH="200" HEIGHT="100">&nbsp</td>
+                  <td WIDTH="200" HEIGHT="100">&nbsp</td>
+                </tr>
+                   <tr>
+                    <th bgcolor="E69138" WIDTH="200" HEIGHT="100"> <center> 13:40 - 14:20 </center></th>
+                    <th colspan="12" WIDTH="50" HEIGHT="50" bgcolor="E69138" style = "position: relative; z-index: 1"><center> DESCANSO </center></th>
+                   </tr>
+                <tr>
+                  <th bgcolor="E69138" WIDTH="200" HEIGHT="100"> <center>14:20-16:00</center></th>
+                  <td WIDTH="200" HEIGHT="100">&nbsp</td>
+                  <td WIDTH="200" HEIGHT="100">&nbsp</td>
+                  <td WIDTH="200" HEIGHT="100">&nbsp</td>
+                  <td WIDTH="200" HEIGHT="100">&nbsp</td>
+                  <td WIDTH="200" HEIGHT="100">&nbsp</td>
+                  <td WIDTH="200" HEIGHT="100">&nbsp</td>
+                </tr>
+                   <tr>
+                    <th bgcolor="E69138" WIDTH="200" HEIGHT="100"> <center> 16:00 - 16:20 </center></th>
+                    <th colspan="12" WIDTH="50" HEIGHT="50" bgcolor="E69138" style = "position: relative; z-index: 1"><center> DESCANSO </center></th>
+                   </tr>
+                <tr>
+                  <th bgcolor="E69138" WIDTH="200" HEIGHT="100"> <center>16:20-18:00</center></th>
+                  <td WIDTH="200" HEIGHT="100">&nbsp</td>
+                  <td WIDTH="200" HEIGHT="100">&nbsp</td>
+                  <td WIDTH="200" HEIGHT="100">&nbsp</td>
+                  <td WIDTH="200" HEIGHT="100">&nbsp</td>
+                  <td WIDTH="200" HEIGHT="100">&nbsp</td>
+                  <td WIDTH="200" HEIGHT="100">&nbsp</td>
+                </tr>
 
-    echo "
-       
-             
-            <th>Horarios</th>
-            <th>Lunes</th>
-            <th>Martes</th>
-            <th>Miercoles</th>
-            <th>Jueves</th>
-            <th>Viernes</th>
-            <th>Sabado</th>          
-           
-        ";
+                <tr>
+                  <th bgcolor="E69138" WIDTH="200" HEIGHT="100"> <center>18:15-19:45</center></th>
+                  <td WIDTH="200" HEIGHT="100">&nbsp</td>
+                  <td WIDTH="200" HEIGHT="100">&nbsp</td>
+                  <td WIDTH="200" HEIGHT="100">&nbsp</td>
+                  <td WIDTH="200" HEIGHT="100">&nbsp</td>
+                  <td WIDTH="200" HEIGHT="100">&nbsp</td>
+                  <td WIDTH="200" HEIGHT="100">&nbsp</td>
+                </tr>
+                   <tr>
+                    <th bgcolor="E69138" WIDTH="200" HEIGHT="100"> <center> 19:45 - 20:00 </center></th>
+                    <th colspan="12" WIDTH="50" HEIGHT="50" bgcolor="E69138" style = "position: relative; z-index: 1"><center> DESCANSO </center></th>
+                   </tr>
+                <tr>
+                  <th bgcolor="E69138" WIDTH="200" HEIGHT="100"> <center>20:00-21:40</center></th>
+                  <td WIDTH="200" HEIGHT="100">&nbsp</td>
+                  <td WIDTH="200" HEIGHT="100">&nbsp</td>
+                  <td WIDTH="200" HEIGHT="100">&nbsp</td>
+                  <td WIDTH="200" HEIGHT="100">&nbsp</td>
+                  <td WIDTH="200" HEIGHT="100">&nbsp</td>
+                  <td WIDTH="200" HEIGHT="100">&nbsp</td>
+                </tr>
+              </table>
+        </div>
 
-            echo "
-       
-             
             
-            <tr><td>6:00 - 7:40</td></tr>
-            <tr><td>6:00 - 7:40</td></tr>
-            <tr><td>6:00 - 7:40</td></tr>
-            <tr><td>6:00 - 7:40</td></tr>
-            <tr><td>6:00 - 7:40</td></tr>
-            <tr><td>6:00 - 7:40</td></tr>          
-           
-        ";
-                              
-                              $days = array(0,1,2,3,4,5,6,);
-                              $hours = array(0,1,2,3,4,5,6,7);
+                <div class="container">
+                  <div style="position: relative;
+                              bottom: 1417px;
+                              margin: 0px 0px 0 159px;
+                              margin-right: 0px;
+                                  "> 
+                          <table class="table table-bordered">
+                           <?php
+                                
+                             $days = array(1,2,3,4,5,6,);
+                            $hours = array(1,0,2,0,3,0,4,0,5,0,6,7,0,8);
 
-                            $dia = array( 
-                                '<tr><td>Lunes</td></tr>',
-                                '<tr><td>Martes</td></tr>',
-                                '<tr><td>Miercoles</td></tr>',
-                                '<tr><td>Jueves</td></tr>',
-                                '<tr><td>Viernes</td></tr>',
-                                '<tr><td>Sabado</td></tr>',); 
-                             
-                            
                               foreach ($hours as $hour) {
-                                  echo "<tr>";
+                                ?>
+                                 <tr>
+                                <?php
+                                  echo "";
                                   foreach ($days as $day) {
                                       ?>
 
-                                       <td bgcolor="EFD5BA">
+                                       <td bgcolor="EFD5BA" width="500" height="100" style="border: 1px solid;">
 
                                       <?php
                           $query = "SELECT * FROM horarios,ficha,instructor,dias,horas WHERE horarios.dia=$day AND horarios.hora=$hour AND horarios.dia=dias.id AND horarios.ficha=ficha.ID_F AND horarios.instructor = instructor.ID AND horarios.hora = horas.id_h and horarios.instructor=$ins";
                                       $result = mysqli_query($conn, $query);
                                       $row = mysqli_fetch_assoc($result);
                                       if (isset($row)) {
-                                          echo $row['dia']."<br>";
+                                          echo $row['dia'];
                                           echo $row['Nombre']."<br>";
-                                          echo $row['hora'];
+                                          echo $row['Nº ficha'];
+                                      }elseif (!isset($row)) {
+                                         // echo "<br><br>";
                                       }
                                       ?>
 
@@ -910,23 +997,26 @@ $db1=$resul1->fetch_assoc();
                                   }
                                   echo "</tr>";
                               }
+                           ?>  
+                       </table>      
+                   </div>
+                </div>  
+                  
+        </div>
+   </div>
 
-                              echo "</table>";
-                             
-                        ?>
-</div>
-
-
+ <!--footing ... pie de pagina-->
 
           <footer class="main-footer">
             <div class="float-right d-none d-sm-block">
-              <b>Version</b> 3.0.5
+              <b>Version</b> 0.1
             </div>
-            <strong>Copyright &copy; 2014-2019 <a href="http://adminlte.io">AdminLTE.io</a>.</strong> All rights
-            reserved.
+            <strong>Copyright &copy; 2021 <a href="https://comunicaciongraficasena.blogspot.com">Cenigraf</a>.</strong> Todos los derechos reservados.
           </footer>
- 
+
 </div>
+          
+
 
   <!-- jQuery -->
 <script src="../plugins/jquery/jquery.min.js"></script>
