@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 21-09-2021 a las 22:27:40
+-- Tiempo de generación: 07-10-2021 a las 17:16:58
 -- Versión del servidor: 10.4.16-MariaDB
 -- Versión de PHP: 7.4.12
 
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 
 --
 -- Base de datos: `beta_horarios`
--- 
+--
 
 -- --------------------------------------------------------
 
@@ -29,9 +29,9 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `6:00-7:40` (
   `id` int(11) NOT NULL,
-  `dia` int(11) NOT NULL,
-  `ficha` int(11) NOT NULL,
-  `instructor` int(11) NOT NULL
+  `dia` int(11) DEFAULT NULL,
+  `ficha` int(11) DEFAULT NULL,
+  `instructor` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -42,10 +42,18 @@ CREATE TABLE `6:00-7:40` (
 
 CREATE TABLE `8:00-9:40` (
   `id` int(11) NOT NULL,
-  `dia` int(11) NOT NULL,
-  `ficha` int(11) NOT NULL,
-  `instructor` int(11) NOT NULL
+  `dia` int(11) DEFAULT NULL,
+  `ficha` int(11) DEFAULT NULL,
+  `instructor` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `8:00-9:40`
+--
+
+INSERT INTO `8:00-9:40` (`id`, `dia`, `ficha`, `instructor`) VALUES
+(55, 1, 1, 2),
+(56, 6, 1, 2);
 
 -- --------------------------------------------------------
 
@@ -55,9 +63,9 @@ CREATE TABLE `8:00-9:40` (
 
 CREATE TABLE `10:00-11:40` (
   `id` int(11) NOT NULL,
-  `dia` int(11) NOT NULL,
-  `ficha` int(11) NOT NULL,
-  `instructor` int(11) NOT NULL
+  `dia` int(11) DEFAULT NULL,
+  `ficha` int(11) DEFAULT NULL,
+  `instructor` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -68,9 +76,9 @@ CREATE TABLE `10:00-11:40` (
 
 CREATE TABLE `12:00-13:40` (
   `id` int(11) NOT NULL,
-  `dia` int(11) NOT NULL,
-  `ficha` int(11) NOT NULL,
-  `instructor` int(11) NOT NULL
+  `dia` int(11) DEFAULT NULL,
+  `ficha` int(11) DEFAULT NULL,
+  `instructor` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -81,9 +89,9 @@ CREATE TABLE `12:00-13:40` (
 
 CREATE TABLE `14:20-16:00` (
   `id` int(11) NOT NULL,
-  `dia` int(11) NOT NULL,
-  `ficha` int(11) NOT NULL,
-  `instructor` int(11) NOT NULL
+  `dia` int(11) DEFAULT NULL,
+  `ficha` int(11) DEFAULT NULL,
+  `instructor` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -94,9 +102,9 @@ CREATE TABLE `14:20-16:00` (
 
 CREATE TABLE `16:20-18:00` (
   `id` int(11) NOT NULL,
-  `dia` int(11) NOT NULL,
-  `ficha` int(11) NOT NULL,
-  `instructor` int(11) NOT NULL
+  `dia` int(11) DEFAULT NULL,
+  `ficha` int(11) DEFAULT NULL,
+  `instructor` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -107,9 +115,9 @@ CREATE TABLE `16:20-18:00` (
 
 CREATE TABLE `18:15-19:45` (
   `id` int(11) NOT NULL,
-  `dia` int(11) NOT NULL,
-  `ficha` int(11) NOT NULL,
-  `instructor` int(11) NOT NULL
+  `dia` int(11) DEFAULT NULL,
+  `ficha` int(11) DEFAULT NULL,
+  `instructor` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -120,10 +128,17 @@ CREATE TABLE `18:15-19:45` (
 
 CREATE TABLE `20:00-21:40` (
   `id` int(11) NOT NULL,
-  `dia` int(11) NOT NULL,
-  `ficha` int(11) NOT NULL,
-  `instructor` int(11) NOT NULL
+  `dia` int(11) DEFAULT NULL,
+  `ficha` int(11) DEFAULT NULL,
+  `instructor` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `20:00-21:40`
+--
+
+INSERT INTO `20:00-21:40` (`id`, `dia`, `ficha`, `instructor`) VALUES
+(1, 4, 2, 3);
 
 -- --------------------------------------------------------
 
@@ -156,7 +171,7 @@ INSERT INTO `dias` (`id`, `dia_s`) VALUES
 
 CREATE TABLE `ficha` (
   `ID_F` int(11) NOT NULL,
-  `Nº ficha` int(100) NOT NULL
+  `Nº ficha` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -164,9 +179,84 @@ CREATE TABLE `ficha` (
 --
 
 INSERT INTO `ficha` (`ID_F`, `Nº ficha`) VALUES
-(1, 2061628),
-(2, 2025329),
-(3, 2023563);
+(1, '2061628'),
+(2, '2025329'),
+(3, '2023563');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `horarios`
+--
+
+CREATE TABLE `horarios` (
+  `id_hora` int(11) NOT NULL,
+  `dia` int(11) DEFAULT NULL,
+  `ficha` int(11) DEFAULT NULL,
+  `instructor` int(11) DEFAULT NULL,
+  `hora` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `horarios`
+--
+
+INSERT INTO `horarios` (`id_hora`, `dia`, `ficha`, `instructor`, `hora`) VALUES
+(4, 1, 1, 2, 1),
+(5, 2, 1, 2, 2),
+(6, 6, 1, 2, 8),
+(7, 6, 1, 2, 7),
+(8, 2, 3, 2, 3),
+(9, 3, 1, 2, 2),
+(10, 4, 1, 2, 2),
+(11, 5, 1, 2, 2),
+(12, 2, 1, 2, 1),
+(13, 3, 1, 2, 1),
+(14, 4, 1, 2, 1),
+(15, 5, 1, 2, 1),
+(16, 6, 1, 2, 1),
+(17, 1, 3, 2, 2),
+(18, 6, 3, 2, 2),
+(19, 1, 1, 2, 3),
+(20, 3, 1, 2, 3),
+(21, 4, 3, 2, 3),
+(22, 4, 2, 2, 3),
+(23, 5, 3, 2, 3),
+(24, 6, 3, 2, 3),
+(25, 1, 3, 2, 4),
+(26, 2, 2, 2, 4),
+(27, 3, 3, 2, 4),
+(28, 4, 2, 2, 4),
+(29, 5, 2, 2, 4),
+(30, 6, 2, 2, 4),
+(31, 2, 2, 1, 2),
+(32, 1, 1, 1, 1),
+(33, 3, 2, 2, 2);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `horas`
+--
+
+CREATE TABLE `horas` (
+  `id_h` int(11) NOT NULL,
+  `hora` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `horas`
+--
+
+INSERT INTO `horas` (`id_h`, `hora`) VALUES
+(1, '6:00-7:40'),
+(2, '8:00-9:40'),
+(3, '10:00-11:40'),
+(4, '12:00-13:40'),
+(5, '14:20-16:00'),
+(6, '16:20-18:00'),
+(7, '18:15-19:45'),
+(8, '20:00-21:40');
 
 -- --------------------------------------------------------
 
@@ -188,7 +278,7 @@ CREATE TABLE `instructor` (
 INSERT INTO `instructor` (`ID`, `Nombre`, `Apellido`, `Cedula`) VALUES
 (1, 'Jose', 'Ovalle', 123456789),
 (2, 'Giovany', 'Ortiz', 123456788),
-(5, 'andres', 'martinez', 123456799);
+(3, 'Andres', 'martinez', 123456799);
 
 --
 -- Índices para tablas volcadas
@@ -199,72 +289,72 @@ INSERT INTO `instructor` (`ID`, `Nombre`, `Apellido`, `Cedula`) VALUES
 --
 ALTER TABLE `6:00-7:40`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `dia` (`dia`),
   ADD KEY `relacion` (`ficha`),
-  ADD KEY `relacion2` (`instructor`);
+  ADD KEY `relacion2` (`instructor`),
+  ADD KEY `dia` (`dia`) USING BTREE;
 
 --
 -- Indices de la tabla `8:00-9:40`
 --
 ALTER TABLE `8:00-9:40`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `dia` (`dia`,`ficha`,`instructor`),
   ADD KEY `relacion_i` (`instructor`),
-  ADD KEY `relacion_f` (`ficha`);
+  ADD KEY `relacion_f` (`ficha`),
+  ADD KEY `dia` (`dia`,`ficha`,`instructor`) USING BTREE;
 
 --
 -- Indices de la tabla `10:00-11:40`
 --
 ALTER TABLE `10:00-11:40`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `dia` (`dia`,`ficha`,`instructor`),
   ADD KEY `instructor` (`instructor`),
-  ADD KEY `ficha` (`ficha`);
+  ADD KEY `ficha` (`ficha`),
+  ADD KEY `dia` (`dia`,`ficha`,`instructor`) USING BTREE;
 
 --
 -- Indices de la tabla `12:00-13:40`
 --
 ALTER TABLE `12:00-13:40`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `dia` (`dia`,`ficha`,`instructor`),
   ADD KEY `instructor` (`instructor`),
-  ADD KEY `ficha` (`ficha`);
+  ADD KEY `ficha` (`ficha`),
+  ADD KEY `dia` (`dia`,`ficha`,`instructor`) USING BTREE;
 
 --
 -- Indices de la tabla `14:20-16:00`
 --
 ALTER TABLE `14:20-16:00`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `dia` (`dia`,`ficha`,`instructor`),
   ADD KEY `instructor` (`instructor`),
-  ADD KEY `ficha` (`ficha`);
+  ADD KEY `ficha` (`ficha`),
+  ADD KEY `dia` (`dia`,`ficha`,`instructor`) USING BTREE;
 
 --
 -- Indices de la tabla `16:20-18:00`
 --
 ALTER TABLE `16:20-18:00`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `dia` (`dia`,`ficha`,`instructor`),
   ADD KEY `ficha` (`ficha`),
-  ADD KEY `instructor` (`instructor`);
+  ADD KEY `instructor` (`instructor`),
+  ADD KEY `dia` (`dia`,`ficha`,`instructor`) USING BTREE;
 
 --
 -- Indices de la tabla `18:15-19:45`
 --
 ALTER TABLE `18:15-19:45`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `dia` (`dia`,`ficha`,`instructor`),
   ADD KEY `instructor` (`instructor`),
-  ADD KEY `ficha` (`ficha`);
+  ADD KEY `ficha` (`ficha`),
+  ADD KEY `dia` (`dia`,`ficha`,`instructor`) USING BTREE;
 
 --
 -- Indices de la tabla `20:00-21:40`
 --
 ALTER TABLE `20:00-21:40`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `dia` (`dia`,`ficha`,`instructor`),
   ADD KEY `ficha` (`ficha`),
-  ADD KEY `instructor` (`instructor`);
+  ADD KEY `instructor` (`instructor`),
+  ADD KEY `dia` (`dia`,`ficha`,`instructor`) USING BTREE;
 
 --
 -- Indices de la tabla `dias`
@@ -280,6 +370,22 @@ ALTER TABLE `ficha`
   ADD PRIMARY KEY (`ID_F`);
 
 --
+-- Indices de la tabla `horarios`
+--
+ALTER TABLE `horarios`
+  ADD PRIMARY KEY (`id_hora`),
+  ADD KEY `dia` (`dia`) USING BTREE,
+  ADD KEY `ficha` (`ficha`),
+  ADD KEY `instructor` (`instructor`),
+  ADD KEY `hora` (`hora`);
+
+--
+-- Indices de la tabla `horas`
+--
+ALTER TABLE `horas`
+  ADD PRIMARY KEY (`id_h`);
+
+--
 -- Indices de la tabla `instructor`
 --
 ALTER TABLE `instructor`
@@ -293,7 +399,49 @@ ALTER TABLE `instructor`
 -- AUTO_INCREMENT de la tabla `6:00-7:40`
 --
 ALTER TABLE `6:00-7:40`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=186;
+
+--
+-- AUTO_INCREMENT de la tabla `8:00-9:40`
+--
+ALTER TABLE `8:00-9:40`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
+
+--
+-- AUTO_INCREMENT de la tabla `10:00-11:40`
+--
+ALTER TABLE `10:00-11:40`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+
+--
+-- AUTO_INCREMENT de la tabla `12:00-13:40`
+--
+ALTER TABLE `12:00-13:40`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `14:20-16:00`
+--
+ALTER TABLE `14:20-16:00`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `16:20-18:00`
+--
+ALTER TABLE `16:20-18:00`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `18:15-19:45`
+--
+ALTER TABLE `18:15-19:45`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `20:00-21:40`
+--
+ALTER TABLE `20:00-21:40`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `dias`
@@ -306,6 +454,18 @@ ALTER TABLE `dias`
 --
 ALTER TABLE `ficha`
   MODIFY `ID_F` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT de la tabla `horarios`
+--
+ALTER TABLE `horarios`
+  MODIFY `id_hora` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+
+--
+-- AUTO_INCREMENT de la tabla `horas`
+--
+ALTER TABLE `horas`
+  MODIFY `id_h` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `instructor`
@@ -380,6 +540,15 @@ ALTER TABLE `20:00-21:40`
   ADD CONSTRAINT `20:00-21:40_ibfk_1` FOREIGN KEY (`ficha`) REFERENCES `ficha` (`ID_F`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `20:00-21:40_ibfk_2` FOREIGN KEY (`dia`) REFERENCES `dias` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `20:00-21:40_ibfk_3` FOREIGN KEY (`instructor`) REFERENCES `instructor` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `horarios`
+--
+ALTER TABLE `horarios`
+  ADD CONSTRAINT `relacion_H1` FOREIGN KEY (`dia`) REFERENCES `dias` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `relacion_H2` FOREIGN KEY (`ficha`) REFERENCES `ficha` (`ID_F`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `relacion_H3` FOREIGN KEY (`hora`) REFERENCES `horas` (`id_h`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `relacion_H4` FOREIGN KEY (`instructor`) REFERENCES `instructor` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

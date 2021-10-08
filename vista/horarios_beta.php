@@ -50,35 +50,7 @@ $resultado=mysqli_query($conn,$querys);
 $indsF=$resultado->fetch_assoc();
 
 
-
-/*$horarios="SELECT * FROM instructor,`6:00-7:40`,dias,ficha WHERE instructor.ID=$ins AND instructor.ID = `6:00-7:40`.`instructor` AND dias.id = `6:00-7:40`.`dia` AND ficha.ID_F= `6:00-7:40`.`ficha`";
-$resul1=mysqli_query($conn,$horarios);
-$db1=$resul1->fetch_assoc();*/
-
-/*for ($i=1; $i <=6 ; $i++) { 
-$horarios="SELECT * FROM instructor,`6:00-7:40`,dias,ficha WHERE instructor.ID=$ins AND `6:00-7:40`.`dia`=$i AND instructor.ID = `6:00-7:40`.`instructor` AND dias.id = `6:00-7:40`.`dia` AND ficha.ID_F= `6:00-7:40`.`ficha`";
-$resul1=mysqli_query($conn,$horarios);
-$db1=$resul1->fetch_assoc();
- if (isset($db1)) {
-                    if ($db1["dia"]==1) {
-                      echo $db1['Nombre']."<br>";
-                      echo $db1["Nº ficha"]."<br>";
-                        echo $db1["dia"];
-                    
-                    } 
-                  }
-
-
-                  if (isset($db1)) {
-                    if ($db1["dia"]==2) {
-                      echo $db1['Nombre']."<br>";
-                      echo $db1["Nº ficha"]."<br>";
-                        echo $db1["dia"];
-                    
-                    } 
-                  }
-}
-?>*/?>
+?>
 
 
 <body class="hold-transition sidebar-mini" style="">
@@ -845,20 +817,20 @@ $db1=$resul1->fetch_assoc();
 
    
           
-         <div class="container">
-              <table class="table table-bordered">
+       <div class="container">
+         <table style="border: 1px solid;">
                 <tr>
-                  <th bgcolor="E69138" ><center>Horas</center></th>
-                  <th bgcolor="E69138" width="200" ><center>Lunes</center></th>
-                  <th bgcolor="E69138" ><center>Martes</center></th>
-                  <th bgcolor="E69138" ><center>Miercoles</center></th>
-                  <th bgcolor="E69138" ><center>Jueves</center></th>
-                  <th bgcolor="E69138" ><center>Viernes</center></th>
-                  <th bgcolor="E69138" ><center>Sabado</center></th>
+                  <th bgcolor="E69138" WIDTH="100" HEIGHT="50" ><center>Horas</center></th>
+                  <th bgcolor="E69138" WIDTH="100" HEIGHT="50"><center>Lunes</center></th>
+                  <th bgcolor="E69138" WIDTH="100" HEIGHT="50"><center>Martes</center></th>
+                  <th bgcolor="E69138" WIDTH="100" HEIGHT="50"><center>Miercoles</center></th>
+                  <th bgcolor="E69138" WIDTH="100" HEIGHT="50"><center>Jueves</center></th>
+                  <th bgcolor="E69138" WIDTH="100" HEIGHT="50"><center>Viernes</center></th>
+                  <th bgcolor="E69138" WIDTH="100" HEIGHT="50"><center>Sabado</center></th>
                 </tr>
 
                 <tr></tr>
-                  <th bgcolor="E69138" WIDTH="200" HEIGHT="100"> <center>6:00 - 7:40</center></th>
+                  <th bgcolor="E69138" WIDTH="200" HEIGHT="100" style="border: 1px solid;"> <center>6:00 - 7:40</center></th>
                   <td WIDTH="200" HEIGHT="100">&nbsp</td>
                   <td WIDTH="200" HEIGHT="100">&nbsp</td>
                   <td WIDTH="200" HEIGHT="100">&nbsp</td>
@@ -867,11 +839,11 @@ $db1=$resul1->fetch_assoc();
                   <td WIDTH="200" HEIGHT="100">&nbsp</td>
                 </tr>
                   <tr>
-                    <th bgcolor="E69138" WIDTH="200" HEIGHT="100"> <center> 7:40 - 8:00 </center></th>
-                    <th colspan="12" WIDTH="50" HEIGHT="50" bgcolor="E69138" style = "position: relative; z-index: 1"><center> DESCANSO </center></th>
+                    <th bgcolor="E69138" WIDTH="200" HEIGHT="100" style="border: 1px solid;"> <center> 7:40 - 8:00 </center></th>
+                    <th colspan="12" WIDTH="50" HEIGHT="50" bgcolor="E69138" style = "position: relative; z-index: 1;border: 1px solid;"><center> DESCANSO </center></th>
                   </tr>
                 <tr>
-                  <th bgcolor="E69138" WIDTH="200" HEIGHT="100"> <center>8:00-9:40</center></th>
+                  <th bgcolor="E69138" WIDTH="200" HEIGHT="100" style="border: 1px solid;"> <center>8:00-9:40</center></th>
                   <td WIDTH="200" HEIGHT="100">&nbsp</td>
                   <td WIDTH="200" HEIGHT="100">&nbsp</td>
                   <td WIDTH="200" HEIGHT="100">&nbsp</td>
@@ -881,10 +853,10 @@ $db1=$resul1->fetch_assoc();
                 </tr>
                    <tr>
                     <th bgcolor="E69138" WIDTH="200" HEIGHT="100"> <center> 9:40 - 10:00 </center></th>
-                    <th colspan="12" WIDTH="50" HEIGHT="50" bgcolor="E69138" style = "position: relative; z-index: 1"><center> DESCANSO </center></th>
+                    <th colspan="12" WIDTH="50" HEIGHT="50" bgcolor="E69138" style = "position: relative; z-index: 1; border: 1px solid;"><center> DESCANSO </center></th>
                   </tr>
                 <tr>
-                  <th bgcolor="E69138" WIDTH="200" HEIGHT="100"> <center>10:00-11:40</center></th>
+                  <th bgcolor="E69138" WIDTH="200" HEIGHT="100" style="border: 1px solid;"> <center>10:00-11:40</center></th>
                   <td WIDTH="200" HEIGHT="100">&nbsp</td>
                   <td WIDTH="200" HEIGHT="100">&nbsp</td>
                   <td WIDTH="200" HEIGHT="100">&nbsp</td>
@@ -893,10 +865,10 @@ $db1=$resul1->fetch_assoc();
                   <td WIDTH="200" HEIGHT="100">&nbsp</td>
                 </tr>
                    <tr>
-                    <th bgcolor="E69138" WIDTH="200" HEIGHT="100"> <center> 11:40 - 12:00 </center></th>
-                    <th colspan="12" WIDTH="50" HEIGHT="50" bgcolor="E69138" style = "position: relative; z-index: 1"><center> DESCANSO </center></th>
+                    <th bgcolor="E69138" WIDTH="200" HEIGHT="100" style="border: 1px solid;"> <center> 11:40 - 12:00 </center></th>
+                    <th colspan="12" WIDTH="50" HEIGHT="50" bgcolor="E69138" style = "position: relative; z-index: 1; border: 1px solid;"><center> DESCANSO </center></th>
                    </tr>
-                   <th bgcolor="E69138" WIDTH="200" HEIGHT="100"> <center>12:00-13:40</center></th>
+                   <th bgcolor="E69138" WIDTH="200" HEIGHT="100" style="border: 1px solid;"> <center>12:00-13:40</center></th>
                   <td WIDTH="200" HEIGHT="100">&nbsp</td>
                   <td WIDTH="200" HEIGHT="100">&nbsp</td>
                   <td WIDTH="200" HEIGHT="100">&nbsp</td>
@@ -905,24 +877,24 @@ $db1=$resul1->fetch_assoc();
                   <td WIDTH="200" HEIGHT="100">&nbsp</td>
                 </tr>
                    <tr>
-                    <th bgcolor="E69138" WIDTH="200" HEIGHT="100"> <center> 13:40 - 14:20 </center></th>
-                    <th colspan="12" WIDTH="50" HEIGHT="50" bgcolor="E69138" style = "position: relative; z-index: 1"><center> DESCANSO </center></th>
-                   </tr>
-                <tr>
-                  <th bgcolor="E69138" WIDTH="200" HEIGHT="100"> <center>14:20-16:00</center></th>
-                  <td WIDTH="200" HEIGHT="100">&nbsp</td>
-                  <td WIDTH="200" HEIGHT="100">&nbsp</td>
-                  <td WIDTH="200" HEIGHT="100">&nbsp</td>
-                  <td WIDTH="200" HEIGHT="100">&nbsp</td>
-                  <td WIDTH="200" HEIGHT="100">&nbsp</td>
-                  <td WIDTH="200" HEIGHT="100">&nbsp</td>
-                </tr>
-                   <tr>
-                    <th bgcolor="E69138" WIDTH="200" HEIGHT="100"> <center> 16:00 - 16:20 </center></th>
-                    <th colspan="12" WIDTH="50" HEIGHT="50" bgcolor="E69138" style = "position: relative; z-index: 1"><center> DESCANSO </center></th>
+                    <th bgcolor="E69138" WIDTH="200" HEIGHT="100" style="border: 1px solid;"> <center> 13:40 - 14:20 </center></th>
+                    <th colspan="12" WIDTH="50" HEIGHT="50" bgcolor="E69138" style = "position: relative; z-index: 1;border: 1px solid;"><center> DESCANSO </center></th>
                    </tr>
                 <tr>
-                  <th bgcolor="E69138" WIDTH="200" HEIGHT="100"> <center>16:20-18:00</center></th>
+                  <th bgcolor="E69138" WIDTH="200" HEIGHT="100" style="border: 1px solid;"> <center>14:20-16:00</center></th>
+                  <td WIDTH="200" HEIGHT="100">&nbsp</td>
+                  <td WIDTH="200" HEIGHT="100">&nbsp</td>
+                  <td WIDTH="200" HEIGHT="100">&nbsp</td>
+                  <td WIDTH="200" HEIGHT="100">&nbsp</td>
+                  <td WIDTH="200" HEIGHT="100">&nbsp</td>
+                  <td WIDTH="200" HEIGHT="100">&nbsp</td>
+                </tr>
+                   <tr>
+                    <th bgcolor="E69138" WIDTH="200" HEIGHT="100" style="border: 1px solid;"> <center> 16:00 - 16:20 </center></th>
+                    <th colspan="12" WIDTH="50" HEIGHT="50" bgcolor="E69138" style = "position: relative; z-index: 1; border: 1px solid;"><center> DESCANSO </center></th>
+                   </tr>
+                <tr>
+                  <th bgcolor="E69138" WIDTH="200" HEIGHT="100" style="border: 1px solid;"> <center>16:20-18:00</center></th>
                   <td WIDTH="200" HEIGHT="100">&nbsp</td>
                   <td WIDTH="200" HEIGHT="100">&nbsp</td>
                   <td WIDTH="200" HEIGHT="100">&nbsp</td>
@@ -932,7 +904,7 @@ $db1=$resul1->fetch_assoc();
                 </tr>
 
                 <tr>
-                  <th bgcolor="E69138" WIDTH="200" HEIGHT="100"> <center>18:15-19:45</center></th>
+                  <th bgcolor="E69138" WIDTH="200" HEIGHT="100" style="border: 1px solid;"> <center>18:15-19:45</center></th>
                   <td WIDTH="200" HEIGHT="100">&nbsp</td>
                   <td WIDTH="200" HEIGHT="100">&nbsp</td>
                   <td WIDTH="200" HEIGHT="100">&nbsp</td>
@@ -941,11 +913,11 @@ $db1=$resul1->fetch_assoc();
                   <td WIDTH="200" HEIGHT="100">&nbsp</td>
                 </tr>
                    <tr>
-                    <th bgcolor="E69138" WIDTH="200" HEIGHT="100"> <center> 19:45 - 20:00 </center></th>
-                    <th colspan="12" WIDTH="50" HEIGHT="50" bgcolor="E69138" style = "position: relative; z-index: 1"><center> DESCANSO </center></th>
+                    <th bgcolor="E69138" WIDTH="200" HEIGHT="100" style="border: 1px solid;"> <center> 19:45 - 20:00 </center></th>
+                    <th colspan="12" WIDTH="50" HEIGHT="50" bgcolor="E69138" style = "position: relative; z-index: 1; border: 1px solid;"><center> DESCANSO </center></th>
                    </tr>
                 <tr>
-                  <th bgcolor="E69138" WIDTH="200" HEIGHT="100"> <center>20:00-21:40</center></th>
+                  <th bgcolor="E69138" WIDTH="200" HEIGHT="100" style="border: 1px solid;"> <center>20:00-21:40</center></th>
                   <td WIDTH="200" HEIGHT="100">&nbsp</td>
                   <td WIDTH="200" HEIGHT="100">&nbsp</td>
                   <td WIDTH="200" HEIGHT="100">&nbsp</td>
@@ -954,14 +926,18 @@ $db1=$resul1->fetch_assoc();
                   <td WIDTH="200" HEIGHT="100">&nbsp</td>
                 </tr>
               </table>
-        </div>
+        
+       </div>
+              
 
             
                 <div class="container">
                   <div style="position: relative;
-                              bottom: 1417px;
-                              margin: 0px 0px 0 159px;
-                              margin-right: 0px;
+                              bottom: 1401px;
+                              margin: 0 0 0 159px;
+                              margin-right: -7px;
+                              max-WIDTH: 966px; 
+                              max-HEIGHT:100px;
                                   "> 
                           <table class="table table-bordered">
                            <?php
@@ -973,7 +949,7 @@ $db1=$resul1->fetch_assoc();
                                 ?>
                                  <tr>
                                 <?php
-                                  echo "";
+                                
                                   foreach ($days as $day) {
                                       ?>
 
@@ -982,26 +958,183 @@ $db1=$resul1->fetch_assoc();
                                       <?php
                           $query = "SELECT * FROM horarios,ficha,instructor,dias,horas WHERE horarios.dia=$day AND horarios.hora=$hour AND horarios.dia=dias.id AND horarios.ficha=ficha.ID_F AND horarios.instructor = instructor.ID AND horarios.hora = horas.id_h and horarios.instructor=$ins";
                                       $result = mysqli_query($conn, $query);
-                                      $row = mysqli_fetch_assoc($result);
-                                      if (isset($row)) {
-                                          echo $row['dia'];
-                                          echo $row['Nombre']."<br>";
-                                          echo $row['Nº ficha'];
+                                      $row = mysqli_fetch_assoc($result); 
+                                       if (isset($row)) {
+                                          echo ""."<center>";
+                                          echo $row['dia_s']."<br>"."<center>"."<WIDTH:200>"."<HEIGHT:100>";
+                                          echo $row['Nombre']."<br>"."<center>";
+                                          echo $row['hora']."<br>"."<center>";
                                       }elseif (!isset($row)) {
-                                         // echo "<br><br>";
+                                          echo "&nbsp";
                                       }
                                       ?>
-
                                       </td>
                                       <?php                                     
                                   }
                                   echo "</tr>";
                               }
+
+//Modal fichas
+
+$fih="SELECT * FROM ficha";
+$ll=mysqli_query($conn,$fih);
+$f="SELECT * FROM ficha";
+$fl=mysqli_query($conn,$f);
+
                            ?>  
                        </table>      
                    </div>
                 </div>  
-                  
+              
+                   <!-- DIV ---Modal ..... Editar y eliminar-->
+                 <div class="container">
+                   <!-- Modal ..... Editar-->
+                   <center><button type="button" class="btn btn-success" data-toggle="modal" data-target="#edi">Editar</button>
+                    
+                    <div id="edi" class="modal fade" role="dialog">
+                      <div class="modal-dialog">
+                        <!-- Modal contenedor-->
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h4 class="modal-title">Editar </h4>                          
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>                           
+                          </div> 
+                          <center><h3>Intructor <?php  echo $indsF["Nombre"]; ?></h3></center>
+                  <div class="modal-body">
+                            <form class="form-horizontal" action="../controlador/ubdate.php?instructor=<?php echo $ins;?>" method="POST">
+                      <div class="form-group">
+                        <label class="control-label col-sm-2" for="fic">Ficha:</label>
+                        <div class="col-sm-10">
+                          <select class="form-control" id="fic" name="fich">
+                            <option value="0">Seleccionar Ficha</option>
+                            <?php
+                                         while ($fics=mysqli_fetch_array($ll)) {
+                               ?>
+                                  <option value="<?php echo $fics["ID_F"]?>"><?php echo $fics["Nº ficha"]?></option>
+
+                                <?php
+                            }
+                                ?>
+                          </select>
+                        </div>
+                        <br>
+                        <label class="control-label col-sm-2" for="di">Día:</label>
+                          <div class="col-sm-10">
+                             <select class="form-control" id="di" name="days">
+                                <option value="0">Seleccionar dia</option>
+                                <option value="1">Lunes</option>
+                                <option value="2">Martes</option>
+                                <option value="3">Miercoles</option>
+                                <option value="4">Jueves</option>
+                                <option value="5">Viernes</option>
+                                <option value="6">Sabado</option>
+                             </select>
+                          </div>
+
+                          <br>
+                        <label class="control-label col-sm-2" for="ho">Hora:</label>
+                          <div class="col-sm-10">
+                             <select class="form-control" id="ho" name="hour">
+                                <option value="0">Seleccionar hora</option>
+                                <option value="1">6:00 - 7:40</option>
+                                <option value="2">8:00 - 9:40</option>
+                                <option value="3">10:00 - 11:40</option>
+                                <option value="4">12:00 - 13:40</option>
+                                <option value="5">14:20 - 16:00</option>
+                                <option value="6">16:20 - 18:00</option>
+                                <option value="7">18:15 - 19:45</option>
+                                <option value="8">20:00 - 21:40</option>
+                             </select>
+                          </div>
+                          
+                        
+                      </div>
+                  </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">cerrar</button>
+                            <button type="submit" class="btn btn-warning">Actualizar</button>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+
+
+
+
+                     <!-- botom modal ... Eliminar-->
+                      <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#eli">Eliminar</button>
+                      <!-- Modal -->
+                      <div id="eli" class="modal fade" role="dialog">
+                        <div class="modal-dialog">
+                          <!-- Modal contenedor-->
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h4 class="modal-title">Eliminar</h4>
+                              <button type="button" class="close" data-dismiss="modal">&times;</button>                             
+                            </div>
+                            <center><h3>Intructor <?php  echo $indsF["Nombre"]; ?></h3></center>
+                            <div class="modal-body">
+
+                  <form class="form-horizontal" action="../controlador/delete.php?instructor=<?php echo $ins;?>" method="POST">
+                      <div class="form-group">
+                        <label class="control-label col-sm-2" for="fic">Ficha:</label>
+                        <div class="col-sm-10">
+                          <select class="form-control" id="fic" name="fich">
+                            <option value="0">Seleccionar Ficha</option>
+                            <?php
+                                         while ($ficd=mysqli_fetch_array($fl)) {
+                               ?>
+                                  <option value="<?php echo $ficd["ID_F"]?>"><?php echo $ficd["Nº ficha"]?></option>
+
+                                <?php
+                            }
+                                ?>
+                          </select>
+                        </div>
+                        <br>
+                        <label class="control-label col-sm-2" for="dih">Día:</label>
+                          <div class="col-sm-10">
+                             <select class="form-control" id="dih" name="days">
+                                <option value="0">Seleccionar dia</option>
+                                <option value="1">Lunes</option>
+                                <option value="2">Martes</option>
+                                <option value="3">Miercoles</option>
+                                <option value="4">Jueves</option>
+                                <option value="5">Viernes</option>
+                                <option value="6">Sabado</option>
+                             </select>
+                          </div>
+
+                          <br>
+                        <label class="control-label col-sm-2" for="ho">Hora:</label>
+                          <div class="col-sm-10">
+                             <select class="form-control" id="ho" name="hour">
+                                <option value="0">Seleccionar hora</option>
+                                <option value="1">6:00 - 7:40</option>
+                                <option value="2">8:00 - 9:40</option>
+                                <option value="3">10:00 - 11:40</option>
+                                <option value="4">12:00 - 13:40</option>
+                                <option value="5">14:20 - 16:00</option>
+                                <option value="6">16:20 - 18:00</option>
+                                <option value="7">18:15 - 19:45</option>
+                                <option value="8">20:00 - 21:40</option>
+                             </select>
+                          </div>
+                          
+                        
+                      </div>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-danger" data-dismiss="modal">cerrar</button>
+                              <button type="submit" class="btn btn-warning">Eliminar</button>
+                            </div>
+                          </div>
+                         </form> 
+                        </div>
+                      </div></center>
+                 </div> 
+                 
         </div>
    </div>
 

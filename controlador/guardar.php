@@ -5,7 +5,7 @@ $ins=$_GET['instructor'];
 $fich=$_POST['fich'];
 $days=$_POST['days'];
 $hours=$_POST['hour'];
-/*
+
 if ($hours==1) {
 
 	$query="INSERT INTO `6:00-7:40` (`id`, `dia`, `ficha`, `instructor`) VALUES (NULL,'$days','$fich','$ins')";
@@ -45,7 +45,7 @@ if ($hours==8) {
 
 	$query="INSERT INTO `20:00-21:40` (`id`, `dia`, `ficha`, `instructor`) VALUES (NULL,'$days','$fich','$ins')";
     mysqli_query($conn,$query);
-}*/
+}
 
 $query="INSERT INTO `horarios` (`id_hora`, `dia`, `ficha`, `instructor`, `hora`) VALUES (NULL,'$days','$fich','$ins','$hours');";
     mysqli_query($conn,$query);
