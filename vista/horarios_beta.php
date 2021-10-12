@@ -1,3 +1,7 @@
+<?php 
+session_start();
+
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -38,13 +42,13 @@ $resul=mysqli_query($conn,$query);
 
 if (isset($_POST['inst'])) {
   $ins=$_POST['inst'];
-
+  $_SESSION['inst']=$ins;
 }
 if (isset($_GET['instructor'])) {
    $ins=$_GET['instructor'];
+   $_SESSION['inst']=$ins;
 
 }
-
 $querys="SELECT * FROM instructor where ID=$ins";
 $resultado=mysqli_query($conn,$querys);
 $indsF=$resultado->fetch_assoc();
@@ -953,19 +957,38 @@ $indsF=$resultado->fetch_assoc();
                                   foreach ($days as $day) {
                                       ?>
 
-                                       <td bgcolor="EFD5BA" width="500" height="100" style="border: 1px solid;">
+                                       <td bgcolor="EFD5BA" width="500" height="100" style="border: 1px solid; padding: 0;">
 
                                       <?php
                           $query = "SELECT * FROM horarios,ficha,instructor,dias,horas WHERE horarios.dia=$day AND horarios.hora=$hour AND horarios.dia=dias.id AND horarios.ficha=ficha.ID_F AND horarios.instructor = instructor.ID AND horarios.hora = horas.id_h and horarios.instructor=$ins";
                                       $result = mysqli_query($conn, $query);
                                       $row = mysqli_fetch_assoc($result); 
-                                       if (isset($row)) {
-                                          echo ""."<center>";
-                                          echo $row['dia_s']."<br>"."<center>"."<WIDTH:200>"."<HEIGHT:100>";
-                                          echo $row['Nombre']."<br>"."<center>";
-                                          echo $row['hora']."<br>"."<center>";
+                                       if (isset($row)) { ?>                                                                              
+                 <div>
+                    <center>
+                                       <?php  echo $row['dia_s'];?><br>
+                                       <?php  echo $row['Nombre'];?><br>
+  
+                        <div class="dropdown dropright" style=" display: inline-block;">
+                          <button type="button" class="btn btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown">
+                           Opciones
+                          </button>
+                          <div class="dropdown-menu" style="background-color: #f1f1f100; border: 1px solid rgb(0 0 0 / 0%); box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 0%);" >
+                            
+                              <div class="btn-group">
+                              <button type="button" onclick="window.open('../controlador/ubdate.php','_Self')" class="btn btn-info">Editar</button>
+                              <button type="button" onclick="window.open('../controlador/delete.php?eli=<?php echo $row['id_hora']?>','_Self')" class="btn btn-danger">Eliminar</button> 
+                            </div>                                                                                                                     
+                          </div>
+                        </div>
+                     </center>   
+                  </div>        
+
+
+                                         <?php
                                       }elseif (!isset($row)) {
                                           echo "&nbsp";
+                                          
                                       }
                                       ?>
                                       </td>
@@ -984,8 +1007,22 @@ $fl=mysqli_query($conn,$f);
                            ?>  
                        </table>      
                    </div>
-                </div>  
-              
+                </div> 
+                 <!-- prueba-->
+                <div>
+                  <div class="dropdown dropright">
+                          <button type="button" class="btn btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown">
+                           Opciones
+                          </button>
+                          <div class="dropdown-menu">
+                            <div class="btn-group">
+                              <button type="button" class="btn btn-info">Editar</button>
+                              <button type="button" class="btn btn-danger">Eliminar</button> 
+                            </div>                                                             
+                          </div>
+                        </div>
+                </div>
+              <!-- prueba-->
                    <!-- DIV ---Modal ..... Editar y eliminar-->
                  <div class="container">
                    <!-- Modal ..... Editar-->
@@ -1134,10 +1171,49 @@ $fl=mysqli_query($conn,$f);
                         </div>
                       </div></center>
                  </div> 
-                 
-        </div>
-   </div>
 
+          
+                 
+        <?php 
+
+          $eliup="SELECT * FROM horarios,instructor,ficha,dias,horas WHERE instructor = $ins AND horarios.instructor = instructor.ID AND horarios.dia= dias.id AND horarios.hora = horas.id_h";
+          $crud=mysqli_query($conn,$eliup);
+
+        ?>
+   
+         <div class="container">
+           <table class="table table-dark table-striped">
+                <thead>
+                  <tr>
+                    <th>Instructor</th>
+                    <th>Día</th>
+                    <th>Ficha</th>
+                    <th>Hora</th>
+                    <th>Opciones</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  
+                    <?php 
+                     while ($krud=mysqli_fetch_array($crud)) {
+                    ?>
+                  <tr>
+                    <td><?php echo $krud['Nombre'].$krud['id_hora'];?></td>
+                    <td><?php echo $krud['dia_s'];?></td>
+                    <td><?php echo $krud['Nº ficha'];?></td>
+                    <td><?php echo $krud['hora'];?></td>
+                    <td><?php echo $krud['instructor'];?></td>
+                  </tr>
+                    <?php
+                     }
+                    ?>                  
+                </tbody>
+            </table>
+
+         </div>
+
+       </div>
+    </div>
  <!--footing ... pie de pagina-->
 
           <footer class="main-footer">
