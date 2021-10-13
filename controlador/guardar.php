@@ -47,6 +47,10 @@ if ($hours==8) {
     mysqli_query($conn,$query);
 }
 
+
+
+
+
 $query="INSERT INTO `horarios` (`id_hora`, `dia`, `ficha`, `instructor`, `hora`) VALUES (NULL,'$days','$fich','$ins','$hours');";
     mysqli_query($conn,$query);
 

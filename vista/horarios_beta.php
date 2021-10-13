@@ -9,11 +9,6 @@ session_start();
 	<title>beta</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="../css/style.css">
-   <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>-->
-    
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
   <!-- Tell the browser to be responsive to screen width -->
@@ -21,11 +16,6 @@ session_start();
   <link rel="stylesheet" href="../plugins/fontawesome-free/css/all.min.css">
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-  <!-- fullCalendar -->
-  <link rel="stylesheet" href="../plugins/fullcalendar/main.min.css">
-  <link rel="stylesheet" href="../plugins/fullcalendar-daygrid/main.min.css">
-  <link rel="stylesheet" href="../plugins/fullcalendar-timegrid/main.min.css">
-  <link rel="stylesheet" href="../plugins/fullcalendar-bootstrap/main.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="../css/css/adminlte.min.css">
   <!-- Google Font: Source Sans Pro -->
@@ -57,7 +47,7 @@ $indsF=$resultado->fetch_assoc();
 ?>
 
 
-<body class="hold-transition sidebar-mini" style="">
+<body class="hold-transition sidebar-mini" >
 
 <div class="wrapper">
 	
@@ -96,7 +86,7 @@ $indsF=$resultado->fetch_assoc();
         		      </li> 
                      
         		    </ul>
-          </div>  
+           
         </nav>
          </div>
          <!-- prue menu-->
@@ -932,7 +922,19 @@ $indsF=$resultado->fetch_assoc();
               </table>
         
        </div>
-              
+               <script type="text/javascript">
+                  function eliminarh(){
+
+                     var res=confirm("Esta seguro de eliminar este horario.")
+                     if (res==true) {
+                        return true;
+                     }
+                     else{
+                        return false;
+                     }
+                     
+                  }
+               </script>  
 
             
                 <div class="container">
@@ -966,7 +968,7 @@ $indsF=$resultado->fetch_assoc();
                                        if (isset($row)) { ?>                                                                              
                  <div>
                     <center>
-                                       <?php  echo $row['dia_s'];?><br>
+                                       <?php  echo $row['Nº ficha'];?><br>
                                        <?php  echo $row['Nombre'];?><br>
   
                         <div class="dropdown dropright" style=" display: inline-block;">
@@ -975,17 +977,15 @@ $indsF=$resultado->fetch_assoc();
                           </button>
                           <div class="dropdown-menu" style="background-color: #f1f1f100; border: 1px solid rgb(0 0 0 / 0%); box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 0%);" >
                             
-                              <div class="btn-group">
-                              <button type="button" onclick="window.open('../controlador/ubdate.php','_Self')" class="btn btn-info">Editar</button>
-                              <button type="button" onclick="window.open('../controlador/delete.php?eli=<?php echo $row['id_hora']?>','_Self')" class="btn btn-danger">Eliminar</button> 
+                            <div class="btn-group">
+                              <button type="button" data-toggle="modal" class="btn btn-info" onclick="window.open('../controlador/ubdate.php?ubd=<?php echo $row['id_hora']?>','_Self')">Editar</button>
+                             <a href="../controlador/delete.php?eli=<?php echo $row['id_hora']?>"><button type="button" onclick="return eliminarh()" class="btn btn-danger">Eliminar</button></a> 
                             </div>                                                                                                                     
                           </div>
                         </div>
                      </center>   
-                  </div>        
-
-
-                                         <?php
+ 
+                                      <?php
                                       }elseif (!isset($row)) {
                                           echo "&nbsp";
                                           
@@ -997,220 +997,11 @@ $indsF=$resultado->fetch_assoc();
                                   echo "</tr>";
                               }
 
-//Modal fichas
-
-$fih="SELECT * FROM ficha";
-$ll=mysqli_query($conn,$fih);
-$f="SELECT * FROM ficha";
-$fl=mysqli_query($conn,$f);
 
                            ?>  
                        </table>      
                    </div>
                 </div> 
-                 <!-- prueba-->
-                <div>
-                  <div class="dropdown dropright">
-                          <button type="button" class="btn btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown">
-                           Opciones
-                          </button>
-                          <div class="dropdown-menu">
-                            <div class="btn-group">
-                              <button type="button" class="btn btn-info">Editar</button>
-                              <button type="button" class="btn btn-danger">Eliminar</button> 
-                            </div>                                                             
-                          </div>
-                        </div>
-                </div>
-              <!-- prueba-->
-                   <!-- DIV ---Modal ..... Editar y eliminar-->
-                 <div class="container">
-                   <!-- Modal ..... Editar-->
-                   <center><button type="button" class="btn btn-success" data-toggle="modal" data-target="#edi">Editar</button>
-                    
-                    <div id="edi" class="modal fade" role="dialog">
-                      <div class="modal-dialog">
-                        <!-- Modal contenedor-->
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <h4 class="modal-title">Editar </h4>                          
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>                           
-                          </div> 
-                          <center><h3>Intructor <?php  echo $indsF["Nombre"]; ?></h3></center>
-                  <div class="modal-body">
-                            <form class="form-horizontal" action="../controlador/ubdate.php?instructor=<?php echo $ins;?>" method="POST">
-                      <div class="form-group">
-                        <label class="control-label col-sm-2" for="fic">Ficha:</label>
-                        <div class="col-sm-10">
-                          <select class="form-control" id="fic" name="fich">
-                            <option value="0">Seleccionar Ficha</option>
-                            <?php
-                                         while ($fics=mysqli_fetch_array($ll)) {
-                               ?>
-                                  <option value="<?php echo $fics["ID_F"]?>"><?php echo $fics["Nº ficha"]?></option>
-
-                                <?php
-                            }
-                                ?>
-                          </select>
-                        </div>
-                        <br>
-                        <label class="control-label col-sm-2" for="di">Día:</label>
-                          <div class="col-sm-10">
-                             <select class="form-control" id="di" name="days">
-                                <option value="0">Seleccionar dia</option>
-                                <option value="1">Lunes</option>
-                                <option value="2">Martes</option>
-                                <option value="3">Miercoles</option>
-                                <option value="4">Jueves</option>
-                                <option value="5">Viernes</option>
-                                <option value="6">Sabado</option>
-                             </select>
-                          </div>
-
-                          <br>
-                        <label class="control-label col-sm-2" for="ho">Hora:</label>
-                          <div class="col-sm-10">
-                             <select class="form-control" id="ho" name="hour">
-                                <option value="0">Seleccionar hora</option>
-                                <option value="1">6:00 - 7:40</option>
-                                <option value="2">8:00 - 9:40</option>
-                                <option value="3">10:00 - 11:40</option>
-                                <option value="4">12:00 - 13:40</option>
-                                <option value="5">14:20 - 16:00</option>
-                                <option value="6">16:20 - 18:00</option>
-                                <option value="7">18:15 - 19:45</option>
-                                <option value="8">20:00 - 21:40</option>
-                             </select>
-                          </div>
-                          
-                        
-                      </div>
-                  </div>
-                          <div class="modal-footer">
-                            <button type="button" class="btn btn-danger" data-dismiss="modal">cerrar</button>
-                            <button type="submit" class="btn btn-warning">Actualizar</button>
-                          </div>
-                        </div>
-                      </form>
-                    </div>
-                  </div>
-
-
-
-
-                     <!-- botom modal ... Eliminar-->
-                      <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#eli">Eliminar</button>
-                      <!-- Modal -->
-                      <div id="eli" class="modal fade" role="dialog">
-                        <div class="modal-dialog">
-                          <!-- Modal contenedor-->
-                          <div class="modal-content">
-                            <div class="modal-header">
-                              <h4 class="modal-title">Eliminar</h4>
-                              <button type="button" class="close" data-dismiss="modal">&times;</button>                             
-                            </div>
-                            <center><h3>Intructor <?php  echo $indsF["Nombre"]; ?></h3></center>
-                            <div class="modal-body">
-
-                  <form class="form-horizontal" action="../controlador/delete.php?instructor=<?php echo $ins;?>" method="POST">
-                      <div class="form-group">
-                        <label class="control-label col-sm-2" for="fic">Ficha:</label>
-                        <div class="col-sm-10">
-                          <select class="form-control" id="fic" name="fich">
-                            <option value="0">Seleccionar Ficha</option>
-                            <?php
-                                         while ($ficd=mysqli_fetch_array($fl)) {
-                               ?>
-                                  <option value="<?php echo $ficd["ID_F"]?>"><?php echo $ficd["Nº ficha"]?></option>
-
-                                <?php
-                            }
-                                ?>
-                          </select>
-                        </div>
-                        <br>
-                        <label class="control-label col-sm-2" for="dih">Día:</label>
-                          <div class="col-sm-10">
-                             <select class="form-control" id="dih" name="days">
-                                <option value="0">Seleccionar dia</option>
-                                <option value="1">Lunes</option>
-                                <option value="2">Martes</option>
-                                <option value="3">Miercoles</option>
-                                <option value="4">Jueves</option>
-                                <option value="5">Viernes</option>
-                                <option value="6">Sabado</option>
-                             </select>
-                          </div>
-
-                          <br>
-                        <label class="control-label col-sm-2" for="ho">Hora:</label>
-                          <div class="col-sm-10">
-                             <select class="form-control" id="ho" name="hour">
-                                <option value="0">Seleccionar hora</option>
-                                <option value="1">6:00 - 7:40</option>
-                                <option value="2">8:00 - 9:40</option>
-                                <option value="3">10:00 - 11:40</option>
-                                <option value="4">12:00 - 13:40</option>
-                                <option value="5">14:20 - 16:00</option>
-                                <option value="6">16:20 - 18:00</option>
-                                <option value="7">18:15 - 19:45</option>
-                                <option value="8">20:00 - 21:40</option>
-                             </select>
-                          </div>
-                          
-                        
-                      </div>
-                            </div>
-                            <div class="modal-footer">
-                              <button type="button" class="btn btn-danger" data-dismiss="modal">cerrar</button>
-                              <button type="submit" class="btn btn-warning">Eliminar</button>
-                            </div>
-                          </div>
-                         </form> 
-                        </div>
-                      </div></center>
-                 </div> 
-
-          
-                 
-        <?php 
-
-          $eliup="SELECT * FROM horarios,instructor,ficha,dias,horas WHERE instructor = $ins AND horarios.instructor = instructor.ID AND horarios.dia= dias.id AND horarios.hora = horas.id_h";
-          $crud=mysqli_query($conn,$eliup);
-
-        ?>
-   
-         <div class="container">
-           <table class="table table-dark table-striped">
-                <thead>
-                  <tr>
-                    <th>Instructor</th>
-                    <th>Día</th>
-                    <th>Ficha</th>
-                    <th>Hora</th>
-                    <th>Opciones</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  
-                    <?php 
-                     while ($krud=mysqli_fetch_array($crud)) {
-                    ?>
-                  <tr>
-                    <td><?php echo $krud['Nombre'].$krud['id_hora'];?></td>
-                    <td><?php echo $krud['dia_s'];?></td>
-                    <td><?php echo $krud['Nº ficha'];?></td>
-                    <td><?php echo $krud['hora'];?></td>
-                    <td><?php echo $krud['instructor'];?></td>
-                  </tr>
-                    <?php
-                     }
-                    ?>                  
-                </tbody>
-            </table>
-
-         </div>
 
        </div>
     </div>
