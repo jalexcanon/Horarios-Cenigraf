@@ -40,7 +40,7 @@ $row=mysqli_fetch_array($consulta);
                   </center>
                 </div>
             </div>
-            <nav class="navbar navbar-expand navbar-dark navbar-light"></nav><br>
+            <nav class="navbar navbar-expand navbar-dark navbar-light" style="padding-top: 35px;"></nav><br>
             <center>
             <div class="container-sm border p-3 my-3" style="background-color:#ffffff;">
                 <center><h3>Intructor <?php  echo $row["Nombre"]; ?></h3></center>
@@ -98,12 +98,12 @@ $row=mysqli_fetch_array($consulta);
                    </div>    
                </form>            
             </center>
-             <footer class="footer">
+             <footer class="main-footer" style="margin-left: 0;">
                 <div class="float-right d-none d-sm-block">
                   <b>Version</b> 0.1
                 </div>
                 <strong>Copyright &copy; 2021 <a href="https://comunicaciongraficasena.blogspot.com">Cenigraf</a>.</strong> Todos los derechos reservados.
-          </footer>
+             </footer>
             
     </div>
      

@@ -134,7 +134,7 @@ $ins=mysqli_query($conn,$querys);
   </div>
  </div>
  <div>
- 	<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+ 	<nav class="navbar navbar-expand-md bg-dark navbar-dark sticky-top">
 		  <a class="navbar-brand" onclick="window.open('../index.php','_Self')">Cenigraf</a>
 		  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
 		    <span class="navbar-toggler-icon"></span>
@@ -142,13 +142,13 @@ $ins=mysqli_query($conn,$querys);
 		  <div class="collapse navbar-collapse" id="collapsibleNavbar">
 		    <ul class="navbar-nav">
 		      <li class="nav-item">
-		        <a class="nav-link" data-toggle="modal" data-target="#myModal">Consultar</a>
+		        <a class="nav-link" data-toggle="modal" data-target="#myModal">Crear Horaio</a>
 		      </li>
 		      <li class="nav-item">
-		        <a class="nav-link" href="#">Actualizar</a>
+		        <a class="nav-link" href="#">--------</a>
 		      </li>
 		      <li class="nav-item">
-		        <a class="nav-link" href="#">Eliminar </a>
+		        <a class="nav-link" href="#">--------</a>
 		      </li>    
 		    </ul>
   </div>  
@@ -162,7 +162,7 @@ $ins=mysqli_query($conn,$querys);
 		<h2>Formulario horarios</h2>
 <p>Primer beta</p>
 <form action="../controlador/x.php" method="POST">
-<table style="width:92% " border="1px solid black"  bgcolor="white" > <!--86-->
+<table class="table table-responsive" style="width:92% " border="1px solid black"  bgcolor="white" > <!--86-->
   <tr>    <!--fila 1 titulo-->
     <th colspan="10" WIDTH="150" HEIGHT="100" bgcolor="E69138"> <!--<left><img src="img/logotabla.jpg" width="100" height="100"></left>--> 
       <center><br><h10>SERVICIO NACIONAL DE APRENDIZAJE SENA<h10>

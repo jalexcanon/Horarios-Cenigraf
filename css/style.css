@@ -20,9 +20,9 @@
 }  
 #abajo{
     height: 12%;
-    width: 980px;
+    width: 100%;
     background: orange;
     position: relative;
-    left: 10px;
+    
     
 }     

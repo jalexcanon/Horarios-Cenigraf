@@ -50,9 +50,9 @@ $indsF=$resultado->fetch_assoc();
 <body class="hold-transition sidebar-mini" >
 
 <div class="wrapper">
-	
+	      
         <div style="margin: 0 0 0 0;" class="jumbotron jumbotron-fluid">
-            <div class="container">
+            <div class="container-fluid">
               <center>
                 <img class="img" src="../img/cenigraf.png" >
                 <img class="img2" src="../img/logo1.png" >
@@ -64,29 +64,29 @@ $indsF=$resultado->fetch_assoc();
          
 
          <div>
-         	<nav class="main-header navbar navbar-expand navbar-dark navbar-light">
-
-        		    <ul class="navbar-nav">
-                         <li class="nav-item">
-                        <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
-                      </li>   
-                        <a class="navbar-brand" onclick="window.open('../index.php','_Self')">Cenigraf</a>
-                  <div class="collapse navbar-collapse" id="collapsibleNavbar">
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-                    <span class="navbar-toggler-icon"></span>
-                  </button>
+         	<nav class="main-header navbar navbar-expand-md navbar-dark navbar-light sticky-top">
+                <ul class="navbar-nav">
+                   <li class="nav-item">
+                   <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+                  </li> 
+                </ul>                  
+                 <a class="navbar-brand" onclick="window.open('../index.php','_Self')">Cenigraf</a>
+                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+                 <span class="navbar-toggler-icon"></span></button>
+              <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
         		      <li class="nav-item">
-        		        <a class="nav-link">Consultar</a>
+        		        <a class="nav-link">--------</a>
         		      </li>
         		      <li class="nav-item">
-        		        <a class="nav-link" href="prue.php">Actualizar</a>
+        		        <a class="nav-link" href="prue.php">--------</a>
         		      </li>
         		      <li class="nav-item">
-        		        <a class="nav-link" href="#">Eliminar </a>
+        		        <a class="nav-link" href="#">--------</a>
         		      </li> 
                      
         		    </ul>
-           
+              </div>
         </nav>
          </div>
          <!-- prue menu-->
@@ -103,7 +103,7 @@ $indsF=$resultado->fetch_assoc();
             </a>
 
            
-            <div class="sidebar">
+        <div class="sidebar">
               
               <div class="user-panel mt-4 pb-4 mb-4 d-flex">
                 <div class="image">
@@ -113,8 +113,17 @@ $indsF=$resultado->fetch_assoc();
                   <a href="#" class="d-block">ADMIN</a>
                 </div>
               </div>
+              <div class="user-panel mt-4 pb-4 mb-4 d-flex">
+                <div class="image">
+                  <img src="../img/h.png" class="img-circle elevation-2" alt="User Image">
+                </div>
+                <div class="info">
+                 <a href="" data-toggle="modal" data-target="#myModal">Crear Horario</a>
+                </div>
+              </div>
+              
         </div>
-
+            
                   
         </aside>
           
@@ -123,8 +132,8 @@ $indsF=$resultado->fetch_assoc();
       
       
             <!-- Trigger the modal with a button -->
-            <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Crear Horario</button>
-            <center><h3>Intructor <?php  echo $indsF["Nombre"]; ?></h3></center>
+            <br>
+            <center><h2>Intructor <?php  echo $indsF["Nombre"]; ?></h2><br>
             <!-- Modal -->
             <div class="modal fade bd-example-modal-lg" id="myModal" role="dialog">
               <div class="modal-dialog modal-lg">
@@ -190,21 +199,24 @@ $indsF=$resultado->fetch_assoc();
                   </div>
                       <div class="form-group">
                         <div class="modal-footer">
-                          <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                          <div class="btn-group">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
                           <button type="submit" class="btn btn-warning">Crear</button>
+                          </div>
+                          
                         </div>
                       </div>
                     </form>
                  </div>   
               </div>
            </div>
-        </div>
+        </div></center>
           
 
 
             <!--TABLA-------------------------->
             <div class="container">
-              <table class="table table-bordered">
+              <table class="table table-bordered ">
                 <tr>
                   <th bgcolor="E69138"><center> Horas</center></th>
                   <th bgcolor="E69138"><center> Lunes</center></th>
@@ -812,7 +824,7 @@ $indsF=$resultado->fetch_assoc();
    
           
        <div class="container">
-         <table style="border: 1px solid;">
+         <table style="border: 1px solid; ">
                 <tr>
                   <th bgcolor="E69138" WIDTH="100" HEIGHT="50" ><center>Horas</center></th>
                   <th bgcolor="E69138" WIDTH="100" HEIGHT="50"><center>Lunes</center></th>
@@ -959,7 +971,7 @@ $indsF=$resultado->fetch_assoc();
                                   foreach ($days as $day) {
                                       ?>
 
-                                       <td bgcolor="EFD5BA" width="500" height="100" style="border: 1px solid; padding: 0;">
+                                       <td bgcolor="EFD5BA" width="17%" height="100px" style="border: 1px solid; padding: 0;">
 
                                       <?php
                           $query = "SELECT * FROM horarios,ficha,instructor,dias,horas WHERE horarios.dia=$day AND horarios.hora=$hour AND horarios.dia=dias.id AND horarios.ficha=ficha.ID_F AND horarios.instructor = instructor.ID AND horarios.hora = horas.id_h and horarios.instructor=$ins";
@@ -978,7 +990,7 @@ $indsF=$resultado->fetch_assoc();
                           <div class="dropdown-menu" style="background-color: #f1f1f100; border: 1px solid rgb(0 0 0 / 0%); box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 0%);" >
                             
                             <div class="btn-group">
-                              <button type="button" data-toggle="modal" class="btn btn-info" onclick="window.open('../controlador/ubdate.php?ubd=<?php echo $row['id_hora']?>','_Self')">Editar</button>
+                              <button type="button" data-toggle="modal" class="btn btn-success" onclick="window.open('../controlador/ubdate.php?ubd=<?php echo $row['id_hora']?>','_Self')">Editar</button>
                              <a href="../controlador/delete.php?eli=<?php echo $row['id_hora']?>"><button type="button" onclick="return eliminarh()" class="btn btn-danger">Eliminar</button></a> 
                             </div>                                                                                                                     
                           </div>
@@ -1028,13 +1040,6 @@ $indsF=$resultado->fetch_assoc();
 <script src="../css/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../css/js/demo.js"></script>
-<!-- fullCalendar 2.2.5 -->
-<script src="../plugins/moment/moment.min.js"></script>
-<script src="../plugins/fullcalendar/main.min.js"></script>
-<script src="../plugins/fullcalendar-daygrid/main.min.js"></script>
-<script src="../plugins/fullcalendar-timegrid/main.min.js"></script>
-<script src="../plugins/fullcalendar-interaction/main.min.js"></script>
-<script src="../plugins/fullcalendar-bootstrap/main.min.js"></script>
 
 
 
