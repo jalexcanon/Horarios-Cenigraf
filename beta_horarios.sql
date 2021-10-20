@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 07-10-2021 a las 17:16:58
+-- Tiempo de generación: 19-10-2021 a las 21:18:57
 -- Versión del servidor: 10.4.16-MariaDB
 -- Versión de PHP: 7.4.12
 
@@ -34,6 +34,14 @@ CREATE TABLE `6:00-7:40` (
   `instructor` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Volcado de datos para la tabla `6:00-7:40`
+--
+
+INSERT INTO `6:00-7:40` (`id`, `dia`, `ficha`, `instructor`) VALUES
+(247, 1, 1, 2),
+(248, 6, 2, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -52,8 +60,7 @@ CREATE TABLE `8:00-9:40` (
 --
 
 INSERT INTO `8:00-9:40` (`id`, `dia`, `ficha`, `instructor`) VALUES
-(55, 1, 1, 2),
-(56, 6, 1, 2);
+(86, 6, 2, 1);
 
 -- --------------------------------------------------------
 
@@ -68,6 +75,13 @@ CREATE TABLE `10:00-11:40` (
   `instructor` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Volcado de datos para la tabla `10:00-11:40`
+--
+
+INSERT INTO `10:00-11:40` (`id`, `dia`, `ficha`, `instructor`) VALUES
+(77, 2, 1, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -80,6 +94,14 @@ CREATE TABLE `12:00-13:40` (
   `ficha` int(11) DEFAULT NULL,
   `instructor` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `12:00-13:40`
+--
+
+INSERT INTO `12:00-13:40` (`id`, `dia`, `ficha`, `instructor`) VALUES
+(11, 3, 1, 2),
+(10, 4, 2, 1);
 
 -- --------------------------------------------------------
 
@@ -138,7 +160,7 @@ CREATE TABLE `20:00-21:40` (
 --
 
 INSERT INTO `20:00-21:40` (`id`, `dia`, `ficha`, `instructor`) VALUES
-(1, 4, 2, 3);
+(9, 6, 1, 2);
 
 -- --------------------------------------------------------
 
@@ -194,44 +216,58 @@ CREATE TABLE `horarios` (
   `dia` int(11) DEFAULT NULL,
   `ficha` int(11) DEFAULT NULL,
   `instructor` int(11) DEFAULT NULL,
-  `hora` int(11) DEFAULT NULL
+  `hora` int(11) DEFAULT NULL,
+  `horas_instructor` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `horarios`
 --
 
-INSERT INTO `horarios` (`id_hora`, `dia`, `ficha`, `instructor`, `hora`) VALUES
-(4, 1, 1, 2, 1),
-(5, 2, 1, 2, 2),
-(6, 6, 1, 2, 8),
-(7, 6, 1, 2, 7),
-(8, 2, 3, 2, 3),
-(9, 3, 1, 2, 2),
-(10, 4, 1, 2, 2),
-(11, 5, 1, 2, 2),
-(12, 2, 1, 2, 1),
-(13, 3, 1, 2, 1),
-(14, 4, 1, 2, 1),
-(15, 5, 1, 2, 1),
-(16, 6, 1, 2, 1),
-(17, 1, 3, 2, 2),
-(18, 6, 3, 2, 2),
-(19, 1, 1, 2, 3),
-(20, 3, 1, 2, 3),
-(21, 4, 3, 2, 3),
-(22, 4, 2, 2, 3),
-(23, 5, 3, 2, 3),
-(24, 6, 3, 2, 3),
-(25, 1, 3, 2, 4),
-(26, 2, 2, 2, 4),
-(27, 3, 3, 2, 4),
-(28, 4, 2, 2, 4),
-(29, 5, 2, 2, 4),
-(30, 6, 2, 2, 4),
-(31, 2, 2, 1, 2),
-(32, 1, 1, 1, 1),
-(33, 3, 2, 2, 2);
+INSERT INTO `horarios` (`id_hora`, `dia`, `ficha`, `instructor`, `hora`, `horas_instructor`) VALUES
+(113, 6, 3, 1, 8, 2),
+(114, 2, 2, 1, 2, 2),
+(115, 5, 1, 1, 1, 2),
+(118, 1, 1, 1, 2, 2),
+(119, 1, 1, 1, 1, 2),
+(120, 2, 1, 1, 1, 2),
+(121, 3, 1, 1, 1, 2),
+(122, 4, 1, 1, 1, 2),
+(124, 6, 1, 1, 3, 2),
+(125, 5, 1, 1, 3, 2),
+(126, 4, 1, 1, 3, 2),
+(127, 3, 1, 1, 3, 2),
+(128, 2, 1, 1, 3, 2),
+(129, 1, 1, 1, 3, 2),
+(130, 1, 1, 1, 5, 2),
+(131, 2, 1, 1, 5, 2),
+(132, 3, 1, 1, 5, 2),
+(133, 4, 1, 1, 5, 2),
+(149, 1, 1, 3, 1, 2),
+(150, 2, 1, 3, 1, 2),
+(151, 2, 1, 3, 2, 2),
+(152, 2, 1, 3, 4, 2),
+(153, 2, 1, 3, 5, 2),
+(154, 2, 1, 3, 7, 2),
+(155, 2, 1, 3, 8, 2),
+(156, 3, 1, 3, 1, 2),
+(157, 3, 1, 3, 2, 2),
+(158, 3, 1, 3, 3, 2),
+(159, 3, 1, 3, 4, 2),
+(160, 3, 1, 3, 6, 2),
+(161, 4, 2, 3, 1, 2),
+(162, 4, 2, 3, 2, 2),
+(163, 4, 2, 3, 3, 2),
+(164, 4, 2, 3, 4, 2),
+(165, 4, 2, 3, 5, 2),
+(166, 4, 3, 3, 6, 2),
+(167, 4, 2, 3, 6, 2),
+(168, 5, 3, 3, 6, 2),
+(169, 2, 1, 2, 1, 2),
+(170, 6, 1, 2, 8, 2),
+(171, 6, 2, 1, 2, 2),
+(172, 2, 1, 1, 3, 2),
+(173, 3, 1, 2, 4, 2);
 
 -- --------------------------------------------------------
 
@@ -399,49 +435,49 @@ ALTER TABLE `instructor`
 -- AUTO_INCREMENT de la tabla `6:00-7:40`
 --
 ALTER TABLE `6:00-7:40`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=186;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=249;
 
 --
 -- AUTO_INCREMENT de la tabla `8:00-9:40`
 --
 ALTER TABLE `8:00-9:40`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
 
 --
 -- AUTO_INCREMENT de la tabla `10:00-11:40`
 --
 ALTER TABLE `10:00-11:40`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78;
 
 --
 -- AUTO_INCREMENT de la tabla `12:00-13:40`
 --
 ALTER TABLE `12:00-13:40`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de la tabla `14:20-16:00`
 --
 ALTER TABLE `14:20-16:00`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de la tabla `16:20-18:00`
 --
 ALTER TABLE `16:20-18:00`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `18:15-19:45`
 --
 ALTER TABLE `18:15-19:45`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `20:00-21:40`
 --
 ALTER TABLE `20:00-21:40`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `dias`
@@ -459,7 +495,7 @@ ALTER TABLE `ficha`
 -- AUTO_INCREMENT de la tabla `horarios`
 --
 ALTER TABLE `horarios`
-  MODIFY `id_hora` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id_hora` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=174;
 
 --
 -- AUTO_INCREMENT de la tabla `horas`

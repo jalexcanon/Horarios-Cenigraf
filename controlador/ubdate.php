@@ -92,7 +92,7 @@ $row=mysqli_fetch_array($consulta);
                              </select>
                           </div><br>
                         <div class="btn-group">
-                            <button type="button" class="btn btn-danger" onclick="window.open('../vista/horarios_beta.php?instructor=<?php echo$ins?>','_Self')" >Cancelar</button>
+                            <button type="button" class="btn btn-danger" onclick="window.open('../vista/admin/horarios_beta.php?instructor=<?php echo$ins?>','_Self')" >Cancelar</button>
                             <button type="submit" class="btn btn-warning">Actualizar</button>
                         </div>
                    </div>    
@@ -136,7 +136,7 @@ mysqli_query($conn,$query);
 //header("location:../vista/horarios_beta.php?instructor=$ins");
 ?>
 <script type="text/javascript">
-    window.location='../vista/horarios_beta.php?instructor=<?php echo $ins;?>';
+    window.location='../vista/admin/horarios_beta.php?instructor=<?php echo $ins;?>';
 </script>
 <?php
 }
