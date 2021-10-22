@@ -86,7 +86,7 @@ $indsF=$resultado->fetch_assoc();
         		        <a class="nav-link">--------</a>
         		      </li>
         		      <li class="nav-item">
-        		        <a class="nav-link" href="prue.php">--------</a>
+        		        <a class="nav-link" href="#">--------</a>
         		      </li>
         		      <li class="nav-item">
         		        <a class="nav-link" onclick="window.open('../../controlador/exit.php','_Self')">Cerrar sesion</a>
@@ -117,7 +117,7 @@ $indsF=$resultado->fetch_assoc();
                   <img src="../../img/perfil.png" class="img-circle elevation-2" alt="User Image">
                 </div>
                 <div class="info">
-                  <a href="#" class="d-block">ADMIN</a>
+                  <a href="#" class="d-block">ADMIN-<?php  echo $indsF["Nombre"]; ?></a>
                 </div>
               </div>
               <div class="user-panel mt-4 pb-4 mb-4 d-flex">
@@ -218,9 +218,17 @@ $indsF=$resultado->fetch_assoc();
               </div>
            </div>
         </div></center>
-            
+<?php
+                   
+  $sumas="SELECT SUM(horas_instructor) as total FROM horarios WHERE horarios.instructor=$ins";
+  $resulsuma=mysqli_query($conn,$sumas);
+  $rowsum=mysqli_fetch_array($resulsuma);
+  $sum=$rowsum['total'];
+  $res=40-$sum;
+  
+?>            
           
-       <div class="container">
+       <div class="container"><!--div1tabla --> 
          <table style="border: 1px solid; ">
                 <tr>
                   <th bgcolor="E69138" WIDTH="100" HEIGHT="50" ><center>Horas</center></th>
@@ -305,7 +313,6 @@ $indsF=$resultado->fetch_assoc();
                   <td WIDTH="200" HEIGHT="100">&nbsp</td>
                   <td WIDTH="200" HEIGHT="100">&nbsp</td>
                 </tr>
-
                 <tr>
                   <th bgcolor="E69138" WIDTH="200" HEIGHT="100" style="border: 1px solid;"> <center>18:15-19:45</center></th>
                   <td WIDTH="200" HEIGHT="100">&nbsp</td>
@@ -328,9 +335,22 @@ $indsF=$resultado->fetch_assoc();
                   <td WIDTH="200" HEIGHT="100">&nbsp</td>
                   <td WIDTH="200" HEIGHT="100">&nbsp</td>
                 </tr>
+                <tr class="table-bordered table-dark" style="color: black;">
+                  <th colspan="4">Observaciones:</th>
+                  <th colspan="3">Instructor: <?php  echo $indsF["Nombre"]." ".$indsF["Apellido"];?></th>                                    
+                </tr>
+                <tr class="table-bordered table-dark" style="color: black;">
+                  <td colspan="4" rowspan="2"></td>
+                  <td colspan="2">Horas Directas Formación</td> 
+                  <td colspan="1"><?php echo $sum; ?></td>                
+                </tr>
+                <tr class="table-bordered table-dark" style="color: black;">
+                  <td colspan="2">Horas pendientes de programar</td>
+                  <td colspan="1"><?php echo $res; ?></td> 
+                </tr>               
               </table>
         
-       </div>
+       </div><!--/div1tabla --> 
                <script type="text/javascript">
                   function eliminarh(){
 
@@ -345,15 +365,15 @@ $indsF=$resultado->fetch_assoc();
                   }
                </script>  
 
-            
-                <div class="container">
+    <!--div1 -->          
+       <div class="container">
                   <div style="position: relative;
-                              bottom: 1401px;
+                              bottom: 1480px;
                               margin: 0 0 0 159px;
                               margin-right: -7px;
                               max-WIDTH: 966px; 
                               max-HEIGHT:100px;
-                                  "> 
+                                  "> <!--div2 -->
                           <table class="table table-bordered">
                            <?php
                                 
@@ -375,7 +395,6 @@ $indsF=$resultado->fetch_assoc();
                                       $result = mysqli_query($conn, $query);
                                       $row = mysqli_fetch_assoc($result); 
                                        if (isset($row)) { ?>                                                                              
-                 <div>
                     <center>
                                        <?php  echo $row['Nº ficha'];?><br>
                                        <?php  echo $row['Nombre'];?><br>
@@ -409,8 +428,12 @@ $indsF=$resultado->fetch_assoc();
 
                            ?>  
                        </table>      
-                   </div>
-                </div> 
+                   </div><!--/div2 --> 
+
+
+                </div><!--/div1 -->  
+
+
 
        </div>
     </div>
@@ -422,8 +445,7 @@ $indsF=$resultado->fetch_assoc();
             </div>
             <strong>Copyright &copy; 2021 <a href="https://comunicaciongraficasena.blogspot.com">Cenigraf</a>.</strong> Todos los derechos reservados.
           </footer>
-
-</div>
+ </div>
           
 
 
@@ -436,7 +458,7 @@ $indsF=$resultado->fetch_assoc();
 <!-- AdminLTE App --> 
 <script src="../../css/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes 
-<script src="../css/js/demo.js"></script>
+<script src="../css/js/demo.js"></script-->
 
 
 

@@ -15,14 +15,15 @@ $filas=mysqli_fetch_array($resultado);
 
 $_SESSION['rol']=$filas['rol'];
 $_SESSION['nam']=$filas['Nombre'];
-
+$_SESSION['IDins']=$filas['ID'];
+$_SESSION['ema']=$filas['email'];
 
 if($filas['rol']==1){
- $_SESSION['ema']=$filas['email'];
+
     header("location:../vista/horarios.php");
 
 }elseif($filas['rol']==2) {
- $_SESSION['ema']=$filas['email'];
+
     header("location:../vista/horarios.php");
 }
 else{

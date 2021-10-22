@@ -35,13 +35,13 @@
 		  <div class="collapse navbar-collapse" id="collapsibleNavbar">
 		    <ul class="navbar-nav">
 		      <li class="nav-item">
-		        <a class="nav-link" href="#">-----------</a>
+		        <a class="nav-link" href="#"></a>
 		      </li>
 		      <li class="nav-item">
-		        <a class="nav-link" href="#">-----------</a>
+		        <a class="nav-link" href="#"></a>
 		      </li>
 		      <li class="nav-item">
-		        <a class="nav-link" href="#">----------- </a>
+		        <a class="nav-link" href="#"></a>
 		      </li>    
 		    </ul>
      </div>  
@@ -50,9 +50,9 @@
 <br>
 
 <center>
-	<div class="row">
-		<div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
-			<div class="container border" style="padding:4% ">   		
+	<div class="row" style="display: contents;">
+		<div class="col-sm-4 mx-auto">
+			<div class="container border" style="padding:4%; background-color: #a2a1a5a8; ">   		
 				  <form action="controlador/val.php" method="POST">
 					  <div class="form-group">
 					    <label for="email">Email :</label>
@@ -63,7 +63,7 @@
 					    <input type="password" class="form-control" placeholder="Digite su contraseña" name="contra" id="pwd" required="">
 					  </div>
 					  
-					  <button type="submit" class="btn btn-success">Entrar</button>
+					  <button type="submit" class="btn btn-dark">Entrar</button>
 					</form>			
         </div>
 		</div>
@@ -71,6 +71,13 @@
 	
 </center>
 
+
+         <footer class="main-footer" style="margin-left: 0; margin-top: 148px;">
+                <div class="float-right d-none d-sm-block">
+                  <b>Version</b> 0.1
+                </div>
+                <strong>Copyright &copy; 2021 <a href="https://comunicaciongraficasena.blogspot.com">Cenigraf</a>.</strong> Todos los derechos reservados.
+         </footer>
 	 	
 
 <!-- jQuery-->
@@ -78,7 +85,7 @@
 <!-- Bootstrap -->
 <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- jQuery UI -- >
-<script src="../plugins/jquery-ui/jquery-ui.min.js"></script>
+<script src="plugins/jquery-ui/jquery-ui.min.js"></script>
  
    
 
