@@ -56,7 +56,7 @@ $lol=mysqli_fetch_array($ins);
               </li>
             <?php } ?>
               <li class="nav-item">
-                <a class="nav-link" href="">--------</a>
+                <a class="nav-link" data-toggle="collapse" data-target="#fich">Registrar Fichas</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" onclick="window.open('../controlador/exit.php','_Self')">Cerrar sesion</a>
@@ -220,7 +220,32 @@ $lol=mysqli_fetch_array($ins);
   </div>
 </div>
 <br>
+    <!--/Collapse1-->
     <!--Collapse2-->
+<div> 
+  <div id="fich" class="collapse">
+   <div class="row" style="display: contents;">
+      <div class="col-sm-8 mx-auto">
+        <div class="container border" style="padding:4%; background-color: #a2a1a5a8; ">      
+            <form action="../controlador/regins.php" method="POST">
+              <div class="form-group">
+                <label for="nom">Nombre del programa de formacion:</label>
+                <input type="text" class="mr-sm-2 form-control " placeholder="Digite el nombre" name="nombre" id="nom" required="">
+              </div>
+              <div class="form-group">
+                <label for="apel">Numero de ficha:</label>
+                <input type="text" class="form-control" placeholder="Digite el Apellido" name="apellido" id="apel" required="">
+              </div>                          
+              <center>
+                <button type="submit" class="btn btn-dark">Entrar</button>
+              </center>              
+            </form>     
+          </div>
+      </div>
+    </div>
+  </div>
+</div>    
+    <!--/Collapse2-->
 <div class="container">
   <?php
  if ($rol==2) {

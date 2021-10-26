@@ -1,6 +1,7 @@
 <?php 
  session_start();
   $correo=$_SESSION['ema'];
+    $inst=$_SESSION['nam'];
  if (!isset($correo)) {
     header("location:../../index.php");
  }
@@ -117,7 +118,7 @@ $indsF=$resultado->fetch_assoc();
                   <img src="../../img/perfil.png" class="img-circle elevation-2" alt="User Image">
                 </div>
                 <div class="info">
-                  <a href="#" class="d-block">ADMIN-<?php  echo $indsF["Nombre"]; ?></a>
+                  <a href="#" class="d-block">ADMIN-<?php  echo $inst; ?></a>
                 </div>
               </div>
               <div class="user-panel mt-4 pb-4 mb-4 d-flex">
