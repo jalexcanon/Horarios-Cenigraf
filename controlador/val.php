@@ -27,8 +27,9 @@ if($filas['rol']==1){
     header("location:../vista/horarios.php");
 }
 else{
+
     
-    header("location:../index.php");
+    header("location:../index.php?x=x");
 
 
 }

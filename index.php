@@ -64,11 +64,21 @@
 					  </div>
 					  
 					  <button type="submit" class="btn btn-dark">Entrar</button>
-					</form>			
+					</form>	
+						<?php 
+							if (isset($_GET['x'])) {
+							     ?>
+							     <br>
+							     <div class="alert alert-danger alert-dismissible fade show" >
+							        <button type="button" class="close" data-dismiss="alert">&times;</button>
+							        <strong>Error de autenticación</strong>
+							      </div>
+							     <?php
+							}
+							     ?>		
         </div>
 		</div>
 	</div>
-	
 </center>
 
 
@@ -84,8 +94,8 @@
 <script src="plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap -->
 <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- jQuery UI -- >
-<script src="plugins/jquery-ui/jquery-ui.min.js"></script>
+<!-- jQuery UI 
+<script src="plugins/jquery-ui/jquery-ui.min.js"></script>-->
  
    
 

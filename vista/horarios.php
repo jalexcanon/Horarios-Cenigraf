@@ -54,10 +54,11 @@ $lol=mysqli_fetch_array($ins);
               <li class="nav-item">
                <a class="nav-link" data-toggle="collapse" data-target="#Regusu">Registrar Usuario</a>
               </li>
-            <?php } ?>
+            <?php }   if ($rol==1) { ?>
               <li class="nav-item">
                 <a class="nav-link" data-toggle="collapse" data-target="#fich">Registrar Fichas</a>
               </li>
+            <?php } ?>  
               <li class="nav-item">
                 <a class="nav-link" onclick="window.open('../controlador/exit.php','_Self')">Cerrar sesion</a>
               </li> 
@@ -230,12 +231,35 @@ $lol=mysqli_fetch_array($ins);
             <form action="../controlador/regins.php" method="POST">
               <div class="form-group">
                 <label for="nom">Nombre del programa de formacion:</label>
-                <input type="text" class="mr-sm-2 form-control " placeholder="Digite el nombre" name="nombre" id="nom" required="">
+                <input type="text" class="mr-sm-2 form-control " placeholder="Nombre Programa" name="nombreP" id="nom" required="">
               </div>
               <div class="form-group">
                 <label for="apel">Numero de ficha:</label>
-                <input type="text" class="form-control" placeholder="Digite el Apellido" name="apellido" id="apel" required="">
-              </div>                          
+                <input type="number" class="form-control" placeholder="Nuemro de Ficha" name="fich" id="apel" required="">
+              </div>
+              <div class="form-group">
+                <label for="nf">Nivel de Formacion:</label>
+                <select class="form-control" id="nf" name="nivel" required="">
+                  <option value="0">Seleccione</option>
+                  <option value="1">Técnico profesional</option>
+                  <option value="2">Técnico profesional especializado</option>
+                  <option value="3">Tecnólogo</option> 
+                  <option value="4">Tecnólogo especializado</option>               
+                </select>
+              </div>   
+              <div class="form-group">
+                <label for="trim">Trimestre actual:</label>
+                <select class="form-control" id="trim" name="trime" required="">
+                  <option value="0">Seleccione</option>
+                  <option value="1">I Trimestre</option>
+                  <option value="2">II Trimestre</option>
+                  <option value="3">III Trimestre</option>
+                  <option value="4">IV Trimestre</option>
+                  <option value="5">V Trimestre</option>
+                  <option value="6">VI Trimestre</option>
+                      
+                </select>
+              </div>   
               <center>
                 <button type="submit" class="btn btn-dark">Entrar</button>
               </center>              
@@ -439,7 +463,35 @@ $lol=mysqli_fetch_array($ins);
 ?>
 </div><!--/Collapse2-->
 
-
+   <div class="container">
+     <?php
+    if (isset($_GET['v'])) {
+     
+     if ($_GET['v']==1) {            
+      ?>
+       <div class="alert alert-success alert-dismissible fade show">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <strong>Usuario registrado</strong>
+      </div>
+      <?php
+       }elseif ($_GET['v']==2) {
+         ?>
+         <div class="alert alert-warning alert-dismissible fade show">
+          <button type="button" class="close" data-dismiss="alert">&times;</button>
+          <strong>El correo ya está registrado, intente con otro correo.</strong> 
+        </div>
+         <?php
+       }elseif ($_GET['v']==3) {
+        ?>
+         <div class="alert alert-danger alert-dismissible fade show">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>La contraseña no coincide</strong>
+          </div>
+         <?php
+       }
+     }
+     ?>
+   </div>
 
 
   </div>
