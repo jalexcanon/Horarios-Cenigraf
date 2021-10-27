@@ -66,6 +66,7 @@
 					  <button type="submit" class="btn btn-dark">Entrar</button>
 					</form>	
 						<?php 
+						//--------------------------------------------------------------
 							if (isset($_GET['x'])) {
 							     ?>
 							     <br>

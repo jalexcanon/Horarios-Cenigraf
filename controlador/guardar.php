@@ -1,5 +1,5 @@
 <?php 
-
+//--------------------------------------------------------------
 include ('conexion.php');
 $ins=$_GET['instructor'];
 $fich=$_POST['fich'];

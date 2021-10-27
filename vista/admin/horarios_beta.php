@@ -1,4 +1,5 @@
 <?php 
+//--------------------------------------------------------------
  session_start();
   $correo=$_SESSION['ema'];
     $inst=$_SESSION['nam'];

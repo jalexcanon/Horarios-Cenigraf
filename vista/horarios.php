@@ -1,4 +1,5 @@
 <?php 
+//--------------------------------------------------------------
  session_start();
  include('../controlador/conexion.php');
   $correo=$_SESSION['ema'];
@@ -105,6 +106,13 @@ $lol=mysqli_fetch_array($ins);
                  <a href="" data-toggle="modal" data-target="#myModal">Crear Horario Instructor</a>
                 </div>
               </div>
+
+              <div class="user-panel mt-4 pb-4 mb-4 d-flex">               
+                <div class="info">
+                 <a data-toggle="collapse" data-target="#usu">Consula Instructor</a>
+                </div>
+              </div>
+
               <?php
             }
               ?>
@@ -172,6 +180,69 @@ $lol=mysqli_fetch_array($ins);
     </center>
 
  <br>
+ <!--Collapse_Istructor-->
+ <div> 
+  <div id="usu" class="collapse">
+   <div class="row">
+      <div class="col-lg-12 mx-auto">
+        <div class="container"> 
+         <script type="text/javascript">
+                  function eli(){
+
+                     var res=confirm("Esta seguro de eliminar este instructor.")
+                     if (res==true) {
+                        return true;
+                     }
+                     else{
+                        return false;
+                     }
+                     
+                  }
+               </script>  
+
+        <?php
+         $tablai="SELECT * FROM `instructor`,`roles` WHERE instructor.rol = roles.id_rol";
+         $cont=mysqli_query($conn,$tablai);
+         
+        ?>             
+          <table class="table table-bordered table-striped" style="text-align:center;">
+            <thead class="thead-dark">
+              <tr>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Email</th>
+                <th>Rol</th>
+                <th>Opciones</th>
+              </tr>
+            </thead>
+            <tbody>
+            <?php
+              while ($icon=mysqli_fetch_assoc($cont)) {
+            ?>
+              <tr>
+                <td><?php echo $icon["Nombre"];?></td>
+                <td><?php echo $icon["Apellido"];?></td>
+                <td><?php echo $icon["email"];?></td>
+                <td><?php echo $icon["rol"];?></td>              
+                <td>
+                  <div class="btn-group">
+                    <a href="ubdate.php?ub=<?php echo $icon["ID"];?>"><button type="submit" class="btn btn-success btn-sm">Editar</button></a>
+                    <a href="../controlador/deleteI.php?eli=<?php echo $icon["ID"];?>"><button type="submit" class="btn btn-danger btn-sm" onclick="return eli()" >Eliminar</button></a>
+                  </div>
+                </td>
+              </tr>      
+            <?php
+              }
+              
+            ?>      
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+ <!--/Collapse_Instrucor-->
  <!--Collapse1-->
 <div> 
   <div id="Regusu" class="collapse">
@@ -228,23 +299,22 @@ $lol=mysqli_fetch_array($ins);
    <div class="row" style="display: contents;">
       <div class="col-sm-8 mx-auto">
         <div class="container border" style="padding:4%; background-color: #a2a1a5a8; ">      
-            <form action="../controlador/regins.php" method="POST">
+            <form action="" method="POST">
               <div class="form-group">
-                <label for="nom">Nombre del programa de formacion:</label>
-                <input type="text" class="mr-sm-2 form-control " placeholder="Nombre Programa" name="nombreP" id="nom" required="">
+                <label for="fi">Codigo de ficha:</label>
+                <input type="number" class="mr-sm-2 form-control " placeholder="Ficha" name="fich" id="fi" required="">
               </div>
               <div class="form-group">
-                <label for="apel">Numero de ficha:</label>
-                <input type="number" class="form-control" placeholder="Nuemro de Ficha" name="fich" id="apel" required="">
+                <label for="nop">Nombre del programa:</label>
+                <input type="number" class="form-control" placeholder="Nombre del programa" name="nomp" id="nop" required="">
               </div>
               <div class="form-group">
                 <label for="nf">Nivel de Formacion:</label>
                 <select class="form-control" id="nf" name="nivel" required="">
                   <option value="0">Seleccione</option>
-                  <option value="1">Técnico profesional</option>
-                  <option value="2">Técnico profesional especializado</option>
-                  <option value="3">Tecnólogo</option> 
-                  <option value="4">Tecnólogo especializado</option>               
+                  <option value="1">Técnico </option>                  
+                  <option value="2">Tecnólogo</option> 
+                  <option value="3">Especializado</option>               
                 </select>
               </div>   
               <div class="form-group">
