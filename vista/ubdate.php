@@ -20,13 +20,8 @@
 	<title>beta</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="../css/style.css">
-   <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>-->
-     <link rel="stylesheet" href="../plugins/fontawesome-free/css/all.min.css">
-     <link rel="stylesheet" href="../css/css/adminlte.min.css">
-
+    <link rel="stylesheet" href="../plugins/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="../css/css/adminlte.min.css">
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -95,41 +90,46 @@
   <div class="container">
    <br>
    <?php 
-    $idins=$_GET['ub'];//id del instructor------------------------------------------------------
-    $query="SELECT * FROM instructor,roles where ID='$idins' and instructor.ID=roles.id_rol ";
-    $result=mysqli_query($conn,$query);
-    $row=mysqli_fetch_array($result);
+    $idins=$_GET['ubds'];//id del instructor------------------------------------------------------
+
+    $queryins="SELECT * FROM instructor,roles where `instructor`.`ID`=`roles`.`id_rol` and `ID`='$idins'";
+    $result=mysqli_query($conn,$queryins);
+    $rows=$result->fetch_array();
    ?>
     <div class="row" style="display: contents;">
       <div class="col-sm-8 mx-auto">
         <div class="container border" style="padding:4%; background-color: #a2a1a5a8; ">      
-            <form action="../controlador/ubdateins.php?ub=<?php echo $idins?>" method="POST">
+            <form action="../controlador/ubdateins.php?ubd=<?php echo $idins?>" method="POST">
               <div class="form-group">
                 <label for="nom">Nombre:</label>
-                <input type="text" class="mr-sm-2 form-control" value="<?php echo $row["Nombre"];?>" placeholder="Nombre" name="nombre" id="nom" required="">
+                <input type="text" class="mr-sm-2 form-control" value="<?php echo $rows["Nombre"];?>" placeholder="Nombre" name="nombre" id="nom" required="">
               </div>
               <div class="form-group">
                 <label for="apel">Apellido:</label>
-                <input type="text" class="form-control" value="<?php echo $row["Apellido"];?>" placeholder="Digite el Apellido" name="apellido" id="apel" required="">
+                <input type="text" class="form-control" value="<?php echo $rows["Apellido"];?>" placeholder="Digite el Apellido" name="apellido" id="apel" required="">
               </div>
               <div class="form-group">
                 <label for="email">Email :</label>
-                <input type="email" class="mr-sm-2 form-control " value="<?php echo $row["email"];?>" placeholder="Digite el Email" name="correo" id="email" required="">
+                <input type="email" class="mr-sm-2 form-control " value="<?php echo $rows["email"];?>" placeholder="Digite el Email" name="correo" id="email" required="">
               </div>
                <div class="form-group">
                 <label for="dni">Documento de identidad :</label>
-                <input type="number" class="mr-sm-2 form-control " value="<?php echo $row["Cedula"];?>" placeholder="Digite el DNI" name="dnis" id="dni" required="">
+                <input type="number" class="mr-sm-2 form-control " value="<?php echo $rows["Cedula"];?>" placeholder="Digite el DNI" name="dnis" id="dni" required="">
               </div>              
                <div class="form-group">
                 <label for="roles">Rol del Instructor:</label>
                 <select class="form-control" id="roles" name="rol" required="">
-                  <option value="<?php echo $row["id_rol"];?>"><?php echo $row["rol"];?></option>
+                  <option value="<?php echo $rows["id_rol"];?>"><?php echo $rows["rol"];?></option>
                   <option value="2">Instructor</option>
                   <option value="1">ADMIN</option>                  
                 </select>
               </div>             
               <center>
+                <div class="btn-group">
+                  <button type="submit" class="btn btn-warning" onclick="window.open('horarios.php','_Self')">Atras</button>
                 <button type="submit" class="btn btn-dark">Entrar</button>
+                </div>
+                
               </center>              
             </form>     
           </div>

@@ -15,7 +15,7 @@ $nom=$_POST['nombre'];
 $ape=$_POST['apellido'];
 $ced=$_POST['dnis'];
 $rol=$_POST['rol'];
-$ubd=$_GET['ub'];
+$ubd=$_GET['ubd'];
 
 $query="UPDATE instructor set Nombre='$nom', Apellido='$ape', Cedula='$ced', email='$email', rol='$rol' where ID='$ubd'";
 mysqli_query($conn,$query);

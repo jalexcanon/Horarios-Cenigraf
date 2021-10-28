@@ -112,6 +112,11 @@ $lol=mysqli_fetch_array($ins);
                  <a data-toggle="collapse" data-target="#usu">Consula Instructor</a>
                 </div>
               </div>
+              <div class="user-panel mt-4 pb-4 mb-4 d-flex">               
+                <div class="info">
+                 <a data-toggle="collapse" data-target="#fichas">Consula Fichas</a>
+                </div>
+              </div>
 
               <?php
             }
@@ -180,7 +185,7 @@ $lol=mysqli_fetch_array($ins);
     </center>
 
  <br>
- <!--Collapse_Istructor-->
+ <!--Collapse_istructor-->
  <div> 
   <div id="usu" class="collapse">
    <div class="row">
@@ -208,6 +213,7 @@ $lol=mysqli_fetch_array($ins);
           <table class="table table-bordered table-striped" style="text-align:center;">
             <thead class="thead-dark">
               <tr>
+                <th>ID</th>
                 <th>Nombre</th>
                 <th>Apellido</th>
                 <th>Email</th>
@@ -220,13 +226,14 @@ $lol=mysqli_fetch_array($ins);
               while ($icon=mysqli_fetch_assoc($cont)) {
             ?>
               <tr>
+                <td><?php echo $icon["ID"];?></td>
                 <td><?php echo $icon["Nombre"];?></td>
                 <td><?php echo $icon["Apellido"];?></td>
                 <td><?php echo $icon["email"];?></td>
                 <td><?php echo $icon["rol"];?></td>              
                 <td>
                   <div class="btn-group">
-                    <a href="ubdate.php?ub=<?php echo $icon["ID"];?>"><button type="submit" class="btn btn-success btn-sm">Editar</button></a>
+                    <a href="ubdate.php?ubds=<?php echo $icon["ID"];?>"><button type="submit" class="btn btn-success btn-sm">Editar</button></a>
                     <a href="../controlador/deleteI.php?eli=<?php echo $icon["ID"];?>"><button type="submit" class="btn btn-danger btn-sm" onclick="return eli()" >Eliminar</button></a>
                   </div>
                 </td>
@@ -243,6 +250,71 @@ $lol=mysqli_fetch_array($ins);
   </div>
 </div>
  <!--/Collapse_Instrucor-->
+ <!--Collapse_Ficha-->
+ <div> 
+  <div id="fichas" class="collapse">
+   <div class="row">
+      <div class="col-lg-12 mx-auto">
+        <div class="container"> 
+         <script type="text/javascript">
+                  function elif(){
+
+                     var res=confirm("Esta seguro de eliminar esta ficha.")
+                     if (res==true) {
+                        return true;
+                     }
+                     else{
+                        return false;
+                     }
+                     
+                  }
+               </script>  
+
+        <?php
+         $tablaf="SELECT * FROM ficha";
+         $contf=mysqli_query($conn,$tablaf);
+         
+        ?>             
+          <table class="table table-bordered table-striped" style="text-align:center;">
+            <thead class="thead-dark">
+              <tr>
+                <th>ID</th>
+                <th>Ficha</th>
+                <th>Nombre del programa</th>
+                <th>Nivel de formacion</th>
+                <th>Trimestre actual</th>
+                <th>Opciones</th>
+              </tr>
+            </thead>
+            <tbody>
+            <?php
+              while ($fcon=mysqli_fetch_assoc($contf)) {
+            ?>
+              <tr>
+                <td><?php echo $fcon["ID_F"];?></td>
+                <td><?php echo $fcon['Nº ficha'];?></td>
+                <td><?php echo $fcon["Nombre_programa"];?></td>
+                <td><?php echo $fcon["nivel_formacion"];?></td>
+                <td><?php echo $fcon["trimestre_actual"];?></td>              
+                <td>
+                  <div class="btn-group">
+                    <a href=""><button type="submit" class="btn btn-success btn-sm">Editar</button></a>
+                    <a href=""><button type="submit" class="btn btn-danger btn-sm" onclick="return elif()" >Eliminar</button></a>
+                  </div>
+                </td>
+              </tr>      
+            <?php
+              }
+              
+            ?>      
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+ <!--/Collapse_Ficha-->
  <!--Collapse1-->
 <div> 
   <div id="Regusu" class="collapse">
@@ -299,14 +371,14 @@ $lol=mysqli_fetch_array($ins);
    <div class="row" style="display: contents;">
       <div class="col-sm-8 mx-auto">
         <div class="container border" style="padding:4%; background-color: #a2a1a5a8; ">      
-            <form action="" method="POST">
+            <form action="../controlador/regfich.php" method="POST">
               <div class="form-group">
                 <label for="fi">Codigo de ficha:</label>
                 <input type="number" class="mr-sm-2 form-control " placeholder="Ficha" name="fich" id="fi" required="">
               </div>
               <div class="form-group">
                 <label for="nop">Nombre del programa:</label>
-                <input type="number" class="form-control" placeholder="Nombre del programa" name="nomp" id="nop" required="">
+                <input type="text" class="form-control" placeholder="Nombre del programa" name="nomp" id="nop" required="">
               </div>
               <div class="form-group">
                 <label for="nf">Nivel de Formacion:</label>
@@ -557,6 +629,28 @@ $lol=mysqli_fetch_array($ins);
             <button type="button" class="close" data-dismiss="alert">&times;</button>
             <strong>La contraseña no coincide</strong>
           </div>
+         <?php
+       }
+     }
+     ?>
+   </div>
+     <div class="container">
+     <?php
+    if (isset($_GET['vl'])) {
+     
+     if ($_GET['vl']==1) {            
+      ?>
+       <div class="alert alert-success alert-dismissible fade show">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <strong>Ficha registrado</strong>
+      </div>
+      <?php
+       }elseif ($_GET['vl']==2) {
+         ?>
+         <div class="alert alert-warning alert-dismissible fade show">
+          <button type="button" class="close" data-dismiss="alert">&times;</button>
+          <strong>La ficha ya esta registrada.</strong> 
+        </div>
          <?php
        }
      }

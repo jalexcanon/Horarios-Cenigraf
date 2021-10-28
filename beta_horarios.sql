@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 26-10-2021 a las 17:42:43
+-- Tiempo de generación: 28-10-2021 a las 22:16:44
 -- Versión del servidor: 10.4.16-MariaDB
 -- Versión de PHP: 7.4.12
 
@@ -20,6 +20,19 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `beta_horarios`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `ambiente`
+--
+
+CREATE TABLE `ambiente` (
+  `id` int(11) NOT NULL,
+  `Nombre_ambiente` varchar(100) NOT NULL,
+  `Capacidad_ambiente` int(100) NOT NULL,
+  `No_equipos` int(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -52,17 +65,21 @@ INSERT INTO `dias` (`id`, `dia_s`) VALUES
 
 CREATE TABLE `ficha` (
   `ID_F` int(11) NOT NULL,
-  `Nº ficha` varchar(100) NOT NULL
+  `Nº ficha` varchar(100) NOT NULL,
+  `Nombre_programa` varchar(100) DEFAULT NULL,
+  `nivel_formacion` varchar(25) DEFAULT NULL,
+  `trimestre_actual` varchar(25) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `ficha`
 --
 
-INSERT INTO `ficha` (`ID_F`, `Nº ficha`) VALUES
-(1, '2061628'),
-(2, '2025329'),
-(3, '2023563');
+INSERT INTO `ficha` (`ID_F`, `Nº ficha`, `Nombre_programa`, `nivel_formacion`, `trimestre_actual`) VALUES
+(1, '2061628', '', NULL, NULL),
+(2, '2025329', '', NULL, NULL),
+(3, '2023563', '', NULL, NULL),
+(4, '1234567', 'ADSI', 'Tecnólogo  ', 'IV');
 
 -- --------------------------------------------------------
 
@@ -186,6 +203,19 @@ INSERT INTO `instructor` (`ID`, `Nombre`, `Apellido`, `Cedula`, `email`, `contra
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `programa`
+--
+
+CREATE TABLE `programa` (
+  `id` int(11) NOT NULL,
+  `codigo_programa` int(11) NOT NULL,
+  `nivel_programa` int(11) NOT NULL,
+  `trimestre` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `roles`
 --
 
@@ -202,9 +232,28 @@ INSERT INTO `roles` (`id_rol`, `rol`) VALUES
 (1, 'ADMIN'),
 (2, 'Instructor');
 
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `sede`
+--
+
+CREATE TABLE `sede` (
+  `id` int(11) NOT NULL,
+  `nombre_sede` varchar(100) NOT NULL,
+  `direccion_sede` varchar(200) DEFAULT NULL,
+  `telefono_sede` int(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 --
 -- Índices para tablas volcadas
 --
+
+--
+-- Indices de la tabla `ambiente`
+--
+ALTER TABLE `ambiente`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indices de la tabla `dias`
@@ -244,14 +293,32 @@ ALTER TABLE `instructor`
   ADD KEY `relacion_rol` (`rol`);
 
 --
+-- Indices de la tabla `programa`
+--
+ALTER TABLE `programa`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indices de la tabla `roles`
 --
 ALTER TABLE `roles`
   ADD PRIMARY KEY (`id_rol`);
 
 --
+-- Indices de la tabla `sede`
+--
+ALTER TABLE `sede`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT de las tablas volcadas
 --
+
+--
+-- AUTO_INCREMENT de la tabla `ambiente`
+--
+ALTER TABLE `ambiente`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `dias`
@@ -263,7 +330,7 @@ ALTER TABLE `dias`
 -- AUTO_INCREMENT de la tabla `ficha`
 --
 ALTER TABLE `ficha`
-  MODIFY `ID_F` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `ID_F` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `horarios`
@@ -284,10 +351,22 @@ ALTER TABLE `instructor`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
+-- AUTO_INCREMENT de la tabla `programa`
+--
+ALTER TABLE `programa`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de la tabla `roles`
 --
 ALTER TABLE `roles`
   MODIFY `id_rol` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de la tabla `sede`
+--
+ALTER TABLE `sede`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Restricciones para tablas volcadas
