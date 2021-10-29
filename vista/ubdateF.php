@@ -92,46 +92,51 @@
   <div class="container">
    <br>
    <?php 
-    $idins=$_GET['ubds'];//id del instructor------------------------------------------------------
+    $idins=$_GET['ubf'];//id del instructor------------------------------------------------------
 
-    $queryins="SELECT * FROM instructor,roles where `instructor`.`ID`=`roles`.`id_rol` and `ID`='$idins'";
-    $result=mysqli_query($conn,$queryins);
+    $queryf="SELECT * FROM ficha where `ID_F`='$idins'";
+    $result=mysqli_query($conn,$queryf);
     $rows=$result->fetch_array();
    ?>
     <div class="row" style="display: contents;">
       <div class="col-sm-8 mx-auto">
         <div class="container border" style="padding:4%; background-color: #a2a1a5a8; ">      
-            <form action="../controlador/ubdateins.php?ubd=<?php echo $idins?>" method="POST">
+            <form action="" method="POST">
               <div class="form-group">
-                <label for="nom">Nombre:</label>
-                <input type="text" class="mr-sm-2 form-control" value="<?php echo $rows["Nombre"];?>" placeholder="Nombre" name="nombre" id="nom" required="">
+                <label for="fi">Codigo de ficha:</label>
+                <input type="number" class="mr-sm-2 form-control" value="<?php echo $rows["Nº ficha"]?>" placeholder="Ficha" name="fich" id="fi" required="">
               </div>
               <div class="form-group">
-                <label for="apel">Apellido:</label>
-                <input type="text" class="form-control" value="<?php echo $rows["Apellido"];?>" placeholder="Digite el Apellido" name="apellido" id="apel" required="">
+                <label for="nop">Nombre del programa:</label>
+                <input type="text" class="form-control" value="<?php echo $rows["Nombre_programa"]?>" placeholder="Nombre del programa" name="nomp" id="nop" required="">
               </div>
               <div class="form-group">
-                <label for="email">Email :</label>
-                <input type="email" class="mr-sm-2 form-control " value="<?php echo $rows["email"];?>" placeholder="Digite el Email" name="correo" id="email" required="">
-              </div>
-               <div class="form-group">
-                <label for="dni">Documento de identidad :</label>
-                <input type="number" class="mr-sm-2 form-control " value="<?php echo $rows["Cedula"];?>" placeholder="Digite el DNI" name="dnis" id="dni" required="">
-              </div>              
-               <div class="form-group">
-                <label for="roles">Rol del Instructor:</label>
-                <select class="form-control" id="roles" name="rol" required="">
-                  <option value="<?php echo $rows["id_rol"];?>"><?php echo $rows["rol"];?></option>
-                  <option value="2">Instructor</option>
-                  <option value="1">ADMIN</option>                  
+                <label for="nf">Nivel de Formacion:</label>
+                <select class="form-control" id="nf" name="nivel" required="">
+                  <option value="<?php echo $rows["nivel_formacion"]?>"><?php echo $rows["nivel_formacion"]?></option>
+                  <option value="1">Técnico </option>                  
+                  <option value="2">Tecnólogo</option> 
+                  <option value="3">Especializado</option>               
                 </select>
-              </div>             
+              </div>   
+              <div class="form-group">
+                <label for="trim">Trimestre actual:</label>
+                <select class="form-control" id="trim" name="trime" required="">
+                  <option value="<?php echo $rows["trimestre_actual"]?>"><?php echo $rows["trimestre_actual"]?></option>
+                  <option value="1">I Trimestre</option>
+                  <option value="2">II Trimestre</option>
+                  <option value="3">III Trimestre</option>
+                  <option value="4">IV Trimestre</option>
+                  <option value="5">V Trimestre</option>
+                  <option value="6">VI Trimestre</option>
+                      
+                </select>
+              </div>   
               <center>
                 <div class="btn-group">
                   <button type="submit" class="btn btn-warning" onclick="window.open('horarios.php','_Self')">Atras</button>
                   <button type="submit" class="btn btn-dark">Entrar</button>
-                </div>
-                
+                </div>               
               </center>              
             </form>     
           </div>

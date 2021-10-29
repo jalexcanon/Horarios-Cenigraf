@@ -1,6 +1,7 @@
 <?php 
 //--------------------------------------------------------------
 //----------------------------------------------
+//----------------------------------------------
  session_start();
  include('../controlador/conexion.php');
   $correo=$_SESSION['ema'];
@@ -55,10 +56,12 @@ $lol=mysqli_fetch_array($ins);
               <?php if ($rol==1) { ?>
               <li class="nav-item">
                <a class="nav-link" data-toggle="collapse" data-target="#Regusu">Registrar Usuario</a>
-              </li>
-            <?php }   if ($rol==1) { ?>
+              </li>          
               <li class="nav-item">
                 <a class="nav-link" data-toggle="collapse" data-target="#fich">Registrar Fichas</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" data-toggle="collapse" data-target="#RegSed">Registrar SEDE</a>
               </li>
             <?php } ?>  
               <li class="nav-item">
@@ -107,7 +110,6 @@ $lol=mysqli_fetch_array($ins);
                  <a href="" data-toggle="modal" data-target="#myModal">Crear Horario Instructor</a>
                 </div>
               </div>
-
               <div class="user-panel mt-4 pb-4 mb-4 d-flex">               
                 <div class="info">
                  <a data-toggle="collapse" data-target="#usu">Consula Instructor</a>
@@ -116,6 +118,11 @@ $lol=mysqli_fetch_array($ins);
               <div class="user-panel mt-4 pb-4 mb-4 d-flex">               
                 <div class="info">
                  <a data-toggle="collapse" data-target="#fichas">Consula Fichas</a>
+                </div>
+              </div>
+              <div class="user-panel mt-4 pb-4 mb-4 d-flex">               
+                <div class="info">
+                 <a data-toggle="collapse" data-target="#sedet">Consula Sedes</a>
                 </div>
               </div>
 
@@ -128,6 +135,7 @@ $lol=mysqli_fetch_array($ins);
         </aside>
  </div>
  <!--/lateral-->
+
 <div class="content-wrapper">
   <div class="container">
  <!-- Modal -->
@@ -186,7 +194,7 @@ $lol=mysqli_fetch_array($ins);
     </center>
 
  <br>
- <!--Collapse_istructor-->
+ <!--Collapse_istructor_Tabla-->
  <div> 
   <div id="usu" class="collapse">
    <div class="row">
@@ -234,6 +242,7 @@ $lol=mysqli_fetch_array($ins);
                 <td><?php echo $icon["rol"];?></td>              
                 <td>
                   <div class="btn-group">
+                    <a href="admin/horarios_beta.php?instructor=<?php echo $icon["ID"];?>"><button type="submit" class="btn btn-dark btn-sm">Horario</button></a>
                     <a href="ubdate.php?ubds=<?php echo $icon["ID"];?>"><button type="submit" class="btn btn-success btn-sm">Editar</button></a>
                     <a href="../controlador/deleteI.php?eli=<?php echo $icon["ID"];?>"><button type="submit" class="btn btn-danger btn-sm" onclick="return eli()" >Eliminar</button></a>
                   </div>
@@ -250,8 +259,9 @@ $lol=mysqli_fetch_array($ins);
     </div>
   </div>
 </div>
- <!--/Collapse_Instrucor-->
- <!--Collapse_Ficha-->
+ <!--/Collapse_Instrucor_Tabla-->
+
+ <!--Collapse_Ficha_Ficha-->
  <div> 
   <div id="fichas" class="collapse">
    <div class="row">
@@ -299,7 +309,7 @@ $lol=mysqli_fetch_array($ins);
                 <td><?php echo $fcon["trimestre_actual"];?></td>              
                 <td>
                   <div class="btn-group">
-                    <a href=""><button type="submit" class="btn btn-success btn-sm">Editar</button></a>
+                    <a href="ubdateF.php?ubf=<?php echo $fcon["ID_F"]?>"><button type="submit" class="btn btn-success btn-sm">Editar</button></a>
                     <a href=""><button type="submit" class="btn btn-danger btn-sm" onclick="return elif()" >Eliminar</button></a>
                   </div>
                 </td>
@@ -315,8 +325,63 @@ $lol=mysqli_fetch_array($ins);
     </div>
   </div>
 </div>
- <!--/Collapse_Ficha-->
- <!--Collapse1-->
+ <!--/Collapse_Ficha_Tabla-->
+
+ <!--Collapse_Sede_tabla-->
+ <div> 
+  <div id="sedet" class="collapse">
+   <div class="row">
+      <div class="col-lg-12 mx-auto">
+        <div class="container"> 
+         <script type="text/javascript">
+                  function elis(){
+
+                     var res=confirm("Esta seguro de eliminar esta SEDE.")
+                     if (res==true) {
+                        return true;
+                     }
+                     else{
+                        return false;
+                     }
+                     
+                  }
+               </script>  
+
+                  
+          <table class="table table-bordered table-striped" style="text-align:center;">
+            <thead class="thead-dark">
+              <tr>
+                <th>ID</th>
+                <th>Nombre sede</th>
+                <th>Dirreccion Sede</th>
+                <th>Telefono Sede</th>                
+                <th>Opciones</th>
+              </tr>
+            </thead>
+            <tbody>
+            
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>                              
+                <td>
+                  <div class="btn-group">
+                    <a href=""><button type="submit" class="btn btn-success btn-sm">Editar</button></a>
+                    <a href=""><button type="submit" class="btn btn-danger btn-sm" onclick="return elis()" >Eliminar</button></a>
+                  </div>
+                </td>
+              </tr>           
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+ <!--/Collapse_Sede_tabla-->
+
+ <!--Collapse1Instructor-->
 <div> 
   <div id="Regusu" class="collapse">
    <div class="row" style="display: contents;">
@@ -364,9 +429,8 @@ $lol=mysqli_fetch_array($ins);
     </div>
   </div>
 </div>
-<br>
-    <!--/Collapse1-->
-    <!--Collapse2-->
+<!--/Collapse1Instructor-->
+    <!--Collapse2Ficha-->
 <div> 
   <div id="fich" class="collapse">
    <div class="row" style="display: contents;">
@@ -412,7 +476,39 @@ $lol=mysqli_fetch_array($ins);
     </div>
   </div>
 </div>    
-    <!--/Collapse2-->
+<!--/Collapse2Ficha-->
+
+    <!--Collapse4SEDE-->
+<div> 
+  <div id="RegSed" class="collapse">
+   <div class="row" style="display: contents;">
+      <div class="col-sm-8 mx-auto">
+        <div class="container border" style="padding:4%; background-color: #a2a1a5a8; ">      
+            <form action="../controlador/regins.php" method="POST">
+              <div class="form-group">
+                <label for="nomC">Nombre sede:</label>
+                <input type="text" class="mr-sm-2 form-control " placeholder="Digite el nombre de la sede" name="nombreC" id="nomC" required="">
+              </div>
+              <div class="form-group">
+                <label for="DS">Direccion sede:</label>
+                <input type="text" class="form-control" placeholder="Digite el la direccion de la sede" name="Direc" id="DS" required="">
+              </div>
+              <div class="form-group">
+                <label for="tl">Telefono sede:</label>
+                <input type="number" class="mr-sm-2 form-control " placeholder="Digite el telefono" name="phone" id="tl" required="">
+              </div>             
+              <center>
+                <button type="submit" class="btn btn-dark">Entrar</button>
+              </center>              
+            </form>     
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--/Collapse4SEDE-->
+
+<!--/tabla_ins_rol-->
 <div class="container">
   <?php
  if ($rol==2) {
@@ -604,7 +700,7 @@ $lol=mysqli_fetch_array($ins);
 <?php 
 }
 ?>
-</div><!--/Collapse2-->
+</div><!--/tabla_ins_rol-->
 
    <div class="container">
      <?php
