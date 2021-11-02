@@ -1,7 +1,4 @@
 <?php 
-//--------------------------------------------------------------
-//----------------------------------------------
-//----------------------------------------------
  session_start();
  include('../controlador/conexion.php');
   $correo=$_SESSION['ema'];
@@ -63,6 +60,12 @@ $lol=mysqli_fetch_array($ins);
               <li class="nav-item">
                 <a class="nav-link" data-toggle="collapse" data-target="#RegSed">Registrar SEDE</a>
               </li>
+              <li class="nav-item">
+                <a class="nav-link" data-toggle="collapse" data-target="#amb">Registrar Ambiente</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" data-toggle="collapse" data-target="#prog">Registrar Progrma</a>
+              </li>
             <?php } ?>  
               <li class="nav-item">
                 <a class="nav-link" onclick="window.open('../controlador/exit.php','_Self')">Cerrar sesion</a>
@@ -112,12 +115,12 @@ $lol=mysqli_fetch_array($ins);
               </div>
               <div class="user-panel mt-4 pb-4 mb-4 d-flex">               
                 <div class="info">
-                 <a data-toggle="collapse" data-target="#usu">Consula Instructor</a>
+                 <a data-toggle="collapse" data-parent="" data-target="#usu">Consula Instructor</a>
                 </div>
               </div>
               <div class="user-panel mt-4 pb-4 mb-4 d-flex">               
                 <div class="info">
-                 <a data-toggle="collapse" data-target="#fichas">Consula Fichas</a>
+                 <a data-toggle="collapse" data-parent="" data-target="#fichas">Consula Fichas</a>
                 </div>
               </div>
               <div class="user-panel mt-4 pb-4 mb-4 d-flex">               
@@ -125,7 +128,16 @@ $lol=mysqli_fetch_array($ins);
                  <a data-toggle="collapse" data-target="#sedet">Consula Sedes</a>
                 </div>
               </div>
-
+              <div class="user-panel mt-4 pb-4 mb-4 d-flex">               
+                <div class="info">
+                 <a data-toggle="collapse" data-target="#ambi">Consula ambiente</a>
+                </div>
+              </div>
+              <div class="user-panel mt-4 pb-4 mb-4 d-flex">               
+                <div class="info">
+                 <a data-toggle="collapse" data-target="#progtl">Consula ambiente</a>
+                </div>
+              </div>
               <?php
             }
               ?>
@@ -381,6 +393,122 @@ $lol=mysqli_fetch_array($ins);
 </div>
  <!--/Collapse_Sede_tabla-->
 
+  <!--Collapse_ambiente_tabla-->
+ <div> 
+  <div id="ambi" class="collapse">
+   <div class="row">
+      <div class="col-lg-12 mx-auto">
+        <div class="container"> 
+         <script type="text/javascript">
+                  function eliminar_ambiente(){
+
+                     var res=confirm("Esta seguro de eliminar el ambiente.")
+                     if (res==true) {
+                        return true;
+                     }
+                     else{
+                        return false;
+                     }
+                     
+                  }
+               </script>  
+
+        <?php/* 
+         $tablai="SELECT * FROM `instructor`,`roles` WHERE instructor.rol = roles.id_rol";
+         $cont=mysqli_query($conn,$tablai);
+        */ 
+        ?>  
+
+          <table class="table table-bordered table-striped" style="text-align:center;">
+            <thead class="thead-dark">
+              <tr>
+                <th>ID</th>
+                <th>Nombre ambiente</th>
+                <th>Capacidad</th>
+                <th>No de equipos</th>
+                <th>Opciones</th>
+              </tr>
+            </thead>
+            <tbody>
+           <tr>  
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>      
+                <td>
+                  <div class="btn-group">
+                    <a href=""><button type="submit" class="btn btn-success btn-sm">Editar</button></a>
+                    <a href=""><button type="submit" class="btn btn-danger btn-sm" onclick="return eliminar_ambiente()" >Eliminar</button></a>
+                  </div>
+                </td>
+              </tr>      
+               
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+ <!--/Collapse_Sede_tabla-->
+
+  <!--Collapse_Programa_tabla-->
+ <div> 
+  <div id="progtl" class="collapse">
+   <div class="row">
+      <div class="col-lg-12 mx-auto">
+        <div class="container"> 
+         <script type="text/javascript">
+                  function eliminar_programa(){
+
+                     var res=confirm("Esta seguro de eliminar el programa.")
+                     if (res==true) {
+                        return true;
+                     }
+                     else{
+                        return false;
+                     }
+                     
+                  }
+               </script>  
+
+        <?php/* 
+         $tablai="SELECT * FROM `instructor`,`roles` WHERE instructor.rol = roles.id_rol";
+         $cont=mysqli_query($conn,$tablai);
+        */ 
+        ?>  
+
+          <table class="table table-bordered table-striped" style="text-align:center;">
+            <thead class="thead-dark">
+              <tr>
+                <th>Codigo programa</th>
+                <th>Nombre Programa</th>
+                <th>Competencias</th>
+                <th>Opciones</th>
+              </tr>
+            </thead>
+            <tbody>
+           <tr>  
+                <td></td>
+                <td></td>
+                <td></td>      
+                <td>
+                  <div class="btn-group">
+                    <a href=""><button type="submit" class="btn btn-success btn-sm">Editar</button></a>
+                    <a href=""><button type="submit" class="btn btn-danger btn-sm" onclick="return eliminar_programa()" >Eliminar</button></a>
+                  </div>
+                </td>
+              </tr>      
+               
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+ <!--/Collapse_Programa_tabla-->
+
  <!--Collapse1Instructor-->
 <div> 
   <div id="Regusu" class="collapse">
@@ -438,37 +566,58 @@ $lol=mysqli_fetch_array($ins);
         <div class="container border" style="padding:4%; background-color: #a2a1a5a8; ">      
             <form action="../controlador/regfich.php" method="POST">
               <div class="form-group">
-                <label for="fi">Codigo de ficha:</label>
+                <label for="fi">Numero de ficha:</label>
                 <input type="number" class="mr-sm-2 form-control " placeholder="Ficha" name="fich" id="fi" required="">
               </div>
               <div class="form-group">
-                <label for="nop">Nombre del programa:</label>
-                <input type="text" class="form-control" placeholder="Nombre del programa" name="nomp" id="nop" required="">
+                <label for="nop">Cantidad de aprendices:</label>
+                <input type="number" class="form-control" placeholder="Cantidad de aprendices" name="can_apren" id="nop" required="">
               </div>
               <div class="form-group">
-                <label for="nf">Nivel de Formacion:</label>
-                <select class="form-control" id="nf" name="nivel" required="">
+                <label for="jor">Jornada:</label>
+                <select class="form-control" id="jor" name="jornad" required="">
                   <option value="0">Seleccione</option>
-                  <option value="1">Técnico </option>                  
-                  <option value="2">Tecnólogo</option> 
-                  <option value="3">Especializado</option>               
+                  <option value="1">Diurna </option>                  
+                  <option value="2">Nocturna</option> 
+                  <option value="3">Mixta</option>               
                 </select>
-              </div>   
+              </div>
               <div class="form-group">
-                <label for="trim">Trimestre actual:</label>
-                <select class="form-control" id="trim" name="trime" required="">
+                <label for="tipf">Tipo de Formacion:</label>
+                <select class="form-control" id="tipf" name="tipof" required="">
                   <option value="0">Seleccione</option>
-                  <option value="1">I Trimestre</option>
-                  <option value="2">II Trimestre</option>
-                  <option value="3">III Trimestre</option>
-                  <option value="4">IV Trimestre</option>
-                  <option value="5">V Trimestre</option>
-                  <option value="6">VI Trimestre</option>
-                      
+                  <option value="1">Presencial </option>
+                  <option value="2">Virtual</option>                             
                 </select>
-              </div>   
+              </div>
+              <div class="form-group">
+            <?php
+   $prog="SELECT * FROM programa";
+   $cons=mysqli_query($conn,$prog);
+            ?>
+                <label for="progC">Nombre del programa:</label>
+                <select class="form-control" id="progC" name="program" required="">
+                  <option value="0">Seleccione</option>
+                 <?php
+    while ($cod_p=mysqli_fetch_assoc($cons)) {
+              ?>
+                  <option value="<?php echo$cod_p['id_program']?>"><?php echo$cod_p['Nom_program']?></option>
+              <?php
+            }        
+                 ?>                             
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="f_i">Fecha inicio:</label>
+                <input type="date" class="form-control" name="date_i" id="f_i" required="">
+              </div>
+              <div class="form-group">
+                <label for="f_f">Fecha Fin:</label>
+                <input type="date" class="form-control" name="date_f" id="f_f" required="">
+              </div>
+                        
               <center>
-                <button type="submit" class="btn btn-dark">Entrar</button>
+                <button type="submit" class="btn btn-dark">Registrar</button>
               </center>              
             </form>     
           </div>
@@ -498,7 +647,7 @@ $lol=mysqli_fetch_array($ins);
                 <input type="number" class="mr-sm-2 form-control " placeholder="Digite el telefono" name="phone" id="tl" required="">
               </div>             
               <center>
-                <button type="submit" class="btn btn-dark">Entrar</button>
+                <button type="submit" class="btn btn-dark">Registrar</button>
               </center>              
             </form>     
           </div>
@@ -507,6 +656,72 @@ $lol=mysqli_fetch_array($ins);
   </div>
 </div>
 <!--/Collapse4SEDE-->
+ <!--Collapse5Ambiente-->
+<div> 
+  <div id="amb" class="collapse">
+   <div class="row" style="display: contents;">
+      <div class="col-sm-8 mx-auto">
+        <div class="container border" style="padding:4%; background-color: #a2a1a5a8; ">      
+            <form action="../controlador/regins.php" method="POST">
+              <div class="form-group">
+                <label for="nomb">Nombre ambiente:</label>
+                <input type="text" class="mr-sm-2 form-control " placeholder="Digite el nombre del ambiente" name="nombre ambiente" id="nomb" required="">
+              </div>
+              <div class="form-group">
+                <label for="cap">Capacidad:</label>
+                <input type="text" class="form-control" placeholder="Digite la capacidad" name="capacidad" id="cap" required="">
+              </div>
+              <div class="form-group">
+                <label for="equip">No de equipos :</label>
+                <input type="number" class="mr-sm-2 form-control " placeholder="Digite el numero" name="No de equipos" id="equip" required="">
+              </div>
+        
+                <button type="submit" class="btn btn-dark">Registrar</button>
+              </center>              
+            </form>     
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+<br>
+<!--/Collapse5Ambiente-->
+
+<!--Collapse6Programa-->
+<div> 
+  <div id="prog" class="collapse">
+   <div class="row" style="display: contents;">
+      <div class="col-sm-8 mx-auto">
+        <div class="container border" style="padding:4%; background-color: #a2a1a5a8; ">      
+            <form action="../controlador/regprog.php" method="POST">             
+              <div class="form-group">
+                <label for="nom_prog">Nombre del programa:</label>
+                <input type="text" class="form-control" placeholder="Digite el nombre del programa" name="nomp" id="nom_prog" required="">
+              </div>
+              <div class="form-group">
+                <label for="nivl">Nivel del programa:</label>
+                <select class="form-control" id="nivl" name="nivel_prog" required="">
+                  <option value="0">Seleccione</option>
+                  <option value="Técnico">Técnico</option>
+                  <option value="Tecnólogo">Tecnólogo</option>
+                  <option value="Especialización">Especialización</option>                                 
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="compt">Competencias:</label>
+                <textarea class="form-control" name="texto" id="compt" placeholder="Digite las Competencias"></textarea>
+              </div>
+                   
+              <center>
+                <button type="submit" class="btn btn-dark">Registrar</button>
+              </center>              
+            </form>     
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--/Collapse6Programa-->
 
 <!--/tabla_ins_rol-->
 <div class="container">
@@ -702,6 +917,7 @@ $lol=mysqli_fetch_array($ins);
 ?>
 </div><!--/tabla_ins_rol-->
 
+<!--alerta usuario-->
    <div class="container">
      <?php
     if (isset($_GET['v'])) {
@@ -731,6 +947,9 @@ $lol=mysqli_fetch_array($ins);
      }
      ?>
    </div>
+<!--/alerta usuario-->   
+
+<!--alerta ficha--> 
      <div class="container">
      <?php
     if (isset($_GET['vl'])) {
@@ -753,6 +972,32 @@ $lol=mysqli_fetch_array($ins);
      }
      ?>
    </div>
+   <!--/alerta ficha-->
+
+   <!--alerta programa--> 
+     <div class="container">
+     <?php
+    if (isset($_GET['vp'])) {
+     
+     if ($_GET['vp']==1) {            
+      ?>
+       <div class="alert alert-success alert-dismissible fade show">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <strong>Programa registrado</strong>
+      </div>
+      <?php
+       }elseif ($_GET['vp']==2) {
+         ?>
+         <div class="alert alert-warning alert-dismissible fade show">
+          <button type="button" class="close" data-dismiss="alert">&times;</button>
+          <strong>El programa(Codigo) ya esta registrado.</strong> 
+        </div>
+         <?php
+       }
+     }
+     ?>
+   </div>
+   <!--/alerta programa-->
 
 
   </div>

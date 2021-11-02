@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 28-10-2021 a las 22:16:44
+-- Tiempo de generación: 02-11-2021 a las 21:39:39
 -- Versión del servidor: 10.4.16-MariaDB
 -- Versión de PHP: 7.4.12
 
@@ -66,20 +66,21 @@ INSERT INTO `dias` (`id`, `dia_s`) VALUES
 CREATE TABLE `ficha` (
   `ID_F` int(11) NOT NULL,
   `Nº ficha` varchar(100) NOT NULL,
-  `Nombre_programa` varchar(100) DEFAULT NULL,
-  `nivel_formacion` varchar(25) DEFAULT NULL,
-  `trimestre_actual` varchar(25) DEFAULT NULL
+  `fc_cant_aprend` varchar(45) NOT NULL,
+  `fc_jornada` varchar(45) NOT NULL,
+  `fc_tipo_formacion` varchar(45) NOT NULL,
+  `fic_date_I` date NOT NULL,
+  `fic_date_F` date NOT NULL,
+  `fc_id_programa` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `ficha`
 --
 
-INSERT INTO `ficha` (`ID_F`, `Nº ficha`, `Nombre_programa`, `nivel_formacion`, `trimestre_actual`) VALUES
-(1, '2061628', '', NULL, NULL),
-(2, '2025329', '', NULL, NULL),
-(3, '2023563', '', NULL, NULL),
-(4, '1234567', 'ADSI', 'Tecnólogo  ', 'IV');
+INSERT INTO `ficha` (`ID_F`, `Nº ficha`, `fc_cant_aprend`, `fc_jornada`, `fc_tipo_formacion`, `fic_date_I`, `fic_date_F`, `fc_id_programa`) VALUES
+(11, '2061628', '50', '1', '2', '2021-11-02', '2021-11-02', 88524458),
+(12, '2061629', '40', '1', '1', '2021-11-12', '2021-12-04', 88524457);
 
 -- --------------------------------------------------------
 
@@ -95,59 +96,6 @@ CREATE TABLE `horarios` (
   `hora` int(11) DEFAULT NULL,
   `horas_instructor` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `horarios`
---
-
-INSERT INTO `horarios` (`id_hora`, `dia`, `ficha`, `instructor`, `hora`, `horas_instructor`) VALUES
-(114, 2, 2, 1, 2, 2),
-(115, 6, 1, 1, 1, 2),
-(118, 1, 1, 1, 2, 2),
-(119, 1, 1, 1, 1, 2),
-(120, 2, 1, 1, 1, 2),
-(121, 3, 1, 1, 1, 2),
-(122, 4, 1, 1, 1, 2),
-(124, 6, 1, 1, 3, 2),
-(125, 5, 1, 1, 3, 2),
-(126, 4, 1, 1, 3, 2),
-(127, 3, 1, 1, 3, 2),
-(128, 2, 1, 1, 3, 2),
-(129, 1, 1, 1, 3, 2),
-(130, 1, 1, 1, 5, 2),
-(131, 2, 1, 1, 5, 2),
-(132, 3, 1, 1, 5, 2),
-(133, 4, 1, 1, 5, 2),
-(149, 1, 1, 3, 1, 2),
-(150, 2, 1, 3, 1, 2),
-(151, 2, 1, 3, 2, 2),
-(152, 2, 1, 3, 4, 2),
-(153, 2, 1, 3, 5, 2),
-(154, 2, 1, 3, 7, 2),
-(156, 3, 1, 3, 1, 2),
-(157, 3, 1, 3, 2, 2),
-(159, 3, 1, 3, 4, 2),
-(160, 3, 1, 3, 6, 2),
-(161, 4, 2, 3, 1, 2),
-(162, 4, 2, 3, 2, 2),
-(163, 4, 2, 3, 3, 2),
-(164, 4, 2, 3, 4, 2),
-(165, 4, 2, 3, 5, 2),
-(166, 4, 3, 3, 6, 2),
-(167, 4, 2, 3, 6, 2),
-(168, 5, 3, 3, 6, 2),
-(169, 2, 1, 2, 1, 2),
-(170, 6, 1, 2, 8, 2),
-(172, 2, 1, 1, 3, 2),
-(173, 3, 1, 2, 4, 2),
-(174, 6, 1, 1, 2, 2),
-(175, 6, 2, 3, 8, 2),
-(177, 6, 3, 1, 8, 2),
-(178, 1, 1, 7, 1, 2),
-(179, 2, 2, 7, 2, 2),
-(180, 3, 3, 7, 3, 2),
-(181, 4, 1, 7, 4, 2),
-(182, 5, 1, 7, 5, 2);
 
 -- --------------------------------------------------------
 
@@ -198,7 +146,7 @@ INSERT INTO `instructor` (`ID`, `Nombre`, `Apellido`, `Cedula`, `email`, `contra
 (1, 'Jose', 'Ovalle', 123456789, 'jose@gmail.com', 'd6581d542c7eaf801284f084478b5fcc', 1),
 (2, 'Giovany', 'Ortiz', 123456788, 'gio@gmail.com', 'd6581d542c7eaf801284f084478b5fcc', 1),
 (3, 'Andres', 'martinez', 123456799, 'and@gmail.com', 'd6581d542c7eaf801284f084478b5fcc', 2),
-(7, 'Camilo', 'Ortiz', 3333333, 'camilo@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055', 2);
+(4, 'Camilo', 'Ortiz', 3333333, 'camilo@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055', 2);
 
 -- --------------------------------------------------------
 
@@ -207,11 +155,19 @@ INSERT INTO `instructor` (`ID`, `Nombre`, `Apellido`, `Cedula`, `email`, `contra
 --
 
 CREATE TABLE `programa` (
-  `id` int(11) NOT NULL,
-  `codigo_programa` int(11) NOT NULL,
-  `nivel_programa` int(11) NOT NULL,
-  `trimestre` int(11) NOT NULL
+  `id_program` int(11) NOT NULL,
+  `Nom_program` varchar(45) NOT NULL,
+  `nivel_form` varchar(45) NOT NULL,
+  `competencias` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `programa`
+--
+
+INSERT INTO `programa` (`id_program`, `Nom_program`, `nivel_form`, `competencias`) VALUES
+(88524457, 'ADSI', 'Tecnólogo', 0),
+(88524458, 'Multimedia ', 'Tecnólogo', 0);
 
 -- --------------------------------------------------------
 
@@ -266,7 +222,8 @@ ALTER TABLE `dias`
 -- Indices de la tabla `ficha`
 --
 ALTER TABLE `ficha`
-  ADD PRIMARY KEY (`ID_F`);
+  ADD PRIMARY KEY (`ID_F`),
+  ADD KEY `relacion_prog` (`fc_id_programa`);
 
 --
 -- Indices de la tabla `horarios`
@@ -296,7 +253,7 @@ ALTER TABLE `instructor`
 -- Indices de la tabla `programa`
 --
 ALTER TABLE `programa`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id_program`);
 
 --
 -- Indices de la tabla `roles`
@@ -330,13 +287,13 @@ ALTER TABLE `dias`
 -- AUTO_INCREMENT de la tabla `ficha`
 --
 ALTER TABLE `ficha`
-  MODIFY `ID_F` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `ID_F` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de la tabla `horarios`
 --
 ALTER TABLE `horarios`
-  MODIFY `id_hora` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=183;
+  MODIFY `id_hora` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=185;
 
 --
 -- AUTO_INCREMENT de la tabla `horas`
@@ -354,7 +311,7 @@ ALTER TABLE `instructor`
 -- AUTO_INCREMENT de la tabla `programa`
 --
 ALTER TABLE `programa`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_program` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=88524459;
 
 --
 -- AUTO_INCREMENT de la tabla `roles`
@@ -371,6 +328,12 @@ ALTER TABLE `sede`
 --
 -- Restricciones para tablas volcadas
 --
+
+--
+-- Filtros para la tabla `ficha`
+--
+ALTER TABLE `ficha`
+  ADD CONSTRAINT `relacion_prog` FOREIGN KEY (`fc_id_programa`) REFERENCES `programa` (`id_program`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `horarios`
