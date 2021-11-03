@@ -1,6 +1,16 @@
 <?php
 include ('conexion.php');
 
+$correo=$_SESSION['ema'];
+
+if (!isset($correo)) {
+    header("location:../index.php");
+}
+$rol=$_SESSION['rol'];
+ if ($rol==2) {
+   header('location:../horarios.php');
+}
+
 
 $fich=$_POST['fich'];
 $cantap=$_POST['can_apren'];

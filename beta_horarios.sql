@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 02-11-2021 a las 21:39:39
+-- Tiempo de generación: 03-11-2021 a las 21:33:31
 -- Versión del servidor: 10.4.16-MariaDB
 -- Versión de PHP: 7.4.12
 
@@ -65,8 +65,8 @@ INSERT INTO `dias` (`id`, `dia_s`) VALUES
 
 CREATE TABLE `ficha` (
   `ID_F` int(11) NOT NULL,
-  `Nº ficha` varchar(100) NOT NULL,
-  `fc_cant_aprend` varchar(45) NOT NULL,
+  `Nº ficha` int(11) NOT NULL,
+  `fc_cant_aprend` int(11) NOT NULL,
   `fc_jornada` varchar(45) NOT NULL,
   `fc_tipo_formacion` varchar(45) NOT NULL,
   `fic_date_I` date NOT NULL,
@@ -79,8 +79,7 @@ CREATE TABLE `ficha` (
 --
 
 INSERT INTO `ficha` (`ID_F`, `Nº ficha`, `fc_cant_aprend`, `fc_jornada`, `fc_tipo_formacion`, `fic_date_I`, `fic_date_F`, `fc_id_programa`) VALUES
-(11, '2061628', '50', '1', '2', '2021-11-02', '2021-11-02', 88524458),
-(12, '2061629', '40', '1', '1', '2021-11-12', '2021-12-04', 88524457);
+(19, 1234567, 50, 'Diurna', 'Presencial', '2021-11-03', '2021-11-12', 88524462);
 
 -- --------------------------------------------------------
 
@@ -156,9 +155,9 @@ INSERT INTO `instructor` (`ID`, `Nombre`, `Apellido`, `Cedula`, `email`, `contra
 
 CREATE TABLE `programa` (
   `id_program` int(11) NOT NULL,
-  `Nom_program` varchar(45) NOT NULL,
+  `Nom_program` varchar(100) NOT NULL,
   `nivel_form` varchar(45) NOT NULL,
-  `competencias` int(11) DEFAULT NULL
+  `competencias` varchar(250) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -166,8 +165,10 @@ CREATE TABLE `programa` (
 --
 
 INSERT INTO `programa` (`id_program`, `Nom_program`, `nivel_form`, `competencias`) VALUES
-(88524457, 'ADSI', 'Tecnólogo', 0),
-(88524458, 'Multimedia ', 'Tecnólogo', 0);
+(88524459, 'Encuadernación ', 'Técnico', '0'),
+(88524460, 'Ingles ', 'Técnico', '0'),
+(88524461, 'Fotografía ', 'Técnico', '0'),
+(88524462, 'ADSI-Análisis y desarrollo de sistemas de información ', 'Tecnólogo', 'jgljglkfjgkfdljgdfjg');
 
 -- --------------------------------------------------------
 
@@ -287,13 +288,13 @@ ALTER TABLE `dias`
 -- AUTO_INCREMENT de la tabla `ficha`
 --
 ALTER TABLE `ficha`
-  MODIFY `ID_F` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `ID_F` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT de la tabla `horarios`
 --
 ALTER TABLE `horarios`
-  MODIFY `id_hora` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=185;
+  MODIFY `id_hora` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=187;
 
 --
 -- AUTO_INCREMENT de la tabla `horas`
@@ -311,7 +312,7 @@ ALTER TABLE `instructor`
 -- AUTO_INCREMENT de la tabla `programa`
 --
 ALTER TABLE `programa`
-  MODIFY `id_program` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=88524459;
+  MODIFY `id_program` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=88524463;
 
 --
 -- AUTO_INCREMENT de la tabla `roles`

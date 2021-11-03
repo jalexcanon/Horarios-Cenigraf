@@ -1,8 +1,15 @@
 <?php
-//-----------------
 include ('conexion.php');
+session_start();
+$correo=$_SESSION['ema'];
 
-
+if (!isset($correo)) {
+    header("location:../index.php");
+}
+$rol=$_SESSION['rol'];
+ if ($rol==2) {
+   header('location:../horarios.php');
+}
 
 $nom_p=$_POST['nomp'];
 $nivl_p=$_POST['nivel_prog'];

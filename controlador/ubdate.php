@@ -1,13 +1,19 @@
 <?php 
-//--------------------------------------------------------------
-//----------------------------------------------
-//----------------------------------------------
 session_start();
 
 include "conexion.php";
 
 $actu=$_GET['ubd'];
 $ins=$_SESSION['inst'];
+$correo=$_SESSION['ema'];
+
+if (!isset($correo)) {
+    header("location:../index.php");
+}
+$rol=$_SESSION['rol'];
+ if ($rol==2) {
+   header('location:../horarios.php');
+}
 
  $querys="SELECT * FROM horarios,ficha,instructor,dias,horas WHERE horarios.dia=dias.id AND horarios.ficha=ficha.ID_F AND horarios.instructor = instructor.ID AND horarios.hora = horas.id_h and horarios.instructor='$ins' AND horarios.id_hora='$actu'";
 $consulta=mysqli_query($conn,$querys);

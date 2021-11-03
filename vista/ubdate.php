@@ -1,13 +1,11 @@
 <?php 
-//--------------------------------------------------------------
-//----------------------------------------------
-//----------------------------------------------
  session_start();
  include('../controlador/conexion.php');
   $correo=$_SESSION['ema'];
   $rol=$_SESSION['rol'];
   $inst=$_SESSION['nam'];
   $instru=$_SESSION['IDins'];
+
  if (!isset($correo)) {
     header("location:../index.php");
  }
@@ -19,7 +17,7 @@
 <html lang="es">
 <head>
 	<meta charset="utf-8">
-	<title>beta</title>
+	<title>Actualizar Instrucor</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="../css/style.css">
     <link rel="stylesheet" href="../plugins/fontawesome-free/css/all.min.css">
@@ -94,7 +92,7 @@
    <?php 
     $idins=$_GET['ubds'];//id del instructor------------------------------------------------------
 
-    $queryins="SELECT * FROM instructor,roles where `instructor`.`ID`=`roles`.`id_rol` and `ID`='$idins'";
+    $queryins="SELECT * FROM `instructor`,`roles` where `instructor`.`ID`=`roles`.`id_rol` and `ID`='$idins'";
     $result=mysqli_query($conn,$queryins);
     $rows=$result->fetch_array();
    ?>
@@ -104,24 +102,24 @@
             <form action="../controlador/ubdateins.php?ubd=<?php echo $idins?>" method="POST">
               <div class="form-group">
                 <label for="nom">Nombre:</label>
-                <input type="text" class="mr-sm-2 form-control" value="<?php echo $rows["Nombre"];?>" placeholder="Nombre" name="nombre" id="nom" required="">
+                <input type="text" class="mr-sm-2 form-control" value="<?php echo $rows["Nombre"]?>" placeholder="Nombre" name="nombre" id="nom" required="">
               </div>
               <div class="form-group">
                 <label for="apel">Apellido:</label>
-                <input type="text" class="form-control" value="<?php echo $rows["Apellido"];?>" placeholder="Digite el Apellido" name="apellido" id="apel" required="">
+                <input type="text" class="form-control" value="<?php echo $rows["Apellido"]?>" placeholder="Digite el Apellido" name="apellido" id="apel" required="">
               </div>
               <div class="form-group">
                 <label for="email">Email :</label>
-                <input type="email" class="mr-sm-2 form-control " value="<?php echo $rows["email"];?>" placeholder="Digite el Email" name="correo" id="email" required="">
+                <input type="email" class="mr-sm-2 form-control " value="<?php echo $rows["email"]?>" placeholder="Digite el Email" name="correo" id="email" required="">
               </div>
                <div class="form-group">
                 <label for="dni">Documento de identidad :</label>
-                <input type="number" class="mr-sm-2 form-control " value="<?php echo $rows["Cedula"];?>" placeholder="Digite el DNI" name="dnis" id="dni" required="">
+                <input type="number" class="mr-sm-2 form-control " value="<?php echo $rows["Cedula"]?>" placeholder="Digite el DNI" name="dnis" id="dni" required="">
               </div>              
                <div class="form-group">
                 <label for="roles">Rol del Instructor:</label>
                 <select class="form-control" id="roles" name="rol" required="">
-                  <option value="<?php echo $rows["id_rol"];?>"><?php echo $rows["rol"];?></option>
+                  <option value="<?php echo $rows["id_rol"];?>"><?php echo $rows["rol"]?></option>
                   <option value="2">Instructor</option>
                   <option value="1">ADMIN</option>                  
                 </select>

@@ -135,7 +135,7 @@ $lol=mysqli_fetch_array($ins);
               </div>
               <div class="user-panel mt-4 pb-4 mb-4 d-flex">               
                 <div class="info">
-                 <a data-toggle="collapse" data-target="#progtl">Consula ambiente</a>
+                 <a data-toggle="collapse" data-target="#progtl">Consula Programa</a>
                 </div>
               </div>
               <?php
@@ -294,18 +294,18 @@ $lol=mysqli_fetch_array($ins);
                </script>  
 
         <?php
-         $tablaf="SELECT * FROM ficha";
+         $tablaf="SELECT * FROM ficha,programa WHERE ficha.fc_id_programa = programa.id_program";
          $contf=mysqli_query($conn,$tablaf);
          
         ?>             
           <table class="table table-bordered table-striped" style="text-align:center;">
             <thead class="thead-dark">
               <tr>
-                <th>ID</th>
+                
                 <th>Ficha</th>
                 <th>Nombre del programa</th>
                 <th>Nivel de formacion</th>
-                <th>Trimestre actual</th>
+                <th>Jornada </th>
                 <th>Opciones</th>
               </tr>
             </thead>
@@ -314,15 +314,15 @@ $lol=mysqli_fetch_array($ins);
               while ($fcon=mysqli_fetch_assoc($contf)) {
             ?>
               <tr>
-                <td><?php echo $fcon["ID_F"];?></td>
+                
                 <td><?php echo $fcon['Nº ficha'];?></td>
-                <td><?php echo $fcon["Nombre_programa"];?></td>
-                <td><?php echo $fcon["nivel_formacion"];?></td>
-                <td><?php echo $fcon["trimestre_actual"];?></td>              
+                <td><?php echo $fcon["Nom_program"];?></td>
+                <td><?php echo $fcon["nivel_form"];?></td>
+                <td><?php echo $fcon["fc_jornada"];?></td>              
                 <td>
                   <div class="btn-group">
                     <a href="ubdateF.php?ubf=<?php echo $fcon["ID_F"]?>"><button type="submit" class="btn btn-success btn-sm">Editar</button></a>
-                    <a href=""><button type="submit" class="btn btn-danger btn-sm" onclick="return elif()" >Eliminar</button></a>
+                    <a href="../controlador/deleteF.php?eliF=<?php echo $fcon['ID_F']?>"><button type="submit" class="btn btn-danger btn-sm" onclick="return elif()" >Eliminar</button></a>
                   </div>
                 </td>
               </tr>      
@@ -472,10 +472,10 @@ $lol=mysqli_fetch_array($ins);
                   }
                </script>  
 
-        <?php/* 
-         $tablai="SELECT * FROM `instructor`,`roles` WHERE instructor.rol = roles.id_rol";
-         $cont=mysqli_query($conn,$tablai);
-        */ 
+        <?php
+         $tablaprog="SELECT * FROM `programa`";
+         $contprog=mysqli_query($conn,$tablaprog);
+         
         ?>  
 
           <table class="table table-bordered table-striped" style="text-align:center;">
@@ -488,18 +488,24 @@ $lol=mysqli_fetch_array($ins);
               </tr>
             </thead>
             <tbody>
-           <tr>  
-                <td></td>
-                <td></td>
-                <td></td>      
+           <?php
+              while ($progcon=mysqli_fetch_assoc($contprog)) {
+            ?>
+              <tr>
+                <td><?php echo $progcon["Nom_program"];?></td>
+                <td><?php echo $progcon["nivel_form"];?></td>
+                <td><?php echo $progcon["id_program"];?></td>              
                 <td>
                   <div class="btn-group">
-                    <a href=""><button type="submit" class="btn btn-success btn-sm">Editar</button></a>
-                    <a href=""><button type="submit" class="btn btn-danger btn-sm" onclick="return eliminar_programa()" >Eliminar</button></a>
+                    <a href="ubdateP.php?ubP=<?php echo $progcon["id_program"]?>"><button type="submit" class="btn btn-success btn-sm">Editar</button></a>
+                    <a href="../controlador/deletePO.php?eliP=<?php echo $progcon["id_program"]?>"><button type="submit" class="btn btn-danger btn-sm" onclick="return elif()" >Eliminar</button></a>
                   </div>
                 </td>
               </tr>      
-               
+            <?php
+              }
+              
+            ?> 
             </tbody>
           </table>
         </div>
@@ -577,17 +583,17 @@ $lol=mysqli_fetch_array($ins);
                 <label for="jor">Jornada:</label>
                 <select class="form-control" id="jor" name="jornad" required="">
                   <option value="0">Seleccione</option>
-                  <option value="1">Diurna </option>                  
-                  <option value="2">Nocturna</option> 
-                  <option value="3">Mixta</option>               
+                  <option value="Diurna">Diurna </option>                  
+                  <option value="Nocturna">Nocturna</option> 
+                  <option value="Mixta">Mixta</option>               
                 </select>
               </div>
               <div class="form-group">
                 <label for="tipf">Tipo de Formacion:</label>
                 <select class="form-control" id="tipf" name="tipof" required="">
                   <option value="0">Seleccione</option>
-                  <option value="1">Presencial </option>
-                  <option value="2">Virtual</option>                             
+                  <option value="Presencial">Presencial </option>
+                  <option value="Virtual">Virtual</option>                             
                 </select>
               </div>
               <div class="form-group">

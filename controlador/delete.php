@@ -1,9 +1,17 @@
 <?php 
-//----------------------------------------------
-//----------------------------------------------
-//----------------------------------------------
+
 session_start();
 include "conexion.php";
+
+$correo=$_SESSION['ema'];
+
+if (!isset($correo)) {
+    header("location:../index.php");
+}
+$rol=$_SESSION['rol'];
+ if ($rol==2) {
+   header('location:../horarios.php');
+}
 
 
 $eliminar=$_GET['eli'];
