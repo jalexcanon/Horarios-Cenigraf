@@ -45,30 +45,30 @@ $lol=mysqli_fetch_array($ins);
               <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
           </li> 
         </ul>                  
-            <a class="navbar-brand" onclick="window.open('horarios.php','_Self')">Cenigraf</a>
+            <a class="navbar-brand" onclick="window.open('horarios.php','_Self')" style="cursor: pointer;">Cenigraf</a>
               <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
               <span class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="collapsibleNavbar">
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
               <?php if ($rol==1) { ?>
               <li class="nav-item">
-               <a class="nav-link" data-toggle="collapse" data-target="#Regusu">Registrar Usuario</a>
+               <a class="nav-link" data-toggle="collapse" data-target="#Regusu" style="cursor: pointer;">Registrar Usuario</a>
               </li>          
               <li class="nav-item">
-                <a class="nav-link" data-toggle="collapse" data-target="#fich">Registrar Fichas</a>
+                <a class="nav-link" data-toggle="collapse" data-target="#fich" style="cursor: pointer;">Registrar Fichas</a>
+              </li>             
+              <li class="nav-item">
+                <a class="nav-link" data-toggle="collapse" data-target="#amb" style="cursor: pointer;">Registrar Ambiente</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" data-toggle="collapse" data-target="#RegSed">Registrar SEDE</a>
+                <a class="nav-link" data-toggle="collapse" data-target="#prog" style="cursor: pointer;">Registrar Progrma</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" data-toggle="collapse" data-target="#amb">Registrar Ambiente</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" data-toggle="collapse" data-target="#prog">Registrar Progrma</a>
+                <a class="nav-link" data-toggle="collapse" data-target="#RegSed" style="cursor: pointer;">Registrar SEDE</a>
               </li>
             <?php } ?>  
               <li class="nav-item">
-                <a class="nav-link" onclick="window.open('../controlador/exit.php','_Self')">Cerrar sesion</a>
+                <a class="nav-link" onclick="window.open('../controlador/exit.php','_Self')" style="cursor: pointer;">Cerrar sesion</a>
               </li> 
                      
             </ul>
@@ -122,12 +122,7 @@ $lol=mysqli_fetch_array($ins);
                 <div class="info">
                  <a data-toggle="collapse" data-parent="" data-target="#fichas">Consula Fichas</a>
                 </div>
-              </div>
-              <div class="user-panel mt-4 pb-4 mb-4 d-flex">               
-                <div class="info">
-                 <a data-toggle="collapse" data-target="#sedet">Consula Sedes</a>
-                </div>
-              </div>
+              </div>              
               <div class="user-panel mt-4 pb-4 mb-4 d-flex">               
                 <div class="info">
                  <a data-toggle="collapse" data-target="#ambi">Consula ambiente</a>
@@ -136,6 +131,11 @@ $lol=mysqli_fetch_array($ins);
               <div class="user-panel mt-4 pb-4 mb-4 d-flex">               
                 <div class="info">
                  <a data-toggle="collapse" data-target="#progtl">Consula Programa</a>
+                </div>
+              </div>
+              <div class="user-panel mt-4 pb-4 mb-4 d-flex">               
+                <div class="info">
+                 <a data-toggle="collapse" data-target="#sedet">Consula Sedes</a>
                 </div>
               </div>
               <?php
@@ -183,8 +183,10 @@ $lol=mysqli_fetch_array($ins);
                      </div>
                       <div class="form-group">
                         <div class="modal-footer">
-                          <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-                          <button type="submit" class="btn btn-warning">Crear</button>
+                          <div class="btn-group">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                            <button type="submit" class="btn btn-warning">Crear</button>
+                          </div>                         
                         </div>
                       </div>
                     </form>
@@ -358,12 +360,15 @@ $lol=mysqli_fetch_array($ins);
                      
                   }
                </script>  
-
+        <?php
+         $tablaS="SELECT * FROM `sede`";
+         $contS=mysqli_query($conn,$tablaS);
+         
+        ?>   
                   
           <table class="table table-bordered table-striped" style="text-align:center;">
             <thead class="thead-dark">
-              <tr>
-                <th>ID</th>
+              <tr>                
                 <th>Nombre sede</th>
                 <th>Dirreccion Sede</th>
                 <th>Telefono Sede</th>                
@@ -371,19 +376,25 @@ $lol=mysqli_fetch_array($ins);
               </tr>
             </thead>
             <tbody>
-            
+             <?php
+              while ($Scon=mysqli_fetch_assoc($contS)) {
+            ?>
               <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>                              
+                
+                <td><?php echo $Scon['nombre_sede'];?></td>
+                <td><?php echo $Scon["direccion_sede"];?></td>
+                <td><?php echo $Scon["telefono_sede"];?></td>             
                 <td>
                   <div class="btn-group">
-                    <a href=""><button type="submit" class="btn btn-success btn-sm">Editar</button></a>
-                    <a href=""><button type="submit" class="btn btn-danger btn-sm" onclick="return elis()" >Eliminar</button></a>
+                    <a href="ubdateSD.php?ubS=<?php echo $Scon["id"]?>"><button type="submit" class="btn btn-success btn-sm">Editar</button></a>
+                    <a href="../controlador/deleteSD.php?eliS=<?php echo $Scon['id']?>"><button type="submit" class="btn btn-danger btn-sm" onclick="return elis()" >Eliminar</button></a>
                   </div>
                 </td>
-              </tr>           
+              </tr>      
+            <?php
+              }
+              
+            ?>    
             </tbody>
           </table>
         </div>
@@ -413,16 +424,16 @@ $lol=mysqli_fetch_array($ins);
                   }
                </script>  
 
-        <?php/* 
-         $tablai="SELECT * FROM `instructor`,`roles` WHERE instructor.rol = roles.id_rol";
-         $cont=mysqli_query($conn,$tablai);
-        */ 
+        <?php
+         $tablaA="SELECT * FROM `ambiente`,`sede` WHERE `ambiente`.`id_sede`= `sede`.`id`";
+         $contA=mysqli_query($conn,$tablaA);
+        
         ?>  
 
           <table class="table table-bordered table-striped" style="text-align:center;">
             <thead class="thead-dark">
-              <tr>
-                <th>ID</th>
+              <tr>              
+                <th>Sede</th>
                 <th>Nombre ambiente</th>
                 <th>Capacidad</th>
                 <th>No de equipos</th>
@@ -430,19 +441,25 @@ $lol=mysqli_fetch_array($ins);
               </tr>
             </thead>
             <tbody>
-           <tr>  
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>      
+           <?php
+              while ($Acon=mysqli_fetch_assoc($contA)) {
+            ?>
+              <tr>              
+                <td><?php echo $Acon['nombre_sede'];?></td>
+                <td><?php echo $Acon["Nombre_ambiente"];?></td>
+                <td><?php echo $Acon["Capacidad_ambiente"];?></td>    
+                <td><?php echo $Acon["No_equipos"];?></td>           
                 <td>
                   <div class="btn-group">
-                    <a href=""><button type="submit" class="btn btn-success btn-sm">Editar</button></a>
-                    <a href=""><button type="submit" class="btn btn-danger btn-sm" onclick="return eliminar_ambiente()" >Eliminar</button></a>
+                    <a href="ubdateA.php?ubA=<?php echo $Acon["id_A"]?>"><button type="submit" class="btn btn-success btn-sm">Editar</button></a>
+                    <a href="../controlador/deleteA.php?eliA=<?php echo $Acon['id_A']?>"><button type="submit" class="btn btn-danger btn-sm" onclick="return eliminar_ambiente()" >Eliminar</button></a>
                   </div>
                 </td>
               </tr>      
-               
+            <?php
+              }
+              
+            ?>    
             </tbody>
           </table>
         </div>
@@ -639,7 +656,7 @@ $lol=mysqli_fetch_array($ins);
    <div class="row" style="display: contents;">
       <div class="col-sm-8 mx-auto">
         <div class="container border" style="padding:4%; background-color: #a2a1a5a8; ">      
-            <form action="../controlador/regins.php" method="POST">
+            <form action="../controlador/regSD.php" method="POST">
               <div class="form-group">
                 <label for="nomC">Nombre sede:</label>
                 <input type="text" class="mr-sm-2 form-control " placeholder="Digite el nombre de la sede" name="nombreC" id="nomC" required="">
@@ -668,10 +685,27 @@ $lol=mysqli_fetch_array($ins);
    <div class="row" style="display: contents;">
       <div class="col-sm-8 mx-auto">
         <div class="container border" style="padding:4%; background-color: #a2a1a5a8; ">      
-            <form action="../controlador/regins.php" method="POST">
+            <form action="../controlador/regA.php" method="POST">
+              <div class="form-group">
+            <?php
+   $sed="SELECT * FROM sede";
+   $conSD=mysqli_query($conn,$sed);
+            ?>
+                <label for="progC">Nombre de la sede:</label>
+                <select class="form-control" id="progC" name="sed" required="">
+                  <option value="0">Seleccione</option>
+                 <?php
+    while ($codSD=mysqli_fetch_assoc($conSD)) {
+              ?>
+                  <option value="<?php echo$codSD['id']?>"><?php echo$codSD['nombre_sede']?></option>
+              <?php
+            }        
+                 ?>                             
+                </select>
+              </div>
               <div class="form-group">
                 <label for="nomb">Nombre ambiente:</label>
-                <input type="text" class="mr-sm-2 form-control " placeholder="Digite el nombre del ambiente" name="nombre ambiente" id="nomb" required="">
+                <input type="text" class="mr-sm-2 form-control " placeholder="Digite el nombre del ambiente" name="nombre_ambiente" id="nomb" required="">
               </div>
               <div class="form-group">
                 <label for="cap">Capacidad:</label>
@@ -679,9 +713,9 @@ $lol=mysqli_fetch_array($ins);
               </div>
               <div class="form-group">
                 <label for="equip">No de equipos :</label>
-                <input type="number" class="mr-sm-2 form-control " placeholder="Digite el numero" name="No de equipos" id="equip" required="">
+                <input type="number" class="mr-sm-2 form-control " placeholder="Digite el numero" name="No_de_equipos" id="equip" required="">
               </div>
-        
+              <center>
                 <button type="submit" class="btn btn-dark">Registrar</button>
               </center>              
             </form>     
@@ -1004,6 +1038,41 @@ $lol=mysqli_fetch_array($ins);
      ?>
    </div>
    <!--/alerta programa-->
+
+    <!--alerta sede--> 
+     <div class="container">
+     <?php
+    if (isset($_GET['vs'])) {
+     
+     if ($_GET['vs']==1) {            
+      ?>
+       <div class="alert alert-success alert-dismissible fade show">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <strong>Sede registrada</strong>
+      </div>
+      <?php
+       }
+     }
+     ?>
+   </div>
+   <!--/alerta sede-->
+       <!--alerta Ambiente--> 
+     <div class="container">
+     <?php
+    if (isset($_GET['va'])) {
+     
+     if ($_GET['va']==1) {            
+      ?>
+       <div class="alert alert-success alert-dismissible fade show">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <strong>Ambiente registrada</strong>
+      </div>
+      <?php
+       }
+     }
+     ?>
+   </div>
+   <!--/alerta Ambiente-->
 
 
   </div>

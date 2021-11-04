@@ -1,6 +1,6 @@
 <?php
 include ('conexion.php');
-
+session_start();
 $correo=$_SESSION['ema'];
 
 if (!isset($correo)) {

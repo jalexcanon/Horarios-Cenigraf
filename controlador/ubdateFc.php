@@ -21,7 +21,7 @@ $dateI=$_POST['date_i'];
 $dateF=$_POST['date_f'];
 
 
- $query="UPDATE ficha set `Nº ficha`='$fich', `fc_cant_aprend`='$cantap', `fc_jornada`='$jor',`fc_tipo_formacion` ='$tipf',`fic_date_I` ='$dateI', `fic_date_F`='$dateF' where `ID_F`='$idfc'";
+ $query="UPDATE ficha set `Nº ficha`='$fich', `fc_cant_aprend`='$cantap', `fc_jornada`='$jor',`fc_tipo_formacion` ='$tipf',`fic_date_I` ='$dateI', `fic_date_F`='$dateF', `fc_id_programa`='$cod_prog' where `ID_F`='$idfc'";
  mysqli_query($conn,$query);
  echo "<script>
                   alert('Se actualizo la ficha exitosamente.');

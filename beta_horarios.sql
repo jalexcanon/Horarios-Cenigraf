@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 03-11-2021 a las 21:33:31
+-- Tiempo de generación: 04-11-2021 a las 21:29:17
 -- Versión del servidor: 10.4.16-MariaDB
 -- Versión de PHP: 7.4.12
 
@@ -28,10 +28,11 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `ambiente` (
-  `id` int(11) NOT NULL,
+  `id_A` int(11) NOT NULL,
   `Nombre_ambiente` varchar(100) NOT NULL,
-  `Capacidad_ambiente` int(100) NOT NULL,
-  `No_equipos` int(100) NOT NULL
+  `Capacidad_ambiente` varchar(100) NOT NULL,
+  `No_equipos` int(11) NOT NULL,
+  `id_sede` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -79,7 +80,8 @@ CREATE TABLE `ficha` (
 --
 
 INSERT INTO `ficha` (`ID_F`, `Nº ficha`, `fc_cant_aprend`, `fc_jornada`, `fc_tipo_formacion`, `fic_date_I`, `fic_date_F`, `fc_id_programa`) VALUES
-(19, 1234567, 50, 'Diurna', 'Presencial', '2021-11-03', '2021-11-12', 88524462);
+(19, 1234567, 50, 'Diurna', 'Presencial', '2021-11-03', '2021-11-12', 88524459),
+(20, 1234569, 10, 'Mixta', 'Virtual', '2021-11-04', '2021-11-12', 88524460);
 
 -- --------------------------------------------------------
 
@@ -203,6 +205,14 @@ CREATE TABLE `sede` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
+-- Volcado de datos para la tabla `sede`
+--
+
+INSERT INTO `sede` (`id`, `nombre_sede`, `direccion_sede`, `telefono_sede`) VALUES
+(1, 'Cenigraf', 'Cl. 15 #31-42, Bogotá', 5960199),
+(2, 'Fundación Universitaria Horizonte', ' Cl. 69 ## 14 - 30, Bogotá, Cundinamarca', 2147483647);
+
+--
 -- Índices para tablas volcadas
 --
 
@@ -210,7 +220,8 @@ CREATE TABLE `sede` (
 -- Indices de la tabla `ambiente`
 --
 ALTER TABLE `ambiente`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id_A`),
+  ADD KEY `relacion_sede` (`id_sede`);
 
 --
 -- Indices de la tabla `dias`
@@ -276,7 +287,7 @@ ALTER TABLE `sede`
 -- AUTO_INCREMENT de la tabla `ambiente`
 --
 ALTER TABLE `ambiente`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_A` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `dias`
@@ -288,7 +299,7 @@ ALTER TABLE `dias`
 -- AUTO_INCREMENT de la tabla `ficha`
 --
 ALTER TABLE `ficha`
-  MODIFY `ID_F` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `ID_F` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT de la tabla `horarios`
@@ -306,7 +317,7 @@ ALTER TABLE `horas`
 -- AUTO_INCREMENT de la tabla `instructor`
 --
 ALTER TABLE `instructor`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `programa`
@@ -324,11 +335,17 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT de la tabla `sede`
 --
 ALTER TABLE `sede`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Restricciones para tablas volcadas
 --
+
+--
+-- Filtros para la tabla `ambiente`
+--
+ALTER TABLE `ambiente`
+  ADD CONSTRAINT `relacion_sede` FOREIGN KEY (`id_sede`) REFERENCES `sede` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `ficha`
