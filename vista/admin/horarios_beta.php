@@ -81,17 +81,12 @@ $indsF=$resultado->fetch_assoc();
                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                   </li> 
                 </ul>                  
-                 <a class="navbar-brand" onclick="window.open('../horarios.php','_Self')">Cenigraf</a>
+                 <a class="navbar-brand" onclick="window.open('../horarios.php','_Self')" style="cursor:pointer;">Cenigraf</a>
                  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
                  <span class="navbar-toggler-icon"></span></button>
               <div class="collapse navbar-collapse" id="collapsibleNavbar">
                 <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-        		      <li class="nav-item">
-        		        <a class="nav-link">--------</a>
-        		      </li>
-        		      <li class="nav-item">
-        		        <a class="nav-link" href="#">--------</a>
-        		      </li>
+        		   
         		      <li class="nav-item">
         		        <a class="nav-link" onclick="window.open('../../controlador/exit.php','_Self')">Cerrar sesion</a>
         		      </li> 
@@ -110,7 +105,7 @@ $indsF=$resultado->fetch_assoc();
                    alt="logo1"
                    class="brand-image img-circle elevation-1"
                    style="background-color:#ffffff; width: 40px; height:40px; ">
-                                 <span class="brand-text font-weight-light">CENIGRAF </span>
+                                 <span class="brand-text font-weight-light" >CENIGRAF </span>
             </a>
 
            

@@ -17,7 +17,7 @@
 <html lang="es">
 <head>
 	<meta charset="utf-8">
-	<title>Actualizar Instrucor</title>
+	<title>Actualizar Instructor</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="../css/style.css">
     <link rel="stylesheet" href="../plugins/fontawesome-free/css/all.min.css">
@@ -92,7 +92,7 @@
    <?php 
     $idins=$_GET['ubds'];//id del instructor------------------------------------------------------
 
-    $queryins="SELECT * FROM `instructor`,`roles` where `instructor`.`ID`=`roles`.`id_rol` and `ID`='$idins'";
+    $queryins="SELECT * FROM `instructor`,`roles` where `instructor`.`rol`=`roles`.`id_rol` and `ID`='$idins'";
     $result=mysqli_query($conn,$queryins);
     $rows=$result->fetch_array();
    ?>
@@ -126,7 +126,7 @@
               </div>             
               <center>
                 <div class="btn-group">
-                  <button type="submit" class="btn btn-warning" onclick="window.open('horarios.php','_Self')">Atras</button>
+                  <button type="button" class="btn btn-warning" onclick="window.open('horarios.php','_Self')">Atras</button>
                   <button type="submit" class="btn btn-dark">Entrar</button>
                 </div>
                 

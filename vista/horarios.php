@@ -1,16 +1,16 @@
 <?php 
  session_start();
  include('../controlador/conexion.php');
-  $correo=$_SESSION['ema'];
-  $rol=$_SESSION['rol'];
-  $inst=$_SESSION['nam'];
-  $instru=$_SESSION['IDins'];
+  $correo=$_SESSION['ema'];//email usuario
+  $rol=$_SESSION['rol'];//rol usuario
+  $inst=$_SESSION['nam'];//nombre instructor (usuario)
+  $instru=$_SESSION['IDins'];//id instructor
  if (!isset($correo)) {
     header("location:../index.php");
  }
 $querys="SELECT * FROM instructor";
-$ins=mysqli_query($conn,$querys);
-$lol=mysqli_fetch_array($ins);
+$ins=mysqli_query($conn,$querys);// consulta select crear horario instructor 
+ 
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -19,12 +19,8 @@ $lol=mysqli_fetch_array($ins);
 	<title>beta</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="../css/style.css">
-   <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>-->
-     <link rel="stylesheet" href="../plugins/fontawesome-free/css/all.min.css">
-     <link rel="stylesheet" href="../css/css/adminlte.min.css">
+    <link rel="stylesheet" href="../plugins/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="../css/css/adminlte.min.css">
 
 </head>
 <body class="hold-transition sidebar-mini">
@@ -115,27 +111,27 @@ $lol=mysqli_fetch_array($ins);
               </div>
               <div class="user-panel mt-4 pb-4 mb-4 d-flex">               
                 <div class="info">
-                 <a data-toggle="collapse" data-parent="" data-target="#usu">Consula Instructor</a>
+                 <a data-toggle="collapse" data-parent="" data-target="#usu" style="cursor: pointer;">Consula Instructor</a>
                 </div>
               </div>
               <div class="user-panel mt-4 pb-4 mb-4 d-flex">               
                 <div class="info">
-                 <a data-toggle="collapse" data-parent="" data-target="#fichas">Consula Fichas</a>
+                 <a data-toggle="collapse" data-parent="" data-target="#fichas" style="cursor: pointer;">Consula Fichas</a>
                 </div>
               </div>              
               <div class="user-panel mt-4 pb-4 mb-4 d-flex">               
                 <div class="info">
-                 <a data-toggle="collapse" data-target="#ambi">Consula ambiente</a>
+                 <a data-toggle="collapse" data-target="#ambi" style="cursor: pointer;">Consula ambiente</a>
                 </div>
               </div>
               <div class="user-panel mt-4 pb-4 mb-4 d-flex">               
                 <div class="info">
-                 <a data-toggle="collapse" data-target="#progtl">Consula Programa</a>
+                 <a data-toggle="collapse" data-target="#progtl" style="cursor: pointer;">Consula Programa</a>
                 </div>
               </div>
               <div class="user-panel mt-4 pb-4 mb-4 d-flex">               
                 <div class="info">
-                 <a data-toggle="collapse" data-target="#sedet">Consula Sedes</a>
+                 <a data-toggle="collapse" data-target="#sedet"  style="cursor: pointer;" >Consula Sedes</a>
                 </div>
               </div>
               <?php
@@ -162,24 +158,26 @@ $lol=mysqli_fetch_array($ins);
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                     
                   </div>
-                  <div class="modal-body">
+                  <div class="modal-body">                   
                    <form class="form-horizontal" action="admin/horarios_beta.php" method="POST">
                       <div class="form-group">
                         <label class="control-label col-sm-2" for="ins">Instructor:</label>
                         <div class="col-sm-10">
-                          <select class="form-control" id="ins" name="inst">
-                            <option value="0" >Seleccionar Instructor</option>
-                            <?php
-                                         while ($w=mysqli_fetch_array($ins)) {
-                               ?>
-                                   <option value="<?php echo $w["ID"]?>"><?php echo $w["Nombre"];?></option>
+                          
+                            <select class="form-control" id="ins" name="inst">
+                              <option value="0" >Seleccionar Instructor</option>
+                              <?php
+                                           while ($w=mysqli_fetch_array($ins)) {
+                                 ?>
+                                     <option value="<?php echo $w["ID"]?>"><?php echo $w["Nombre"];?></option>
 
-                                <?php
-                            }
-                                ?>
-                          </select>
+                                  <?php
+                              }
+                                  ?>
+                            </select>
+                          
                         </div>
-                      </div>
+                      </div>                     
                      </div>
                       <div class="form-group">
                         <div class="modal-footer">
@@ -236,7 +234,7 @@ $lol=mysqli_fetch_array($ins);
           <table class="table table-bordered table-striped" style="text-align:center;">
             <thead class="thead-dark">
               <tr>
-                <th>ID</th>
+                
                 <th>Nombre</th>
                 <th>Apellido</th>
                 <th>Email</th>
@@ -249,7 +247,7 @@ $lol=mysqli_fetch_array($ins);
               while ($icon=mysqli_fetch_assoc($cont)) {
             ?>
               <tr>
-                <td><?php echo $icon["ID"];?></td>
+            
                 <td><?php echo $icon["Nombre"];?></td>
                 <td><?php echo $icon["Apellido"];?></td>
                 <td><?php echo $icon["email"];?></td>
@@ -511,7 +509,7 @@ $lol=mysqli_fetch_array($ins);
               <tr>
                 <td><?php echo $progcon["Nom_program"];?></td>
                 <td><?php echo $progcon["nivel_form"];?></td>
-                <td><?php echo $progcon["id_program"];?></td>              
+                <td><?php echo $progcon["competencias"];?></td>              
                 <td>
                   <div class="btn-group">
                     <a href="ubdateP.php?ubP=<?php echo $progcon["id_program"]?>"><button type="submit" class="btn btn-success btn-sm">Editar</button></a>
@@ -572,7 +570,7 @@ $lol=mysqli_fetch_array($ins);
                 </select>
               </div>             
               <center>
-                <button type="submit" class="btn btn-dark">Entrar</button>
+                <button type="submit" class="btn btn-dark">Registrar</button>
               </center>              
             </form>     
           </div>
@@ -883,6 +881,11 @@ $lol=mysqli_fetch_array($ins);
                   <td WIDTH="200" HEIGHT="100">&nbsp</td>
                   <td WIDTH="200" HEIGHT="100">&nbsp</td>
                 </tr>
+                <?php
+$nombI="SELECT * FROM instructor where ID ='$instru'";
+$re=mysqli_query($conn,$nombI);                
+$lol=mysqli_fetch_array($re);// nombre tabla instructor
+                ?>
                 <tr class="table-bordered table-dark" style="color: black;">
                   <th colspan="4">Observaciones:</th>
                   <th colspan="3">Instructor: <?php  echo $lol["Nombre"]." ".$lol["Apellido"];?></th>                                    
@@ -983,7 +986,15 @@ $lol=mysqli_fetch_array($ins);
             <strong>La contraseña no coincide</strong>
           </div>
          <?php
+       }elseif ($_GET['v']==4) {
+        ?>
+         <div class="alert alert-info alert-dismissible fade show">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>El documento de identidad ya esta registrado.</strong>
+          </div>
+         <?php
        }
+
      }
      ?>
    </div>
@@ -998,7 +1009,7 @@ $lol=mysqli_fetch_array($ins);
       ?>
        <div class="alert alert-success alert-dismissible fade show">
         <button type="button" class="close" data-dismiss="alert">&times;</button>
-        <strong>Ficha registrado</strong>
+        <strong>Ficha registrada</strong>
       </div>
       <?php
        }elseif ($_GET['vl']==2) {
@@ -1065,7 +1076,7 @@ $lol=mysqli_fetch_array($ins);
       ?>
        <div class="alert alert-success alert-dismissible fade show">
         <button type="button" class="close" data-dismiss="alert">&times;</button>
-        <strong>Ambiente registrada</strong>
+        <strong>Ambiente registrado</strong>
       </div>
       <?php
        }

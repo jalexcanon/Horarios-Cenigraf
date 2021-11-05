@@ -20,8 +20,11 @@ $ubd=$_GET['ubd'];
 $query="UPDATE `instructor` set `Nombre`='$nom', `Apellido`='$ape', `Cedula`='$ced', `email`='$email', `rol`='$rol' where `ID`='$ubd'";
 mysqli_query($conn,$query);
 
-header("location:../vista/horarios.php");
-
+echo "<script>
+                  alert('Se actualizo el instructor exitosamente.');
+                  window.location= '../vista/horarios.php';
+              </script>"; 
+      
 
 
 

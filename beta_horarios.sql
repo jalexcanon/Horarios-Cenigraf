@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 04-11-2021 a las 21:29:17
+-- Tiempo de generación: 05-11-2021 a las 21:12:55
 -- Versión del servidor: 10.4.16-MariaDB
 -- Versión de PHP: 7.4.12
 
@@ -34,6 +34,15 @@ CREATE TABLE `ambiente` (
   `No_equipos` int(11) NOT NULL,
   `id_sede` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `ambiente`
+--
+
+INSERT INTO `ambiente` (`id_A`, `Nombre_ambiente`, `Capacidad_ambiente`, `No_equipos`, `id_sede`) VALUES
+(3, 'Multimedia  ', '30 personas ', 2, 1),
+(4, 'ADSI ', '30 personas ', 30, 1),
+(5, 'Simulación  ', '30 personas ', 30, 2);
 
 -- --------------------------------------------------------
 
@@ -81,7 +90,8 @@ CREATE TABLE `ficha` (
 
 INSERT INTO `ficha` (`ID_F`, `Nº ficha`, `fc_cant_aprend`, `fc_jornada`, `fc_tipo_formacion`, `fic_date_I`, `fic_date_F`, `fc_id_programa`) VALUES
 (19, 1234567, 50, 'Diurna', 'Presencial', '2021-11-03', '2021-11-12', 88524459),
-(20, 1234569, 10, 'Mixta', 'Virtual', '2021-11-04', '2021-11-12', 88524460);
+(20, 1234569, 10, 'Nocturna', 'Virtual', '2021-11-04', '2021-11-12', 88524463),
+(24, 2061628, 30, 'Diurna', 'Presencial', '2021-11-05', '2021-11-26', 88524459);
 
 -- --------------------------------------------------------
 
@@ -97,6 +107,14 @@ CREATE TABLE `horarios` (
   `hora` int(11) DEFAULT NULL,
   `horas_instructor` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `horarios`
+--
+
+INSERT INTO `horarios` (`id_hora`, `dia`, `ficha`, `instructor`, `hora`, `horas_instructor`) VALUES
+(188, 6, 24, 1, 8, 2),
+(189, 2, 19, 1, 2, 2);
 
 -- --------------------------------------------------------
 
@@ -147,7 +165,9 @@ INSERT INTO `instructor` (`ID`, `Nombre`, `Apellido`, `Cedula`, `email`, `contra
 (1, 'Jose', 'Ovalle', 123456789, 'jose@gmail.com', 'd6581d542c7eaf801284f084478b5fcc', 1),
 (2, 'Giovany', 'Ortiz', 123456788, 'gio@gmail.com', 'd6581d542c7eaf801284f084478b5fcc', 1),
 (3, 'Andres', 'martinez', 123456799, 'and@gmail.com', 'd6581d542c7eaf801284f084478b5fcc', 2),
-(4, 'Camilo', 'Ortiz', 3333333, 'camilo@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055', 2);
+(4, 'Camilo', 'Ortiz', 3333333, 'camilo@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055', 2),
+(12, 'Saitama  ', 'Ortiz', 234556942, 'sai@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055', 2),
+(13, 'Nicolás ', 'Paez', 1000774689, 'tiusabanicolas@gmail.com', '2c9b1d39508edf85487f012c53cd69a3', 2);
 
 -- --------------------------------------------------------
 
@@ -167,10 +187,11 @@ CREATE TABLE `programa` (
 --
 
 INSERT INTO `programa` (`id_program`, `Nom_program`, `nivel_form`, `competencias`) VALUES
-(88524459, 'Encuadernación ', 'Técnico', '0'),
+(88524459, 'Encuadernación ', 'Técnico', 'informática\r\n'),
 (88524460, 'Ingles ', 'Técnico', '0'),
-(88524461, 'Fotografía ', 'Técnico', '0'),
-(88524462, 'ADSI-Análisis y desarrollo de sistemas de información ', 'Tecnólogo', 'jgljglkfjgkfdljgdfjg');
+(88524463, 'Fotografía ', 'Técnico', 'Comunicación\r\ncultura física  '),
+(88524464, 'ADSI-Análisis y desarrollo de sistemas de información ', 'Tecnólogo', 'Matemáticas '),
+(88524465, 'Impresión offset ', 'Tecnólogo', '...');
 
 -- --------------------------------------------------------
 
@@ -210,7 +231,8 @@ CREATE TABLE `sede` (
 
 INSERT INTO `sede` (`id`, `nombre_sede`, `direccion_sede`, `telefono_sede`) VALUES
 (1, 'Cenigraf', 'Cl. 15 #31-42, Bogotá', 5960199),
-(2, 'Fundación Universitaria Horizonte', ' Cl. 69 ## 14 - 30, Bogotá, Cundinamarca', 2147483647);
+(2, 'Fundación Universitaria Horizonte', ' Cl. 69 ## 14 - 30, Bogotá, Cundinamarca', 2147483647),
+(4, 'Fundación Universitaria ', 'Cl. 15 #31-30, Bogotá', 244456);
 
 --
 -- Índices para tablas volcadas
@@ -259,6 +281,7 @@ ALTER TABLE `horas`
 ALTER TABLE `instructor`
   ADD PRIMARY KEY (`ID`),
   ADD UNIQUE KEY `email` (`email`),
+  ADD UNIQUE KEY `Cedula` (`Cedula`),
   ADD KEY `relacion_rol` (`rol`);
 
 --
@@ -287,7 +310,7 @@ ALTER TABLE `sede`
 -- AUTO_INCREMENT de la tabla `ambiente`
 --
 ALTER TABLE `ambiente`
-  MODIFY `id_A` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_A` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `dias`
@@ -299,13 +322,13 @@ ALTER TABLE `dias`
 -- AUTO_INCREMENT de la tabla `ficha`
 --
 ALTER TABLE `ficha`
-  MODIFY `ID_F` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `ID_F` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT de la tabla `horarios`
 --
 ALTER TABLE `horarios`
-  MODIFY `id_hora` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=187;
+  MODIFY `id_hora` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=190;
 
 --
 -- AUTO_INCREMENT de la tabla `horas`
@@ -317,13 +340,13 @@ ALTER TABLE `horas`
 -- AUTO_INCREMENT de la tabla `instructor`
 --
 ALTER TABLE `instructor`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de la tabla `programa`
 --
 ALTER TABLE `programa`
-  MODIFY `id_program` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=88524463;
+  MODIFY `id_program` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=88524466;
 
 --
 -- AUTO_INCREMENT de la tabla `roles`
@@ -335,7 +358,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT de la tabla `sede`
 --
 ALTER TABLE `sede`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Restricciones para tablas volcadas

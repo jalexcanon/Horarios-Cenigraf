@@ -114,7 +114,7 @@
               </div>
               <div class="form-group">
                 <label for="compt">Competencias:</label>
-                <textarea class="form-control" name="texto" id="compt" placeholder="Digite las Competencias"></textarea>
+                <textarea class="form-control" name="texto" id="compt" placeholder="Digite las Competencias"><?php echo $rows['competencias'] ?></textarea>
               </div>
                    
               <center>
