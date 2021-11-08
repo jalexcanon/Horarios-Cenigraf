@@ -15,6 +15,7 @@ $ins=$_GET['instructor'];
 $fich=$_POST['fich'];
 $days=$_POST['days'];
 $hours=$_POST['hour'];
+$amb=$_POST['idAB'];
 
 $hora_i=2;
 
@@ -26,7 +27,7 @@ $sum=$row['total'];
 
 
 if ($sum<40) {
-	$query="INSERT INTO `horarios` (`id_hora`, `dia`, `ficha`, `instructor`, `hora`,`horas_instructor`) VALUES (NULL,'$days','$fich','$ins','$hours','$hora_i');";
+	$query="INSERT INTO `horarios` (`id_hora`, `dia`, `ficha`, `instructor`, `hora`,`id_ambiente`,`horas_instructor`) VALUES (NULL,'$days','$fich','$ins','$hours','$amb','$hora_i');";
     mysqli_query($conn,$query);
     $sum2=38-$sum;
     echo "<script>

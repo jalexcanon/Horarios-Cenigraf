@@ -1,7 +1,5 @@
 <?php 
-//--------------------------------------------------------------
-//----------------------------------------------
-//----------------------------------------------
+
  session_start();
   $correo=$_SESSION['ema'];
     $inst=$_SESSION['nam'];
@@ -199,6 +197,25 @@ $indsF=$resultado->fetch_assoc();
                                 <option value="8">20:00 - 21:40</option>
                              </select>
                           </div>
+                          <br>
+                        <label class="control-label col-sm-2" for="ho">Ambiente:</label>
+                        <?php
+                    $amb="SELECT * FROM ambiente";
+                    $consulA=mysqli_query($conn,$amb);
+
+                        ?>
+                          <div class="col-sm-10">
+                             <select class="form-control" id="ho" name="idAB">
+                                <option value="0">Seleccionar Ambiente</option>
+                              <?php
+                        while ($ambt=mysqli_fetch_assoc($consulA)) {
+                          ?>
+                        <option value="<?php echo$ambt['id_A']?>"><?php echo $ambt['Nombre_ambiente'] ?></option>
+                          <?php
+                        }
+                          ?>
+                             </select>
+                          </div>
                           
                         
                       </div>
@@ -390,13 +407,13 @@ $indsF=$resultado->fetch_assoc();
                                        <td bgcolor="EFD5BA" width="17%" height="100px" style="border: 1px solid; padding: 0;">
 
                                       <?php
-                          $query = "SELECT * FROM horarios,ficha,instructor,dias,horas WHERE horarios.dia=$day AND horarios.hora=$hour AND horarios.dia=dias.id AND horarios.ficha=ficha.ID_F AND horarios.instructor = instructor.ID AND horarios.hora = horas.id_h and horarios.instructor=$ins";
+$query = "SELECT * FROM horarios,ficha,instructor,dias,horas,ambiente WHERE horarios.dia=$day AND horarios.hora=$hour AND horarios.dia=dias.id AND horarios.ficha=ficha.ID_F AND horarios.instructor = instructor.ID AND horarios.id_ambiente=ambiente.id_A AND horarios.hora = horas.id_h and horarios.instructor=$ins";
                                       $result = mysqli_query($conn, $query);
                                       $row = mysqli_fetch_assoc($result); 
                                        if (isset($row)) { ?>                                                                              
                     <center>
                                        <?php  echo $row['Nº ficha'];?><br>
-                                       <?php  echo $row['Nombre'];?><br>
+                                       <?php  echo $row['Nombre_ambiente'];?><br>
   
                         <div class="dropdown dropright" style=" display: inline-block;">
                           <button type="button" class="btn btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown">

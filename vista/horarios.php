@@ -52,7 +52,10 @@ $ins=mysqli_query($conn,$querys);// consulta select crear horario instructor
               </li>          
               <li class="nav-item">
                 <a class="nav-link" data-toggle="collapse" data-target="#fich" style="cursor: pointer;">Registrar Fichas</a>
-              </li>             
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" data-toggle="collapse" data-target="#fichT" style="cursor: pointer;">Registrar Trimestre</a>
+              </li>              
               <li class="nav-item">
                 <a class="nav-link" data-toggle="collapse" data-target="#amb" style="cursor: pointer;">Registrar Ambiente</a>
               </li>
@@ -648,6 +651,82 @@ $ins=mysqli_query($conn,$querys);// consulta select crear horario instructor
 </div>    
 <!--/Collapse2Ficha-->
 
+    <!--Collapse6Trimestre-->
+<div> 
+  <div id="fichT" class="collapse">
+   <div class="row" style="display: contents;">
+      <div class="col-sm-8 mx-auto">
+        <div class="container border" style="padding:4%; background-color: #a2a1a5a8; ">      
+          <center>
+          <?php 
+          $dateFT="SELECT * FROM ficha";
+          $conFT=mysqli_query($conn,$dateFT); 
+          ?> 
+            <form action="../controlador/regTF.php" method="POST" style="padding-left:9%; padding-right:8%;" >
+              <div class="form-group">
+                <h4>Ficha:</h4> 
+                <select name="ficha_fecha" class="form-control" >
+                  <option>Selecionar</option>
+                  <?php 
+                while ($rowFT=mysqli_fetch_assoc($conFT)) {?>
+                  <option value="<?php echo$rowFT['ID_F'] ?>"><?php echo$rowFT['Nº ficha'] ?></option>
+                  <?php
+                }
+                  ?>
+                </select>
+              </div>
+                <h4>I Trimestre</h4>      
+              <div class="form-inline">
+                <label for="f_i_t_I">Fecha inicio:</label>
+                <input type="date" class="form-control" name="date_i_I" id="f_i_t_I" required="">
+                <label for="f_f_t_I">Fecha Fin: </label>
+                <input type="date" class="form-control" name="date_f_I" id="f_f_t_I" required="">
+              </div><br>
+              <h4>II Trimestre</h4>    
+              <div class="form-inline">
+                <label for="f_i_t_II">Fecha inicio:</label>
+                <input type="date" class="form-control" name="date_i_II" id="f_i_t_II" required="">
+                <label for="f_f_t_II">Fecha Fin: </label>
+                <input type="date" class="form-control" name="date_f_II" id="f_f_t_II" required="">
+              </div><br>
+              <h4>III Trimestre</h4>       
+              <div class="form-inline">
+                <label for="f_i_t_III">Fecha inicio:</label>
+                <input type="date" class="form-control" name="date_i_III" id="f_i_t_III" required="">
+                <label for="f_f_t_III">Fecha Fin: </label>
+                <input type="date" class="form-control" name="date_f_III" id="f_f_t_III" required="">
+              </div><br>
+              <h4>IV Trimestre</h4>       
+              <div class="form-inline">
+                <label for="f_i_t_IV">Fecha inicio:</label>
+                <input type="date" class="form-control" name="date_i_IV" id="f_i_t_IV" required="">
+                <label for="f_f_t_IV">Fecha Fin: </label>
+                <input type="date" class="form-control" name="date_f_IV" id="f_f_t_IV" required="">
+              </div><br>
+              <h4>V Trimestre</h4>       
+              <div class="form-inline">
+                <label for="f_i_t_V">Fecha inicio:</label>
+                <input type="date" class="form-control" name="date_i_V" id="f_i_t_V" required="">
+                <label for="f_f_t_V">Fecha Fin: </label>
+                <input type="date" class="form-control" name="date_f_V" id="f_f_t_V" required="">
+              </div><br>
+              <h4>VI Trimestre</h4>       
+              <div class="form-inline">
+                <label for="f_i_t_VI">Fecha inicio:</label>
+                <input type="date" class="form-control" name="date_i_VI" id="f_i_t_VI" required="">
+                <label for="f_f_t_VI">Fecha Fin: </label>
+                <input type="date" class="form-control" name="date_f_VI" id="f_f_t_VI" required="">
+              </div><br>
+                                
+                <button type="submit" class="btn btn-dark">Registrar</button>                           
+            </form>
+          </center>    
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--/Collapse6Trimestre-->
     <!--Collapse4SEDE-->
 <div> 
   <div id="RegSed" class="collapse">
@@ -1084,6 +1163,24 @@ $lol=mysqli_fetch_array($re);// nombre tabla instructor
      ?>
    </div>
    <!--/alerta Ambiente-->
+
+<!--alerta Fechas Trimestres ficha--> 
+     <div class="container">
+     <?php
+    if (isset($_GET['vtf'])) {
+     
+     if ($_GET['vtf']==1) {            
+      ?>
+       <div class="alert alert-success alert-dismissible fade show">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <strong>Fechas registradas</strong>
+      </div>
+      <?php
+       }
+     }
+     ?>
+   </div>
+<!--/alerta Fechas Trimestres ficha-->
 
 
   </div>

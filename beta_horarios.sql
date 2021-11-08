@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.4
+-- version 5.0.3
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 05-11-2021 a las 21:12:55
--- Versión del servidor: 10.4.16-MariaDB
--- Versión de PHP: 7.4.12
+-- Tiempo de generación: 08-11-2021 a las 22:05:45
+-- Versión del servidor: 10.4.14-MariaDB
+-- Versión de PHP: 7.3.23
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -42,7 +42,8 @@ CREATE TABLE `ambiente` (
 INSERT INTO `ambiente` (`id_A`, `Nombre_ambiente`, `Capacidad_ambiente`, `No_equipos`, `id_sede`) VALUES
 (3, 'Multimedia  ', '30 personas ', 2, 1),
 (4, 'ADSI ', '30 personas ', 30, 1),
-(5, 'Simulación  ', '30 personas ', 30, 2);
+(5, 'Simulación  ', '30 personas ', 30, 2),
+(6, 'Encuadernación  ', '15 personas ', 6, 1);
 
 -- --------------------------------------------------------
 
@@ -105,6 +106,7 @@ CREATE TABLE `horarios` (
   `ficha` int(11) DEFAULT NULL,
   `instructor` int(11) DEFAULT NULL,
   `hora` int(11) DEFAULT NULL,
+  `id_ambiente` int(11) DEFAULT NULL,
   `horas_instructor` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -112,9 +114,10 @@ CREATE TABLE `horarios` (
 -- Volcado de datos para la tabla `horarios`
 --
 
-INSERT INTO `horarios` (`id_hora`, `dia`, `ficha`, `instructor`, `hora`, `horas_instructor`) VALUES
-(188, 6, 24, 1, 8, 2),
-(189, 2, 19, 1, 2, 2);
+INSERT INTO `horarios` (`id_hora`, `dia`, `ficha`, `instructor`, `hora`, `id_ambiente`, `horas_instructor`) VALUES
+(190, 1, 24, 1, 1, 3, 2),
+(191, 2, 19, 1, 1, 3, 2),
+(192, 4, 19, 1, 1, 4, 2);
 
 -- --------------------------------------------------------
 
@@ -234,6 +237,31 @@ INSERT INTO `sede` (`id`, `nombre_sede`, `direccion_sede`, `telefono_sede`) VALU
 (2, 'Fundación Universitaria Horizonte', ' Cl. 69 ## 14 - 30, Bogotá, Cundinamarca', 2147483647),
 (4, 'Fundación Universitaria ', 'Cl. 15 #31-30, Bogotá', 244456);
 
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `tb_trimestre`
+--
+
+CREATE TABLE `tb_trimestre` (
+  `id_T` int(11) NOT NULL,
+  `date_Inc` date NOT NULL,
+  `date_Fin` date NOT NULL,
+  `id_fch` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `tb_trimestre`
+--
+
+INSERT INTO `tb_trimestre` (`id_T`, `date_Inc`, `date_Fin`, `id_fch`) VALUES
+(3, '2021-11-08', '2021-11-08', 24),
+(4, '2021-11-12', '2021-11-17', 24),
+(5, '2021-11-24', '2021-12-08', 24),
+(6, '2021-11-26', '2021-11-30', 24),
+(7, '2021-11-26', '2021-12-10', 24),
+(8, '2021-12-11', '2021-11-08', 24);
+
 --
 -- Índices para tablas volcadas
 --
@@ -267,7 +295,8 @@ ALTER TABLE `horarios`
   ADD KEY `dia` (`dia`) USING BTREE,
   ADD KEY `ficha` (`ficha`),
   ADD KEY `instructor` (`instructor`),
-  ADD KEY `hora` (`hora`);
+  ADD KEY `hora` (`hora`),
+  ADD KEY `R` (`id_ambiente`);
 
 --
 -- Indices de la tabla `horas`
@@ -303,6 +332,13 @@ ALTER TABLE `sede`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indices de la tabla `tb_trimestre`
+--
+ALTER TABLE `tb_trimestre`
+  ADD PRIMARY KEY (`id_T`),
+  ADD KEY `fk_TFCH` (`id_fch`);
+
+--
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
@@ -310,7 +346,7 @@ ALTER TABLE `sede`
 -- AUTO_INCREMENT de la tabla `ambiente`
 --
 ALTER TABLE `ambiente`
-  MODIFY `id_A` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_A` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `dias`
@@ -328,7 +364,7 @@ ALTER TABLE `ficha`
 -- AUTO_INCREMENT de la tabla `horarios`
 --
 ALTER TABLE `horarios`
-  MODIFY `id_hora` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=190;
+  MODIFY `id_hora` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=193;
 
 --
 -- AUTO_INCREMENT de la tabla `horas`
@@ -361,6 +397,12 @@ ALTER TABLE `sede`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
+-- AUTO_INCREMENT de la tabla `tb_trimestre`
+--
+ALTER TABLE `tb_trimestre`
+  MODIFY `id_T` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
 -- Restricciones para tablas volcadas
 --
 
@@ -380,6 +422,7 @@ ALTER TABLE `ficha`
 -- Filtros para la tabla `horarios`
 --
 ALTER TABLE `horarios`
+  ADD CONSTRAINT `R` FOREIGN KEY (`id_ambiente`) REFERENCES `ambiente` (`id_A`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `relacion_H1` FOREIGN KEY (`dia`) REFERENCES `dias` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `relacion_H2` FOREIGN KEY (`ficha`) REFERENCES `ficha` (`ID_F`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `relacion_H3` FOREIGN KEY (`hora`) REFERENCES `horas` (`id_h`) ON DELETE CASCADE ON UPDATE CASCADE,
@@ -390,6 +433,12 @@ ALTER TABLE `horarios`
 --
 ALTER TABLE `instructor`
   ADD CONSTRAINT `relacion_rol` FOREIGN KEY (`rol`) REFERENCES `roles` (`id_rol`);
+
+--
+-- Filtros para la tabla `tb_trimestre`
+--
+ALTER TABLE `tb_trimestre`
+  ADD CONSTRAINT `fk_TFCH` FOREIGN KEY (`id_fch`) REFERENCES `ficha` (`ID_F`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
