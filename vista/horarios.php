@@ -60,7 +60,7 @@ $ins=mysqli_query($conn,$querys);// consulta select crear horario instructor
                 <a class="nav-link" data-toggle="collapse" data-target="#amb" style="cursor: pointer;">Registrar Ambiente</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" data-toggle="collapse" data-target="#prog" style="cursor: pointer;">Registrar Progrma</a>
+                <a class="nav-link" data-toggle="collapse" data-target="#prog" style="cursor: pointer;">Registrar Programa</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" data-toggle="collapse" data-target="#RegSed" style="cursor: pointer;">Registrar SEDE</a>
@@ -114,27 +114,27 @@ $ins=mysqli_query($conn,$querys);// consulta select crear horario instructor
               </div>
               <div class="user-panel mt-4 pb-4 mb-4 d-flex">               
                 <div class="info">
-                 <a data-toggle="collapse" data-parent="" data-target="#usu" style="cursor: pointer;">Consula Instructor</a>
+                 <a data-toggle="collapse" data-parent="" data-target="#usu" style="cursor: pointer;">Consulta Instructor</a>
                 </div>
               </div>
               <div class="user-panel mt-4 pb-4 mb-4 d-flex">               
                 <div class="info">
-                 <a data-toggle="collapse" data-parent="" data-target="#fichas" style="cursor: pointer;">Consula Fichas</a>
+                 <a data-toggle="collapse" data-parent="" data-target="#fichas" style="cursor: pointer;">Consulta Fichas</a>
                 </div>
               </div>              
               <div class="user-panel mt-4 pb-4 mb-4 d-flex">               
                 <div class="info">
-                 <a data-toggle="collapse" data-target="#ambi" style="cursor: pointer;">Consula ambiente</a>
+                 <a data-toggle="collapse" data-target="#ambi" style="cursor: pointer;">Consulta ambiente</a>
                 </div>
               </div>
               <div class="user-panel mt-4 pb-4 mb-4 d-flex">               
                 <div class="info">
-                 <a data-toggle="collapse" data-target="#progtl" style="cursor: pointer;">Consula Programa</a>
+                 <a data-toggle="collapse" data-target="#progtl" style="cursor: pointer;">Consulta Programa</a>
                 </div>
               </div>
               <div class="user-panel mt-4 pb-4 mb-4 d-flex">               
                 <div class="info">
-                 <a data-toggle="collapse" data-target="#sedet"  style="cursor: pointer;" >Consula Sedes</a>
+                 <a data-toggle="collapse" data-target="#sedet"  style="cursor: pointer;" >Consulta Sedes</a>
                 </div>
               </div>
               <?php
@@ -324,6 +324,7 @@ $ins=mysqli_query($conn,$querys);// consulta select crear horario instructor
                 <td><?php echo $fcon["fc_jornada"];?></td>              
                 <td>
                   <div class="btn-group">
+                    <button class="btn btn-dark btn-sm" onclick="window.open('horarios_ficha.php?fch=<?php echo $fcon['ID_F']?>','_Self')">Horario</button>
                     <a href="ubdateF.php?ubf=<?php echo $fcon["ID_F"]?>"><button type="submit" class="btn btn-success btn-sm">Editar</button></a>
                     <a href="../controlador/deleteF.php?eliF=<?php echo $fcon['ID_F']?>"><button type="submit" class="btn btn-danger btn-sm" onclick="return elif()" >Eliminar</button></a>
                   </div>
@@ -371,7 +372,7 @@ $ins=mysqli_query($conn,$querys);// consulta select crear horario instructor
             <thead class="thead-dark">
               <tr>                
                 <th>Nombre sede</th>
-                <th>Dirreccion Sede</th>
+                <th>Direccion Sede</th>
                 <th>Telefono Sede</th>                
                 <th>Opciones</th>
               </tr>
@@ -499,8 +500,8 @@ $ins=mysqli_query($conn,$querys);// consulta select crear horario instructor
           <table class="table table-bordered table-striped" style="text-align:center;">
             <thead class="thead-dark">
               <tr>
-                <th>Codigo programa</th>
-                <th>Nombre Programa</th>
+                <th>Nombre del Programa</th>
+                <th>Nivel de formacion</th>
                 <th>Competencias</th>
                 <th>Opciones</th>
               </tr>
@@ -515,8 +516,7 @@ $ins=mysqli_query($conn,$querys);// consulta select crear horario instructor
                 <td><?php echo $progcon["competencias"];?></td>              
                 <td>
                   <div class="btn-group">
-                    <a href="ubdateP.php?ubP=<?php echo $progcon["id_program"]?>"><button type="submit" class="btn btn-success btn-sm">Editar</button></a>
-                    <a href="../controlador/deletePO.php?eliP=<?php echo $progcon["id_program"]?>"><button type="submit" class="btn btn-danger btn-sm" onclick="return elif()" >Eliminar</button></a>
+                    <a href="ubdateP.php?ubP=<?php echo $progcon["id_program"]?>"><button type="submit" class="btn btn-success btn-sm">Editar</button></a>                   
                   </div>
                 </td>
               </tr>      
@@ -561,8 +561,8 @@ $ins=mysqli_query($conn,$querys);// consulta select crear horario instructor
                 <input type="password" class="form-control" placeholder="Digite la contraseña" name="contra" id="pwd" required="">
               </div>             
               <div class="form-group">
-                <label for="pwd2">Repetir Contraseña:</label>
-                <input type="password" class="form-control" placeholder="Repita la contraseña" name="contra2" id="pwd2" required="">
+                <label for="pwd2">Confirmar Contraseña:</label>
+                <input type="password" class="form-control" placeholder="Confirmar contraseña" name="contra2" id="pwd2" required="">
               </div>
                <div class="form-group">
                 <label for="roles">Rol del Instructor:</label>
