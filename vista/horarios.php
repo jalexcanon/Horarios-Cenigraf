@@ -109,7 +109,15 @@ $ins=mysqli_query($conn,$querys);// consulta select crear horario instructor
                   <img src="../img/h.png" class="img-circle elevation-2" alt="User Image">
                 </div>
                 <div class="info">
-                 <a href="" data-toggle="modal" data-target="#myModal">Crear Horario Instructor</a>
+                 <a href="" data-toggle="modal" data-target="#myModal">Crear Horario</a>
+                </div>
+              </div>
+               <div class="user-panel mt-4 pb-4 mb-4 d-flex">
+                <div class="image">
+                  <img src="../img/h.png" class="img-circle elevation-2" alt="User Image">
+                </div>
+                <div class="info">
+                 <a href="admin/horarios_ficha.php">Crear Horario Ficha</a>
                 </div>
               </div>
               <div class="user-panel mt-4 pb-4 mb-4 d-flex">               
