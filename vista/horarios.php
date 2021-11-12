@@ -16,7 +16,7 @@ $ins=mysqli_query($conn,$querys);// consulta select crear horario instructor
 <html lang="es">
 <head>
 	<meta charset="utf-8">
-	<title>beta</title>
+	<title>Horarios</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="../css/style.css">
     <link rel="stylesheet" href="../plugins/fontawesome-free/css/all.min.css">
@@ -104,14 +104,14 @@ $ins=mysqli_query($conn,$querys);// consulta select crear horario instructor
                 </div>
               </div>
               <?php if ($rol==1) {?>
-              <div class="user-panel mt-4 pb-4 mb-4 d-flex">
+             <!-- <div class="user-panel mt-4 pb-4 mb-4 d-flex">
                 <div class="image">
                   <img src="../img/h.png" class="img-circle elevation-2" alt="User Image">
                 </div>
                 <div class="info">
                  <a href="" data-toggle="modal" data-target="#myModal">Crear Horario</a>
                 </div>
-              </div>
+              </div>-->
                <div class="user-panel mt-4 pb-4 mb-4 d-flex">
                 <div class="image">
                   <img src="../img/h.png" class="img-circle elevation-2" alt="User Image">
@@ -332,7 +332,7 @@ $ins=mysqli_query($conn,$querys);// consulta select crear horario instructor
                 <td><?php echo $fcon["fc_jornada"];?></td>              
                 <td>
                   <div class="btn-group">
-                    <button class="btn btn-dark btn-sm" onclick="window.open('horarios_ficha.php?fch=<?php echo $fcon['ID_F']?>','_Self')">Horario</button>
+                    <button class="btn btn-dark btn-sm" onclick="window.open('admin/horarios_ficha.php?ficha=<?php echo $fcon['ID_F']?>','_Self')">Horario</button>
                     <a href="ubdateF.php?ubf=<?php echo $fcon["ID_F"]?>"><button type="submit" class="btn btn-success btn-sm">Editar</button></a>
                     <a href="../controlador/deleteF.php?eliF=<?php echo $fcon['ID_F']?>"><button type="submit" class="btn btn-danger btn-sm" onclick="return elif()" >Eliminar</button></a>
                   </div>
