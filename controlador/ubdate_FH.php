@@ -15,7 +15,7 @@ $rol=$_SESSION['rol'];
 }
 $fch=$_SESSION['fh'];
 
- $querys="SELECT * FROM horarios,ficha,instructor,dias,horas WHERE horarios.dia=dias.id AND horarios.ficha=ficha.ID_F AND horarios.instructor = instructor.ID AND horarios.hora = horas.id_h AND horarios.id_hora='$actu'";
+ $querys="SELECT * FROM horarios,ficha,instructor,dias,horas,ambiente WHERE horarios.dia=dias.id AND horarios.ficha=ficha.ID_F AND horarios.instructor = instructor.ID AND horarios.hora = horas.id_h AND horarios.id_ambiente=ambiente.id_A AND horarios.id_hora='$actu'";
 $consulta=mysqli_query($conn,$querys);
 $row=mysqli_fetch_array($consulta);
 ?>
@@ -99,6 +99,23 @@ $row=mysqli_fetch_array($consulta);
                                 <option value="8">20:00 - 21:40</option>
                              </select>
                           </div><br>
+
+                        <label class="control-label col-sm-2" for="ho">Hora:</label>
+                          <div class="col-sm-10">
+                             <select class="form-control" id="ho" name="amb">
+                                <?php
+                                  $ambd=mysqli_query($conn,"SELECT * FROM ambiente");
+                                ?>
+                                <option value="<?php  echo $row['id_A'];?>"><?php  echo $row['Nombre_ambiente'];?></option>
+                                <?php
+                                    while ($am=mysqli_fetch_array($ambd)) {
+                                ?>
+                                   <option value="<?php  echo $am['id_A'];?>"><?php  echo $am['Nombre_ambiente'];?></option> 
+                                <?php
+                                     } 
+                                ?>
+                             </select>
+                          </div><br>
                         <div class="btn-group">
                             <button type="button" class="btn btn-danger" onclick="window.open('../vista/admin/horarios_ficha.php?ficha=<?php echo $fch ?>','_Self')" >Cancelar</button>
                             <button type="submit" class="btn btn-warning">Actualizar</button>
@@ -135,15 +152,21 @@ if (isset($_POST['ubdins'])) {
     $ubdi=$_POST['ubdins'];
     $dias=$_POST['days'];
     $hors=$_POST['hours'];
+    $ambi=$_POST['amb'];
 
     //echo $actu.$ubdi.$dias.$hors;
+/*
+$verificar_dia_hora_ficha=mysqli_query($conn,"SELECT * FROM `horarios` where `dia`='$dias' and `id_hora`='$actu' AND `hora`='$hors'");
+$verificar_dia_hora_ambiente_ficha=mysqli_query($conn,"SELECT * FROM `horarios` where `dia`='$dias' and `id_hora`='$actu' AND `hora`='$hors' and `id_ambiente`='$ambi'");
+$verificar_dia_hora_instructor_ficha=mysqli_query($conn,"SELECT * FROM `horarios` where `dia`='$dias' and `id_hora`='$actu' AND `hora`='$hors' and `instructor`='$ubdi'");*/
 
-$query="UPDATE horarios SET dia = '$dias', instructor = '$ubdi', hora = '$hors' WHERE horarios.id_hora = '$actu'";
+$query="UPDATE horarios SET dia = '$dias', instructor = '$ubdi', hora = '$hors', id_ambiente='$ambi' WHERE horarios.id_hora = '$actu'";
 mysqli_query($conn,$query);
 
 //header("location:../vista/horarios_beta.php?instructor=$ins");
 ?>
 <script type="text/javascript">
+   alert('Actualizacion exitosa.'); 
    window.location='../vista/admin/horarios_ficha.php?ficha=<?php echo $fch;?>';
 </script>
 <?php

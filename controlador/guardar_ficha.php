@@ -23,7 +23,31 @@ $resuls=mysqli_query($conn,$querys);
 $row=mysqli_fetch_array($resuls);
 $sum=$row['total'];
 
-if ($sum<40) {
+$verificar_dia_hora_ficha=mysqli_query($conn,"SELECT * FROM `horarios` where `dia`='$days' and `ficha`='$ficha_' AND `hora`='$hours'");
+$verificar_dia_hora_ambiente_ficha=mysqli_query($conn,"SELECT * FROM `horarios` where `dia`='$days' and `ficha`='$ficha_' AND `hora`='$hours' and `id_ambiente`='$amb'");
+$verificar_dia_hora_instructor_ficha=mysqli_query($conn,"SELECT * FROM `horarios` where `dia`='$days' and `ficha`='$ficha_' AND `hora`='$hours' and `instructor`='$ins'");
+
+if ($sum<40) {  
+  if (mysqli_num_rows($verificar_dia_hora_ambiente_ficha)>0) {
+
+    echo "<script>
+                  alert('El dia ambeinte y hora de la ficha ya estan registrados..');
+                  window.location= '../vista/admin/horarios_ficha.php?ficha=$ficha_'
+              </script>";
+  }else{ 
+    if (mysqli_num_rows($verificar_dia_hora_ficha)>0) {
+
+    echo "<script>
+                  alert('El dia y hora de la ficha ya estan registrados.');
+                  window.location= '../vista/admin/horarios_ficha.php?ficha=$ficha_'
+              </script>";
+    }else{
+      if (mysqli_num_rows($verificar_dia_hora_instructor_ficha)>0) {
+        echo "<script>
+                  alert('El dia y hora del instructor ya estan asignados.');
+                  window.location= '../vista/admin/horarios_ficha.php?ficha=$ficha_'
+              </script>";
+      }else{ 
     $query="INSERT INTO `horarios` (`id_hora`, `dia`, `ficha`, `instructor`, `hora`,`id_ambiente`,`horas_instructor`) 
     VALUES (NULL,'$days','$ficha_','$ins','$hours','$amb','$hora_i')";
     mysqli_query($conn,$query);
@@ -31,8 +55,10 @@ if ($sum<40) {
     echo "<script>
                   alert('Horario registrado.');
                   window.location= '../vista/admin/horarios_ficha.php?ficha=$ficha_'
-              </script>";         
-
+              </script>";}
+   
+       }
+    }
 }elseif ($sum>=40) {
   $cons=mysqli_query($conn,"SELECT * FROM instructor where ID='$ins'");
   $rows=mysqli_fetch_assoc($cons);
