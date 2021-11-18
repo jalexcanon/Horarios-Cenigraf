@@ -155,20 +155,39 @@ if (isset($_POST['ubdins'])) {
     $ambi=$_POST['amb'];
 
     //echo $actu.$ubdi.$dias.$hors;
-/*
-$verificar_dia_hora_ficha=mysqli_query($conn,"SELECT * FROM `horarios` where `dia`='$dias' and `id_hora`='$actu' AND `hora`='$hors'");
-$verificar_dia_hora_ambiente_ficha=mysqli_query($conn,"SELECT * FROM `horarios` where `dia`='$dias' and `id_hora`='$actu' AND `hora`='$hors' and `id_ambiente`='$ambi'");
-$verificar_dia_hora_instructor_ficha=mysqli_query($conn,"SELECT * FROM `horarios` where `dia`='$dias' and `id_hora`='$actu' AND `hora`='$hors' and `instructor`='$ubdi'");*/
 
-$query="UPDATE horarios SET dia = '$dias', instructor = '$ubdi', hora = '$hors', id_ambiente='$ambi' WHERE horarios.id_hora = '$actu'";
-mysqli_query($conn,$query);
+$verificar_dia_hora_ficha_all=mysqli_query($conn,"SELECT * FROM `horarios` where `dia`='$dias' and `ficha`='$fch' AND `hora`='$hors' and `instructor`='$ubdi' ");
+
+   
+    if (mysqli_num_rows($verificar_dia_hora_ficha_all)>0) {
+
+    echo "<script>
+                  alert('El dia, hora, instructor de la ficha ya estan registrados.');
+                  window.location= '../vista/admin/horarios_ficha.php?ficha=$fch'
+              </script>";
+    }else{
+      
+    
+    $query="UPDATE horarios SET dia = '$dias', instructor = '$ubdi', hora = '$hors', id_ambiente='$ambi' WHERE horarios.id_hora = '$actu'";
+    mysqli_query($conn,$query);
+
+  
+    echo "<script>
+                 alert('Actualizacion exitosa.'); 
+                 window.location='../vista/admin/horarios_ficha.php?ficha=$fch'
+              </script>";
+   
+    }
+    
+
 
 //header("location:../vista/horarios_beta.php?instructor=$ins");
 ?>
+<!--
 <script type="text/javascript">
    alert('Actualizacion exitosa.'); 
    window.location='../vista/admin/horarios_ficha.php?ficha=<?php echo $fch;?>';
-</script>
+</script>-->
 <?php
 }
  ?>

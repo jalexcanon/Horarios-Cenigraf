@@ -265,7 +265,7 @@ $ins=mysqli_query($conn,$querys);// consulta select crear horario instructor
                 <td><?php echo $icon["rol"];?></td>              
                 <td>
                   <div class="btn-group">
-                    <a href="admin/horarios_beta.php?instructor=<?php echo $icon["ID"];?>"><button type="submit" class="btn btn-dark btn-sm">Horario</button></a>
+                    <a href="admin/horarios_ins.php?instructor=<?php echo $icon["ID"];?>"><button type="submit" class="btn btn-dark btn-sm">Horario</button></a>
                     <a href="ubdate.php?ubds=<?php echo $icon["ID"];?>"><button type="submit" class="btn btn-success btn-sm">Editar</button></a>
                     <a href="../controlador/deleteI.php?eli=<?php echo $icon["ID"];?>"><button type="submit" class="btn btn-danger btn-sm" onclick="return eli()" >Eliminar</button></a>
                   </div>

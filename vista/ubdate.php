@@ -127,7 +127,7 @@
               <center>
                 <div class="btn-group">
                   <button type="button" class="btn btn-warning" onclick="window.open('horarios.php','_Self')">Atras</button>
-                  <button type="submit" class="btn btn-dark">Entrar</button>
+                  <button type="submit" class="btn btn-dark">Actualizar</button>
                 </div>
                 
               </center>              
