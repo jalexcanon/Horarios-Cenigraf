@@ -13,14 +13,16 @@ $inst=$_SESSION['nam'];
  if (isset($_GET['ficha'])) {
       
 $id_ficha=$_GET['ficha'];
- $_SESSION['fh']=$id_ficha;
+ //$_SESSION['fh']=$id_ficha;
+ $title=mysqli_query($conn,"SELECT * FROM ficha WHERE ID_F ='$id_ficha'");
+ $titles=mysqli_fetch_assoc($title);
 }
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
 	<meta charset="utf-8">
-	<title>Horarios ficha</title>
+	<title>Horarios ficha <?php echo $titles['Nº ficha'] ?></title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" type="text/css" href="../../css/style.css">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -437,7 +439,7 @@ $id_ficha=$_GET['ficha'];
                                     <div class="dropdown-menu" style="background-color: #f1f1f100; border: 1px solid rgb(0 0 0 / 0%); box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 0%);" >
                                       
                                       <div class="btn-group">
-                                        <button type="button" class="btn btn-success" onclick="window.open('../../controlador/ubdate_FH.php?ubd=<?php echo $row['id_hora']?>','_Self')">Editar</button>
+                                        <button type="button" class="btn btn-success" onclick="window.open('../../controlador/update_FH.php?ubd=<?php echo $row['id_hora']?>','_Self')">Editar</button>
                                        <a href="../../controlador/delete_FH.php?eli=<?php echo $row['id_hora']?>"><button type="button" onclick="return eliminarh()" class="btn btn-danger">Eliminar</button></a> 
                                       </div>                                                                                                                     
                                     </div>

@@ -23,7 +23,7 @@ $resuls=mysqli_query($conn,$querys);
 $row=mysqli_fetch_array($resuls);
 $sum=$row['total'];
 
-$verificar_dia_hora_ficha=mysqli_query($conn,"SELECT * FROM `horarios` where `dia`='$days' and `ficha`='$ficha_' AND `hora`='$hours'");
+$verificar_dia_hora_ficha=mysqli_query($conn,"SELECT * FROM `horarios` where `dia`='$days'  AND `hora`='$hours' and `ficha`='$ficha_'");
 $verificar_dia_hora_ambiente=mysqli_query($conn,"SELECT * FROM `horarios` where `dia`='$days' AND `hora`='$hours' and `id_ambiente`='$amb'");
 $verificar_dia_hora_instructor=mysqli_query($conn,"SELECT * FROM `horarios` where `dia`='$days' AND `hora`='$hours' and `instructor`='$ins'");
 
