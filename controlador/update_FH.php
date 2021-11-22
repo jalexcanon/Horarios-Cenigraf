@@ -157,84 +157,112 @@ if (isset($_POST['ubdins'])) {
 
     //echo $actu.$ubdi.$dias.$hors;
 
-$verificar_dia_hora_ficha_all=mysqli_query($conn,"SELECT * FROM `horarios` where `dia`='$dias' and `ficha`='$fch' AND `hora`='$hors' and `instructor`='$ubdi' ");
+$prueba=mysqli_query($conn,"SELECT * FROM horarios where id_hora='$actu'");
+$row=mysqli_fetch_array($prueba);
 
-   
-   /* if (mysqli_num_rows($verificar_dia_hora_ficha_all)>0) {
+    $valbool= true;
 
-    echo "<script>
-                  alert('El dia, hora, instructor de la ficha ya estan registrados.');
-                  window.location= '../vista/admin/horarios_ficha.php?ficha=$fch'
-              </script>";*/
-  //  }else{
-      
-    
-  /*  $query="UPDATE horarios SET dia = '$dias', instructor = '$ubdi', hora = '$hors', id_ambiente='$ambi' WHERE horarios.id_hora = '$actu'";
-    mysqli_query($conn,$query);
-*/
-  /*
-    echo "<script>
-                 alert('Actualizacion exitosa.'); 
-                 window.location='../vista/admin/horarios_ficha.php?ficha=$fch'
-              </script>";*/
-   
-   // }
+$verificar_dia_hora_ins=mysqli_query($conn,"SELECT * FROM `horarios` where `dia`='$dias' and `hora`='$hors' and `instructor`='$ubdi' ");
+$verificar_dia_hora_ambiente=mysqli_query($conn,"SELECT * FROM `horarios` where `dia`='$dias' and `hora`='$hors' and `id_ambiente`='$ambi' ");
+$verificar_dia_hora=mysqli_query($conn,"SELECT * FROM `horarios` where `dia`='$dias' and `hora`='$hors' and `ficha`='$fch' "); 
 
-    $prueba=mysqli_query($conn,"SELECT * FROM horarios where id_hora='$actu'");
-    $row=mysqli_fetch_array($prueba);
-
-   
-
-
-    if ( $row['instructor'] !=  $ubdi) {
-     $verificar_dia_hora_ins=mysqli_query($conn,"SELECT * FROM `horarios` where `dia`='$dias' and `hora`='$hors' and `instructor`='$ubdi' ");   
-      if (mysqli_num_rows($verificar_dia_hora_ins)>0) {
-          echo "<script>
-                 alert('El dia y hora del instructor ya estan asignados.'); 
-                 window.location='../vista/admin/horarios_ficha.php?ficha=$fch'
-              </script>";
-      }else{
-        $query="UPDATE horarios SET  instructor = '$ubdi' WHERE horarios.id_hora = '$actu'";
-        mysqli_query($conn,$query);       
-      }      
-    }
-
-    if ( $row['id_ambiente'] !=  $ambi) {
-     $verificar_dia_hora_ambiente=mysqli_query($conn,"SELECT * FROM `horarios` where `dia`='$dias' and `hora`='$hors' and `id_ambiente`='$ambi' ");   
-      if (mysqli_num_rows($verificar_dia_hora_ambiente)>0) {
-          echo "<script>
-                 alert('El dia y hora del ambeinte ya estan asignados.'); 
-                 window.location='../vista/admin/horarios_ficha.php?ficha=$fch'
-              </script>";
-      }else{
-        $query="UPDATE horarios SET  id_ambiente = '$ambi' WHERE horarios.id_hora = '$actu'";
-        mysqli_query($conn,$query);         
-      }      
-    }
-
-    if ( ($row['dia'] !=  $dias)||($row['hora'] !=  $hors)) {
-     $verificar_dia_hora=mysqli_query($conn,"SELECT * FROM `horarios` where `dia`='$dias' and `hora`='$hors' and `ficha`='$fch' ");   
+if ($valbool==true) {
+    if ( ($row['dia'] !=  $dias)||($row['hora'] !=  $hors)) {      
       if (mysqli_num_rows($verificar_dia_hora)>0) {
           echo "<script>
                  alert('El dia y hora de la ficha ya estan asignados'); 
                  window.location='../vista/admin/horarios_ficha.php?ficha=$fch'
               </script>";
-      }else{
-        $query="UPDATE horarios SET  dia = '$dias',hora = '$hors' WHERE horarios.id_hora = '$actu'";
-        mysqli_query($conn,$query);
-          /* echo "<script>
-                 alert('diferente actuañizado.'); 
+              $valbool=false;
+      }else{          
+      if (mysqli_num_rows($verificar_dia_hora_ins)>0) {
+                echo "<script>
+                 alert('El dia y hora del instructor ya estan asignados'); 
                  window.location='../vista/admin/horarios_ficha.php?ficha=$fch'
-              </script>";  */
-      }      
+              </script>";
+              $valbool=false;
+             }else{                
+                 if (mysqli_num_rows($verificar_dia_hora_ambiente)>0) {
+                    echo "<script>
+                         alert('El dia y hora del ambiente ya estan asignados'); 
+                         window.location='../vista/admin/horarios_ficha.php?ficha=$fch'
+                      </script>";
+                      $valbool=false;
+                 }else{
+                    $query="UPDATE horarios SET  dia = '$dias',hora = '$hors' WHERE horarios.id_hora = '$actu'";
+                    mysqli_query($conn,$query);
+                 }
+             }       
+       }      
     }
+}
+
+if ($valbool==true) {
+    if ( $row['instructor'] !=  $ubdi) {        
+        if (mysqli_num_rows($verificar_dia_hora_ins)>0) {
+              echo "<script>
+                 alert('El dia y hora del instructor ya estan asignados'); 
+                 window.location='../vista/admin/horarios_ficha.php?ficha=$fch'
+              </script>";
+              $valbool=false;
+          }else{          
+          if (mysqli_num_rows($verificar_dia_hora)>0) {
+                echo "<script>
+                 alert('El dia y hora de la ficha ya estan asignados'); 
+                 window.location='../vista/admin/horarios_ficha.php?ficha=$fch'
+              </script>";
+              $valbool=false;
+            }else{                
+                if (mysqli_num_rows($verificar_dia_hora_ambiente)>0) {
+                    echo "<script>
+                         alert('El dia y hora del ambiente ya estan asignados'); 
+                         window.location='../vista/admin/horarios_ficha.php?ficha=$fch'
+                      </script>";
+                      $valbool=false;
+                }else{
+                    $query="UPDATE horarios SET  instructor = '$ubdi' WHERE horarios.id_hora = '$actu'";
+                    mysqli_query($conn,$query);  
+                }
+            }       
+        }    
+    }
+}
+ 
+if ($valbool==true) {
+     if ( $row['id_ambiente'] !=  $ambi) {    
+       if (mysqli_num_rows($verificar_dia_hora_ambiente)>0) {        
+              echo "<script>
+                         alert('El dia y hora del ambiente ya estan asignados'); 
+                         window.location='../vista/admin/horarios_ficha.php?ficha=$fch'
+                      </script>";
+              $valbool=false;
+          }else{          
+          if (mysqli_num_rows($verificar_dia_hora_ins)>0) {
+                echo "<script>
+                 alert('El dia y hora del instructor ya estan asignados'); 
+                 window.location='../vista/admin/horarios_ficha.php?ficha=$fch'
+              </script>";
+              $valbool=false;
+            }else{                
+                if (mysqli_num_rows($verificar_dia_hora)>0) {
+                    echo "<script>
+                         alert('El dia y hora de la ficha ya estan asignados'); 
+                         window.location='../vista/admin/horarios_ficha.php?ficha=$fch'
+                      </script>";
+                      $valbool=false;
+                }else{
+                    $query="UPDATE horarios SET  id_ambiente = '$ambi' WHERE horarios.id_hora = '$actu'";
+                    mysqli_query($conn,$query); 
+                }
+            }       
+        }    
+    }
+}
+  
      echo "<script>
                  alert('Actualizacion exitosa'); 
                  window.location='../vista/admin/horarios_ficha.php?ficha=$fch'
               </script>";        
-   
-    
-
 
 //header("location:../vista/horarios_beta.php?instructor=$ins");
 ?>

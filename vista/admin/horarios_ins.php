@@ -265,7 +265,7 @@ $id_ins=$_GET['instructor'];
               <div class="container">
                   <!--div2Tabla -->
                   <div style=" position: relative;
-                               bottom: 1480px;
+                               bottom: 1483px;
                                margin: 0 0 0 152px;
                                margin-right: -7px;
                                max-WIDTH: 966px; 

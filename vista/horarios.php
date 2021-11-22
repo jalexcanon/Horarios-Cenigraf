@@ -667,7 +667,7 @@ $ins=mysqli_query($conn,$querys);// consulta select crear horario instructor
         <div class="container border" style="padding:4%; background-color: #a2a1a5a8; ">      
           <center>
           <?php 
-          $dateFT="SELECT * FROM ficha";
+          $dateFT="SELECT * FROM ficha,programa where ficha.fc_id_programa=programa.id_program";
           $conFT=mysqli_query($conn,$dateFT); 
           ?> 
             <form action="../controlador/regTF.php" method="POST" style="padding-left:9%; padding-right:8%;" >
@@ -677,7 +677,7 @@ $ins=mysqli_query($conn,$querys);// consulta select crear horario instructor
                   <option>Selecionar</option>
                   <?php 
                 while ($rowFT=mysqli_fetch_assoc($conFT)) {?>
-                  <option value="<?php echo$rowFT['ID_F'] ?>"><?php echo$rowFT['Nº ficha'] ?></option>
+                  <option value="<?php echo$rowFT['ID_F'] ?>"><?php echo$rowFT['Nº ficha']." ".$rowFT['nivel_form'] ?></option>
                   <?php
                 }
                   ?>
@@ -992,7 +992,7 @@ $lol=mysqli_fetch_array($re);// nombre tabla instructor
        <!--div1 -->          
        <div class="container">
           <div style="position: relative;
-                              bottom: 1480px;
+                              bottom: 1482px;
                               margin: 0 0 0 154px;
                               margin-right: 0px;
                               max-WIDTH: 966px; 
