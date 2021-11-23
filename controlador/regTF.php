@@ -1,4 +1,4 @@
-<?php
+  <?php
 include ('conexion.php');
 session_start();
 $correo=$_SESSION['ema'];
@@ -21,13 +21,15 @@ $date_i_VI=$_POST['date_i_VI'];   $date_f_VI=$_POST['date_f_VI'];
 
 
 
-echo $query = "INSERT INTO `tb_trimestre` (`id_T`,`date_i_I`,`date_f_I`,`date_i_II`,`date_f_II`,`date_i_III`,`date_f_III`,`date_i_IV`, `date_f_IV`,`date_i_V`, `date_f_V`,`date_i_VI`,`date_f_VI`,`id_fch`) VALUES 
+ $query = "INSERT INTO `tb_trimestre` (`id_T`,`date_i_I`,`date_f_I`,`date_i_II`,`date_f_II`,`date_i_III`,`date_f_III`,`date_i_IV`, `date_f_IV`,`date_i_V`, `date_f_V`,`date_i_VI`,`date_f_VI`,`id_fch`) VALUES 
 (NULL, '$date_i_I', '$date_f_I',
      '$date_i_II', '$date_f_II', 
      '$date_i_III', '$date_f_III', 
      '$date_i_IV', '$date_f_IV',
      '$date_i_V', '$date_f_V',
      '$date_i_VI','$date_f_VI','$ficha_fechas')";
+
+///   UPDATE `ficha` SET `id_fecha` = '12' WHERE `ficha`.`ID_F` = 29;
   
    
     header("location:../vista/horarios.php?vtf=1"); 

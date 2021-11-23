@@ -13,7 +13,7 @@ $inst=$_SESSION['nam'];
  if (isset($_GET['ficha'])) {
       
 $id_ficha=$_GET['ficha'];
- //$_SESSION['fh']=$id_ficha;
+ $_SESSION['fh']=$id_ficha;//sesseion id ficha prar eliminar horario
  $title=mysqli_query($conn,"SELECT * FROM ficha WHERE ID_F ='$id_ficha'");
  $titles=mysqli_fetch_assoc($title);
 }

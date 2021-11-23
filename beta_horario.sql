@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.3
+-- version 5.0.4
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 08-11-2021 a las 22:05:45
--- Versión del servidor: 10.4.14-MariaDB
--- Versión de PHP: 7.3.23
+-- Tiempo de generación: 23-11-2021 a las 21:24:52
+-- Versión del servidor: 10.4.16-MariaDB
+-- Versión de PHP: 7.4.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `beta_horarios`
+-- Base de datos: `beta_horario`
 --
 
 -- --------------------------------------------------------
@@ -76,23 +76,26 @@ INSERT INTO `dias` (`id`, `dia_s`) VALUES
 
 CREATE TABLE `ficha` (
   `ID_F` int(11) NOT NULL,
-  `Nº ficha` int(11) NOT NULL,
+  `Nº ficha` varchar(11) NOT NULL,
   `fc_cant_aprend` int(11) NOT NULL,
   `fc_jornada` varchar(45) NOT NULL,
   `fc_tipo_formacion` varchar(45) NOT NULL,
   `fic_date_I` date NOT NULL,
   `fic_date_F` date NOT NULL,
-  `fc_id_programa` int(11) NOT NULL
+  `fc_id_programa` int(11) NOT NULL,
+  `id_fecha` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `ficha`
 --
 
-INSERT INTO `ficha` (`ID_F`, `Nº ficha`, `fc_cant_aprend`, `fc_jornada`, `fc_tipo_formacion`, `fic_date_I`, `fic_date_F`, `fc_id_programa`) VALUES
-(19, 1234567, 50, 'Diurna', 'Presencial', '2021-11-03', '2021-11-12', 88524459),
-(20, 1234569, 10, 'Nocturna', 'Virtual', '2021-11-04', '2021-11-12', 88524463),
-(24, 2061628, 30, 'Diurna', 'Presencial', '2021-11-05', '2021-11-26', 88524459);
+INSERT INTO `ficha` (`ID_F`, `Nº ficha`, `fc_cant_aprend`, `fc_jornada`, `fc_tipo_formacion`, `fic_date_I`, `fic_date_F`, `fc_id_programa`, `id_fecha`) VALUES
+(19, '1234567', 50, 'Diurna', 'Presencial', '2021-11-03', '2021-11-12', 88524459, NULL),
+(20, '1234569', 10, 'Nocturna', 'Virtual', '2021-11-04', '2021-11-12', 88524463, NULL),
+(24, '2061628', 30, 'Diurna', 'Presencial', '2021-11-05', '2021-11-26', 88524459, 10),
+(25, '2231454', 20, 'Diurna', 'Presencial', '2021-11-11', '2022-11-11', 88524464, 11),
+(29, '32', 10, 'Seleccione', 'Presencial', '2021-11-25', '2021-12-05', 88524459, 12);
 
 -- --------------------------------------------------------
 
@@ -115,9 +118,13 @@ CREATE TABLE `horarios` (
 --
 
 INSERT INTO `horarios` (`id_hora`, `dia`, `ficha`, `instructor`, `hora`, `id_ambiente`, `horas_instructor`) VALUES
-(190, 1, 24, 1, 1, 3, 2),
-(191, 2, 19, 1, 1, 3, 2),
-(192, 4, 19, 1, 1, 4, 2);
+(242, 4, 24, 3, 2, 3, 2),
+(244, 5, 25, 3, 1, 3, 2),
+(246, 2, 25, 2, 1, 6, 2),
+(247, 1, 25, 2, 1, 4, 2),
+(250, 2, 24, 2, 2, 3, 2),
+(251, 3, 25, 2, 2, 4, 2),
+(254, 1, 24, 1, 1, 3, 2);
 
 -- --------------------------------------------------------
 
@@ -245,8 +252,18 @@ INSERT INTO `sede` (`id`, `nombre_sede`, `direccion_sede`, `telefono_sede`) VALU
 
 CREATE TABLE `tb_trimestre` (
   `id_T` int(11) NOT NULL,
-  `date_Inc` date NOT NULL,
-  `date_Fin` date NOT NULL,
+  `date_i_I` date DEFAULT NULL,
+  `date_f_I` date DEFAULT NULL,
+  `date_i_II` date DEFAULT NULL,
+  `date_f_II` date DEFAULT NULL,
+  `date_i_III` date DEFAULT NULL,
+  `date_f_III` date DEFAULT NULL,
+  `date_i_IV` date DEFAULT NULL,
+  `date_f_IV` date DEFAULT NULL,
+  `date_i_V` date DEFAULT NULL,
+  `date_f_V` date DEFAULT NULL,
+  `date_i_VI` date DEFAULT NULL,
+  `date_f_VI` date DEFAULT NULL,
   `id_fch` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -254,13 +271,10 @@ CREATE TABLE `tb_trimestre` (
 -- Volcado de datos para la tabla `tb_trimestre`
 --
 
-INSERT INTO `tb_trimestre` (`id_T`, `date_Inc`, `date_Fin`, `id_fch`) VALUES
-(3, '2021-11-08', '2021-11-08', 24),
-(4, '2021-11-12', '2021-11-17', 24),
-(5, '2021-11-24', '2021-12-08', 24),
-(6, '2021-11-26', '2021-11-30', 24),
-(7, '2021-11-26', '2021-12-10', 24),
-(8, '2021-12-11', '2021-11-08', 24);
+INSERT INTO `tb_trimestre` (`id_T`, `date_i_I`, `date_f_I`, `date_i_II`, `date_f_II`, `date_i_III`, `date_f_III`, `date_i_IV`, `date_f_IV`, `date_i_V`, `date_f_V`, `date_i_VI`, `date_f_VI`, `id_fch`) VALUES
+(10, '2021-11-11', '2021-11-02', '2021-11-06', '2021-11-12', '2021-11-13', '2021-11-19', '2021-12-05', '2021-11-12', '2021-12-10', '2021-11-20', '2021-11-26', '2021-12-04', 24),
+(11, '2021-11-23', '2021-11-28', '2021-12-11', '2021-12-04', '2021-12-06', '2021-12-11', '2021-12-03', '2021-12-02', '2021-12-03', '2021-12-10', '2021-11-23', '2025-04-06', 25),
+(12, '2021-11-23', '2021-11-24', '2021-11-25', '2021-11-26', '2021-11-27', '2021-11-28', '2021-11-29', '2021-11-30', '2021-12-01', '2021-12-02', '2021-12-03', '2021-12-04', 29);
 
 --
 -- Índices para tablas volcadas
@@ -285,7 +299,8 @@ ALTER TABLE `dias`
 --
 ALTER TABLE `ficha`
   ADD PRIMARY KEY (`ID_F`),
-  ADD KEY `relacion_prog` (`fc_id_programa`);
+  ADD KEY `relacion_prog` (`fc_id_programa`),
+  ADD KEY `relacion_fch` (`id_fecha`);
 
 --
 -- Indices de la tabla `horarios`
@@ -358,13 +373,13 @@ ALTER TABLE `dias`
 -- AUTO_INCREMENT de la tabla `ficha`
 --
 ALTER TABLE `ficha`
-  MODIFY `ID_F` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `ID_F` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT de la tabla `horarios`
 --
 ALTER TABLE `horarios`
-  MODIFY `id_hora` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=193;
+  MODIFY `id_hora` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=255;
 
 --
 -- AUTO_INCREMENT de la tabla `horas`
@@ -400,7 +415,7 @@ ALTER TABLE `sede`
 -- AUTO_INCREMENT de la tabla `tb_trimestre`
 --
 ALTER TABLE `tb_trimestre`
-  MODIFY `id_T` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_T` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- Restricciones para tablas volcadas
@@ -416,6 +431,7 @@ ALTER TABLE `ambiente`
 -- Filtros para la tabla `ficha`
 --
 ALTER TABLE `ficha`
+  ADD CONSTRAINT `relacion_fch` FOREIGN KEY (`id_fecha`) REFERENCES `tb_trimestre` (`id_T`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `relacion_prog` FOREIGN KEY (`fc_id_programa`) REFERENCES `programa` (`id_program`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --

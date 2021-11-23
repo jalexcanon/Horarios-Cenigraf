@@ -599,7 +599,7 @@ $ins=mysqli_query($conn,$querys);// consulta select crear horario instructor
             <form action="../controlador/regfich.php" method="POST">
               <div class="form-group">
                 <label for="fi">Numero de ficha:</label>
-                <input type="number" class="mr-sm-2 form-control " placeholder="Ficha" name="fich" id="fi" required="">
+                <input type="number" max="9999999" class="mr-sm-2 form-control" placeholder="Ficha (Maximo 7 caracteres)" name="fich" id="fi" required="">
               </div>
               <div class="form-group">
                 <label for="nop">Cantidad de aprendices:</label>
@@ -608,7 +608,7 @@ $ins=mysqli_query($conn,$querys);// consulta select crear horario instructor
               <div class="form-group">
                 <label for="jor">Jornada:</label>
                 <select class="form-control" id="jor" name="jornad" required="">
-                  <option value="0">Seleccione</option>
+                  <option>Seleccione</option>
                   <option value="Diurna">Diurna </option>                  
                   <option value="Nocturna">Nocturna</option> 
                   <option value="Mixta">Mixta</option>               
