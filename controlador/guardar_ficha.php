@@ -32,7 +32,7 @@ if ($sum<40) {
   if (mysqli_num_rows($verificar_dia_hora_ambiente)>0) {
 
     echo "<script>
-                  alert('El dia  y hora del ambeinte ya estan registrados..');
+                  alert('El dia  y hora del ambeinte ya estan registrados.');
                   window.location= '../vista/admin/horarios_ficha.php?ficha=$ficha_'
               </script>";
   }else{ 

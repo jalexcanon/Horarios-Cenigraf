@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 23-11-2021 a las 21:24:52
+-- Tiempo de generación: 24-11-2021 a las 21:20:39
 -- Versión del servidor: 10.4.16-MariaDB
 -- Versión de PHP: 7.4.12
 
@@ -82,20 +82,18 @@ CREATE TABLE `ficha` (
   `fc_tipo_formacion` varchar(45) NOT NULL,
   `fic_date_I` date NOT NULL,
   `fic_date_F` date NOT NULL,
-  `fc_id_programa` int(11) NOT NULL,
-  `id_fecha` int(11) DEFAULT NULL
+  `fc_id_programa` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `ficha`
 --
 
-INSERT INTO `ficha` (`ID_F`, `Nº ficha`, `fc_cant_aprend`, `fc_jornada`, `fc_tipo_formacion`, `fic_date_I`, `fic_date_F`, `fc_id_programa`, `id_fecha`) VALUES
-(19, '1234567', 50, 'Diurna', 'Presencial', '2021-11-03', '2021-11-12', 88524459, NULL),
-(20, '1234569', 10, 'Nocturna', 'Virtual', '2021-11-04', '2021-11-12', 88524463, NULL),
-(24, '2061628', 30, 'Diurna', 'Presencial', '2021-11-05', '2021-11-26', 88524459, 10),
-(25, '2231454', 20, 'Diurna', 'Presencial', '2021-11-11', '2022-11-11', 88524464, 11),
-(29, '32', 10, 'Seleccione', 'Presencial', '2021-11-25', '2021-12-05', 88524459, 12);
+INSERT INTO `ficha` (`ID_F`, `Nº ficha`, `fc_cant_aprend`, `fc_jornada`, `fc_tipo_formacion`, `fic_date_I`, `fic_date_F`, `fc_id_programa`) VALUES
+(19, '1234567', 50, 'Diurna', 'Presencial', '2021-11-03', '2021-11-12', 88524459),
+(20, '1234569', 10, 'Nocturna', 'Virtual', '2021-11-04', '2021-11-12', 88524463),
+(24, '2061628', 30, 'Diurna', 'Presencial', '2021-11-05', '2021-11-26', 88524459),
+(25, '2231454', 20, 'Diurna', 'Presencial', '2021-11-11', '2022-11-11', 88524464);
 
 -- --------------------------------------------------------
 
@@ -273,8 +271,7 @@ CREATE TABLE `tb_trimestre` (
 
 INSERT INTO `tb_trimestre` (`id_T`, `date_i_I`, `date_f_I`, `date_i_II`, `date_f_II`, `date_i_III`, `date_f_III`, `date_i_IV`, `date_f_IV`, `date_i_V`, `date_f_V`, `date_i_VI`, `date_f_VI`, `id_fch`) VALUES
 (10, '2021-11-11', '2021-11-02', '2021-11-06', '2021-11-12', '2021-11-13', '2021-11-19', '2021-12-05', '2021-11-12', '2021-12-10', '2021-11-20', '2021-11-26', '2021-12-04', 24),
-(11, '2021-11-23', '2021-11-28', '2021-12-11', '2021-12-04', '2021-12-06', '2021-12-11', '2021-12-03', '2021-12-02', '2021-12-03', '2021-12-10', '2021-11-23', '2025-04-06', 25),
-(12, '2021-11-23', '2021-11-24', '2021-11-25', '2021-11-26', '2021-11-27', '2021-11-28', '2021-11-29', '2021-11-30', '2021-12-01', '2021-12-02', '2021-12-03', '2021-12-04', 29);
+(11, '2021-11-23', '2021-11-28', '2021-12-11', '2021-12-04', '2021-12-06', '2021-12-11', '2021-12-03', '2021-12-02', '2021-12-03', '2021-12-10', '2021-11-23', '2025-04-06', 25);
 
 --
 -- Índices para tablas volcadas
@@ -299,8 +296,7 @@ ALTER TABLE `dias`
 --
 ALTER TABLE `ficha`
   ADD PRIMARY KEY (`ID_F`),
-  ADD KEY `relacion_prog` (`fc_id_programa`),
-  ADD KEY `relacion_fch` (`id_fecha`);
+  ADD KEY `relacion_prog` (`fc_id_programa`);
 
 --
 -- Indices de la tabla `horarios`
@@ -431,7 +427,6 @@ ALTER TABLE `ambiente`
 -- Filtros para la tabla `ficha`
 --
 ALTER TABLE `ficha`
-  ADD CONSTRAINT `relacion_fch` FOREIGN KEY (`id_fecha`) REFERENCES `tb_trimestre` (`id_T`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `relacion_prog` FOREIGN KEY (`fc_id_programa`) REFERENCES `programa` (`id_program`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --

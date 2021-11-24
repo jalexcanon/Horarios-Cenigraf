@@ -22,7 +22,9 @@ $id_ficha=$_GET['ficha'];
 <html lang="es">
 <head>
 	<meta charset="utf-8">
-	<title>Horarios ficha <?php echo $titles['Nº ficha'] ?></title>
+	<title>Horarios ficha <?php if (isset($id_ficha)) {
+    echo $titles['Nº ficha'];
+  }  ?></title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" type="text/css" href="../../css/style.css">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -133,6 +135,12 @@ $id_ficha=$_GET['ficha'];
                   <option value="Técnico">Técnico</option>
                   <option value="Tecnólogo">Tecnólogo</option>
                   <option value="Especialización">Especialización</option> 
+                <!--  <option value="">I Trimestre</option>
+                  <option value="">II Trimestre</option>
+                  <option value="">III Trimestre</option> 
+                  <option value="">IV Trimestre</option>
+                  <option value="">V Trimestre</option>
+                  <option value="">VI Trimestre</option>-->
                 </select><br>
                   <button type="submit" class="btn btn-dark">Enviar</button>
                 </form>
@@ -165,11 +173,42 @@ $id_ficha=$_GET['ficha'];
                 <?php
                 } 
                 ?>
+
+      </div>
+
+      <div class="container">
+        <?php           
+                if (isset($_GET['trim'])) {
+                  $nil=$_GET['nivel_F'];
+                 
+                  $query="SELECT * FROM ficha,programa,tb_trimestre WHERE ficha.fc_id_programa=programa.id_program and ficha.ID_F=tb_trimestre.id_fch and programa.nivel_form='$nil'";
+                  $cont=mysqli_query($conn,$query);
+                  echo "<center><h3>".$nil."</h3></center>";
+                  ?>            
+                  <div class="container border" style="padding:4%; background-color: #a2a1a5a8;">
+                     <form id="Formulario" method="GET" class="form-horizontal">
+                      <select class="form-control" name="ficha">
+                        <option value="0">Seleccione la ficha </option>
+                       <?php
+                        while ($row=mysqli_fetch_assoc($cont)) {
+                          ?>
+                           <option value="<?php echo $row['ID_F']?>"><?php echo $row['Nº ficha']?></option>
+                          <?php
+                        }
+                       ?>
+                      </select>
+                      <br>
+                        <button type="submit" id="Enviar" class="btn btn-dark ">Enviar</button>
+                    </form>
+                  </div>
+                <?php
+                } 
+                ?>
       </div>
     <?php
 
     if (isset($_GET['ficha'])) {
-    $nom="SELECT * FROM ficha,programa WHERE ID_F='$id_ficha' and ficha.fc_id_programa=programa.id_program";
+    $nom="SELECT * FROM ficha,programa,tb_trimestre WHERE ID_F='$id_ficha' and ficha.ID_F = tb_trimestre.id_fch and ficha.fc_id_programa=programa.id_program";
     $con_fch=mysqli_query($conn,$nom);
     $rowfch=mysqli_fetch_array($con_fch);
      ?>
@@ -272,7 +311,9 @@ $id_ficha=$_GET['ficha'];
       <!--div TABLAS-->
       <div class="container">
         <center><h3><?php echo "Ficha ".$rowfch['Nº ficha']." ".$rowfch['nivel_form']; ?></h3>
-            <h4><?php echo "Programa ".$rowfch['Nom_program']?></h4></center>
+            <h4><?php echo "Programa ".$rowfch['Nom_program']?></h4>
+            <h3><?php echo "I Trimestre ".$rowfch['date_i_I']." a ".$rowfch['date_f_I']?></h3>
+          </center>
 
               <!--Table 1-->
               <table style="border: 1px solid; ">
@@ -424,25 +465,25 @@ $id_ficha=$_GET['ficha'];
                                                  <td bgcolor="EFD5BA" width="17%" height="100px" style="border: 1px solid; padding: 0;">
 
                                                 <?php
-                        $querys = "SELECT * FROM horarios,ficha,instructor,dias,horas,ambiente WHERE horarios.dia=$day AND horarios.hora=$hour AND horarios.dia=dias.id AND horarios.ficha=ficha.ID_F AND horarios.instructor = instructor.ID AND horarios.id_ambiente=ambiente.id_A AND horarios.hora = horas.id_h and horarios.ficha=$id_ficha";
+                        $querys = "SELECT * FROM horarios,ficha,instructor,dias,horas,ambiente,tb_trimestre WHERE horarios.dia=$day AND horarios.hora=$hour AND horarios.dia=dias.id AND horarios.ficha=ficha.ID_F AND horarios.instructor = instructor.ID AND horarios.id_ambiente=ambiente.id_A AND ficha.ID_F = tb_trimestre.id_fch and horarios.hora = horas.id_h and horarios.ficha=$id_ficha";
                                                 $result = mysqli_query($conn, $querys);
                                                 $row = mysqli_fetch_assoc($result); 
                                                  if (isset($row)) { ?>                                                                              
                               <center>                                      
                                                  <?php  echo $row['Nombre_ambiente'];?><br>
-                                                 <?php  echo $row['Nombre']." ".$row['Apellido'];?>
+                                                 <?php  echo $row['Nombre']." ".$row['Apellido'];?><br>
             
-                                  <div class="dropdown dropright" style=" display: inline-block;">
+                                  <!--<div class="dropdown dropright" style=" display: inline-block;">
                                     <button type="button" class="btn btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown">
                                      Opciones
                                     </button>
                                     <div class="dropdown-menu" style="background-color: #f1f1f100; border: 1px solid rgb(0 0 0 / 0%); box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 0%);" >
                                       
                                       <div class="btn-group">
-                                        <button type="button" class="btn btn-success" onclick="window.open('../../controlador/update_FH.php?ubd=<?php echo $row['id_hora']?>','_Self')">Editar</button>
-                                       <a href="../../controlador/delete_FH.php?eli=<?php echo $row['id_hora']?>"><button type="button" onclick="return eliminarh()" class="btn btn-danger">Eliminar</button></a> 
-                                      </div>                                                                                                                     
-                                    </div>
+                                        <button type="button" class="btn btn-success" onclick="window.open('../../controlador/update_FH.php?ubd=<?php echo $row['id_hora']?>','_Self')">Editar</button>-->
+                                       <a href="../../controlador/delete_FH.php?eli=<?php echo $row['id_hora']?>"><button type="button" onclick="return eliminarh()" class="btn btn-danger btn-sm">Eliminar</button></a> 
+                                   <!--   </div>                                                                                                                     
+                                    </div>-->
                                   </div>
                                </center>
                                                 <?php
