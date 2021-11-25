@@ -1015,13 +1015,14 @@ $lol=mysqli_fetch_array($re);// nombre tabla instructor
                                        <td bgcolor="EFD5BA" width="17%" height="100px" style="border: 1px solid; padding: 0;">
 
                                       <?php
-                          $query = "SELECT * FROM horarios,ficha,instructor,dias,horas WHERE horarios.dia=$day AND horarios.hora=$hour AND horarios.dia=dias.id AND horarios.ficha=ficha.ID_F AND horarios.instructor = instructor.ID AND horarios.hora = horas.id_h and horarios.instructor=$instru";
+                          $query = "SELECT * FROM horarios,ficha,instructor,dias,horas,ambiente,tb_trimestre WHERE horarios.dia=$day AND horarios.hora=$hour AND horarios.dia=dias.id AND horarios.ficha=ficha.ID_F AND horarios.instructor = instructor.ID AND horarios.hora = horas.id_h and horarios.id_ambiente=ambiente.id_A and horarios.id_trim_fch=tb_trimestre.id_T and horarios.instructor=$instru";
                                       $result = mysqli_query($conn, $query);
                                       $row = mysqli_fetch_assoc($result); 
                                        if (isset($row)) { ?>                                                                              
                     <center>
                                        <?php  echo $row['Nº ficha'];?><br>
-                                       <?php  echo $row['Nombre'];?><br>                     
+                                       <?php  echo $row['Nombre_ambiente'];?><br>  
+                                       <?php  echo $row['Trimestre'];?>                   
                    </center>   
  
                                       <?php

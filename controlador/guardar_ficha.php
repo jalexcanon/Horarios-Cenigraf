@@ -11,6 +11,9 @@ $rol=$_SESSION['rol'];
    header('location:../horarios.php');
 }
 
+$id_trim=$_SESSION['id_trim'];//variable de id trimestre
+
+
 $ficha_=$_GET['f_h'];
 $ins=$_POST['ins'];
 $days=$_POST['days'];
@@ -23,7 +26,7 @@ $resuls=mysqli_query($conn,$querys);
 $row=mysqli_fetch_array($resuls);
 $sum=$row['total'];
 
-$verificar_dia_hora_ficha=mysqli_query($conn,"SELECT * FROM `horarios` where `dia`='$days'  AND `hora`='$hours' and `ficha`='$ficha_'");
+$verificar_dia_hora_ficha=mysqli_query($conn,"SELECT * FROM `horarios` where `dia`='$days'  AND `hora`='$hours' and `ficha`='$ficha_' and `id_trim_fch`= '$id_trim'");
 $verificar_dia_hora_ambiente=mysqli_query($conn,"SELECT * FROM `horarios` where `dia`='$days' AND `hora`='$hours' and `id_ambiente`='$amb'");
 $verificar_dia_hora_instructor=mysqli_query($conn,"SELECT * FROM `horarios` where `dia`='$days' AND `hora`='$hours' and `instructor`='$ins'");
 
@@ -49,14 +52,15 @@ if ($sum<40) {
                   window.location= '../vista/admin/horarios_ficha.php?ficha=$ficha_'
               </script>";
       }else{ 
-    $query="INSERT INTO `horarios` (`id_hora`, `dia`, `ficha`, `instructor`, `hora`,`id_ambiente`,`horas_instructor`) 
-    VALUES (NULL,'$days','$ficha_','$ins','$hours','$amb','$hora_i')";
+    $query="INSERT INTO `horarios` (`id_hora`, `dia`, `ficha`, `instructor`, `hora`,`id_ambiente`,`horas_instructor`,`id_trim_fch`) 
+    VALUES (NULL,'$days','$ficha_','$ins','$hours','$amb','$hora_i','$id_trim')";
     mysqli_query($conn,$query);
   
-    echo "<script>
+      echo "<script>
                   alert('Horario registrado.');
                   window.location= '../vista/admin/horarios_ficha.php?ficha=$ficha_'
-              </script>";}
+              </script>";
+            }
    
        }
     }

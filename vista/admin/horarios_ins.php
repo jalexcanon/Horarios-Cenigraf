@@ -288,13 +288,13 @@ $id_ins=$_GET['instructor'];
                                                  <td bgcolor="EFD5BA" width="17%" height="100px" style="border: 1px solid; padding: 0;">
 
                                                 <?php
-                        $querys = "SELECT * FROM horarios,ficha,instructor,dias,horas,ambiente WHERE horarios.dia=$day AND horarios.hora=$hour AND horarios.dia=dias.id AND horarios.ficha=ficha.ID_F AND horarios.instructor = instructor.ID AND horarios.id_ambiente=ambiente.id_A AND horarios.hora = horas.id_h and horarios.instructor=$id_ins";
+                        $querys = "SELECT * FROM horarios,ficha,instructor,dias,horas,ambiente,tb_trimestre WHERE horarios.dia=$day AND horarios.hora=$hour AND horarios.dia=dias.id AND horarios.ficha=ficha.ID_F AND horarios.instructor = instructor.ID AND horarios.id_ambiente=ambiente.id_A AND horarios.hora = horas.id_h and horarios.id_trim_fch=tb_trimestre.id_T and horarios.instructor=$id_ins";
                                                 $result = mysqli_query($conn, $querys);
                                                 $row = mysqli_fetch_assoc($result); 
                                                  if (isset($row)) { ?>                                                                              
                                                 <center>                                      
                                                  <?php  echo $row['Nombre_ambiente'];?><br>
-                                                 <?php  echo $row['Nº ficha'];?><br><?php  echo $row['Nombre'];?>   
+                                                 <?php  echo $row['Nº ficha'];?><br><?php  echo $row['Trimestre'];?>   
                                                 </center>
                                                 <?php
                                                 }elseif (!isset($row)) {

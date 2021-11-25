@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 24-11-2021 a las 21:20:39
+-- Tiempo de generación: 25-11-2021 a las 21:19:26
 -- Versión del servidor: 10.4.16-MariaDB
 -- Versión de PHP: 7.4.12
 
@@ -108,21 +108,23 @@ CREATE TABLE `horarios` (
   `instructor` int(11) DEFAULT NULL,
   `hora` int(11) DEFAULT NULL,
   `id_ambiente` int(11) DEFAULT NULL,
-  `horas_instructor` int(11) NOT NULL
+  `horas_instructor` int(11) NOT NULL,
+  `id_trim_fch` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `horarios`
 --
 
-INSERT INTO `horarios` (`id_hora`, `dia`, `ficha`, `instructor`, `hora`, `id_ambiente`, `horas_instructor`) VALUES
-(242, 4, 24, 3, 2, 3, 2),
-(244, 5, 25, 3, 1, 3, 2),
-(246, 2, 25, 2, 1, 6, 2),
-(247, 1, 25, 2, 1, 4, 2),
-(250, 2, 24, 2, 2, 3, 2),
-(251, 3, 25, 2, 2, 4, 2),
-(254, 1, 24, 1, 1, 3, 2);
+INSERT INTO `horarios` (`id_hora`, `dia`, `ficha`, `instructor`, `hora`, `id_ambiente`, `horas_instructor`, `id_trim_fch`) VALUES
+(263, 1, 24, 1, 1, 3, 2, 21),
+(264, 1, 24, 2, 2, 3, 2, 20),
+(265, 2, 24, 1, 1, 3, 2, 21),
+(266, 2, 25, 12, 5, 4, 2, 25),
+(267, 5, 25, 1, 2, 3, 2, 25),
+(268, 4, 24, 13, 7, 3, 2, 19),
+(269, 6, 24, 3, 8, 4, 2, 19),
+(270, 1, 24, 13, 1, 5, 2, 19);
 
 -- --------------------------------------------------------
 
@@ -250,18 +252,9 @@ INSERT INTO `sede` (`id`, `nombre_sede`, `direccion_sede`, `telefono_sede`) VALU
 
 CREATE TABLE `tb_trimestre` (
   `id_T` int(11) NOT NULL,
-  `date_i_I` date DEFAULT NULL,
-  `date_f_I` date DEFAULT NULL,
-  `date_i_II` date DEFAULT NULL,
-  `date_f_II` date DEFAULT NULL,
-  `date_i_III` date DEFAULT NULL,
-  `date_f_III` date DEFAULT NULL,
-  `date_i_IV` date DEFAULT NULL,
-  `date_f_IV` date DEFAULT NULL,
-  `date_i_V` date DEFAULT NULL,
-  `date_f_V` date DEFAULT NULL,
-  `date_i_VI` date DEFAULT NULL,
-  `date_f_VI` date DEFAULT NULL,
+  `Trim_date_Inc` date DEFAULT NULL,
+  `Trim_date_fin` date DEFAULT NULL,
+  `Trimestre` varchar(20) DEFAULT NULL,
   `id_fch` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -269,9 +262,19 @@ CREATE TABLE `tb_trimestre` (
 -- Volcado de datos para la tabla `tb_trimestre`
 --
 
-INSERT INTO `tb_trimestre` (`id_T`, `date_i_I`, `date_f_I`, `date_i_II`, `date_f_II`, `date_i_III`, `date_f_III`, `date_i_IV`, `date_f_IV`, `date_i_V`, `date_f_V`, `date_i_VI`, `date_f_VI`, `id_fch`) VALUES
-(10, '2021-11-11', '2021-11-02', '2021-11-06', '2021-11-12', '2021-11-13', '2021-11-19', '2021-12-05', '2021-11-12', '2021-12-10', '2021-11-20', '2021-11-26', '2021-12-04', 24),
-(11, '2021-11-23', '2021-11-28', '2021-12-11', '2021-12-04', '2021-12-06', '2021-12-11', '2021-12-03', '2021-12-02', '2021-12-03', '2021-12-10', '2021-11-23', '2025-04-06', 25);
+INSERT INTO `tb_trimestre` (`id_T`, `Trim_date_Inc`, `Trim_date_fin`, `Trimestre`, `id_fch`) VALUES
+(19, '2021-11-25', '2021-11-26', 'I Trimestre', 24),
+(20, '2021-11-27', '2021-11-28', 'II Trimestre', 24),
+(21, '2021-11-29', '2021-11-30', 'III Trimestre', 24),
+(22, '2021-12-01', '2021-12-02', 'IV Trimestre', 24),
+(23, '2021-12-03', '2021-12-04', 'V Trimestre', 24),
+(24, '2021-12-05', '2021-12-06', 'VI Trimestre', 24),
+(25, '2021-11-25', '2021-11-26', 'I Trimestre', 25),
+(26, '2021-11-27', '2021-11-28', 'II Trimestre', 25),
+(27, '2021-11-29', '2021-11-30', 'III Trimestre', 25),
+(28, '2021-12-01', '2021-12-02', 'IV Trimestre', 25),
+(29, '2021-12-03', '2021-12-04', 'V Trimestre', 25),
+(30, '2021-12-05', '2021-12-06', 'VI Trimestre', 25);
 
 --
 -- Índices para tablas volcadas
@@ -307,7 +310,8 @@ ALTER TABLE `horarios`
   ADD KEY `ficha` (`ficha`),
   ADD KEY `instructor` (`instructor`),
   ADD KEY `hora` (`hora`),
-  ADD KEY `R` (`id_ambiente`);
+  ADD KEY `R` (`id_ambiente`),
+  ADD KEY `Prueba_relacion` (`id_trim_fch`);
 
 --
 -- Indices de la tabla `horas`
@@ -375,7 +379,7 @@ ALTER TABLE `ficha`
 -- AUTO_INCREMENT de la tabla `horarios`
 --
 ALTER TABLE `horarios`
-  MODIFY `id_hora` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=255;
+  MODIFY `id_hora` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=271;
 
 --
 -- AUTO_INCREMENT de la tabla `horas`
@@ -411,7 +415,7 @@ ALTER TABLE `sede`
 -- AUTO_INCREMENT de la tabla `tb_trimestre`
 --
 ALTER TABLE `tb_trimestre`
-  MODIFY `id_T` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id_T` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- Restricciones para tablas volcadas
@@ -433,6 +437,7 @@ ALTER TABLE `ficha`
 -- Filtros para la tabla `horarios`
 --
 ALTER TABLE `horarios`
+  ADD CONSTRAINT `Prueba_relacion` FOREIGN KEY (`id_trim_fch`) REFERENCES `tb_trimestre` (`id_T`) ON DELETE SET NULL ON UPDATE CASCADE,
   ADD CONSTRAINT `R` FOREIGN KEY (`id_ambiente`) REFERENCES `ambiente` (`id_A`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `relacion_H1` FOREIGN KEY (`dia`) REFERENCES `dias` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `relacion_H2` FOREIGN KEY (`ficha`) REFERENCES `ficha` (`ID_F`) ON DELETE CASCADE ON UPDATE CASCADE,

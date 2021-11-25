@@ -75,7 +75,7 @@ $id_ficha=$_GET['ficha'];
               <div class="collapse navbar-collapse" id="collapsibleNavbar">
                 <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
         		      <li class="nav-item">
-                    <a class="nav-link" data-toggle="collapse" data-target="#col" style="cursor: pointer;">Seleccionar Nivel programa </a>
+                    <a class="nav-link" data-toggle="collapse" data-target="#col" style="cursor: pointer;">Nivel programa | Trimestres </a>
                   </li> 
         		      <li class="nav-item">
         		        <a class="nav-link" onclick="window.open('../../controlador/exit.php','_Self')" style="cursor: pointer;">Cerrar sesion</a>
@@ -130,18 +130,24 @@ $id_ficha=$_GET['ficha'];
               <div class="container border" style="padding:4%; background-color: #a2a1a5a8;" >
 
                 <form method="GET" class="form-horizontal">
-                  <select class="form-control" name="nivel_F">
-                  <option value="0">Selecione nivel programa </option>
-                  <option value="Técnico">Técnico</option>
-                  <option value="Tecnólogo">Tecnólogo</option>
-                  <option value="Especialización">Especialización</option> 
-                <!--  <option value="">I Trimestre</option>
-                  <option value="">II Trimestre</option>
-                  <option value="">III Trimestre</option> 
-                  <option value="">IV Trimestre</option>
-                  <option value="">V Trimestre</option>
-                  <option value="">VI Trimestre</option>-->
-                </select><br>
+                  <div class="form-group">
+                    <select class="form-control" name="nivel_F">
+                      <option value="0">Selecione nivel programa </option>
+                      <option value="Técnico">Técnico</option>
+                      <option value="Tecnólogo">Tecnólogo</option>
+                      <option value="Especialización">Especialización</option>                
+                    </select><br>
+                <select class="form-control" name="Trimestre">
+                        <option value="0">Seleccione el trimestre </option>
+                        <option value="I Trimestre">I Trimestre</option>
+                        <option value="II Trimestre">II Trimestre</option>
+                        <option value="III Trimestre">III Trimestre</option> 
+                        <option value="IV Trimestre">IV Trimestre</option>
+                        <option value="V Trimestre">V Trimestre</option>
+                        <option value="VI Trimestre">VI Trimestre</option>                    
+                </select>
+                  </div>
+               
                   <button type="submit" class="btn btn-dark">Enviar</button>
                 </form>
               </div>
@@ -149,13 +155,16 @@ $id_ficha=$_GET['ficha'];
                 <?php           
                 if (isset($_GET['nivel_F'])) {
                   $nil=$_GET['nivel_F'];
-                 
-                  $query="SELECT * FROM ficha,programa WHERE ficha.fc_id_programa=programa.id_program and programa.nivel_form='$nil'";
+                  $trim_=$_GET['Trimestre'];
+                  
+                  $_SESSION['trim']=$trim_;//varibale de triemstre para consulta y registro del horario
+
+                  $query="SELECT * FROM ficha,programa,tb_trimestre WHERE programa.nivel_form='$nil' and ficha.fc_id_programa=programa.id_program AND tb_trimestre.id_fch=ficha.ID_F AND tb_trimestre.Trimestre='$trim_'";
                   $cont=mysqli_query($conn,$query);
-                  echo "<center><h3>".$nil."</h3></center>";
+                  echo "<center><h3>".$nil." ".$trim_." </h3></center>";
                   ?>            
                   <div class="container border" style="padding:4%; background-color: #a2a1a5a8;">
-                     <form id="Formulario" method="GET" class="form-horizontal">
+                     <form id="Formulario" method="GET"  class="form-horizontal">
                       <select class="form-control" name="ficha">
                         <option value="0">Seleccione la ficha </option>
                        <?php
@@ -175,42 +184,19 @@ $id_ficha=$_GET['ficha'];
                 ?>
 
       </div>
-
-      <div class="container">
-        <?php           
-                if (isset($_GET['trim'])) {
-                  $nil=$_GET['nivel_F'];
-                 
-                  $query="SELECT * FROM ficha,programa,tb_trimestre WHERE ficha.fc_id_programa=programa.id_program and ficha.ID_F=tb_trimestre.id_fch and programa.nivel_form='$nil'";
-                  $cont=mysqli_query($conn,$query);
-                  echo "<center><h3>".$nil."</h3></center>";
-                  ?>            
-                  <div class="container border" style="padding:4%; background-color: #a2a1a5a8;">
-                     <form id="Formulario" method="GET" class="form-horizontal">
-                      <select class="form-control" name="ficha">
-                        <option value="0">Seleccione la ficha </option>
-                       <?php
-                        while ($row=mysqli_fetch_assoc($cont)) {
-                          ?>
-                           <option value="<?php echo $row['ID_F']?>"><?php echo $row['Nº ficha']?></option>
-                          <?php
-                        }
-                       ?>
-                      </select>
-                      <br>
-                        <button type="submit" id="Enviar" class="btn btn-dark ">Enviar</button>
-                    </form>
-                  </div>
-                <?php
-                } 
-                ?>
-      </div>
+   
     <?php
 
     if (isset($_GET['ficha'])) {
-    $nom="SELECT * FROM ficha,programa,tb_trimestre WHERE ID_F='$id_ficha' and ficha.ID_F = tb_trimestre.id_fch and ficha.fc_id_programa=programa.id_program";
-    $con_fch=mysqli_query($conn,$nom);
-    $rowfch=mysqli_fetch_array($con_fch);
+    
+    $trim_f=$_SESSION['trim'];//variable del trimestre para consulta 
+      
+
+    $con_fch=mysqli_query($conn,"SELECT * FROM ficha,programa,tb_trimestre WHERE ID_F='$id_ficha' and ficha.fc_id_programa=programa.id_program AND tb_trimestre.id_fch=ficha.ID_F AND tb_trimestre.Trimestre='$trim_f'");
+    $rowfch=mysqli_fetch_array($con_fch);//Consulta y ver informacion ficha parte superior del horario 
+    
+    $_SESSION['id_trim']= $rowfch['id_T'];
+    $trimestre_id=$rowfch['id_T'];
      ?>
    
       <!--modal-->
@@ -312,12 +298,20 @@ $id_ficha=$_GET['ficha'];
       <div class="container">
         <center><h3><?php echo "Ficha ".$rowfch['Nº ficha']." ".$rowfch['nivel_form']; ?></h3>
             <h4><?php echo "Programa ".$rowfch['Nom_program']?></h4>
-            <h3><?php echo "I Trimestre ".$rowfch['date_i_I']." a ".$rowfch['date_f_I']?></h3>
+            
           </center>
 
               <!--Table 1-->
-              <table style="border: 1px solid; ">
-                <tr>
+              <table style="border: 1px solid;">
+                <tr class="table-bordered table" style="">
+                  <td colspan="2" bgcolor="5B6269" style="border: 1px solid; color: white; border-color: black;">
+                    <?php echo "Grupo: ".$rowfch['Nº ficha']." ".$rowfch['Trimestre'];?> </td>
+                  <td colspan="3" bgcolor="5B6269" style="border: 1px solid; color: white; border-color: black;">
+                  Taller</td>
+                  <td colspan="2" bgcolor="5B6269" style="border: 1px solid; color: white; border-color: black;">
+                    <?php echo "Fecha: ".$rowfch['Trim_date_Inc']." a ".$rowfch['Trim_date_fin'] ?></td>
+                </tr>
+                <tr style="border:solid 1px;">
                   <th bgcolor="E69138" WIDTH="100" HEIGHT="50" ><center>Horas</center></th>
                   <th bgcolor="E69138" WIDTH="100" HEIGHT="50"><center>Lunes</center></th>
                   <th bgcolor="E69138" WIDTH="100" HEIGHT="50"><center>Martes</center></th>
@@ -465,7 +459,7 @@ $id_ficha=$_GET['ficha'];
                                                  <td bgcolor="EFD5BA" width="17%" height="100px" style="border: 1px solid; padding: 0;">
 
                                                 <?php
-                        $querys = "SELECT * FROM horarios,ficha,instructor,dias,horas,ambiente,tb_trimestre WHERE horarios.dia=$day AND horarios.hora=$hour AND horarios.dia=dias.id AND horarios.ficha=ficha.ID_F AND horarios.instructor = instructor.ID AND horarios.id_ambiente=ambiente.id_A AND ficha.ID_F = tb_trimestre.id_fch and horarios.hora = horas.id_h and horarios.ficha=$id_ficha";
+                        $querys = "SELECT * FROM horarios,ficha,instructor,dias,horas,ambiente,tb_trimestre WHERE horarios.dia=$day AND horarios.hora=$hour AND horarios.dia=dias.id AND horarios.ficha=ficha.ID_F AND horarios.instructor = instructor.ID AND horarios.id_ambiente=ambiente.id_A AND ficha.ID_F = tb_trimestre.id_fch and horarios.id_trim_fch='$trimestre_id' and horarios.hora = horas.id_h and horarios.ficha=$id_ficha";
                                                 $result = mysqli_query($conn, $querys);
                                                 $row = mysqli_fetch_assoc($result); 
                                                  if (isset($row)) { ?>                                                                              
