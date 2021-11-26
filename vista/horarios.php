@@ -332,7 +332,7 @@ $ins=mysqli_query($conn,$querys);// consulta select crear horario instructor
                 <td><?php echo $fcon["fc_jornada"];?></td>              
                 <td>
                   <div class="btn-group">
-                    <button class="btn btn-dark btn-sm" onclick="window.open('admin/horarios_ficha.php?ficha=<?php echo $fcon['ID_F']?>','_Self')">Horario</button>
+                    <button class="btn btn-dark btn-sm" onclick="window.open('horarios_ficha.php?ficha=<?php echo $fcon['ID_F']?>','_Self')">Horario</button>
                     <a href="ubdateF.php?ubf=<?php echo $fcon["ID_F"]?>"><button type="submit" class="btn btn-success btn-sm">Editar</button></a>
                     <a href="../controlador/deleteF.php?eliF=<?php echo $fcon['ID_F']?>"><button type="submit" class="btn btn-danger btn-sm" onclick="return elif()" >Eliminar</button></a>
                   </div>
@@ -667,7 +667,7 @@ $ins=mysqli_query($conn,$querys);// consulta select crear horario instructor
         <div class="container border" style="padding:4%; background-color: #a2a1a5a8; ">      
           <center>
           <?php 
-          $dateFT="SELECT * FROM ficha,programa where ficha.fc_id_programa=programa.id_program";
+          $dateFT="SELECT * FROM ficha,programa where ficha.fc_id_programa=programa.id_program  ";
           $conFT=mysqli_query($conn,$dateFT); 
           ?> 
             <form action="../controlador/regTF.php" method="POST" style="padding-left:9%; padding-right:8%;" >
