@@ -461,6 +461,7 @@ $ins=mysqli_query($conn,$querys);// consulta select crear horario instructor
                 <td><?php echo $Acon["No_equipos"];?></td>           
                 <td>
                   <div class="btn-group">
+                    <button class="btn btn-dark btn-sm" onclick="window.open('admin/horarios_ambiente.php?amb=<?php echo $Acon['id_A']?>','_Self')">Horario</button>
                     <a href="ubdateA.php?ubA=<?php echo $Acon["id_A"]?>"><button type="submit" class="btn btn-success btn-sm">Editar</button></a>
                     <a href="../controlador/deleteA.php?eliA=<?php echo $Acon['id_A']?>"><button type="submit" class="btn btn-danger btn-sm" onclick="return eliminar_ambiente()" >Eliminar</button></a>
                   </div>
@@ -477,9 +478,9 @@ $ins=mysqli_query($conn,$querys);// consulta select crear horario instructor
     </div>
   </div>
 </div>
- <!--/Collapse_Sede_tabla-->
+<!--/Collapse_Sede_tabla-->
 
-  <!--Collapse_Programa_tabla-->
+<!--Collapse_Programa_tabla-->
  <div> 
   <div id="progtl" class="collapse">
    <div class="row">
@@ -539,9 +540,9 @@ $ins=mysqli_query($conn,$querys);// consulta select crear horario instructor
     </div>
   </div>
 </div>
- <!--/Collapse_Programa_tabla-->
+<!--/Collapse_Programa_tabla-->
 
- <!--Collapse1Instructor-->
+<!--Collapse1Instructor-->
 <div> 
   <div id="Regusu" class="collapse">
    <div class="row" style="display: contents;">
@@ -590,7 +591,7 @@ $ins=mysqli_query($conn,$querys);// consulta select crear horario instructor
   </div>
 </div>
 <!--/Collapse1Instructor-->
-    <!--Collapse2Ficha-->
+<!--Collapse2Ficha-->
 <div> 
   <div id="fich" class="collapse">
    <div class="row" style="display: contents;">
@@ -667,6 +668,13 @@ $ins=mysqli_query($conn,$querys);// consulta select crear horario instructor
         <div class="container border" style="padding:4%; background-color: #a2a1a5a8; ">      
           <center>
           <?php 
+        
+        $ih=mysqli_query($conn,"SELECT * FROM ficha,programa,tb_trimestre where ficha.fc_id_programa=programa.id_program AND tb_trimestre.id_fch=ficha.ID_F AND tb_trimestre=");
+        while ($rj=mysqli_fetch_array($ih)) {
+          echo $rj['Nº ficha'];
+        }
+
+
           $dateFT="SELECT * FROM ficha,programa where ficha.fc_id_programa=programa.id_program  ";
           $conFT=mysqli_query($conn,$dateFT); 
           ?> 

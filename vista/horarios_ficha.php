@@ -8,17 +8,27 @@
  if (!isset($correo)) {
     header("location:../index.php");
  }
- $id_fch_cons=$_SESSION['fch_cons'];
+
  if (isset($_GET['Trimestres'])) {
 $tm_fch=$_GET['Trimestres'];
 
  }
+
+if (isset($_GET['ficha'])) {
+  $fch=$_GET['ficha'];
+  $_SESSION['fch_cons']=$fch;
+} 
+$id_fch_cons=$_SESSION['fch_cons'];
+
+ $fh=mysqli_query($conn,"SELECT * FROM ficha WHERE ID_F = '$id_fch_cons'");
+ $rwfh=mysqli_fetch_array($fh);
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
 	<meta charset="utf-8">
-	<title>beta</title>
+	<title>Horario Ficha <?php echo $rwfh['Nº ficha']; ?></title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="../css/style.css">
     <link rel="stylesheet" href="../plugins/fontawesome-free/css/all.min.css">
@@ -115,13 +125,6 @@ $tm_fch=$_GET['Trimestres'];
       </div>
     </div>
 <?php 
-if (isset($_GET['ficha'])) {
-  $fch=$_GET['ficha'];
-  $_SESSION['fch_cons']=$fch;
-}
-
-
-
 
 if (isset($_GET['Trimestres'])) {
 
@@ -139,6 +142,7 @@ $rows=mysqli_fetch_assoc($fchc);
     
  
 ?>
+
 <!--/tabla_ficha-->
 <div class="container">            
        <center> <h3> <?php echo "Ficha ".$rows['Nº ficha']." Programa ".$rows['Nom_program'];?></h3>
@@ -257,7 +261,7 @@ $rows=mysqli_fetch_assoc($fchc);
        <!--div1 -->          
        <div class="container">
           <div style="position: relative;
-                              bottom: 1401px;
+                              bottom: 1402px;
                               margin: 0 0 0 154px;
                               margin-right: 0px;
                               max-WIDTH: 966px; 
