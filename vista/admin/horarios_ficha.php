@@ -115,10 +115,16 @@ $id_ficha=$_GET['ficha'];
                 <div class="info">
                   <a href="" data-toggle="modal" data-target="#myModal" >Crear Horario</a>
                 </div>
+              </div>
+              <div class="user-panel mt-4 pb-4 mb-4 d-flex">               
+                <div class="info">
+                  <a href="" onclick="window.print()" >Imprimir</a>
+                </div>
+              </div>   
                 <?php
                 }
                 ?>    
-              </div>            
+                        
         </div>            
       </aside>
   <!--div1content-wrapper-->         

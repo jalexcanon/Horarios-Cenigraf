@@ -238,6 +238,9 @@ $ins=mysqli_query($conn,$querys);// consulta select crear horario instructor
                </script>  
 
         <?php
+
+
+
          $tablai="SELECT * FROM `instructor`,`roles` WHERE instructor.rol = roles.id_rol";
          $cont=mysqli_query($conn,$tablai);
          
@@ -250,19 +253,28 @@ $ins=mysqli_query($conn,$querys);// consulta select crear horario instructor
                 <th>Apellido</th>
                 <th>Email</th>
                 <th>Rol</th>
+                <th>Horas <br>
+                Faltantes</th>
                 <th>Opciones</th>
               </tr>
             </thead>
             <tbody>
             <?php
               while ($icon=mysqli_fetch_assoc($cont)) {
+                     
+  $hora_ins=$icon['ID'];
+  $resultsuma=mysqli_query($conn,"SELECT SUM(horas_instructor) as total FROM horarios WHERE horarios.instructor=$hora_ins");
+  $rowssum=mysqli_fetch_array($resultsuma);
+  $sumah=$rowssum['total'];
+  $resp=40-$sumah;
             ?>
               <tr>
             
                 <td><?php echo $icon["Nombre"];?></td>
                 <td><?php echo $icon["Apellido"];?></td>
                 <td><?php echo $icon["email"];?></td>
-                <td><?php echo $icon["rol"];?></td>              
+                <td><?php echo $icon["rol"];?></td> 
+                <td><?php echo $resp ?></td>             
                 <td>
                   <div class="btn-group">
                     <a href="admin/horarios_ins.php?instructor=<?php echo $icon["ID"];?>"><button type="submit" class="btn btn-dark btn-sm">Horario</button></a>
@@ -634,7 +646,7 @@ $ins=mysqli_query($conn,$querys);// consulta select crear horario instructor
                  <?php
     while ($cod_p=mysqli_fetch_assoc($cons)) {
               ?>
-                  <option value="<?php echo$cod_p['id_program']?>"><?php echo$cod_p['Nom_program']?></option>
+                  <option value="<?php echo$cod_p['id_program']?>"><?php echo$cod_p['Nom_program']." ".$cod_p['nivel_form'];?> </option>
               <?php
             }        
                  ?>                             
@@ -668,14 +680,8 @@ $ins=mysqli_query($conn,$querys);// consulta select crear horario instructor
         <div class="container border" style="padding:4%; background-color: #a2a1a5a8; ">      
           <center>
           <?php 
-        
-        $ih=mysqli_query($conn,"SELECT * FROM ficha,programa,tb_trimestre where ficha.fc_id_programa=programa.id_program AND tb_trimestre.id_fch=ficha.ID_F AND tb_trimestre=");
-        while ($rj=mysqli_fetch_array($ih)) {
-          echo $rj['Nº ficha'];
-        }
-
-
-          $dateFT="SELECT * FROM ficha,programa where ficha.fc_id_programa=programa.id_program  ";
+      
+          $dateFT="SELECT * FROM ficha,programa where ficha.fc_id_programa=programa.id_program AND ficha.estatus_trim=0";
           $conFT=mysqli_query($conn,$dateFT); 
           ?> 
             <form action="../controlador/regTF.php" method="POST" style="padding-left:9%; padding-right:8%;" >

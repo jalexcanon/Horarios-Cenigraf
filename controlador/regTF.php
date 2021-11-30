@@ -34,8 +34,8 @@ $trim_VI="VI Trimestre";
      (NULL,'$date_i_IV', '$date_f_IV','$trim_IV','$ficha_fechas'),
      (NULL,'$date_i_V', '$date_f_V','$trim_V','$ficha_fechas'),
      (NULL,'$date_i_VI','$date_f_VI','$trim_VI','$ficha_fechas')";
-
-///   UPDATE `ficha` SET `id_fecha` = '12' WHERE `ficha`.`ID_F` = 29;
+ $querys=mysqli_query($conn,"UPDATE ficha set `estatus_trim`=1 where ID_F='$ficha_fechas'");
+ 
   
    
     header("location:../vista/horarios.php?vtf=1"); 

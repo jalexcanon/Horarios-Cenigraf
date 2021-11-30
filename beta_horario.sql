@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 25-11-2021 a las 21:19:26
+-- Tiempo de generación: 30-11-2021 a las 21:21:46
 -- Versión del servidor: 10.4.16-MariaDB
 -- Versión de PHP: 7.4.12
 
@@ -82,18 +82,20 @@ CREATE TABLE `ficha` (
   `fc_tipo_formacion` varchar(45) NOT NULL,
   `fic_date_I` date NOT NULL,
   `fic_date_F` date NOT NULL,
-  `fc_id_programa` int(11) NOT NULL
+  `fc_id_programa` int(11) NOT NULL,
+  `estatus_trim` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `ficha`
 --
 
-INSERT INTO `ficha` (`ID_F`, `Nº ficha`, `fc_cant_aprend`, `fc_jornada`, `fc_tipo_formacion`, `fic_date_I`, `fic_date_F`, `fc_id_programa`) VALUES
-(19, '1234567', 50, 'Diurna', 'Presencial', '2021-11-03', '2021-11-12', 88524459),
-(20, '1234569', 10, 'Nocturna', 'Virtual', '2021-11-04', '2021-11-12', 88524463),
-(24, '2061628', 30, 'Diurna', 'Presencial', '2021-11-05', '2021-11-26', 88524459),
-(25, '2231454', 20, 'Diurna', 'Presencial', '2021-11-11', '2022-11-11', 88524464);
+INSERT INTO `ficha` (`ID_F`, `Nº ficha`, `fc_cant_aprend`, `fc_jornada`, `fc_tipo_formacion`, `fic_date_I`, `fic_date_F`, `fc_id_programa`, `estatus_trim`) VALUES
+(19, '1234567', 50, 'Diurna', 'Presencial', '2021-11-03', '2021-11-12', 88524459, 1),
+(20, '1234569', 10, 'Nocturna', 'Virtual', '2021-11-04', '2021-11-12', 88524463, 0),
+(24, '2061628', 30, 'Diurna', 'Presencial', '2021-11-05', '2021-11-26', 88524459, 1),
+(25, '2231454', 20, 'Diurna', 'Presencial', '2021-11-11', '2022-11-11', 88524464, 1),
+(30, '2061589', 20, 'Diurna', 'Presencial', '2021-11-30', '2021-11-30', 88524465, 0);
 
 -- --------------------------------------------------------
 
@@ -117,14 +119,12 @@ CREATE TABLE `horarios` (
 --
 
 INSERT INTO `horarios` (`id_hora`, `dia`, `ficha`, `instructor`, `hora`, `id_ambiente`, `horas_instructor`, `id_trim_fch`) VALUES
-(263, 1, 24, 1, 1, 3, 2, 21),
 (264, 1, 24, 2, 2, 3, 2, 20),
-(265, 2, 24, 1, 1, 3, 2, 21),
 (266, 2, 25, 12, 5, 4, 2, 25),
-(267, 5, 25, 1, 2, 3, 2, 25),
-(268, 4, 24, 13, 7, 3, 2, 19),
 (269, 6, 24, 3, 8, 4, 2, 19),
-(270, 1, 24, 13, 1, 5, 2, 19);
+(271, 2, 24, 4, 3, 3, 2, 19),
+(272, 1, 19, 1, 1, 3, 2, 31),
+(273, 2, 25, 1, 1, 3, 2, 25);
 
 -- --------------------------------------------------------
 
@@ -172,12 +172,12 @@ CREATE TABLE `instructor` (
 --
 
 INSERT INTO `instructor` (`ID`, `Nombre`, `Apellido`, `Cedula`, `email`, `contrasena`, `rol`) VALUES
-(1, 'Jose', 'Ovalle', 123456789, 'jose@gmail.com', 'd6581d542c7eaf801284f084478b5fcc', 1),
+(1, 'Jose', 'Ovalle', 2147483647, 'jose@gmail.com', 'd6581d542c7eaf801284f084478b5fcc', 1),
 (2, 'Giovany', 'Ortiz', 123456788, 'gio@gmail.com', 'd6581d542c7eaf801284f084478b5fcc', 1),
 (3, 'Andres', 'martinez', 123456799, 'and@gmail.com', 'd6581d542c7eaf801284f084478b5fcc', 2),
 (4, 'Camilo', 'Ortiz', 3333333, 'camilo@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055', 2),
 (12, 'Saitama  ', 'Ortiz', 234556942, 'sai@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055', 2),
-(13, 'Nicolás ', 'Paez', 1000774689, 'tiusabanicolas@gmail.com', '2c9b1d39508edf85487f012c53cd69a3', 2);
+(13, 'Nicolás ', 'Tiusaba ', 1000774689, 'tiusabanicolas@gmail.com', '2c9b1d39508edf85487f012c53cd69a3', 2);
 
 -- --------------------------------------------------------
 
@@ -274,7 +274,13 @@ INSERT INTO `tb_trimestre` (`id_T`, `Trim_date_Inc`, `Trim_date_fin`, `Trimestre
 (27, '2021-11-29', '2021-11-30', 'III Trimestre', 25),
 (28, '2021-12-01', '2021-12-02', 'IV Trimestre', 25),
 (29, '2021-12-03', '2021-12-04', 'V Trimestre', 25),
-(30, '2021-12-05', '2021-12-06', 'VI Trimestre', 25);
+(30, '2021-12-05', '2021-12-06', 'VI Trimestre', 25),
+(31, '2021-11-30', '2021-12-01', 'I Trimestre', 19),
+(32, '2021-12-01', '2021-12-02', 'II Trimestre', 19),
+(33, '2021-12-03', '2021-12-04', 'III Trimestre', 19),
+(34, '2021-12-05', '2021-12-06', 'IV Trimestre', 19),
+(35, '2021-12-07', '2021-12-08', 'V Trimestre', 19),
+(36, '2021-12-09', '2021-12-10', 'VI Trimestre', 19);
 
 --
 -- Índices para tablas volcadas
@@ -373,13 +379,13 @@ ALTER TABLE `dias`
 -- AUTO_INCREMENT de la tabla `ficha`
 --
 ALTER TABLE `ficha`
-  MODIFY `ID_F` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `ID_F` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT de la tabla `horarios`
 --
 ALTER TABLE `horarios`
-  MODIFY `id_hora` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=271;
+  MODIFY `id_hora` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=274;
 
 --
 -- AUTO_INCREMENT de la tabla `horas`
@@ -391,7 +397,7 @@ ALTER TABLE `horas`
 -- AUTO_INCREMENT de la tabla `instructor`
 --
 ALTER TABLE `instructor`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT de la tabla `programa`
@@ -415,7 +421,7 @@ ALTER TABLE `sede`
 -- AUTO_INCREMENT de la tabla `tb_trimestre`
 --
 ALTER TABLE `tb_trimestre`
-  MODIFY `id_T` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id_T` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- Restricciones para tablas volcadas
