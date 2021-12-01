@@ -118,7 +118,7 @@ $id_ficha=$_GET['ficha'];
               </div>
               <div class="user-panel mt-4 pb-4 mb-4 d-flex">               
                 <div class="info">
-                  <a href="" onclick="window.print()" >Imprimir</a>
+                  <a href="../horarios_imprimir.php"  target="_blank" >Imprimir</a>
                 </div>
               </div>   
                 <?php
@@ -327,7 +327,7 @@ $id_ficha=$_GET['ficha'];
                   <th bgcolor="E69138" WIDTH="100" HEIGHT="50"><center>Sabado</center></th>
                 </tr>
 
-                <tr></tr>
+                <tr>
                   <th bgcolor="E69138" WIDTH="200" HEIGHT="100" style="border: 1px solid;"> <center>6:00 - 7:40</center></th>
                   <td WIDTH="200" HEIGHT="100">&nbsp</td>
                   <td WIDTH="200" HEIGHT="100">&nbsp</td>
