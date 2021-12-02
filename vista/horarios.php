@@ -862,7 +862,7 @@ $ins=mysqli_query($conn,$querys);// consulta select crear horario instructor
 </div>
 <!--/Collapse6Programa-->
 
-<!--/tabla_ins_rol-->
+<!--tabla_ins_rol-->
 <div class="container">
   <?php
  if ($rol==2) {
@@ -936,7 +936,7 @@ $ins=mysqli_query($conn,$querys);// consulta select crear horario instructor
                 </tr>
                    <tr>
                     <th bgcolor="E69138" WIDTH="200" HEIGHT="100" style="border: 1px solid;"> <center> 13:40 - 14:20 </center></th>
-                    <th colspan="12" WIDTH="50" HEIGHT="50" bgcolor="E69138" style = "position: relative; z-index: 1;border: 1px solid;"><center> DESCANSO </center></th>
+                    <th colspan="12" WIDTH="50" HEIGHT="50" bgcolor="E69138" style = "position: relative; z-index: 1;border: 1px solid;"><center> Almuerzo </center></th>
                    </tr>
                 <tr>
                   <th bgcolor="E69138" WIDTH="200" HEIGHT="100" style="border: 1px solid;"> <center>14:20-16:00</center></th>
