@@ -1139,13 +1139,6 @@ $lol=mysqli_fetch_array($re);// nombre tabla instructor
         <strong>Programa registrado</strong>
       </div>
       <?php
-       }elseif ($_GET['vp']==2) {
-         ?>
-         <div class="alert alert-warning alert-dismissible fade show">
-          <button type="button" class="close" data-dismiss="alert">&times;</button>
-          <strong>El programa(Codigo) ya esta registrado.</strong> 
-        </div>
-         <?php
        }
      }
      ?>

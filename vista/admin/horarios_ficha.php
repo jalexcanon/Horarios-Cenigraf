@@ -118,7 +118,7 @@ $id_ficha=$_GET['ficha'];
               </div>
               <div class="user-panel mt-4 pb-4 mb-4 d-flex">               
                 <div class="info">
-                  <a href="../horarios_imprimir.php?fich=<?php echo $id_ficha; ?>"  target="_blank" >Imprimir</a>
+                  <a href="../horarios_imprimir.php?fich=<?php echo $id_ficha; ?>"  target="_blank" >Imprimir | Descargar</a>
                 </div>
               </div>   
                 <?php

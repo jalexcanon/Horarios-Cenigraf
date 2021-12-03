@@ -6,8 +6,8 @@ $correo=$_SESSION['ema'];
 if (!isset($correo)) {
     header("location:../index.php");
 }
-$rol=$_SESSION['rol'];
- if ($rol==2) {
+$rols=$_SESSION['rol'];
+ if ($rols==2) {
    header('location:../horarios.php');
 }
 
@@ -35,10 +35,10 @@ if (mysqli_num_rows($verificarcorreo) > 0) {
 }elseif($pcon==$scon) {
 	$query = "INSERT INTO `instructor` (`ID`, `Nombre`, `Apellido`, `Cedula`, `email`, `contrasena`, `rol`) VALUES (NULL,'$nom','$ape','$ced', '$email','$pcon','$rol')";
   
-   
+    mysqli_query($conn, $query);
     header("location:../vista/horarios.php?v=1"); 
   	
-	mysqli_query($conn, $query); 
+	 
 	 
 }else {
     
