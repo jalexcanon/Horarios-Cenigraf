@@ -10,6 +10,20 @@
  }
 $querys="SELECT * FROM instructor";
 $ins=mysqli_query($conn,$querys);// consulta select crear horario instructor 
+
+//Fecha Bogota Colombia          
+date_default_timezone_set('America/Bogota');  
+
+$consupdate=mysqli_query($conn,"SELECT * FROM ficha");
+while ($rowUp=mysqli_fetch_assoc($consupdate)) {
+  
+  mysqli_query($conn,"UPDATE tb_trimestre set estatus_trim_H=1 where id_fch=$rowUp['ID_F']")
+}
+
+
+
+
+
  
 ?>
 <!DOCTYPE html>

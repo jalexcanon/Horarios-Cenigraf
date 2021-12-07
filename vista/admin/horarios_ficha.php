@@ -87,7 +87,7 @@ $id_ficha=$_GET['ficha'];
         </div>
         <!--/div2-->
 
-      <aside class="main-sidebar sidebar-dark-primary elevation-4" style="position: fixed;">
+       <aside class="main-sidebar sidebar-dark-primary elevation-4" style="position: fixed;">
             
             <a href="../horarios.php" class="brand-link">
               <img src="../../img/logo1.png"
@@ -106,8 +106,13 @@ $id_ficha=$_GET['ficha'];
                 </div>
               </div>
               <?php if (isset($_GET['ficha'])) {
-                ?>
-              <div class="user-panel mt-4 pb-4 mb-4 d-flex">
+                $trimVarvali=$_SESSION['trim'];
+                $valVar=mysqli_query($conn,"SELECT * FROM tb_trimestre where id_fch=$id_ficha and estatus_trim_H=1 and Trimestre='$trimVarvali'");
+                if (mysqli_num_rows($valVar)>0) {
+                  
+                }else{
+                ?>                
+              <div class="user-panel mt-4 pb-4 mb-4 d-flex">  
                 <div class="image">
                   <img src="../../img/h.png" class="img-circle elevation-2" alt="User Image">
                 </div>
@@ -116,12 +121,16 @@ $id_ficha=$_GET['ficha'];
                   <a href="" data-toggle="modal" data-target="#myModal" >Crear Horario</a>
                 </div>
               </div>
+                
+                <?php
+                  }
+                  ?>
               <div class="user-panel mt-4 pb-4 mb-4 d-flex">               
                 <div class="info">
                   <a href="../horarios_imprimir.php?fich=<?php echo $id_ficha; ?>"  target="_blank" >Imprimir | Descargar</a>
                 </div>
-              </div>   
-                <?php
+              </div> 
+                  <?php
                 }
                 ?>    
                         
@@ -197,7 +206,35 @@ $id_ficha=$_GET['ficha'];
     
     $trim_f=$_SESSION['trim'];//variable del trimestre para consulta 
       
+  //Fecha Bogota Colombia          
+    date_default_timezone_set('America/Bogota');       
+    $prueVar=mysqli_query($conn,"SELECT * FROM tb_trimestre WHERE id_fch=$id_ficha and Trimestre='$trim_f'");  
+    $rowVar=mysqli_fetch_assoc($prueVar);
+     // echo $rowVar['Trim_date_Inc']."<br>";
+    
+     if (date("Y-m-d")>=$rowVar['Trim_date_fin']) {
+       //echo "son iguales fechas";
+      mysqli_query($conn,"UPDATE tb_trimestre set estatus_trim_H=1 where id_fch=$id_ficha and Trimestre='$trim_f'");
+      ?>
+      <style type="text/css">
+       #uso_des{
+        background-color: red;
+       }
+      </style>
+     <?php
+     }else{ 
+      //echo "fechas no iguales";
+     ?>
+     <style type="text/css">
+       #uso_des{
+        background-color:#5bef5b;
+       }
+     </style>
+     <?php
+   }
+     //Fecha 
 
+    
     $con_fch=mysqli_query($conn,"SELECT * FROM ficha,programa,tb_trimestre WHERE ID_F='$id_ficha' and ficha.fc_id_programa=programa.id_program AND tb_trimestre.id_fch=ficha.ID_F AND tb_trimestre.Trimestre='$trim_f'");
     $rowfch=mysqli_fetch_array($con_fch);//Consulta y ver informacion ficha parte superior del horario 
     
@@ -312,8 +349,9 @@ $id_ficha=$_GET['ficha'];
                 <tr class="table-bordered table" style="">
                   <td colspan="2" bgcolor="5B6269" style="border: 1px solid; color: white; border-color: black;">
                     <?php echo "Grupo: ".$rowfch['Nº ficha']." ".$rowfch['Trimestre'];?> </td>
-                  <td colspan="3" bgcolor="5B6269" style="border: 1px solid; color: white; border-color: black;">
+                  <td colspan="2" bgcolor="5B6269" style="border: 1px solid; color: white; border-color: black;">
                   Taller</td>
+                  <td id="uso_des" colspan="1" style="border: 1px solid black;">Estado</td>
                   <td colspan="2" bgcolor="5B6269" style="border: 1px solid; color: white; border-color: black;">
                     <?php echo "Fecha: ".$rowfch['Trim_date_Inc']." a ".$rowfch['Trim_date_fin'] ?></td>
                 </tr>
