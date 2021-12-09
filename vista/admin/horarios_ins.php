@@ -237,7 +237,7 @@ $id_ins=$_GET['instructor'];
                 </tr>
                 <?php
                    
-                  $sumas="SELECT SUM(horas_instructor) as total FROM horarios WHERE horarios.instructor=$id_ins";
+                  $sumas="SELECT SUM(horas_instructor) as total FROM horarios,tb_trimestre WHERE horarios.id_trim_fch=tb_trimestre.id_T AND horarios.instructor=$id_ins AND tb_trimestre.estatus_trim_H=0";
                   $resulsuma=mysqli_query($conn,$sumas);
                   $rowsum=mysqli_fetch_array($resulsuma);
                   $sum=$rowsum['total'];

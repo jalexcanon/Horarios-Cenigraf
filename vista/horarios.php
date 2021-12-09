@@ -15,15 +15,13 @@ $ins=mysqli_query($conn,$querys);// consulta select crear horario instructor
 date_default_timezone_set('America/Bogota');  
 
 $consupdate=mysqli_query($conn,"SELECT * FROM ficha");
+$fecha_F=date("Y-m-d");
+
 while ($rowUp=mysqli_fetch_assoc($consupdate)) {
-  
-  mysqli_query($conn,"UPDATE tb_trimestre set estatus_trim_H=1 where id_fch=$rowUp['ID_F']")
+  $fichUp=$rowUp['ID_F'];
+  $upquery="UPDATE tb_trimestre set estatus_trim_H=1 where id_fch=$fichUp and Trim_date_fin<='$fecha_F'";
+  mysqli_query($conn,$upquery);
 }
-
-
-
-
-
  
 ?>
 <!DOCTYPE html>
@@ -117,26 +115,18 @@ while ($rowUp=mysqli_fetch_assoc($consupdate)) {
                  ?></a>
                 </div>
               </div>
-              <?php if ($rol==1) {?>
-             <!-- <div class="user-panel mt-4 pb-4 mb-4 d-flex">
-                <div class="image">
-                  <img src="../img/h.png" class="img-circle elevation-2" alt="User Image">
-                </div>
-                <div class="info">
-                 <a href="" data-toggle="modal" data-target="#myModal">Crear Horario</a>
-                </div>
-              </div>-->
-               <div class="user-panel mt-4 pb-4 mb-4 d-flex">
+              <?php if ($rol==1) {?>          
+              <div class="user-panel mt-4 pb-4 mb-4 d-flex">
                 <div class="image">
                   <img src="../img/h.png" class="img-circle elevation-2" alt="User Image">
                 </div>
                 <div class="info">
                  <a href="admin/horarios_ficha.php">Crear Horario Ficha</a>
                 </div>
-              </div>
-              <div class="user-panel mt-4 pb-4 mb-4 d-flex">               
+              </div>             
+              <div class="user-panel mt-4 pb-4 mb-4 d-flex">                              
                 <div class="info">
-                 <a data-toggle="collapse" data-parent="" data-target="#usu" style="cursor: pointer;">Consulta Instructor</a>
+                 <a data-toggle="collapse" data-parent="" data-target="#usu" style="cursor: pointer;"> Consulta Instructor </a>
                 </div>
               </div>
               <div class="user-panel mt-4 pb-4 mb-4 d-flex">               
@@ -157,6 +147,11 @@ while ($rowUp=mysqli_fetch_assoc($consupdate)) {
               <div class="user-panel mt-4 pb-4 mb-4 d-flex">               
                 <div class="info">
                  <a data-toggle="collapse" data-target="#sedet"  style="cursor: pointer;" >Consulta Sedes</a>
+                </div>
+              </div>
+              <div class="user-panel mt-4 pb-4 mb-4 d-flex">               
+                <div class="info">
+                 <a data-toggle="collapse" data-target="#"  style="cursor: pointer;" >Consulta Trimestres</a>
                 </div>
               </div>
               <?php
@@ -881,7 +876,7 @@ while ($rowUp=mysqli_fetch_assoc($consupdate)) {
   <?php
  if ($rol==2) {
                    
-  $sumas="SELECT SUM(horas_instructor) as total FROM horarios WHERE horarios.instructor=$instru";
+  $sumas="SELECT SUM(horas_instructor) as total FROM horarios,tb_trimestre WHERE horarios.id_trim_fch=tb_trimestre.id_T AND horarios.instructor=$instru AND tb_trimestre.estatus_trim_H=0";
   $resulsuma=mysqli_query($conn,$sumas);
   $rowsum=mysqli_fetch_array($resulsuma);
   $sum=$rowsum['total'];
@@ -1231,7 +1226,7 @@ $lol=mysqli_fetch_array($re);// nombre tabla instructor
 <script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- jQuery UI -- >
 <script src="../plugins/jquery-ui/jquery-ui.min.js"></script>
-<!-- AdminLTE App --> 
+ AdminLTE App --> 
 <script src="../css/js/adminlte.min.js"></script>
 
 

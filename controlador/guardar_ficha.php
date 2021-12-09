@@ -21,14 +21,16 @@ $hours=$_POST['hour'];
 $amb=$_POST['idAB'];
 $hora_i=2;
 
-$querys="SELECT SUM(horas_instructor) as total FROM horarios WHERE horarios.instructor=$ins";
+$querys="SELECT SUM(horas_instructor) as total FROM horarios,tb_trimestre WHERE horarios.id_trim_fch=tb_trimestre.id_T AND horarios.instructor=$ins AND tb_trimestre.estatus_trim_H=0";//suma horas de instructor del estado de la ficha trimestre fecha en el horario---
 $resuls=mysqli_query($conn,$querys);
 $row=mysqli_fetch_array($resuls);
 $sum=$row['total'];
 
-$verificar_dia_hora_ficha=mysqli_query($conn,"SELECT * FROM `horarios` where `dia`='$days'  AND `hora`='$hours' and `ficha`='$ficha_' and `id_trim_fch`= '$id_trim'");
-$verificar_dia_hora_ambiente=mysqli_query($conn,"SELECT * FROM `horarios` where `dia`='$days' AND `hora`='$hours' and `id_ambiente`='$amb'");
-$verificar_dia_hora_instructor=mysqli_query($conn,"SELECT * FROM `horarios` where `dia`='$days' AND `hora`='$hours' and `instructor`='$ins'");
+$verificar_dia_hora_ficha=mysqli_query($conn,"SELECT * FROM `horarios`,`tb_trimestre` where `horarios`.`id_trim_fch`=`tb_trimestre`.`id_T` and `horarios`.`dia`='$days'  AND `horarios`.`hora`='$hours' and `horarios`.`ficha`='$ficha_' and `horarios`.`id_trim_fch`= '$id_trim' and `tb_trimestre`.`estatus_trim_H`=0");//verificar_dia_hora_ficha del estado del trimestre 0
+
+$verificar_dia_hora_ambiente=mysqli_query($conn,"SELECT * FROM `horarios`,`tb_trimestre` where `horarios`.`id_trim_fch`=`tb_trimestre`.`id_T` and `horarios`.`dia`='$days' AND `horarios`.`hora`='$hours' and `horarios`.`id_ambiente`='$amb' and `tb_trimestre`.`estatus_trim_H`=0");//verificar_dia_hora_ambiente des estado del trimestre 0
+
+$verificar_dia_hora_instructor=mysqli_query($conn,"SELECT * FROM `horarios`,`tb_trimestre` where `horarios`.`id_trim_fch`=`tb_trimestre`.`id_T` and `horarios`.`dia`='$days' AND `horarios`.`hora`='$hours' and `horarios`.`instructor`='$ins' and `tb_trimestre`.`estatus_trim_H`=0");//verificar_dia_hora_instructor estado del trimestre 0
 
 if ($sum<40) {  
   

@@ -17,6 +17,11 @@ $id_ficha=$_GET['ficha'];
  $title=mysqli_query($conn,"SELECT * FROM ficha WHERE ID_F ='$id_ficha'");
  $titles=mysqli_fetch_assoc($title);
 }
+
+if (isset($_GET['trims'])) {
+  $_SESSION['trim']=$_GET['trims'];
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -127,19 +132,70 @@ $id_ficha=$_GET['ficha'];
                   ?>
               <div class="user-panel mt-4 pb-4 mb-4 d-flex">               
                 <div class="info">
-                  <a href="../horarios_imprimir.php?fich=<?php echo $id_ficha; ?>"  target="_blank" >Imprimir | Descargar</a>
+                  <a href="../horarios_imprimir.php?fich=<?php echo $id_ficha; ?>" target="_blank" >  <div class="far fa-file"> Imprimir | Descargar</div></a>
                 </div>
               </div> 
-                  <?php
+                  
+              <nav class="mt-2">
+                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                  <li class="nav-item has-treeview">
+                    <a href="#" class="nav-link">
+                      <i class=" far fa-calendar-alt fa-lg"></i>
+                      <p>
+                        Trimestres
+                        <i class="right fas fa-angle-left"></i>
+                      </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                      <li class="nav-item">
+                        <a href="horarios_ficha.php?ficha=<?php echo $id_ficha?>&trims=<?php echo "I Trimestre"?>" class="nav-link ">
+                          <i class="fas fa-file-export"></i>
+                          <p>I Trimestre</p>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a href="horarios_ficha.php?ficha=<?php echo $id_ficha?>&trims=<?php echo "II Trimestre"?>" class="nav-link ">
+                          <i class="fas fa-file-export"></i>
+                          <p>II Trimestre</p>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a href="horarios_ficha.php?ficha=<?php echo $id_ficha?>&trims=<?php echo "III Trimestre"?>" class="nav-link">
+                          <i class="fas fa-file-export"></i>
+                          <p>III Trimestre</p>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a href="horarios_ficha.php?ficha=<?php echo $id_ficha?>&trims=<?php echo "IV Trimestre"?>" class="nav-link">
+                          <i class="fas fa-file-export"></i>
+                          <p>IV Trimestre</p>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a href="horarios_ficha.php?ficha=<?php echo $id_ficha?>&trims=<?php echo "V Trimestre"?>" class="nav-link">
+                          <i class="fas fa-file-export"></i>
+                          <p>V Trimestre</p>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a href="horarios_ficha.php?ficha=<?php echo $id_ficha?>&trims=<?php echo "VI Trimestre"?>" class="nav-link">
+                          <i class="fas fa-file-export"></i>
+                          <p>VI Trimestre</p>
+                        </a>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>               
+              </nav> 
+              <?php
                 }
-                ?>    
+              ?>     
                         
         </div>            
       </aside>
   <!--div1content-wrapper-->         
   <div class="content-wrapper">
-      <div class="container">
-
+      <div class="container">         
             <center><?php echo "<br><h3>Bienvenido ADMIN ".$inst."</h3>";?></center>            
             <div class="collapse" id="col">
               <div class="container border" style="padding:4%; background-color: #a2a1a5a8;" >
@@ -214,7 +270,7 @@ $id_ficha=$_GET['ficha'];
     
      if (date("Y-m-d")>=$rowVar['Trim_date_fin']) {
        //echo "son iguales fechas";
-      mysqli_query($conn,"UPDATE tb_trimestre set estatus_trim_H=1 where id_fch=$id_ficha and Trimestre='$trim_f'");
+      //mysqli_query($conn,"UPDATE tb_trimestre set estatus_trim_H=1 where id_fch=$id_ficha and Trimestre='$trim_f'");
       ?>
       <style type="text/css">
        #uso_des{
@@ -238,7 +294,7 @@ $id_ficha=$_GET['ficha'];
     $con_fch=mysqli_query($conn,"SELECT * FROM ficha,programa,tb_trimestre WHERE ID_F='$id_ficha' and ficha.fc_id_programa=programa.id_program AND tb_trimestre.id_fch=ficha.ID_F AND tb_trimestre.Trimestre='$trim_f'");
     $rowfch=mysqli_fetch_array($con_fch);//Consulta y ver informacion ficha parte superior del horario 
     
-    $_SESSION['id_trim']= $rowfch['id_T'];
+    $_SESSION['id_trim']= $rowfch['id_T'];//variable de trimestre de ficha 
     $trimestre_id=$rowfch['id_T'];
      ?>
    

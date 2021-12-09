@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 07-12-2021 a las 21:32:59
+-- Tiempo de generación: 09-12-2021 a las 21:20:24
 -- Versión del servidor: 10.4.16-MariaDB
 -- Versión de PHP: 7.4.12
 
@@ -111,7 +111,7 @@ CREATE TABLE `horarios` (
   `instructor` int(11) DEFAULT NULL,
   `hora` int(11) DEFAULT NULL,
   `id_ambiente` int(11) DEFAULT NULL,
-  `horas_instructor` int(11) NOT NULL,
+  `horas_instructor` int(11) NOT NULL DEFAULT 2,
   `id_trim_fch` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -120,12 +120,10 @@ CREATE TABLE `horarios` (
 --
 
 INSERT INTO `horarios` (`id_hora`, `dia`, `ficha`, `instructor`, `hora`, `id_ambiente`, `horas_instructor`, `id_trim_fch`) VALUES
-(279, 1, 24, 1, 1, 3, 2, 19),
-(280, 2, 24, 1, 1, 4, 2, 19),
-(281, 3, 19, 3, 2, 4, 2, 33),
-(282, 6, 20, 4, 4, 5, 2, 43),
-(283, 4, 30, 4, 6, 4, 2, 50),
-(284, 2, 30, 2, 3, 5, 2, 49);
+(285, 1, 20, 1, 1, 3, 2, 45),
+(286, 2, 20, 1, 1, 3, 2, 45),
+(287, 5, 24, 1, 8, 6, 2, 19),
+(289, 1, 20, 1, 1, 4, 2, 46);
 
 -- --------------------------------------------------------
 
@@ -266,33 +264,33 @@ CREATE TABLE `tb_trimestre` (
 --
 
 INSERT INTO `tb_trimestre` (`id_T`, `Trim_date_Inc`, `Trim_date_fin`, `Trimestre`, `id_fch`, `estatus_trim_H`) VALUES
-(19, '2021-11-25', '2021-11-26', 'I Trimestre', 24, 0),
-(20, '2021-11-27', '2021-11-28', 'II Trimestre', 24, 0),
-(21, '2021-11-29', '2021-11-30', 'III Trimestre', 24, 0),
-(22, '2021-12-01', '2021-12-02', 'IV Trimestre', 24, 0),
-(23, '2021-12-03', '2021-12-04', 'V Trimestre', 24, 0),
-(24, '2021-12-05', '2021-12-06', 'VI Trimestre', 24, 0),
-(25, '2021-11-25', '2021-11-26', 'I Trimestre', 25, 0),
-(26, '2021-11-27', '2021-11-28', 'II Trimestre', 25, 0),
-(27, '2021-11-29', '2021-11-30', 'III Trimestre', 25, 0),
-(28, '2021-12-01', '2021-12-02', 'IV Trimestre', 25, 0),
-(29, '2021-12-03', '2021-12-04', 'V Trimestre', 25, 0),
-(30, '2021-12-05', '2021-12-06', 'VI Trimestre', 25, 0),
+(19, '2021-11-25', '2021-11-26', 'I Trimestre', 24, 1),
+(20, '2021-11-27', '2021-11-28', 'II Trimestre', 24, 1),
+(21, '2021-11-29', '2021-11-30', 'III Trimestre', 24, 1),
+(22, '2021-12-01', '2021-12-02', 'IV Trimestre', 24, 1),
+(23, '2021-12-03', '2021-12-04', 'V Trimestre', 24, 1),
+(24, '2021-12-05', '2021-12-06', 'VI Trimestre', 24, 1),
+(25, '2021-11-25', '2021-11-26', 'I Trimestre', 25, 1),
+(26, '2021-11-27', '2021-11-28', 'II Trimestre', 25, 1),
+(27, '2021-11-29', '2021-11-30', 'III Trimestre', 25, 1),
+(28, '2021-12-01', '2021-12-02', 'IV Trimestre', 25, 1),
+(29, '2021-12-03', '2021-12-04', 'V Trimestre', 25, 1),
+(30, '2021-12-05', '2021-12-06', 'VI Trimestre', 25, 1),
 (31, '2021-11-30', '2021-12-01', 'I Trimestre', 19, 1),
-(32, '2021-12-01', '2021-12-02', 'II Trimestre', 19, 0),
-(33, '2021-12-03', '2021-12-04', 'III Trimestre', 19, 0),
-(34, '2021-12-05', '2021-12-06', 'IV Trimestre', 19, 0),
-(35, '2021-12-07', '2021-12-08', 'V Trimestre', 19, 0),
+(32, '2021-12-01', '2021-12-02', 'II Trimestre', 19, 1),
+(33, '2021-12-03', '2021-12-04', 'III Trimestre', 19, 1),
+(34, '2021-12-05', '2021-12-06', 'IV Trimestre', 19, 1),
+(35, '2021-12-07', '2021-12-08', 'V Trimestre', 19, 1),
 (36, '2021-12-09', '2021-12-10', 'VI Trimestre', 19, 0),
-(43, '2021-12-06', '2021-12-07', 'I Trimestre', 20, 0),
-(44, '2021-12-08', '2021-12-09', 'II Trimestre', 20, 0),
-(45, '2021-12-10', '2021-12-11', 'III Trimestre', 20, 0),
+(43, '2021-12-06', '2021-12-07', 'I Trimestre', 20, 1),
+(44, '2021-12-08', '2021-12-09', 'II Trimestre', 20, 1),
+(45, '2021-12-10', '2021-12-09', 'III Trimestre', 20, 1),
 (46, '2021-12-12', '2021-12-13', 'IV Trimestre', 20, 0),
 (47, '2021-12-14', '2021-12-15', 'V Trimestre', 20, 0),
 (48, '2021-12-16', '2021-12-17', 'VI Trimestre', 20, 0),
-(49, '2021-11-29', '2021-11-30', 'I Trimestre', 30, 0),
-(50, '2021-12-06', '2021-12-07', 'II Trimestre', 30, 0),
-(51, '2021-12-05', '2021-12-06', 'III Trimestre', 30, 0),
+(49, '2021-11-29', '2021-11-30', 'I Trimestre', 30, 1),
+(50, '2021-12-06', '2021-12-07', 'II Trimestre', 30, 1),
+(51, '2021-12-05', '2021-12-06', 'III Trimestre', 30, 1),
 (52, '2021-12-10', '2021-12-11', 'IV Trimestre', 30, 0),
 (53, '2021-12-14', '2021-12-23', 'V Trimestre', 30, 0),
 (54, '2021-12-17', '2021-12-23', 'VI Trimestre', 30, 0);
@@ -400,7 +398,7 @@ ALTER TABLE `ficha`
 -- AUTO_INCREMENT de la tabla `horarios`
 --
 ALTER TABLE `horarios`
-  MODIFY `id_hora` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=285;
+  MODIFY `id_hora` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=290;
 
 --
 -- AUTO_INCREMENT de la tabla `horas`
