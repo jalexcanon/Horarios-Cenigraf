@@ -17,6 +17,15 @@ $tm_fch=$_GET['Trimestres'];
 if (isset($_GET['ficha'])) {
   $fch=$_GET['ficha'];
   $_SESSION['fch_cons']=$fch;
+
+$validacion_horario=mysqli_query($conn,"SELECT * FROM horarios where ficha=$fch");
+$ValH=mysqli_fetch_array($validacion_horario);
+ if (!isset($ValH['ficha'])) {
+   echo "<script>
+                  alert('Ficha sin Horaios registrados.');
+                  window.location= 'horarios.php'   
+              </script>";
+ }
 } 
 $id_fch_cons=$_SESSION['fch_cons'];
 
@@ -57,11 +66,7 @@ $id_fch_cons=$_SESSION['fch_cons'];
               <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
               <span class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="collapsibleNavbar">
-            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">             
-              
-              <li class="nav-item">
-                <a class="nav-link" data-toggle="collapse" data-target="#colap" style="cursor: pointer;">Seleccione el trimestre</a>
-              </li>
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">                        
               <li class="nav-item">
                 <a class="nav-link" onclick="window.open('../controlador/exit.php','_Self')" style="cursor: pointer;">Cerrar sesion</a>
               </li>                     
@@ -90,14 +95,61 @@ $id_fch_cons=$_SESSION['fch_cons'];
                 </div>
                 <div class="info">
                   <a href="#" class="d-block"><?php 
-                  if ($rol==1) {
-                   echo "ADMIN-".$inst;
-                 }elseif ($rol==2) {
-                  echo "Instructor-".$inst;;
-                 }
+                   echo "ADMIN-".$inst;                
                  ?></a>
                 </div>
-              </div>                              
+              </div>
+              <nav class="mt-2">
+                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                  <li class="nav-item has-treeview">
+                    <a href="#" class="nav-link">
+                      <i class=" far fa-calendar-alt fa-lg"></i>
+                      <p>
+                        Trimestres
+                        <i class="right fas fa-angle-left"></i>
+                      </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                      <li class="nav-item">
+                        <a href="horarios_ficha.php?Trimestres=I Trimestre&IT=1" class="nav-link <?php if(isset($_GET['IT'])=="1"){ echo "active";}  ?> ">
+                          <i class="fas fa-file-export"></i>
+                          <p>I Trimestre</p>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a href="horarios_ficha.php?Trimestres=II Trimestre&IIT=2" class="nav-link <?php if(isset($_GET['IIT'])=="2"){ echo "active";}  ?> ">
+                          <i class="fas fa-file-export"></i>
+                          <p>II Trimestre</p>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a href="horarios_ficha.php?Trimestres=III Trimestre&IIIT=3" class="nav-link <?php if(isset($_GET['IIIT'])=="3"){ echo "active";}  ?> ">
+                          <i class="fas fa-file-export"></i>
+                          <p>III Trimestre</p>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a href="horarios_ficha.php?Trimestres=IV Trimestre&IVT=4" class="nav-link <?php if(isset($_GET['IVT'])=="4"){ echo "active";}  ?> ">
+                          <i class="fas fa-file-export"></i>
+                          <p>IV Trimestre</p>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a href="horarios_ficha.php?Trimestres=V Trimestre&VT=5" class="nav-link <?php if(isset($_GET['VT'])=="5"){ echo "active";}  ?> ">
+                          <i class="fas fa-file-export"></i>
+                          <p>V Trimestre</p>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a href="horarios_ficha.php?Trimestres=VI Trimestre&VIT=6" class="nav-link <?php if(isset($_GET['VIT'])=="6"){ echo "active";}  ?> ">
+                          <i class="fas fa-file-export"></i>
+                          <p>VI Trimestre</p>
+                        </a>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>               
+              </nav>                               
         </aside>
  </div>
  <!--/lateral-->
@@ -105,25 +157,6 @@ $id_fch_cons=$_SESSION['fch_cons'];
 <div class="content-wrapper">
   <div class="container">
 <br>
-   <div class="collapse" id="colap">
-      <div class="container border" style="padding:4%; background-color: #a2a1a5a8;" >
-        <form method="GET" class="form-horizontal">
-          <div class="form-group">
-                <label for="tm">Trimestre:</label>
-                <select class="form-control" id="tm" name="Trimestres">
-                        <option value="0">Seleccione el trimestre </option>
-                        <option value="I Trimestre">I Trimestre</option>
-                        <option value="II Trimestre">II Trimestre</option>
-                        <option value="III Trimestre">III Trimestre</option> 
-                        <option value="IV Trimestre">IV Trimestre</option>
-                        <option value="V Trimestre">V Trimestre</option>
-                        <option value="VI Trimestre">VI Trimestre</option>                    
-                </select>
-          </div>
-                  <button type="submit" class="btn btn-dark">Enviar</button>
-        </form>
-      </div>
-    </div>
 <?php 
 
 if (isset($_GET['Trimestres'])) {
@@ -138,17 +171,48 @@ $queryf="SELECT * FROM ficha,programa,tb_trimestre WHERE ficha.ID_F='$id_fch_con
 $fchc=mysqli_query($conn,$queryf);
 $rows=mysqli_fetch_assoc($fchc);
 
-
+  //Fecha Bogota Colombia          
+    date_default_timezone_set('America/Bogota');       
+    $prueVar=mysqli_query($conn,"SELECT * FROM tb_trimestre WHERE id_fch=$id_fch_cons and Trimestre='$tm_c'");  
+    $rowVar=mysqli_fetch_assoc($prueVar);
+     // echo $rowVar['Trim_date_Inc']."<br>";
+    
+     if (date("Y-m-d")>=$rowVar['Trim_date_fin']) {       
+      ?>
+      <style type="text/css">
+       #uso_des{
+        background-color: red;
+       }
+      </style>
+     <?php
+     }else{ 
+      //echo "fechas no iguales";
+     ?>
+     <style type="text/css">
+       #uso_des{
+        background-color:#5bef5b;
+       }
+     </style>
+     <?php
+   }
+     //Fecha 
     
  
 ?>
 
 <!--/tabla_ficha-->
-<div class="container">            
-       <center> <h3> <?php echo "Ficha ".$rows['Nº ficha']." Programa ".$rows['Nom_program'];?></h3>
-        <h3><?php echo $rows['Trimestre'] ?></h3></center>  <br>
+<div class="container">                  
        <div class="container"><!--div1tabla --> 
          <table style="border: 1px solid; ">
+                <tr class="table-bordered table" style="">
+                  <td colspan="2" bgcolor="5B6269" style="border: 1px solid; color: white; border-color: black;">
+                    <?php echo "Grupo: ".$rows['Nº ficha']." ".$rows['Trimestre'];?> </td>
+                  <td colspan="2" bgcolor="5B6269" style="border: 1px solid; color: white; border-color: black;">
+                  Taller</td>
+                  <td id="uso_des" colspan="1" style="border: 1px solid black;">Estado</td>
+                  <td colspan="2" bgcolor="5B6269" style="border: 1px solid; color: white; border-color: black;">
+                    <?php echo "Fecha: ".$rows['Trim_date_Inc']." a ".$rows['Trim_date_fin'] ?></td>
+                </tr>
                 <tr>
                   <th bgcolor="E69138" WIDTH="100" HEIGHT="50" ><center>Horas</center></th>
                   <th bgcolor="E69138" WIDTH="100" HEIGHT="50"><center>Lunes</center></th>

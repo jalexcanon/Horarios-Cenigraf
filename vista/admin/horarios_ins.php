@@ -20,7 +20,7 @@ $id_ins=$_GET['instructor'];
 <html lang="es">
 <head>
   <meta charset="utf-8">
-  <title>Horarios ficha</title>
+  <title>Horario Instructor</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" type="text/css" href="../../css/style.css">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -111,7 +111,46 @@ $id_ins=$_GET['instructor'];
                 <?php
                 }
                 ?>    
-              </div>            
+              </div>
+              <nav class="mt-2">
+                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                  <li class="nav-item has-treeview">
+                    <a href="#" class="nav-link">
+                      <i class=" far fa-calendar-alt fa-lg"></i>
+                      <p>
+                        Trimestres del Año
+                        <i class="right fas fa-angle-left"></i>
+                      </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                      <li class="nav-item">
+                        <a href="horarios_ins.php?instructor=<?php echo $id_ins;?>" class="nav-link">
+                          <i class="fas fa-file-export"></i>
+                          <p>I Trimestre del año</p>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a href="horarios_ins.php?instructor=<?php echo $id_ins;?>" class="nav-link">
+                          <i class="fas fa-file-export"></i>
+                          <p>II Trimestre del año</p>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a href="horarios_ins.php?instructor=<?php echo $id_ins;?>" class="nav-link">
+                          <i class="fas fa-file-export"></i>
+                          <p>III Trimestre del año</p>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a href="horarios_ins.php?instructor=<?php echo $id_ins;?>" class="nav-link">
+                          <i class="fas fa-file-export"></i>
+                          <p>IV Trimestre del año</p>
+                        </a>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>               
+              </nav>                              
         </div>            
       </aside>
   <!--div1content-wrapper-->         
@@ -120,6 +159,17 @@ $id_ins=$_GET['instructor'];
 
     $con_ins=mysqli_query($conn,"SELECT * FROM instructor WHERE ID='$id_ins'");
     $rowins=mysqli_fetch_array($con_ins);
+
+    //Fecha Bogota Colombia          
+    date_default_timezone_set('America/Bogota');  
+
+    echo date("m-d");
+    
+     
+    //Fecha 
+
+
+
      ?>
    
           
@@ -288,13 +338,14 @@ $id_ins=$_GET['instructor'];
                                                  <td bgcolor="EFD5BA" width="17%" height="100px" style="border: 1px solid; padding: 0;">
 
                                                 <?php
-                        $querys = "SELECT * FROM horarios,ficha,instructor,dias,horas,ambiente,tb_trimestre WHERE horarios.dia=$day AND horarios.hora=$hour AND horarios.dia=dias.id AND horarios.ficha=ficha.ID_F AND horarios.instructor = instructor.ID AND horarios.id_ambiente=ambiente.id_A AND horarios.hora = horas.id_h and horarios.id_trim_fch=tb_trimestre.id_T and horarios.instructor=$id_ins";
+                        $querys = "SELECT * FROM horarios,ficha,instructor,dias,horas,ambiente,tb_trimestre,programa WHERE horarios.dia=$day AND ficha.fc_id_programa=programa.id_program AND horarios.hora=$hour AND horarios.dia=dias.id AND horarios.ficha=ficha.ID_F AND horarios.instructor = instructor.ID AND horarios.id_ambiente=ambiente.id_A AND horarios.hora = horas.id_h and horarios.id_trim_fch=tb_trimestre.id_T and horarios.instructor=$id_ins";
                                                 $result = mysqli_query($conn, $querys);
                                                 $row = mysqli_fetch_assoc($result); 
                                                  if (isset($row)) { ?>                                                                              
                                                 <center>                                      
-                                                 <?php  echo $row['Nombre_ambiente'];?><br>
-                                                 <?php  echo $row['Nº ficha'];?><br><?php  echo $row['Trimestre'];?>   
+                                                 
+                                                 <?php  echo "Ficha: ".$row['Nº ficha'];?><br><?php  echo $row['Trimestre'];?><br>
+                                                 <?php  echo $row['Nom_program'];?><br>  <?php  echo "Amb. ".$row['Nombre_ambiente'];?>  
                                                 </center>
                                                 <?php
                                                 }elseif (!isset($row)) {

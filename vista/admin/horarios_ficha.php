@@ -148,37 +148,37 @@ if (isset($_GET['trims'])) {
                     </a>
                     <ul class="nav nav-treeview">
                       <li class="nav-item">
-                        <a href="horarios_ficha.php?ficha=<?php echo $id_ficha?>&trims=<?php echo "I Trimestre"?>" class="nav-link ">
+                        <a href="horarios_ficha.php?ficha=<?php echo $id_ficha?>&trims=<?php echo "I Trimestre"?>&IT=<?php echo "1"?>" class="nav-link <?php if(isset($_GET['IT'])=="1"){ echo "active";}  ?> ">
                           <i class="fas fa-file-export"></i>
                           <p>I Trimestre</p>
                         </a>
                       </li>
                       <li class="nav-item">
-                        <a href="horarios_ficha.php?ficha=<?php echo $id_ficha?>&trims=<?php echo "II Trimestre"?>" class="nav-link ">
+                        <a href="horarios_ficha.php?ficha=<?php echo $id_ficha?>&trims=<?php echo "II Trimestre"?>&IIT=<?php echo "2"?>" class="nav-link <?php if(isset($_GET['IIT'])=="2"){ echo "active";}  ?> ">
                           <i class="fas fa-file-export"></i>
                           <p>II Trimestre</p>
                         </a>
                       </li>
                       <li class="nav-item">
-                        <a href="horarios_ficha.php?ficha=<?php echo $id_ficha?>&trims=<?php echo "III Trimestre"?>" class="nav-link">
+                        <a href="horarios_ficha.php?ficha=<?php echo $id_ficha?>&trims=<?php echo "III Trimestre"?>&IIIT=<?php echo "3"?>" class="nav-link <?php if(isset($_GET['IIIT'])=="3"){ echo "active";}  ?> ">
                           <i class="fas fa-file-export"></i>
                           <p>III Trimestre</p>
                         </a>
                       </li>
                       <li class="nav-item">
-                        <a href="horarios_ficha.php?ficha=<?php echo $id_ficha?>&trims=<?php echo "IV Trimestre"?>" class="nav-link">
+                        <a href="horarios_ficha.php?ficha=<?php echo $id_ficha?>&trims=<?php echo "IV Trimestre"?>&IVT=<?php echo "4"?>" class="nav-link <?php if(isset($_GET['IVT'])=="4"){ echo "active";}  ?> ">
                           <i class="fas fa-file-export"></i>
                           <p>IV Trimestre</p>
                         </a>
                       </li>
                       <li class="nav-item">
-                        <a href="horarios_ficha.php?ficha=<?php echo $id_ficha?>&trims=<?php echo "V Trimestre"?>" class="nav-link">
+                        <a href="horarios_ficha.php?ficha=<?php echo $id_ficha?>&trims=<?php echo "V Trimestre"?>&VT=<?php echo "5"?>" class="nav-link <?php if(isset($_GET['VT'])=="5"){ echo "active";}  ?> ">
                           <i class="fas fa-file-export"></i>
                           <p>V Trimestre</p>
                         </a>
                       </li>
                       <li class="nav-item">
-                        <a href="horarios_ficha.php?ficha=<?php echo $id_ficha?>&trims=<?php echo "VI Trimestre"?>" class="nav-link">
+                        <a href="horarios_ficha.php?ficha=<?php echo $id_ficha?>&trims=<?php echo "VI Trimestre"?>&VIT=<?php echo "6"?>" class="nav-link <?php if(isset($_GET['VIT'])=="6"){ echo "active";}  ?> ">
                           <i class="fas fa-file-export"></i>
                           <p>VI Trimestre</p>
                         </a>
@@ -268,9 +268,7 @@ if (isset($_GET['trims'])) {
     $rowVar=mysqli_fetch_assoc($prueVar);
      // echo $rowVar['Trim_date_Inc']."<br>";
     
-     if (date("Y-m-d")>=$rowVar['Trim_date_fin']) {
-       //echo "son iguales fechas";
-      //mysqli_query($conn,"UPDATE tb_trimestre set estatus_trim_H=1 where id_fch=$id_ficha and Trimestre='$trim_f'");
+     if (date("Y-m-d")>=$rowVar['Trim_date_fin']) {     
       ?>
       <style type="text/css">
        #uso_des{
@@ -537,7 +535,7 @@ if (isset($_GET['trims'])) {
                   <!--div2Tabla -->
                   <div style=" position: relative;
                                bottom: 1401px;
-                               margin: 0 0 0 152px;
+                               margin: 0 0 0 151px;
                                margin-right: -7px;
                                max-WIDTH: 966px; 
                                max-HEIGHT:100px;
