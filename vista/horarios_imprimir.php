@@ -39,7 +39,7 @@ $inst=$_SESSION['nam'];
    ?>
   <tr>
    <td colspan="6" rowspan="3" ><img src="../img/sena_horarios.png"></td>
-   <td>Vercion: 03</td>       	     		
+   <td  WIDTH="200">Vercion: 03</td>       	     		
   </tr>
   <tr>
   	<td>Fecha: 2021</td>

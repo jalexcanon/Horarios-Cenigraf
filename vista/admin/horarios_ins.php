@@ -178,7 +178,7 @@ $id_ins=$_GET['instructor'];
       <div class="container">
         <center><h2><?php echo "Instructor ".$rowins['Nombre']." ".$rowins['Apellido']?></h2></center>
         <br>
-              <!--Table 1-->
+              <!--Table 1--><div class="table-responsive">
               <table style="border: 1px solid; ">
                 <tr>
                   <th bgcolor="E69138" WIDTH="100" HEIGHT="50" ><center>Horas</center></th>
@@ -307,7 +307,7 @@ $id_ins=$_GET['instructor'];
                   <td colspan="2">Horas pendientes de programar</td>
                   <td colspan="1"><?php echo $res; ?></td> 
                 </tr>   
-              </table>
+              </table></div>
               <!--/Table 1-->
             
         
@@ -320,7 +320,7 @@ $id_ins=$_GET['instructor'];
                                margin-right: -7px;
                                max-WIDTH: 966px; 
                                max-HEIGHT:100px;
-                                  "> 
+                                  "><div class="table-responsive"> 
                     <table class="table table-bordered">
                                      <?php
                                           
@@ -358,7 +358,7 @@ $id_ins=$_GET['instructor'];
                                             echo "</tr>";
                                         }
                                      ?>  
-                    </table>      
+                    </table></div>      
                   </div><!--/div2Tabla --> 
               </div><!--/div1Tabla -->                                            
       </div>

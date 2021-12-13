@@ -87,7 +87,6 @@ while ($rowUp=mysqli_fetch_assoc($consupdate)) {
         </nav>
  </div><!--/divnav-->
  <!--lateral-->
- <div>
     <aside class="main-sidebar sidebar-dark-primary elevation-4" style="position: fixed;">
             
             <a href="horarios.php" class="brand-link">
@@ -151,17 +150,14 @@ while ($rowUp=mysqli_fetch_assoc($consupdate)) {
               </div>
               <div class="user-panel mt-4 pb-4 mb-4 d-flex">               
                 <div class="info">
-                 <a data-toggle="collapse" data-target="#"  style="cursor: pointer;" >Consulta Trimestres</a>
+                 <a data-toggle="collapse" data-target="#FechT"  style="cursor: pointer;" >Consulta Trimestres</a>
                 </div>
               </div>
               <?php
             }
               ?>
-        </div>
-            
-                  
-        </aside>
- </div>
+        </div>                  
+      </aside>
  <!--/lateral-->
 
 <div class="content-wrapper">
@@ -253,7 +249,8 @@ while ($rowUp=mysqli_fetch_assoc($consupdate)) {
          $tablai="SELECT * FROM `instructor`,`roles` WHERE instructor.rol = roles.id_rol";
          $cont=mysqli_query($conn,$tablai);
          
-        ?>             
+        ?>  
+        <div class="table-responsive">           
           <table class="table table-bordered table-striped" style="text-align:center;">
             <thead class="thead-dark">
               <tr>
@@ -298,6 +295,7 @@ while ($rowUp=mysqli_fetch_assoc($consupdate)) {
             ?>      
             </tbody>
           </table>
+          </div>
         </div>
       </div>
     </div>
@@ -329,7 +327,8 @@ while ($rowUp=mysqli_fetch_assoc($consupdate)) {
          $tablaf="SELECT * FROM ficha,programa WHERE ficha.fc_id_programa = programa.id_program";
          $contf=mysqli_query($conn,$tablaf);
          
-        ?>             
+        ?>
+        <div class="table-responsive">             
           <table class="table table-bordered table-striped" style="text-align:center;">
             <thead class="thead-dark">
               <tr>
@@ -366,6 +365,7 @@ while ($rowUp=mysqli_fetch_assoc($consupdate)) {
             </tbody>
           </table>
         </div>
+        </div>
       </div>
     </div>
   </div>
@@ -396,7 +396,7 @@ while ($rowUp=mysqli_fetch_assoc($consupdate)) {
          $contS=mysqli_query($conn,$tablaS);
          
         ?>   
-                  
+        <div class="table-responsive">         
           <table class="table table-bordered table-striped" style="text-align:center;">
             <thead class="thead-dark">
               <tr>                
@@ -428,6 +428,7 @@ while ($rowUp=mysqli_fetch_assoc($consupdate)) {
             ?>    
             </tbody>
           </table>
+          </div> 
         </div>
       </div>
     </div>
@@ -460,7 +461,7 @@ while ($rowUp=mysqli_fetch_assoc($consupdate)) {
          $contA=mysqli_query($conn,$tablaA);
         
         ?>  
-
+        <div class="table-responsive"> 
           <table class="table table-bordered table-striped" style="text-align:center;">
             <thead class="thead-dark">
               <tr>              
@@ -494,6 +495,7 @@ while ($rowUp=mysqli_fetch_assoc($consupdate)) {
             ?>    
             </tbody>
           </table>
+          </div>
         </div>
       </div>
     </div>
@@ -507,26 +509,12 @@ while ($rowUp=mysqli_fetch_assoc($consupdate)) {
    <div class="row">
       <div class="col-lg-12 mx-auto">
         <div class="container"> 
-         <script type="text/javascript">
-                  function eliminar_programa(){
-
-                     var res=confirm("Esta seguro de eliminar el programa.")
-                     if (res==true) {
-                        return true;
-                     }
-                     else{
-                        return false;
-                     }
-                     
-                  }
-               </script>  
-
         <?php
          $tablaprog="SELECT * FROM `programa`";
          $contprog=mysqli_query($conn,$tablaprog);
          
         ?>  
-
+        <div class="table-responsive">
           <table class="table table-bordered table-striped" style="text-align:center;">
             <thead class="thead-dark">
               <tr>
@@ -556,12 +544,60 @@ while ($rowUp=mysqli_fetch_assoc($consupdate)) {
             ?> 
             </tbody>
           </table>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </div>
 <!--/Collapse_Programa_tabla-->
+
+<!--Collapse_Trimesteres fechas-->
+ <div> 
+  <div id="FechT" class="collapse">
+   <div class="row">
+      <div class="col-lg-12 mx-auto">
+        <div class="container"> 
+        <?php
+         $contFech=mysqli_query($conn,"SELECT * FROM ficha");       
+        ?>  
+        <div class="table-responsive">
+          <table class="table table-bordered table-striped" style="text-align:center;">
+            <thead class="thead-dark">
+              <tr>
+                <th>N° Ficha</th>
+                <th>Fecha de inicio</th>
+                <th>Fecha Fin</th>               
+                <th>Opciones</th>
+              </tr>
+            </thead>
+            <tbody>
+           <?php
+              while ($Fechcon=mysqli_fetch_array($contFech)) {
+            ?>
+              <tr>
+                <td><?php echo $Fechcon["Nº ficha"];?></td>
+                <td><?php echo $Fechcon["fic_date_I"];?></td>
+                <td><?php echo $Fechcon["fic_date_F"];?></td>              
+                <td>
+                  <div class="btn-group">
+                    <a href="update_fechT.php?upfech=<?php echo $Fechcon["ID_F"]?>"><button type="submit" class="btn btn-success btn-sm">Editar</button></a>                   
+                  </div>
+                </td>
+              </tr>    
+            <?php
+              }
+              
+            ?> 
+            </tbody>
+          </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--/Collapse_Trimesteres fechas-->
 
 <!--Collapse1Instructor-->
 <div> 

@@ -3,7 +3,7 @@
 $servername = "localhost";
 $username = "root";
 $password = "";
-$database="beta_horario";
+$database="beta_horarios";
 #$database="pruex";
 // Create connection
 $conn = new mysqli($servername,$username,$password,$database);
