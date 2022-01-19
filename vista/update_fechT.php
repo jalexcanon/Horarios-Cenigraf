@@ -17,7 +17,7 @@
 <html lang="es">
 <head>
 	<meta charset="utf-8">
-	<title>Actualizar Instructor</title>
+	<title>Actualizar Fechas Trimestres</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="../css/style.css">
     <link rel="stylesheet" href="../plugins/fontawesome-free/css/all.min.css">
@@ -111,16 +111,19 @@
                       <th>Opciones</th>
                     </tr>
                   </thead>
-                  <tbody><form>
+                  <tbody>
                  <?php
                     $query2=mysqli_query($conn,"SELECT * FROM ficha,tb_trimestre WHERE tb_trimestre.id_fch=ficha.ID_F AND tb_trimestre.id_fch=$upfech");
                     while ($Fechcon=mysqli_fetch_assoc($query2)) {
-                  ?><form action="post">
+                  ?><form method="post" action="../controlador/update_fechT.php?id_F=<?php echo $upfech;?>">
                     <tr>
                       <td><?php echo $Fechcon["Nº ficha"] ;?></td>
                       <td><?php echo $Fechcon["Trimestre"];?></td>
                       <td><input type="date" name="date_Iup" value="<?php echo $Fechcon["Trim_date_Inc"];?>"></td>
-                      <td><input type="date" name="date_Fup" value="<?php echo $Fechcon["Trim_date_fin"];?>"></td>              
+                      <td>
+                        <input type="date" name="date_Fup" value="<?php echo $Fechcon["Trim_date_fin"];?>">
+                        <input type="number" name="id_fech" style="display:none;" value="<?php echo $Fechcon['id_T'];?>"> 
+                      </td>              
                       <td>
                         <div class="btn-group">
                           <button type="submit" class="btn btn-success btn-sm">Actualizar</button>                  
@@ -130,12 +133,13 @@
                   <?php
                     }
                     
-                  ?> </form>
-                  </tbody>
+                  ?> 
+                  </tbody>  
                 </table>
-                </div>
+                </div><center><button type="button" class="btn btn-warning" onclick="window.open('horarios.php','_Self')">Atras</button></center>
               </div>
             </div>
+
           </div>   
     </div>
    
@@ -149,8 +153,7 @@
               <strong>Copyright &copy; 2021 <a href="https://comunicaciongraficasena.blogspot.com">Cenigraf</a>.</strong> Todos los derechos reservados.
    </footer>
    
-</div>
-	
+</div>	
  
 <!-- jQuery-->
 <script src="../plugins/jquery/jquery.min.js"></script>

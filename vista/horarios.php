@@ -15,14 +15,23 @@ $ins=mysqli_query($conn,$querys);// consulta select crear horario instructor
 date_default_timezone_set('America/Bogota');  
 
 $consupdate=mysqli_query($conn,"SELECT * FROM ficha");
+$consupdate2=mysqli_query($conn,"SELECT * FROM ficha");
 $fecha_F=date("Y-m-d");
-
+//Actualizar estatus de fechas de los trimestres segun la fecha
 while ($rowUp=mysqli_fetch_assoc($consupdate)) {
   $fichUp=$rowUp['ID_F'];
   $upquery="UPDATE tb_trimestre set estatus_trim_H=1 where id_fch=$fichUp and Trim_date_fin<='$fecha_F'";
   mysqli_query($conn,$upquery);
 }
+
+while ($rowUp_2=mysqli_fetch_assoc($consupdate2)) {
+  $fichUp_2=$rowUp_2['ID_F'];
+  $up_2query="UPDATE tb_trimestre set estatus_trim_H=0 where id_fch=$fichUp_2 and Trim_date_fin>='$fecha_F'";
+  mysqli_query($conn,$up_2query);
+}
+
  
+//  /Actualizar estatus de fechas de los trimestres segun la fecha
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -72,7 +81,7 @@ while ($rowUp=mysqli_fetch_assoc($consupdate)) {
                 <a class="nav-link" data-toggle="collapse" data-target="#amb" style="cursor: pointer;">Registrar Ambiente</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" data-toggle="collapse" data-target="#prog" style="cursor: pointer;">Registrar Programa</a>
+                <a class="nav-link" data-toggle="collapse" data-target="#proga_" style="cursor: pointer;">Registrar Programa</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" data-toggle="collapse" data-target="#RegSed" style="cursor: pointer;">Registrar SEDE</a>
@@ -87,7 +96,7 @@ while ($rowUp=mysqli_fetch_assoc($consupdate)) {
         </nav>
  </div><!--/divnav-->
  <!--lateral-->
-    <aside class="main-sidebar sidebar-dark-primary elevation-4" style="position: fixed;">
+    <aside class="main-sidebar sidebar-dark-primary elevation-4">
             
             <a href="horarios.php" class="brand-link">
               <img src="../img/logo1.png"
@@ -835,8 +844,8 @@ while ($rowUp=mysqli_fetch_assoc($consupdate)) {
    $sed="SELECT * FROM sede";
    $conSD=mysqli_query($conn,$sed);
             ?>
-                <label for="progC">Nombre de la sede:</label>
-                <select class="form-control" id="progC" name="sed" required="">
+                <label for="sede_">Nombre de la sede:</label>
+                <select class="form-control" id="sede_" name="sed" required="">
                   <option value="0">Seleccione</option>
                  <?php
     while ($codSD=mysqli_fetch_assoc($conSD)) {
@@ -873,7 +882,7 @@ while ($rowUp=mysqli_fetch_assoc($consupdate)) {
 
 <!--Collapse6Programa-->
 <div> 
-  <div id="prog" class="collapse">
+  <div id="proga_" class="collapse">
    <div class="row" style="display: contents;">
       <div class="col-sm-8 mx-auto">
         <div class="container border" style="padding:4%; background-color: #a2a1a5a8; ">      

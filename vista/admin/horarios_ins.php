@@ -124,25 +124,25 @@ $id_ins=$_GET['instructor'];
                     </a>
                     <ul class="nav nav-treeview">
                       <li class="nav-item">
-                        <a href="horarios_ins.php?instructor=<?php echo $id_ins;?>" class="nav-link">
+                        <a href="horarios_ins.php?instructor=<?php echo $id_ins;?>&est=1" class="nav-link">
                           <i class="fas fa-file-export"></i>
                           <p>I Trimestre del año</p>
                         </a>
                       </li>
                       <li class="nav-item">
-                        <a href="horarios_ins.php?instructor=<?php echo $id_ins;?>" class="nav-link">
+                        <a href="horarios_ins.php?instructor=<?php echo $id_ins;?>&est=2" class="nav-link">
                           <i class="fas fa-file-export"></i>
                           <p>II Trimestre del año</p>
                         </a>
                       </li>
                       <li class="nav-item">
-                        <a href="horarios_ins.php?instructor=<?php echo $id_ins;?>" class="nav-link">
+                        <a href="horarios_ins.php?instructor=<?php echo $id_ins;?>&est=3" class="nav-link">
                           <i class="fas fa-file-export"></i>
                           <p>III Trimestre del año</p>
                         </a>
                       </li>
                       <li class="nav-item">
-                        <a href="horarios_ins.php?instructor=<?php echo $id_ins;?>" class="nav-link">
+                        <a href="horarios_ins.php?instructor=<?php echo $id_ins;?>&est=4" class="nav-link">
                           <i class="fas fa-file-export"></i>
                           <p>IV Trimestre del año</p>
                         </a>
@@ -165,7 +165,7 @@ $id_ins=$_GET['instructor'];
 
     echo date("m-d");
     
-     
+    //estatus ---
     //Fecha 
 
 
