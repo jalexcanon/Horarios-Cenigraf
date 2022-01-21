@@ -575,8 +575,8 @@ while ($rowUp_2=mysqli_fetch_assoc($consupdate2)) {
             <thead class="thead-dark">
               <tr>
                 <th>N° Ficha</th>
-                <th>Fecha de inicio</th>
-                <th>Fecha Fin</th>               
+                <th>Fecha de inicio etapa electiva</th>
+                <th>Fecha fin etapa electiva</th>               
                 <th>Opciones</th>
               </tr>
             </thead>

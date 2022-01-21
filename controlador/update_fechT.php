@@ -18,14 +18,17 @@ $date_Fup=$_POST['date_Fup'];
 
 mysqli_query($conn,"UPDATE tb_trimestre set Trim_date_Inc='$date_Iup', Trim_date_fin='$date_Fup' where id_T='$id_fech'");
 
+//actualizar fechas de inicio y fin de la ficha
+$consulta1=mysqli_query($conn,"SELECT * FROM tb_trimestre where id_T='$id_fech' and Trimestre='I Trimestre'");
+$consulta2=mysqli_query($conn,"SELECT * FROM tb_trimestre where id_T='$id_fech' and Trimestre='VI Trimestre'");
 
-$consulta=mysqli_query($conn,"SELECT * FROM tb_trimestre where id_T='$id_fech'");
-$row=mysqli_fetch_array($consulta);
+if (mysqli_num_rows($consulta1)>0) {
+  mysqli_query($conn,"UPDATE ficha set fic_date_I='$date_Iup' where ID_F=$id_ficha ");
+}
+if (mysqli_num_rows($consulta2)>0) {
+  mysqli_query($conn,"UPDATE ficha set fic_date_F='$date_Fup' where ID_F=$id_ficha ");
+}
 
-echo $row['Trim_date_Inc'];
-
-
-
-
-// header("location:../vista/update_fechT.php?upfech=$id_ficha");
+  
+header("location:../vista/update_fechT.php?upfech=$id_ficha");
  ?>
