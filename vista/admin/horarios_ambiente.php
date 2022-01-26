@@ -113,12 +113,67 @@ $id_amb=$_GET['amb'];
                 <?php
                 }
                 ?>    
-              </div>            
+              </div>
+                <nav class="mt-2">
+                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                  <li class="nav-item has-treeview">
+                    <a href="#" class="nav-link">
+                      <i class=" far fa-calendar-alt fa-lg"></i>
+                      <p>
+                        Trimestres del Año
+                        <i class="right fas fa-angle-left"></i>
+                      </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                      <li class="nav-item">
+                        <a href="horarios_ambiente.php?amb=<?php echo $id_amb;?>&ambT=I Trimestre" class="nav-link">
+                          <i class="fas fa-file-export"></i>
+                          <p>I Trimestre del año</p>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a href="horarios_ambiente.php?amb=<?php echo $id_amb;?>&ambT=II Trimestre" class="nav-link">
+                          <i class="fas fa-file-export"></i>
+                          <p>II Trimestre del año</p>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a href="horarios_ambiente.php?amb=<?php echo $id_amb;?>&ambT=III Trimestre" class="nav-link">
+                          <i class="fas fa-file-export"></i>
+                          <p>III Trimestre del año</p>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a href="horarios_ambiente.php?amb=<?php echo $id_amb;?>&ambT=IV Trimestre" class="nav-link">
+                          <i class="fas fa-file-export"></i>
+                          <p>IV Trimestre del año</p>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a href="horarios_ambiente.php?amb=<?php echo $id_amb;?>&ambT=V Trimestre" class="nav-link">
+                          <i class="fas fa-file-export"></i>
+                          <p>V Trimestre del año</p>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a href="horarios_ambiente.php?amb=<?php echo $id_amb;?>&ambT=VI Trimestre" class="nav-link">
+                          <i class="fas fa-file-export"></i>
+                          <p>VI Trimestre del año</p>
+                        </a>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>               
+              </nav>            
         </div>            
       </aside>
   <!--div1content-wrapper-->         
   <div class="content-wrapper">
     <?php
+
+    if (isset($_GET['ambT'])) {
+      
+    $ambTr=$_GET['ambT'];
 
     $con_amb=mysqli_query($conn,"SELECT * FROM ambiente WHERE id_A='$id_amb'");
     $rowamb=mysqli_fetch_array($con_amb);
@@ -267,7 +322,7 @@ $id_amb=$_GET['amb'];
                                                  <td bgcolor="EFD5BA" width="17%" height="100px" style="border: 1px solid; padding: 0;">
 
                                                 <?php
-                        $querys = "SELECT * FROM horarios,ficha,instructor,dias,horas,ambiente,tb_trimestre WHERE horarios.dia=$day AND horarios.hora=$hour AND horarios.dia=dias.id AND horarios.ficha=ficha.ID_F AND horarios.instructor = instructor.ID AND horarios.id_ambiente=ambiente.id_A AND horarios.hora = horas.id_h and horarios.id_trim_fch=tb_trimestre.id_T and horarios.id_ambiente=$id_amb";
+                        $querys = "SELECT * FROM horarios,ficha,instructor,dias,horas,ambiente,tb_trimestre WHERE horarios.dia=$day AND horarios.hora=$hour AND horarios.dia=dias.id AND horarios.ficha=ficha.ID_F AND horarios.instructor = instructor.ID AND horarios.id_ambiente=ambiente.id_A AND horarios.hora = horas.id_h and horarios.id_trim_fch=tb_trimestre.id_T and horarios.id_ambiente=$id_amb and tb_trimestre.Trimestre='$ambTr'";
                                                 $result = mysqli_query($conn, $querys);
                                                 $row = mysqli_fetch_assoc($result); 
                                                  if (isset($row)) { ?>                                                                              
@@ -292,7 +347,8 @@ $id_amb=$_GET['amb'];
                   </div><!--/div2Tabla --> 
               </div><!--/div1Tabla -->                                            
       </div>
-      <!--/div TABLAS-->          
+      <!--/div TABLAS--> 
+<?php } ?>
   </div>
   <!--/div1content-wrapper-->
 

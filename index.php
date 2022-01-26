@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
 	<meta charset="utf-8">
-	<title>beta</title>
+	<title>Beta_Horarios</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" type="text/css" href="css/style.css">
   <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -55,7 +55,7 @@
 			<div class="container border" style="padding:4%; background-color: #a2a1a5a8; ">   		
 				  <form action="controlador/val.php" method="POST">
 					  <div class="form-group">
-					    <label for="email">Email :</label>
+					    <label for="email">Email:</label>
 					    <input type="email" class="mr-sm-2 form-control " placeholder="Digite su email" name="correo" id="email" required="">
 					  </div>
 					  <div class="form-group">

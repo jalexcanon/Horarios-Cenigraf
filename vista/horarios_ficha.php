@@ -17,7 +17,7 @@ $tm_fch=$_GET['Trimestres'];
 if (isset($_GET['ficha'])) {
   $fch=$_GET['ficha'];
   $_SESSION['fch_cons']=$fch;
-
+//validar datos en horario
 $validacion_horario=mysqli_query($conn,"SELECT * FROM horarios where ficha=$fch");
 $ValH=mysqli_fetch_array($validacion_horario);
  if (!isset($ValH['ficha'])) {

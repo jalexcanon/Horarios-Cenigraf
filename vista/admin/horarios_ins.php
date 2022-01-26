@@ -124,27 +124,39 @@ $id_ins=$_GET['instructor'];
                     </a>
                     <ul class="nav nav-treeview">
                       <li class="nav-item">
-                        <a href="horarios_ins.php?instructor=<?php echo $id_ins;?>&est=1" class="nav-link">
+                        <a href="horarios_ins.php?instructor=<?php echo $id_ins;?>&est=I Trimestre" class="nav-link">
                           <i class="fas fa-file-export"></i>
                           <p>I Trimestre del año</p>
                         </a>
                       </li>
                       <li class="nav-item">
-                        <a href="horarios_ins.php?instructor=<?php echo $id_ins;?>&est=2" class="nav-link">
+                        <a href="horarios_ins.php?instructor=<?php echo $id_ins;?>&est=II Trimestre" class="nav-link">
                           <i class="fas fa-file-export"></i>
                           <p>II Trimestre del año</p>
                         </a>
                       </li>
                       <li class="nav-item">
-                        <a href="horarios_ins.php?instructor=<?php echo $id_ins;?>&est=3" class="nav-link">
+                        <a href="horarios_ins.php?instructor=<?php echo $id_ins;?>&est=III Trimestre" class="nav-link">
                           <i class="fas fa-file-export"></i>
                           <p>III Trimestre del año</p>
                         </a>
                       </li>
                       <li class="nav-item">
-                        <a href="horarios_ins.php?instructor=<?php echo $id_ins;?>&est=4" class="nav-link">
+                        <a href="horarios_ins.php?instructor=<?php echo $id_ins;?>&est=IV Trimestre" class="nav-link">
                           <i class="fas fa-file-export"></i>
                           <p>IV Trimestre del año</p>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a href="horarios_ins.php?instructor=<?php echo $id_ins;?>&est=V Trimestre" class="nav-link">
+                          <i class="fas fa-file-export"></i>
+                          <p>V Trimestre del año</p>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a href="horarios_ins.php?instructor=<?php echo $id_ins;?>&est=VI Trimestre" class="nav-link">
+                          <i class="fas fa-file-export"></i>
+                          <p>VI Trimestre del año</p>
                         </a>
                       </li>
                     </ul>
@@ -156,17 +168,14 @@ $id_ins=$_GET['instructor'];
   <!--div1content-wrapper-->         
   <div class="content-wrapper">
     <?php
+    if (isset($_GET['est'])) {
+      
+   $Trimest=$_GET['est'];
 
     $con_ins=mysqli_query($conn,"SELECT * FROM instructor WHERE ID='$id_ins'");
     $rowins=mysqli_fetch_array($con_ins);
 
-    //Fecha Bogota Colombia          
-    date_default_timezone_set('America/Bogota');  
-
-    echo date("m-d");
-    
-    //estatus ---
-    //Fecha 
+  
 
 
 
@@ -287,7 +296,7 @@ $id_ins=$_GET['instructor'];
                 </tr>
                 <?php
                    
-                  $sumas="SELECT SUM(horas_instructor) as total FROM horarios,tb_trimestre WHERE horarios.id_trim_fch=tb_trimestre.id_T AND horarios.instructor=$id_ins AND tb_trimestre.estatus_trim_H=0";
+                 $sumas="SELECT SUM(horas_instructor) as total FROM horarios,tb_trimestre WHERE horarios.id_trim_fch=tb_trimestre.id_T AND horarios.instructor=$id_ins AND tb_trimestre.estatus_trim_H=0 and tb_trimestre.Trimestre='$Trimest'";
                   $resulsuma=mysqli_query($conn,$sumas);
                   $rowsum=mysqli_fetch_array($resulsuma);
                   $sum=$rowsum['total'];
@@ -338,7 +347,7 @@ $id_ins=$_GET['instructor'];
                                                  <td bgcolor="EFD5BA" width="17%" height="100px" style="border: 1px solid; padding: 0;">
 
                                                 <?php
-                        $querys = "SELECT * FROM horarios,ficha,instructor,dias,horas,ambiente,tb_trimestre,programa WHERE horarios.dia=$day AND ficha.fc_id_programa=programa.id_program AND horarios.hora=$hour AND horarios.dia=dias.id AND horarios.ficha=ficha.ID_F AND horarios.instructor = instructor.ID AND horarios.id_ambiente=ambiente.id_A AND horarios.hora = horas.id_h and horarios.id_trim_fch=tb_trimestre.id_T and horarios.instructor=$id_ins";
+                        $querys = "SELECT * FROM horarios,ficha,instructor,dias,horas,ambiente,tb_trimestre,programa WHERE horarios.dia=$day AND ficha.fc_id_programa=programa.id_program AND horarios.hora=$hour AND horarios.dia=dias.id AND horarios.ficha=ficha.ID_F AND horarios.instructor = instructor.ID AND horarios.id_ambiente=ambiente.id_A AND horarios.hora = horas.id_h and horarios.id_trim_fch=tb_trimestre.id_T and tb_trimestre.Trimestre='$Trimest' and horarios.instructor=$id_ins";
                                                 $result = mysqli_query($conn, $querys);
                                                 $row = mysqli_fetch_assoc($result); 
                                                  if (isset($row)) { ?>                                                                              
@@ -362,7 +371,9 @@ $id_ins=$_GET['instructor'];
                   </div><!--/div2Tabla --> 
               </div><!--/div1Tabla -->                                            
       </div>
-      <!--/div TABLAS-->          
+      <!--/div TABLAS-->  
+      <?php  
+    } ?>        
   </div>
   <!--/div1content-wrapper-->
 

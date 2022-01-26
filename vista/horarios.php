@@ -16,6 +16,10 @@ date_default_timezone_set('America/Bogota');
 
 $consupdate=mysqli_query($conn,"SELECT * FROM ficha");
 $consupdate2=mysqli_query($conn,"SELECT * FROM ficha");
+
+//$consupdate_EntreFechas=mysqli_query($conn,"SELECT * FROM ficha");
+
+
 $fecha_F=date("Y-m-d");
 //Actualizar estatus de fechas de los trimestres segun la fecha
 while ($rowUp=mysqli_fetch_assoc($consupdate)) {
@@ -26,10 +30,16 @@ while ($rowUp=mysqli_fetch_assoc($consupdate)) {
 
 while ($rowUp_2=mysqli_fetch_assoc($consupdate2)) {
   $fichUp_2=$rowUp_2['ID_F'];
-  $up_2query="UPDATE tb_trimestre set estatus_trim_H=0 where id_fch=$fichUp_2 and Trim_date_fin>='$fecha_F'";
+  $up_2query="UPDATE tb_trimestre set estatus_trim_H=0  where id_fch=$fichUp_2 and Trim_date_fin>='$fecha_F'";
   mysqli_query($conn,$up_2query);
 }
-
+/*
+while ($rowUp_3=mysqli_fetch_assoc($consupdate_EntreFechas)) {
+  $fichUp_EntreFechas=$rowUp_3['ID_F'];
+  $up_EntreFechas_query="UPDATE tb_trimestre set estatus_trim_H=2 where id_fch=$fichUp_EntreFechas and Trim_date_Inc>='$fecha_F' and Trim_date_fin<= '$fecha_F'";
+  mysqli_query($conn,$up_EntreFechas_query);
+}
+*/
  
 //  /Actualizar estatus de fechas de los trimestres segun la fecha
 ?>
@@ -58,8 +68,8 @@ while ($rowUp_2=mysqli_fetch_assoc($consupdate2)) {
  <div>
     <nav class="main-header navbar navbar-expand-md navbar-dark navbar-light sticky-top">
         <ul class="navbar-nav">
-            <li class="nav-item">
-              <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+          <li class="nav-item">
+            <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
           </li> 
         </ul>                  
             <a class="navbar-brand" onclick="window.open('horarios.php','_Self')" style="cursor: pointer;">Cenigraf</a>
@@ -104,9 +114,7 @@ while ($rowUp_2=mysqli_fetch_assoc($consupdate2)) {
                    class="brand-image img-circle elevation-1"
                    style="background-color:#ffffff; width: 40px; height:40px; ">
               <span class="brand-text font-weight-light">CENIGRAF </span>
-            </a>
-
-           
+            </a>     
         <div class="sidebar">
               
               <div class="user-panel mt-4 pb-4 mb-4 d-flex">
@@ -163,6 +171,61 @@ while ($rowUp_2=mysqli_fetch_assoc($consupdate2)) {
                 </div>
               </div>
               <?php
+            }elseif ($rol==2) {
+             ?>
+              <nav class="mt-2">
+                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                  <li class="nav-item has-treeview">
+                    <a href="#" class="nav-link">
+                      <i class=" far fa-calendar-alt fa-lg"></i>
+                      <p>
+                        Trimestres del Año
+                        <i class="right fas fa-angle-left"></i>
+                      </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                      <li class="nav-item">
+                        <a href="horarios.php?Trimest=I Trimestre" class="nav-link">
+                          <i class="fas fa-file-export"></i>
+                          <p>I Trimestre del año</p>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a href="horarios.php?Trimest=II Trimestre" class="nav-link">
+                          <i class="fas fa-file-export"></i>
+                          <p>II Trimestre del año</p>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a href="horarios.php?Trimest=III Trimestre" class="nav-link">
+                          <i class="fas fa-file-export"></i>
+                          <p>III Trimestre del año</p>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a href="horarios.php?Trimest=IV Trimestre" class="nav-link">
+                          <i class="fas fa-file-export"></i>
+                          <p>IV Trimestre del año</p>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a href="horarios.php?Trimest=V Trimestre" class="nav-link">
+                          <i class="fas fa-file-export"></i>
+                          <p>V Trimestre del año</p>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a href="horarios.php?Trimest=VI Trimestre" class="nav-link">
+                          <i class="fas fa-file-export"></i>
+                          <p>VI Trimestre del año</p>
+                        </a>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>               
+              </nav>             
+
+             <?php
             }
               ?>
         </div>                  
@@ -920,8 +983,10 @@ while ($rowUp_2=mysqli_fetch_assoc($consupdate2)) {
 <div class="container">
   <?php
  if ($rol==2) {
-                   
-  $sumas="SELECT SUM(horas_instructor) as total FROM horarios,tb_trimestre WHERE horarios.id_trim_fch=tb_trimestre.id_T AND horarios.instructor=$instru AND tb_trimestre.estatus_trim_H=0";
+  if (isset($_GET['Trimest'])) {
+      $ins_trim=$_GET['Trimest'];              
+                                 
+  $sumas="SELECT SUM(horas_instructor) as total FROM horarios,tb_trimestre WHERE horarios.id_trim_fch=tb_trimestre.id_T AND horarios.instructor=$instru AND tb_trimestre.estatus_trim_H=0 and tb_trimestre.Trimestre='$ins_trim'";
   $resulsuma=mysqli_query($conn,$sumas);
   $rowsum=mysqli_fetch_array($resulsuma);
   $sum=$rowsum['total'];
@@ -1083,7 +1148,7 @@ $lol=mysqli_fetch_array($re);// nombre tabla instructor
                                        <td bgcolor="EFD5BA" width="17%" height="100px" style="border: 1px solid; padding: 0;">
 
                                       <?php
-                          $query = "SELECT * FROM horarios,ficha,instructor,dias,horas,ambiente,tb_trimestre WHERE horarios.dia=$day AND horarios.hora=$hour AND horarios.dia=dias.id AND horarios.ficha=ficha.ID_F AND horarios.instructor = instructor.ID AND horarios.hora = horas.id_h and horarios.id_ambiente=ambiente.id_A and horarios.id_trim_fch=tb_trimestre.id_T and horarios.instructor=$instru";
+                          $query = "SELECT * FROM horarios,ficha,instructor,dias,horas,ambiente,tb_trimestre WHERE horarios.dia=$day AND horarios.hora=$hour AND horarios.dia=dias.id AND horarios.ficha=ficha.ID_F AND horarios.instructor = instructor.ID AND horarios.hora = horas.id_h and horarios.id_ambiente=ambiente.id_A and horarios.id_trim_fch=tb_trimestre.id_T and horarios.instructor=$instru AND tb_trimestre.Trimestre='$ins_trim'";
                                       $result = mysqli_query($conn, $query);
                                       $row = mysqli_fetch_assoc($result); 
                                        if (isset($row)) { ?>                                                                              
@@ -1112,6 +1177,7 @@ $lol=mysqli_fetch_array($re);// nombre tabla instructor
         </div><!--/div1 -->
 
 <?php 
+ }   
 }
 ?>
 </div><!--/tabla_ins_rol-->
