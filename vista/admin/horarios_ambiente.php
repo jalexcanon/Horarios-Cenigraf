@@ -22,7 +22,7 @@ $id_amb=$_GET['amb'];
 <html lang="es">
 <head>
   <meta charset="utf-8">
-  <title>Horarios ficha</title>
+  <title>Horarios Ambientes</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" type="text/css" href="../../css/style.css">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -114,7 +114,7 @@ $id_amb=$_GET['amb'];
                 }
                 ?>    
               </div>
-                <nav class="mt-2">
+             <!--   <nav class="mt-2">
                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                   <li class="nav-item has-treeview">
                     <a href="#" class="nav-link">
@@ -164,16 +164,16 @@ $id_amb=$_GET['amb'];
                     </ul>
                   </li>
                 </ul>               
-              </nav>            
+              </nav> -->           
         </div>            
       </aside>
   <!--div1content-wrapper-->         
   <div class="content-wrapper">
     <?php
 
-    if (isset($_GET['ambT'])) {
+    /*if (isset($_GET['ambT'])) {
       
-    $ambTr=$_GET['ambT'];
+    $ambTr=$_GET['ambT'];*/
 
     $con_amb=mysqli_query($conn,"SELECT * FROM ambiente WHERE id_A='$id_amb'");
     $rowamb=mysqli_fetch_array($con_amb);
@@ -322,13 +322,14 @@ $id_amb=$_GET['amb'];
                                                  <td bgcolor="EFD5BA" width="17%" height="100px" style="border: 1px solid; padding: 0;">
 
                                                 <?php
-                        $querys = "SELECT * FROM horarios,ficha,instructor,dias,horas,ambiente,tb_trimestre WHERE horarios.dia=$day AND horarios.hora=$hour AND horarios.dia=dias.id AND horarios.ficha=ficha.ID_F AND horarios.instructor = instructor.ID AND horarios.id_ambiente=ambiente.id_A AND horarios.hora = horas.id_h and horarios.id_trim_fch=tb_trimestre.id_T and horarios.id_ambiente=$id_amb and tb_trimestre.Trimestre='$ambTr'";
+                        $querys = "SELECT * FROM horarios,ficha,instructor,dias,horas,ambiente,tb_trimestre,programa WHERE horarios.dia=$day AND horarios.hora=$hour AND horarios.dia=dias.id AND horarios.ficha=ficha.ID_F AND horarios.instructor = instructor.ID AND horarios.id_ambiente=ambiente.id_A AND horarios.hora = horas.id_h and horarios.id_trim_fch=tb_trimestre.id_T and ficha.fc_id_programa=programa.id_program and horarios.id_ambiente=$id_amb";
+                        /*$querys = "SELECT * FROM horarios,ficha,instructor,dias,horas,ambiente,tb_trimestre,programa WHERE horarios.dia=$day AND horarios.hora=$hour AND horarios.dia=dias.id AND horarios.ficha=ficha.ID_F AND horarios.instructor = instructor.ID AND horarios.id_ambiente=ambiente.id_A AND horarios.hora = horas.id_h and horarios.id_trim_fch=tb_trimestre.id_T and ficha.fc_id_programa=programa.id_program and horarios.id_ambiente=$id_amb and tb_trimestre.Trimestre='$ambTr'";*/
                                                 $result = mysqli_query($conn, $querys);
                                                 $row = mysqli_fetch_assoc($result); 
                                                  if (isset($row)) { ?>                                                                              
-                                                <center>                                      
+                                                <center style="font-size: small;">                                      
                                                  
-                                                 <?php  echo $row['Nº ficha'];?><br>
+                                                 <?php  echo $row['Nº ficha'];?><br><?php  echo $row['Nom_program'];?><br>
                                                  <?php  echo $row['Nombre']." ".$row['Apellido'];?><br>
                                                  <?php  echo $row['Trimestre'];?>   
                                                 </center>
@@ -348,7 +349,7 @@ $id_amb=$_GET['amb'];
               </div><!--/div1Tabla -->                                            
       </div>
       <!--/div TABLAS--> 
-<?php } ?>
+<?php //} ?>
   </div>
   <!--/div1content-wrapper-->
 

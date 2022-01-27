@@ -10,7 +10,7 @@
  }
 $querys="SELECT * FROM instructor";
 $ins=mysqli_query($conn,$querys);// consulta select crear horario instructor 
-
+/* 
 //Fecha Bogota Colombia          
 date_default_timezone_set('America/Bogota');  
 
@@ -33,6 +33,8 @@ while ($rowUp_2=mysqli_fetch_assoc($consupdate2)) {
   $up_2query="UPDATE tb_trimestre set estatus_trim_H=0  where id_fch=$fichUp_2 and Trim_date_fin>='$fecha_F'";
   mysqli_query($conn,$up_2query);
 }
+*/
+
 /*
 while ($rowUp_3=mysqli_fetch_assoc($consupdate_EntreFechas)) {
   $fichUp_EntreFechas=$rowUp_3['ID_F'];
@@ -352,7 +354,7 @@ while ($rowUp_3=mysqli_fetch_assoc($consupdate_EntreFechas)) {
                 <td><?php echo $icon["Apellido"];?></td>
                 <td><?php echo $icon["email"];?></td>
                 <td><?php echo $icon["rol"];?></td> 
-                <td><?php echo $resp ?></td>             
+                <td><?php echo $resp ?></td>           
                 <td>
                   <div class="btn-group">
                     <a href="admin/horarios_ins.php?instructor=<?php echo $icon["ID"];?>"><button type="submit" class="btn btn-dark btn-sm">Horario</button></a>
@@ -396,9 +398,10 @@ while ($rowUp_3=mysqli_fetch_assoc($consupdate_EntreFechas)) {
                </script>  
 
         <?php
+         $estad=mysqli_query($conn,"SELECT * FROM tb_trimestre");
          $tablaf="SELECT * FROM ficha,programa WHERE ficha.fc_id_programa = programa.id_program";
          $contf=mysqli_query($conn,$tablaf);
-         
+         $estad_row=mysqli_fetch_array($estad);
         ?>
         <div class="table-responsive">             
           <table class="table table-bordered table-striped" style="text-align:center;">
@@ -409,6 +412,7 @@ while ($rowUp_3=mysqli_fetch_assoc($consupdate_EntreFechas)) {
                 <th>Nombre del programa</th>
                 <th>Nivel de formacion</th>
                 <th>Jornada </th>
+                <th>Estado</th>
                 <th>Opciones</th>
               </tr>
             </thead>
@@ -421,7 +425,12 @@ while ($rowUp_3=mysqli_fetch_assoc($consupdate_EntreFechas)) {
                 <td><?php echo $fcon['Nº ficha'];?></td>
                 <td><?php echo $fcon["Nom_program"];?></td>
                 <td><?php echo $fcon["nivel_form"];?></td>
-                <td><?php echo $fcon["fc_jornada"];?></td>              
+                <td><?php echo $fcon["fc_jornada"];?></td>    
+                <?php if ($estad_row['estatus_trim_H']==1) {
+                 ?> <td>inactivo</td><?php
+                }elseif ($estad_row['estatus_trim_H']==0) {
+                  ?><td>Activo</td><?php
+                } ?>        
                 <td>
                   <div class="btn-group">
                     <button class="btn btn-dark btn-sm" onclick="window.open('horarios_ficha.php?ficha=<?php echo $fcon['ID_F']?>','_Self')">Horario</button>

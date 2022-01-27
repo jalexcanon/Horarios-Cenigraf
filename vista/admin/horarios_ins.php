@@ -112,7 +112,7 @@ $id_ins=$_GET['instructor'];
                 }
                 ?>    
               </div>
-              <nav class="mt-2">
+           <!--   <nav class="mt-2">
                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                   <li class="nav-item has-treeview">
                     <a href="#" class="nav-link">
@@ -162,15 +162,15 @@ $id_ins=$_GET['instructor'];
                     </ul>
                   </li>
                 </ul>               
-              </nav>                              
+              </nav> -->                             
         </div>            
       </aside>
   <!--div1content-wrapper-->         
   <div class="content-wrapper">
     <?php
-    if (isset($_GET['est'])) {
+   /* if (isset($_GET['est'])) {
       
-   $Trimest=$_GET['est'];
+   $Trimest=$_GET['est'];*/
 
     $con_ins=mysqli_query($conn,"SELECT * FROM instructor WHERE ID='$id_ins'");
     $rowins=mysqli_fetch_array($con_ins);
@@ -296,7 +296,8 @@ $id_ins=$_GET['instructor'];
                 </tr>
                 <?php
                    
-                 $sumas="SELECT SUM(horas_instructor) as total FROM horarios,tb_trimestre WHERE horarios.id_trim_fch=tb_trimestre.id_T AND horarios.instructor=$id_ins AND tb_trimestre.estatus_trim_H=0 and tb_trimestre.Trimestre='$Trimest'";
+                 $sumas="SELECT SUM(horas_instructor) as total FROM horarios,tb_trimestre WHERE horarios.id_trim_fch=tb_trimestre.id_T AND horarios.instructor=$id_ins AND tb_trimestre.estatus_trim_H=0 ";
+                 /*$sumas="SELECT SUM(horas_instructor) as total FROM horarios,tb_trimestre WHERE horarios.id_trim_fch=tb_trimestre.id_T AND horarios.instructor=$id_ins AND tb_trimestre.estatus_trim_H=0 and tb_trimestre.Trimestre='$Trimest'"; */
                   $resulsuma=mysqli_query($conn,$sumas);
                   $rowsum=mysqli_fetch_array($resulsuma);
                   $sum=$rowsum['total'];
@@ -347,14 +348,15 @@ $id_ins=$_GET['instructor'];
                                                  <td bgcolor="EFD5BA" width="17%" height="100px" style="border: 1px solid; padding: 0;">
 
                                                 <?php
-                        $querys = "SELECT * FROM horarios,ficha,instructor,dias,horas,ambiente,tb_trimestre,programa WHERE horarios.dia=$day AND ficha.fc_id_programa=programa.id_program AND horarios.hora=$hour AND horarios.dia=dias.id AND horarios.ficha=ficha.ID_F AND horarios.instructor = instructor.ID AND horarios.id_ambiente=ambiente.id_A AND horarios.hora = horas.id_h and horarios.id_trim_fch=tb_trimestre.id_T and tb_trimestre.Trimestre='$Trimest' and horarios.instructor=$id_ins";
+                        $querys = "SELECT * FROM horarios,ficha,instructor,dias,horas,ambiente,tb_trimestre,programa WHERE horarios.dia=$day AND ficha.fc_id_programa=programa.id_program AND horarios.hora=$hour AND horarios.dia=dias.id AND horarios.ficha=ficha.ID_F AND horarios.instructor = instructor.ID AND horarios.id_ambiente=ambiente.id_A AND horarios.hora = horas.id_h and horarios.id_trim_fch=tb_trimestre.id_T and horarios.instructor=$id_ins";
+                        /* $querys = "SELECT * FROM horarios,ficha,instructor,dias,horas,ambiente,tb_trimestre,programa WHERE horarios.dia=$day AND ficha.fc_id_programa=programa.id_program AND horarios.hora=$hour AND horarios.dia=dias.id AND horarios.ficha=ficha.ID_F AND horarios.instructor = instructor.ID AND horarios.id_ambiente=ambiente.id_A AND horarios.hora = horas.id_h and horarios.id_trim_fch=tb_trimestre.id_T and tb_trimestre.Trimestre='$Trimest' and horarios.instructor=$id_ins"; */
                                                 $result = mysqli_query($conn, $querys);
                                                 $row = mysqli_fetch_assoc($result); 
                                                  if (isset($row)) { ?>                                                                              
-                                                <center>                                      
+                                                <center style="font-size: small;">                                      
                                                  
                                                  <?php  echo "Ficha: ".$row['Nº ficha'];?><br><?php  echo $row['Trimestre'];?><br>
-                                                 <?php  echo $row['Nom_program'];?><br>  <?php  echo "Amb. ".$row['Nombre_ambiente'];?>  
+                                                <?php  echo $row['Nom_program'];?><br> <?php  echo "Amb. ".$row['Nombre_ambiente'];?>  
                                                 </center>
                                                 <?php
                                                 }elseif (!isset($row)) {
@@ -373,7 +375,7 @@ $id_ins=$_GET['instructor'];
       </div>
       <!--/div TABLAS-->  
       <?php  
-    } ?>        
+   // } ?>        
   </div>
   <!--/div1content-wrapper-->
 

@@ -262,13 +262,14 @@ if (isset($_GET['trims'])) {
     
     $trim_f=$_SESSION['trim'];//variable del trimestre para consulta 
       
-  //Fecha Bogota Colombia          
-    date_default_timezone_set('America/Bogota');       
+       
+    
+
     $prueVar=mysqli_query($conn,"SELECT * FROM tb_trimestre WHERE id_fch=$id_ficha and Trimestre='$trim_f'");  
     $rowVar=mysqli_fetch_assoc($prueVar);
-     // echo $rowVar['Trim_date_Inc']."<br>";
+  
     
-     if (date("Y-m-d")>=$rowVar['Trim_date_fin']) {     
+     if ($rowVar['estatus_trim_H']==1) {     
       ?>
       <style type="text/css">
        #uso_des{
@@ -276,7 +277,7 @@ if (isset($_GET['trims'])) {
        }
       </style>
      <?php
-     }else{ 
+     }elseif ($rowVar['estatus_trim_H']==0) {
       //echo "fechas no iguales";
      ?>
      <style type="text/css">
@@ -403,8 +404,14 @@ if (isset($_GET['trims'])) {
                 <tr class="table-bordered table" style="">
                   <td colspan="2" bgcolor="5B6269" style="border: 1px solid; color: white; border-color: black;">
                     <?php echo "Grupo: ".$rowfch['Nº ficha']." ".$rowfch['Trimestre'];?> </td>
-                  <td colspan="2" bgcolor="5B6269" style="border: 1px solid; color: white; border-color: black;">
+                  <td colspan="1" bgcolor="5B6269" style="border: 1px solid; color: white; border-color: black;">
                   Taller</td>
+                  <td colspan="1" bgcolor="5B6269" style="border: 1px solid black;">
+                    <div class="btn-group" style="display: flex;">
+                      <button class="btn btn-success" onclick="window.open('estado.php?est=1&fich=<?php echo $id_ficha ?>','_Self')">Activo</button>
+                      <button class="btn btn-danger"  onclick="window.open('estado.php?est=2&fich=<?php echo $id_ficha ?>','_Self')">Inactivo</button>
+                    </div>
+                  </td>
                   <td id="uso_des" colspan="1" style="border: 1px solid black;">Estado</td>
                   <td colspan="2" bgcolor="5B6269" style="border: 1px solid; color: white; border-color: black;">
                     <?php echo "Fecha: ".$rowfch['Trim_date_Inc']." a ".$rowfch['Trim_date_fin'] ?></td>
@@ -535,9 +542,9 @@ if (isset($_GET['trims'])) {
                   <!--div2Tabla -->
                   <div style=" position: relative;
                                bottom: 1401px;
-                               margin: 0 0 0 151px;
+                               margin: 0 0 0 146px;
                                margin-right: -7px;
-                               max-WIDTH: 966px; 
+                               max-WIDTH: 971px; 
                                max-HEIGHT:100px;
                                   "> 
                     <table class="table table-bordered">
