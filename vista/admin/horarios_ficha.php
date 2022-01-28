@@ -390,12 +390,21 @@ if (isset($_GET['trims'])) {
         </div>
       </div>
       <!--/modal-->
-        
+        <?php 
+          $est_fch=$rowfch['ID_F'];
+          $esta_trim=mysqli_query($conn,"SELECT * FROM ficha,tb_trimestre WHERE ficha.ID_F=tb_trimestre.id_fch and ficha.ID_F=$est_fch and tb_trimestre.estatus_trim_H=0");
+          $row_estfch=mysqli_fetch_assoc($esta_trim);  
+         ?>
         <br>
       <!--div TABLAS-->
       <div class="container">
         <center><h3><?php echo "Ficha ".$rowfch['Nº ficha']." ".$rowfch['nivel_form']; ?></h3>
-            <h4><?php echo "Programa ".$rowfch['Nom_program']?></h4>
+            <h4><?php echo "Programa ".$rowfch['Nom_program'];?></h4>
+             <?php if(isset($row_estfch['Trimestre'])) 
+             {?><h5>El Trimestre activo de la ficha es <?php echo $row_estfch['Trimestre'];?></h5><?php
+              }else{echo "<h2>La ficha no tiene un horario activo</h2>";}
+             ?>
+             
             
           </center>
 
@@ -403,7 +412,10 @@ if (isset($_GET['trims'])) {
               <table style="border: 1px solid;">
                 <tr class="table-bordered table" style="">
                   <td colspan="2" bgcolor="5B6269" style="border: 1px solid; color: white; border-color: black;">
-                    <?php echo "Grupo: ".$rowfch['Nº ficha']." ".$rowfch['Trimestre'];?> </td>
+                    <?php echo "Grupo: ".$rowfch['Nº ficha']." ".$rowfch['Trimestre'];?>
+                    
+
+                 </td>
                   <td colspan="1" bgcolor="5B6269" style="border: 1px solid; color: white; border-color: black;">
                   Taller</td>
                   <td colspan="1" bgcolor="5B6269" style="border: 1px solid black;">
@@ -568,7 +580,7 @@ if (isset($_GET['trims'])) {
                                                 $result = mysqli_query($conn, $querys);
                                                 $row = mysqli_fetch_assoc($result); 
                                                  if (isset($row)) { ?>                                                                              
-                              <center>                                      
+                              <center style="font-size: small;">                                      
                                                  <?php  echo $row['Nombre_ambiente'];?><br>
                                                  <?php  echo $row['Nombre']." ".$row['Apellido'];?><br>
             

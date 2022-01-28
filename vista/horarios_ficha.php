@@ -171,13 +171,11 @@ $queryf="SELECT * FROM ficha,programa,tb_trimestre WHERE ficha.ID_F='$id_fch_con
 $fchc=mysqli_query($conn,$queryf);
 $rows=mysqli_fetch_assoc($fchc);
 
-  //Fecha Bogota Colombia          
-    date_default_timezone_set('America/Bogota');       
-    $prueVar=mysqli_query($conn,"SELECT * FROM tb_trimestre WHERE id_fch=$id_fch_cons and Trimestre='$tm_c'");  
+ $prueVar=mysqli_query($conn,"SELECT * FROM tb_trimestre WHERE id_fch=$id_fch_cons and Trimestre='$tm_c'");  
     $rowVar=mysqli_fetch_assoc($prueVar);
-     // echo $rowVar['Trim_date_Inc']."<br>";
+  
     
-     if (date("Y-m-d")>=$rowVar['Trim_date_fin']) {       
+     if ($rowVar['estatus_trim_H']==1) {     
       ?>
       <style type="text/css">
        #uso_des{
@@ -185,7 +183,7 @@ $rows=mysqli_fetch_assoc($fchc);
        }
       </style>
      <?php
-     }else{ 
+     }elseif ($rowVar['estatus_trim_H']==0) {
       //echo "fechas no iguales";
      ?>
      <style type="text/css">
@@ -195,13 +193,18 @@ $rows=mysqli_fetch_assoc($fchc);
      </style>
      <?php
    }
-     //Fecha 
+    //Fecha 
+    $est_fch=mysqli_query($conn,"SELECT * FROM ficha,tb_trimestre WHERE ficha.ID_F=tb_trimestre.id_fch and ficha.ID_F=$id_fch_cons and tb_trimestre.estatus_trim_H=0");
+    $row_estfch=mysqli_fetch_assoc($est_fch);
     
- 
+    if(isset($row_estfch['Trimestre'])) 
+    {?><h5><center>El Trimestre activo de la ficha es <?php echo $row_estfch['Trimestre'];?></center></h5>
+  <?php
+    }else{ echo "<h2><center>La ficha no tiene un horario activo</center></h2>";}
 ?>
 
 <!--/tabla_ficha-->
-<div class="container">                  
+<div class="container">               
        <div class="container"><!--div1tabla --> 
          <table style="border: 1px solid; ">
                 <tr class="table-bordered table" style="">
@@ -325,7 +328,7 @@ $rows=mysqli_fetch_assoc($fchc);
        <!--div1 -->          
        <div class="container">
           <div style="position: relative;
-                              bottom: 1402px;
+                              bottom: 1401px;
                               margin: 0 0 0 154px;
                               margin-right: 0px;
                               max-WIDTH: 966px; 
@@ -352,7 +355,7 @@ $query = "SELECT * FROM horarios,ficha,instructor,dias,horas,ambiente,tb_trimest
                                       $result = mysqli_query($conn, $query);
                                       $row = mysqli_fetch_assoc($result); 
                                        if (isset($row)) { ?>                                                                              
-                    <center>
+                    <center style="font-size: small;">
                                        <?php  echo $row['Nombre'];?><br> 
                                        <?php  echo $row['Trimestre'];?><br>
                                        <?php  echo $row['Nombre_ambiente'];?>                    

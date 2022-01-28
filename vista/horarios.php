@@ -382,7 +382,7 @@ while ($rowUp_3=mysqli_fetch_assoc($consupdate_EntreFechas)) {
   <div id="fichas" class="collapse">
    <div class="row">
       <div class="col-lg-12 mx-auto">
-        <div class="container"> 
+        <div class="container">        
          <script type="text/javascript">
                   function elif(){
 
@@ -395,15 +395,121 @@ while ($rowUp_3=mysqli_fetch_assoc($consupdate_EntreFechas)) {
                      }
                      
                   }
-               </script>  
-
-        <?php
-         $estad=mysqli_query($conn,"SELECT * FROM tb_trimestre");
-         $tablaf="SELECT * FROM ficha,programa WHERE ficha.fc_id_programa = programa.id_program";
-         $contf=mysqli_query($conn,$tablaf);
-         $estad_row=mysqli_fetch_array($estad);
+               </script>
+           <!--Collapse_Ficha_Ficha secl-->
+              <div id="accordion">
+                <div class="card">
+                  <div class="card-header" style="background-color: #212529;">
+                    <a class="card-link" style="color: white;" data-toggle="collapse" href="#collapseOne">
+                      Consulta Fichas
+                    </a>
+                  </div>
+                  <div id="collapseOne" class="collapse show" data-parent="#accordion">
+                    <div class="card-body">
+                      <?php       
+                       $tablaf="SELECT * FROM ficha,programa WHERE ficha.fc_id_programa = programa.id_program";
+                       $contf=mysqli_query($conn,$tablaf);       
+                      ?>
+                      <div class="table-responsive">             
+                        <table class="table table-bordered table-striped" style="text-align:center;">
+                          <thead class="thead-dark">
+                            <tr>
+                              
+                              <th>Ficha</th>
+                              <th>Nombre del programa</th>
+                              <th>Nivel de formacion</th>
+                              <th>Jornada </th>
+                              <th>Opciones</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                          <?php
+                            while ($fcon=mysqli_fetch_assoc($contf)) {
+                          ?>
+                            <tr>
+                              
+                              <td><?php echo $fcon['Nº ficha'];?></td>
+                              <td><?php echo $fcon["Nom_program"];?></td>
+                              <td><?php echo $fcon["nivel_form"];?></td>
+                              <td><?php echo $fcon["fc_jornada"];?></td>          
+                              <td>
+                                <div class="btn-group">
+                                  <button class="btn btn-dark btn-sm" onclick="window.open('horarios_ficha.php?ficha=<?php echo $fcon['ID_F']?>','_Self')">Horario</button>
+                                  <a href="ubdateF.php?ubf=<?php echo $fcon["ID_F"]?>"><button type="submit" class="btn btn-success btn-sm">Editar</button></a>
+                                  <a href="../controlador/deleteF.php?eliF=<?php echo $fcon['ID_F']?>"><button type="submit" class="btn btn-danger btn-sm" onclick="return elif()" >Eliminar</button></a>
+                                </div>
+                              </td>
+                            </tr>      
+                          <?php
+                            }
+                            
+                          ?>      
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="card-header" style="background-color: #212529;">
+                    <a class="collapsed card-link" style="color: white;" data-toggle="collapse" href="#collapseTwo">
+                    Consulta Fichas Activas 
+                  </a>
+                  </div>
+                  <div id="collapseTwo" class="collapse" data-parent="#accordion">
+                    <div class="card-body">
+                      <?php       
+                       $tablaf1="SELECT * FROM ficha,programa,tb_trimestre WHERE ficha.fc_id_programa = programa.id_program and ficha.ID_F=tb_trimestre.id_fch and tb_trimestre.estatus_trim_H=0";
+                       $contf1=mysqli_query($conn,$tablaf1);       
+                      ?>
+                      <div class="table-responsive">             
+                        <table class="table table-bordered table-striped" style="text-align:center;">
+                          <thead class="thead-dark">
+                            <tr>                           
+                              <th>Ficha</th>
+                              <th>Nombre del programa</th>
+                              <th>Nivel de formacion</th>
+                              <th>Jornada </th>
+                              <th>Trimestre <br>activo</th>
+                              <th>Opciones</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                          <?php
+                            while ($fcon1=mysqli_fetch_assoc($contf1)) {
+                          ?>
+                            <tr>
+                              
+                              <td><?php echo $fcon1['Nº ficha'];?></td>
+                              <td><?php echo $fcon1["Nom_program"];?></td>
+                              <td><?php echo $fcon1["nivel_form"];?></td>
+                              <td><?php echo $fcon1["fc_jornada"];?></td> 
+                              <td><?php echo $fcon1["Trimestre"];?></td>         
+                              <td>
+                                <div class="btn-group">
+                                  <button class="btn btn-dark btn-sm" onclick="window.open('horarios_ficha.php?ficha=<?php echo $fcon1['ID_F']?>','_Self')">Horario</button>
+                                  <a href="ubdateF.php?ubf=<?php echo $fcon1["ID_F"]?>"><button type="submit" class="btn btn-success btn-sm">Editar</button></a>
+                                  <a href="../controlador/deleteF.php?eliF=<?php echo $fcon1['ID_F']?>"><button type="submit" class="btn btn-danger btn-sm" onclick="return elif()" >Eliminar</button></a>
+                                </div>
+                              </td>
+                            </tr>      
+                          <?php
+                            }
+                            
+                          ?>      
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>             
+              </div>
+           <!--/Collapse_Ficha_Ficha secl-->       
+        <?php       
+        /* $tablaf="SELECT * FROM ficha,programa WHERE ficha.fc_id_programa = programa.id_program";
+         $contf=mysqli_query($conn,$tablaf);     */  
         ?>
-        <div class="table-responsive">             
+      <!--  <div class="table-responsive">             
           <table class="table table-bordered table-striped" style="text-align:center;">
             <thead class="thead-dark">
               <tr>
@@ -412,25 +518,19 @@ while ($rowUp_3=mysqli_fetch_assoc($consupdate_EntreFechas)) {
                 <th>Nombre del programa</th>
                 <th>Nivel de formacion</th>
                 <th>Jornada </th>
-                <th>Estado</th>
                 <th>Opciones</th>
               </tr>
             </thead>
             <tbody>
             <?php
-              while ($fcon=mysqli_fetch_assoc($contf)) {
+             /* while ($fcon=mysqli_fetch_assoc($contf)) {
             ?>
               <tr>
                 
                 <td><?php echo $fcon['Nº ficha'];?></td>
                 <td><?php echo $fcon["Nom_program"];?></td>
                 <td><?php echo $fcon["nivel_form"];?></td>
-                <td><?php echo $fcon["fc_jornada"];?></td>    
-                <?php if ($estad_row['estatus_trim_H']==1) {
-                 ?> <td>inactivo</td><?php
-                }elseif ($estad_row['estatus_trim_H']==0) {
-                  ?><td>Activo</td><?php
-                } ?>        
+                <td><?php echo $fcon["fc_jornada"];?></td>          
                 <td>
                   <div class="btn-group">
                     <button class="btn btn-dark btn-sm" onclick="window.open('horarios_ficha.php?ficha=<?php echo $fcon['ID_F']?>','_Self')">Horario</button>
@@ -440,13 +540,13 @@ while ($rowUp_3=mysqli_fetch_assoc($consupdate_EntreFechas)) {
                 </td>
               </tr>      
             <?php
-              }
+              }*/
               
             ?>      
             </tbody>
           </table>
-        </div>
-        </div>
+        </div>-->
+        </div><!--/container -->
       </div>
     </div>
   </div>
