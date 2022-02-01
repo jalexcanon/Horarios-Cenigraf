@@ -68,7 +68,7 @@ while ($rowUp_3=mysqli_fetch_assoc($consupdate_EntreFechas)) {
  </div>
   <!--divnav-->
  <div>
-    <nav class="main-header navbar navbar-expand-md navbar-dark navbar-light sticky-top">
+    <nav id="lt_nav" class="main-header navbar navbar-expand-md navbar-dark navbar-light sticky-top">
         <ul class="navbar-nav">
           <li class="nav-item">
             <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
@@ -108,7 +108,7 @@ while ($rowUp_3=mysqli_fetch_assoc($consupdate_EntreFechas)) {
         </nav>
  </div><!--/divnav-->
  <!--lateral-->
-    <aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <aside id="lt_aside" class="main-sidebar sidebar-dark-primary elevation-4">
             
             <a href="horarios.php" class="brand-link">
               <img src="../img/logo1.png"
@@ -174,6 +174,14 @@ while ($rowUp_3=mysqli_fetch_assoc($consupdate_EntreFechas)) {
               </div>
               <?php
             }elseif ($rol==2) {
+              ?>
+              <div class="user-panel mt-4 pb-4 mb-4 d-flex">               
+                <div class="info">
+                  <a href="imprimir/horarios_Ins_Im.php?ins=<?php echo $instru; ?>" target="_blank" >  <div class="far fa-file"> Imprimir | Descargar</div></a>
+                </div>
+              </div> 
+              <?php
+            }/*elseif ($rol==2) {
              ?>
               <nav class="mt-2">
                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
@@ -228,7 +236,7 @@ while ($rowUp_3=mysqli_fetch_assoc($consupdate_EntreFechas)) {
               </nav>             
 
              <?php
-            }
+            }*/
               ?>
         </div>                  
       </aside>
@@ -1092,10 +1100,9 @@ while ($rowUp_3=mysqli_fetch_assoc($consupdate_EntreFechas)) {
 <div class="container">
   <?php
  if ($rol==2) {
-  if (isset($_GET['Trimest'])) {
-      $ins_trim=$_GET['Trimest'];              
+                
                                  
-  $sumas="SELECT SUM(horas_instructor) as total FROM horarios,tb_trimestre WHERE horarios.id_trim_fch=tb_trimestre.id_T AND horarios.instructor=$instru AND tb_trimestre.estatus_trim_H=0 and tb_trimestre.Trimestre='$ins_trim'";
+  $sumas="SELECT SUM(horas_instructor) as total FROM horarios,tb_trimestre WHERE horarios.id_trim_fch=tb_trimestre.id_T AND horarios.instructor=$instru AND tb_trimestre.estatus_trim_H=0";
   $resulsuma=mysqli_query($conn,$sumas);
   $rowsum=mysqli_fetch_array($resulsuma);
   $sum=$rowsum['total'];
@@ -1257,12 +1264,13 @@ $lol=mysqli_fetch_array($re);// nombre tabla instructor
                                        <td bgcolor="EFD5BA" width="17%" height="100px" style="border: 1px solid; padding: 0;">
 
                                       <?php
-                          $query = "SELECT * FROM horarios,ficha,instructor,dias,horas,ambiente,tb_trimestre WHERE horarios.dia=$day AND horarios.hora=$hour AND horarios.dia=dias.id AND horarios.ficha=ficha.ID_F AND horarios.instructor = instructor.ID AND horarios.hora = horas.id_h and horarios.id_ambiente=ambiente.id_A and horarios.id_trim_fch=tb_trimestre.id_T and horarios.instructor=$instru AND tb_trimestre.Trimestre='$ins_trim'";
+                          $query = "SELECT * FROM horarios,ficha,instructor,dias,horas,ambiente,tb_trimestre,programa WHERE horarios.dia=$day AND horarios.hora=$hour AND horarios.dia=dias.id AND horarios.ficha=ficha.ID_F AND horarios.instructor = instructor.ID AND horarios.hora = horas.id_h and horarios.id_ambiente=ambiente.id_A and horarios.id_trim_fch=tb_trimestre.id_T and ficha.fc_id_programa=programa.id_program and horarios.instructor=$instru";
                                       $result = mysqli_query($conn, $query);
                                       $row = mysqli_fetch_assoc($result); 
                                        if (isset($row)) { ?>                                                                              
-                    <center>
+                    <center style="font-size: small;">
                                        <?php  echo $row['Nº ficha'];?><br>
+                                       <?php  echo $row['Nom_program'];?><br>
                                        <?php  echo $row['Nombre_ambiente'];?><br>  
                                        <?php  echo $row['Trimestre'];?>                   
                    </center>   
@@ -1286,7 +1294,7 @@ $lol=mysqli_fetch_array($re);// nombre tabla instructor
         </div><!--/div1 -->
 
 <?php 
- }   
+   
 }
 ?>
 </div><!--/tabla_ins_rol-->

@@ -1,28 +1,25 @@
 <?php 
-include ('../controlador/conexion.php');
+include ('../../controlador/conexion.php');
 session_start();
 $correo=$_SESSION['ema'];
 $inst=$_SESSION['nam'];
  if (!isset($correo)) {
-    header("location:../index.php");
+    header("location:../../index.php");
  }
- $rol=$_SESSION['rol'];
- if ($rol==2) {
-   header('location:horarios.php');
- }
+ 
  $trim_f=$_SESSION['trim'];
  $id_f=$_GET['fich'];
 
-// echo $trim_f,$id_f;
+ //echo $trim_f,$id_f;
  ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
 	<meta charset="utf-8">
-	<title>Horario_Ficha </title>
+	<title>Horario Ficha Imprimir </title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" type="text/css" href="../css/style.css">
-  <link rel="stylesheet" href="../plugins/fontawesome-free/css/all.min.css">
+  <link rel="stylesheet" type="text/css" href="../../css/style.css">
+  <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
 </head>
 <body>
 <style type="text/css">
@@ -38,11 +35,11 @@ $inst=$_SESSION['nam'];
    $fchT=mysqli_fetch_assoc($fcht);
    ?>
   <tr>
-   <td colspan="6" rowspan="3" ><img src="../img/sena_horarios.png"></td>
+   <td colspan="6" rowspan="3" ><img src="../../img/sena_horarios.png"></td>
    <td  WIDTH="200">Vercion: 03</td>       	     		
   </tr>
   <tr>
-  	<td>Fecha: 2021</td>
+  	<td>Fecha: <?php echo date('Y'); ?></td>
   </tr>
   <tr>
   	<td><?php echo $fchT['Trimestre'] ?></td>
@@ -69,8 +66,8 @@ $inst=$_SESSION['nam'];
               if (isset($row)) {
                 echo "<center>";
                 echo $row['Nº ficha']."<br>";           
-                echo $row['Nombre']."<br>";
-                echo $row['Nombre_ambiente'];
+                echo $row['Nombre']." ".$row['Apellido']."<br>";
+                echo "Ambiente ".$row['Nombre_ambiente'];
                 echo "</center>";
               }else{ echo "&nbsp";}
              
@@ -81,8 +78,8 @@ $inst=$_SESSION['nam'];
               if (isset($row)) {
                 echo "<center>";
                 echo $row['Nº ficha']."<br>";           
-                echo $row['Nombre']."<br>";
-                echo $row['Nombre_ambiente'];
+                echo $row['Nombre']." ".$row['Apellido']."<br>";
+                echo "Ambiente ".$row['Nombre_ambiente'];
                 echo "</center>";
               }else{ echo "&nbsp";}
      ?></td>
@@ -93,8 +90,8 @@ $inst=$_SESSION['nam'];
               if (isset($row)) {
                 echo "<center>";
                 echo $row['Nº ficha']."<br>";           
-                echo $row['Nombre']."<br>";
-                echo $row['Nombre_ambiente'];
+                echo $row['Nombre']." ".$row['Apellido']."<br>";
+                echo "Ambiente ".$row['Nombre_ambiente'];
                 echo "</center>";
               }else{ echo "&nbsp";}
      ?>
@@ -106,8 +103,8 @@ $inst=$_SESSION['nam'];
               if (isset($row)) {
                 echo "<center>";
                 echo $row['Nº ficha']."<br>";           
-                echo $row['Nombre']."<br>";
-                echo $row['Nombre_ambiente'];
+                echo $row['Nombre']." ".$row['Apellido']."<br>";
+                echo "Ambiente ".$row['Nombre_ambiente'];
                 echo "</center>";
               }else{ echo "&nbsp";}
      ?>
@@ -119,8 +116,8 @@ $inst=$_SESSION['nam'];
               if (isset($row)) {
                 echo "<center>";
                 echo $row['Nº ficha']."<br>";           
-                echo $row['Nombre']."<br>";
-                echo $row['Nombre_ambiente'];
+                echo $row['Nombre']." ".$row['Apellido']."<br>";
+                echo "Ambiente ".$row['Nombre_ambiente'];
                 echo "</center>";
               }else{ echo "&nbsp";}
      ?>
@@ -132,8 +129,8 @@ $inst=$_SESSION['nam'];
               if (isset($row)) {
                 echo "<center>";
                 echo $row['Nº ficha']."<br>";           
-                echo $row['Nombre']."<br>";
-                echo $row['Nombre_ambiente'];
+                echo $row['Nombre']." ".$row['Apellido']."<br>";
+                echo "Ambiente ".$row['Nombre_ambiente'];
                 echo "</center>";
               }else{ echo "&nbsp";}
      ?>
@@ -152,8 +149,8 @@ $inst=$_SESSION['nam'];
               if (isset($row)) {
                 echo "<center>";
                 echo $row['Nº ficha']."<br>";           
-                echo $row['Nombre']."<br>";
-                echo $row['Nombre_ambiente'];
+                echo $row['Nombre']." ".$row['Apellido']."<br>";
+                echo "Ambiente ".$row['Nombre_ambiente'];
                 echo "</center>";
               }else{ echo "&nbsp";}
      ?>
@@ -165,8 +162,8 @@ $inst=$_SESSION['nam'];
               if (isset($row)) {
                 echo "<center>";
                 echo $row['Nº ficha']."<br>";           
-                echo $row['Nombre']."<br>";
-                echo $row['Nombre_ambiente'];
+                echo $row['Nombre']." ".$row['Apellido']."<br>";
+                echo "Ambiente ".$row['Nombre_ambiente'];
                 echo "</center>";
               }else{ echo "&nbsp";}
      ?>
@@ -178,8 +175,8 @@ $inst=$_SESSION['nam'];
               if (isset($row)) {
                 echo "<center>";
                 echo $row['Nº ficha']."<br>";           
-                echo $row['Nombre']."<br>";
-                echo $row['Nombre_ambiente'];
+                echo $row['Nombre']." ".$row['Apellido']."<br>";
+                echo "Ambiente ".$row['Nombre_ambiente'];
                 echo "</center>";
               }else{ echo "&nbsp";}
      ?>
@@ -191,8 +188,8 @@ $inst=$_SESSION['nam'];
               if (isset($row)) {
                 echo "<center>";
                 echo $row['Nº ficha']."<br>";           
-                echo $row['Nombre']."<br>";
-                echo $row['Nombre_ambiente'];
+                echo $row['Nombre']." ".$row['Apellido']."<br>";
+                echo "Ambiente ".$row['Nombre_ambiente'];
                 echo "</center>";
               }else{ echo "&nbsp";}
      ?>
@@ -204,8 +201,8 @@ $inst=$_SESSION['nam'];
               if (isset($row)) {
                 echo "<center>";
                 echo $row['Nº ficha']."<br>";           
-                echo $row['Nombre']."<br>";
-                echo $row['Nombre_ambiente'];
+                echo $row['Nombre']." ".$row['Apellido']."<br>";
+                echo "Ambiente ".$row['Nombre_ambiente'];
                 echo "</center>";
               }else{ echo "&nbsp";}
      ?>
@@ -217,8 +214,8 @@ $inst=$_SESSION['nam'];
               if (isset($row)) {
                 echo "<center>";
                 echo $row['Nº ficha']."<br>";           
-                echo $row['Nombre']."<br>";
-                echo $row['Nombre_ambiente'];
+                echo $row['Nombre']." ".$row['Apellido']."<br>";
+                echo "Ambiente ".$row['Nombre_ambiente'];
                 echo "</center>";
               }else{ echo "&nbsp";}
      ?>
@@ -237,8 +234,8 @@ $inst=$_SESSION['nam'];
               if (isset($row)) {
                 echo "<center>";
                 echo $row['Nº ficha']."<br>";           
-                echo $row['Nombre']."<br>";
-                echo $row['Nombre_ambiente'];
+                echo $row['Nombre']." ".$row['Apellido']."<br>";
+                echo "Ambiente ".$row['Nombre_ambiente'];
                 echo "</center>";
               }else{ echo "&nbsp";}
      ?>
@@ -250,8 +247,8 @@ $inst=$_SESSION['nam'];
               if (isset($row)) {
                 echo "<center>";
                 echo $row['Nº ficha']."<br>";           
-                echo $row['Nombre']."<br>";
-                echo $row['Nombre_ambiente'];
+                echo $row['Nombre']." ".$row['Apellido']."<br>";
+                echo "Ambiente ".$row['Nombre_ambiente'];
                 echo "</center>";
               }else{ echo "&nbsp";}
      ?>
@@ -263,8 +260,8 @@ $inst=$_SESSION['nam'];
               if (isset($row)) {
                 echo "<center>";
                 echo $row['Nº ficha']."<br>";           
-                echo $row['Nombre']."<br>";
-                echo $row['Nombre_ambiente'];
+                echo $row['Nombre']." ".$row['Apellido']."<br>";
+                echo "Ambiente ".$row['Nombre_ambiente'];
                 echo "</center>";
               }else{ echo "&nbsp";}
      ?>
@@ -276,8 +273,8 @@ $inst=$_SESSION['nam'];
               if (isset($row)) {
                 echo "<center>";
                 echo $row['Nº ficha']."<br>";           
-                echo $row['Nombre']."<br>";
-                echo $row['Nombre_ambiente'];
+                echo $row['Nombre']." ".$row['Apellido']."<br>";
+                echo "Ambiente ".$row['Nombre_ambiente'];
                 echo "</center>";
               }else{ echo "&nbsp";}
      ?>
@@ -289,8 +286,8 @@ $inst=$_SESSION['nam'];
               if (isset($row)) {
                 echo "<center>";
                 echo $row['Nº ficha']."<br>";           
-                echo $row['Nombre']."<br>";
-                echo $row['Nombre_ambiente'];
+                echo $row['Nombre']." ".$row['Apellido']."<br>";
+                echo "Ambiente ".$row['Nombre_ambiente'];
                 echo "</center>";
               }else{ echo "&nbsp";}
      ?>
@@ -302,8 +299,8 @@ $inst=$_SESSION['nam'];
               if (isset($row)) {
                 echo "<center>";
                 echo $row['Nº ficha']."<br>";           
-                echo $row['Nombre']."<br>";
-                echo $row['Nombre_ambiente'];
+                echo $row['Nombre']." ".$row['Apellido']."<br>";
+                echo "Ambiente ".$row['Nombre_ambiente'];
                 echo "</center>";
               }else{ echo "&nbsp";}
      ?>
@@ -321,8 +318,8 @@ $inst=$_SESSION['nam'];
               if (isset($row)) {
                 echo "<center>";
                 echo $row['Nº ficha']."<br>";           
-                echo $row['Nombre']."<br>";
-                echo $row['Nombre_ambiente'];
+                echo $row['Nombre']." ".$row['Apellido']."<br>";
+                echo "Ambiente ".$row['Nombre_ambiente'];
                 echo "</center>";
               }else{ echo "&nbsp";}
      ?>
@@ -334,8 +331,8 @@ $inst=$_SESSION['nam'];
               if (isset($row)) {
                 echo "<center>";
                 echo $row['Nº ficha']."<br>";           
-                echo $row['Nombre']."<br>";
-                echo $row['Nombre_ambiente'];
+                echo $row['Nombre']." ".$row['Apellido']."<br>";
+                echo "Ambiente ".$row['Nombre_ambiente'];
                 echo "</center>";
               }else{ echo "&nbsp";}
      ?>
@@ -347,8 +344,8 @@ $inst=$_SESSION['nam'];
               if (isset($row)) {
                 echo "<center>";
                 echo $row['Nº ficha']."<br>";           
-                echo $row['Nombre']."<br>";
-                echo $row['Nombre_ambiente'];
+                echo $row['Nombre']." ".$row['Apellido']."<br>";
+                echo "Ambiente ".$row['Nombre_ambiente'];
                 echo "</center>";
               }else{ echo "&nbsp";}
      ?>
@@ -360,8 +357,8 @@ $inst=$_SESSION['nam'];
               if (isset($row)) {
                 echo "<center>";
                 echo $row['Nº ficha']."<br>";           
-                echo $row['Nombre']."<br>";
-                echo $row['Nombre_ambiente'];
+                echo $row['Nombre']." ".$row['Apellido']."<br>";
+                echo "Ambiente ".$row['Nombre_ambiente'];
                 echo "</center>";
               }else{ echo "&nbsp";}
      ?>
@@ -373,8 +370,8 @@ $inst=$_SESSION['nam'];
               if (isset($row)) {
                 echo "<center>";
                 echo $row['Nº ficha']."<br>";           
-                echo $row['Nombre']."<br>";
-                echo $row['Nombre_ambiente'];
+                echo $row['Nombre']." ".$row['Apellido']."<br>";
+                echo "Ambiente ".$row['Nombre_ambiente'];
                 echo "</center>";
               }else{ echo "&nbsp";}
      ?>
@@ -386,8 +383,8 @@ $inst=$_SESSION['nam'];
               if (isset($row)) {
                 echo "<center>";
                 echo $row['Nº ficha']."<br>";           
-                echo $row['Nombre']."<br>";
-                echo $row['Nombre_ambiente'];
+                echo $row['Nombre']." ".$row['Apellido']."<br>";
+                echo "Ambiente ".$row['Nombre_ambiente'];
                 echo "</center>";
               }else{ echo "&nbsp";}
      ?>
@@ -406,8 +403,8 @@ $inst=$_SESSION['nam'];
               if (isset($row)) {
                 echo "<center>";
                 echo $row['Nº ficha']."<br>";           
-                echo $row['Nombre']."<br>";
-                echo $row['Nombre_ambiente'];
+                echo $row['Nombre']." ".$row['Apellido']."<br>";
+                echo "Ambiente ".$row['Nombre_ambiente'];
                 echo "</center>";
               }else{ echo "&nbsp";}
      ?>
@@ -419,8 +416,8 @@ $inst=$_SESSION['nam'];
               if (isset($row)) {
                 echo "<center>";
                 echo $row['Nº ficha']."<br>";           
-                echo $row['Nombre']."<br>";
-                echo $row['Nombre_ambiente'];
+                echo $row['Nombre']." ".$row['Apellido']."<br>";
+                echo "Ambiente ".$row['Nombre_ambiente'];
                 echo "</center>";
               }else{ echo "&nbsp";}
      ?>
@@ -432,8 +429,8 @@ $inst=$_SESSION['nam'];
               if (isset($row)) {
                 echo "<center>";
                 echo $row['Nº ficha']."<br>";           
-                echo $row['Nombre']."<br>";
-                echo $row['Nombre_ambiente'];
+                echo $row['Nombre']." ".$row['Apellido']."<br>";
+                echo "Ambiente ".$row['Nombre_ambiente'];
                 echo "</center>";
               }else{ echo "&nbsp";}
      ?>
@@ -445,8 +442,8 @@ $inst=$_SESSION['nam'];
               if (isset($row)) {
                 echo "<center>";
                 echo $row['Nº ficha']."<br>";           
-                echo $row['Nombre']."<br>";
-                echo $row['Nombre_ambiente'];
+                echo $row['Nombre']." ".$row['Apellido']."<br>";
+                echo "Ambiente ".$row['Nombre_ambiente'];
                 echo "</center>";
               }else{ echo "&nbsp";}
      ?>
@@ -458,8 +455,8 @@ $inst=$_SESSION['nam'];
               if (isset($row)) {
                 echo "<center>";
                 echo $row['Nº ficha']."<br>";           
-                echo $row['Nombre']."<br>";
-                echo $row['Nombre_ambiente'];
+                echo $row['Nombre']." ".$row['Apellido']."<br>";
+                echo "Ambiente ".$row['Nombre_ambiente'];
                 echo "</center>";
               }else{ echo "&nbsp";}
      ?>
@@ -471,8 +468,8 @@ $inst=$_SESSION['nam'];
               if (isset($row)) {
                 echo "<center>";
                 echo $row['Nº ficha']."<br>";           
-                echo $row['Nombre']."<br>";
-                echo $row['Nombre_ambiente'];
+                echo $row['Nombre']." ".$row['Apellido']."<br>";
+                echo "Ambiente ".$row['Nombre_ambiente'];
                 echo "</center>";
               }else{ echo "&nbsp";}
      ?>
@@ -491,8 +488,8 @@ $inst=$_SESSION['nam'];
               if (isset($row)) {
                 echo "<center>";
                 echo $row['Nº ficha']."<br>";           
-                echo $row['Nombre']."<br>";
-                echo $row['Nombre_ambiente'];
+                echo $row['Nombre']." ".$row['Apellido']."<br>";
+                echo "Ambiente ".$row['Nombre_ambiente'];
                 echo "</center>";
               }else{ echo "&nbsp";}
      ?>
@@ -504,8 +501,8 @@ $inst=$_SESSION['nam'];
               if (isset($row)) {
                 echo "<center>";
                 echo $row['Nº ficha']."<br>";           
-                echo $row['Nombre']."<br>";
-                echo $row['Nombre_ambiente'];
+                echo $row['Nombre']." ".$row['Apellido']."<br>";
+                echo "Ambiente ".$row['Nombre_ambiente'];
                 echo "</center>";
               }else{ echo "&nbsp";}
      ?>
@@ -517,8 +514,8 @@ $inst=$_SESSION['nam'];
               if (isset($row)) {
                 echo "<center>";
                 echo $row['Nº ficha']."<br>";           
-                echo $row['Nombre']."<br>";
-                echo $row['Nombre_ambiente'];
+                echo $row['Nombre']." ".$row['Apellido']."<br>";
+                echo "Ambiente ".$row['Nombre_ambiente'];
                 echo "</center>";
               }else{ echo "&nbsp";}
      ?>
@@ -530,8 +527,8 @@ $inst=$_SESSION['nam'];
               if (isset($row)) {
                 echo "<center>";
                 echo $row['Nº ficha']."<br>";           
-                echo $row['Nombre']."<br>";
-                echo $row['Nombre_ambiente'];
+                echo $row['Nombre']." ".$row['Apellido']."<br>";
+                echo "Ambiente ".$row['Nombre_ambiente'];
                 echo "</center>";
               }else{ echo "&nbsp";}
      ?>
@@ -543,8 +540,8 @@ $inst=$_SESSION['nam'];
               if (isset($row)) {
                 echo "<center>";
                 echo $row['Nº ficha']."<br>";           
-                echo $row['Nombre']."<br>";
-                echo $row['Nombre_ambiente'];
+                echo $row['Nombre']." ".$row['Apellido']."<br>";
+                echo "Ambiente ".$row['Nombre_ambiente'];
                 echo "</center>";
               }else{ echo "&nbsp";}
      ?>
@@ -556,8 +553,8 @@ $inst=$_SESSION['nam'];
               if (isset($row)) {
                 echo "<center>";
                 echo $row['Nº ficha']."<br>";           
-                echo $row['Nombre']."<br>";
-                echo $row['Nombre_ambiente'];
+                echo $row['Nombre']." ".$row['Apellido']."<br>";
+                echo "Ambiente ".$row['Nombre_ambiente'];
                 echo "</center>";
               }else{ echo "&nbsp";}
      ?>
@@ -572,8 +569,8 @@ $inst=$_SESSION['nam'];
               if (isset($row)) {
                 echo "<center>";
                 echo $row['Nº ficha']."<br>";           
-                echo $row['Nombre']."<br>";
-                echo $row['Nombre_ambiente'];
+                echo $row['Nombre']." ".$row['Apellido']."<br>";
+                echo "Ambiente ".$row['Nombre_ambiente'];
                 echo "</center>";
               }else{ echo "&nbsp";}
      ?>
@@ -585,8 +582,8 @@ $inst=$_SESSION['nam'];
               if (isset($row)) {
                 echo "<center>";
                 echo $row['Nº ficha']."<br>";           
-                echo $row['Nombre']."<br>";
-                echo $row['Nombre_ambiente'];
+                echo $row['Nombre']." ".$row['Apellido']."<br>";
+                echo "Ambiente ".$row['Nombre_ambiente'];
                 echo "</center>";
               }else{ echo "&nbsp";}
      ?>
@@ -598,8 +595,8 @@ $inst=$_SESSION['nam'];
               if (isset($row)) {
                 echo "<center>";
                 echo $row['Nº ficha']."<br>";           
-                echo $row['Nombre']."<br>";
-                echo $row['Nombre_ambiente'];
+                echo $row['Nombre']." ".$row['Apellido']."<br>";
+                echo "Ambiente ".$row['Nombre_ambiente'];
                 echo "</center>";
               }else{ echo "&nbsp";}
      ?>
@@ -611,8 +608,8 @@ $inst=$_SESSION['nam'];
               if (isset($row)) {
                 echo "<center>";
                 echo $row['Nº ficha']."<br>";           
-                echo $row['Nombre']."<br>";
-                echo $row['Nombre_ambiente'];
+                echo $row['Nombre']." ".$row['Apellido']."<br>";
+                echo "Ambiente ".$row['Nombre_ambiente'];
                 echo "</center>";
               }else{ echo "&nbsp";}
      ?>
@@ -624,8 +621,8 @@ $inst=$_SESSION['nam'];
               if (isset($row)) {
                 echo "<center>";
                 echo $row['Nº ficha']."<br>";           
-                echo $row['Nombre']."<br>";
-                echo $row['Nombre_ambiente'];
+                echo $row['Nombre']." ".$row['Apellido']."<br>";
+                echo "Ambiente ".$row['Nombre_ambiente'];
                 echo "</center>";
               }else{ echo "&nbsp";}
      ?>
@@ -637,8 +634,8 @@ $inst=$_SESSION['nam'];
               if (isset($row)) {
                 echo "<center>";
                 echo $row['Nº ficha']."<br>";           
-                echo $row['Nombre']."<br>";
-                echo $row['Nombre_ambiente'];
+                echo $row['Nombre']." ".$row['Apellido']."<br>";
+                echo "Ambiente ".$row['Nombre_ambiente'];
                 echo "</center>";
               }else{ echo "&nbsp";}
      ?>
@@ -657,8 +654,8 @@ $inst=$_SESSION['nam'];
               if (isset($row)) {
                 echo "<center>";
                 echo $row['Nº ficha']."<br>";           
-                echo $row['Nombre']."<br>";
-                echo $row['Nombre_ambiente'];
+                echo $row['Nombre']." ".$row['Apellido']."<br>";
+                echo "Ambiente ".$row['Nombre_ambiente'];
                 echo "</center>";
               }else{ echo "&nbsp";}
      ?>
@@ -670,8 +667,8 @@ $inst=$_SESSION['nam'];
               if (isset($row)) {
                 echo "<center>";
                 echo $row['Nº ficha']."<br>";           
-                echo $row['Nombre']."<br>";
-                echo $row['Nombre_ambiente'];
+                echo $row['Nombre']." ".$row['Apellido']."<br>";
+                echo "Ambiente ".$row['Nombre_ambiente'];
                 echo "</center>";
               }else{ echo "&nbsp";}
      ?>
@@ -683,8 +680,8 @@ $inst=$_SESSION['nam'];
               if (isset($row)) {
                 echo "<center>";
                 echo $row['Nº ficha']."<br>";           
-                echo $row['Nombre']."<br>";
-                echo $row['Nombre_ambiente'];
+                echo $row['Nombre']." ".$row['Apellido']."<br>";
+                echo "Ambiente ".$row['Nombre_ambiente'];
                 echo "</center>";
               }else{ echo "&nbsp";}
      ?>
@@ -696,8 +693,8 @@ $inst=$_SESSION['nam'];
               if (isset($row)) {
                 echo "<center>";
                 echo $row['Nº ficha']."<br>";           
-                echo $row['Nombre']."<br>";
-                echo $row['Nombre_ambiente'];
+                echo $row['Nombre']." ".$row['Apellido']."<br>";
+                echo "Ambiente ".$row['Nombre_ambiente'];
                 echo "</center>";
               }else{ echo "&nbsp";}
      ?>
@@ -709,8 +706,8 @@ $inst=$_SESSION['nam'];
               if (isset($row)) {
                 echo "<center>";
                 echo $row['Nº ficha']."<br>";           
-                echo $row['Nombre']."<br>";
-                echo $row['Nombre_ambiente'];
+                echo $row['Nombre']." ".$row['Apellido']."<br>";
+                echo "Ambiente ".$row['Nombre_ambiente'];
                 echo "</center>";
               }else{ echo "&nbsp";}
      ?>
@@ -722,8 +719,8 @@ $inst=$_SESSION['nam'];
               if (isset($row)) {
                 echo "<center>";
                 echo $row['Nº ficha']."<br>";           
-                echo $row['Nombre']."<br>";
-                echo $row['Nombre_ambiente'];
+                echo $row['Nombre']." ".$row['Apellido']."<br>";
+                echo "Ambiente ".$row['Nombre_ambiente'];
                 echo "</center>";
               }else{ echo "&nbsp";}
      ?>
@@ -771,13 +768,13 @@ $inst=$_SESSION['nam'];
  window.addEventListener("load", window.print());
 </script> 
 <!-- jQuery-->
-<script src="../plugins/jquery/jquery.min.js"></script>
+<script src="../../plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap -->
-<script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- jQuery UI -- >
 <script src="../plugins/jquery-ui/jquery-ui.min.js"></script>
  AdminLTE App --> 
-<script src="../css/js/adminlte.min.js"></script>
+<script src="../../css/js/adminlte.min.js"></script>
 
 
 </body>

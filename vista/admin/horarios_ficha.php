@@ -68,7 +68,7 @@ if (isset($_GET['trims'])) {
         <!--/div1-->
         <!--div2-->
         <div>
-         	<nav class="main-header navbar navbar-expand-md navbar-dark navbar-light sticky-top">
+         	<nav id="lt_nav" class="main-header navbar navbar-expand-md navbar-dark navbar-light sticky-top">
                 <ul class="navbar-nav">
                    <li class="nav-item">
                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
@@ -92,7 +92,7 @@ if (isset($_GET['trims'])) {
         </div>
         <!--/div2-->
 
-       <aside class="main-sidebar sidebar-dark-primary elevation-4" style="position: fixed;">
+       <aside id="lt_aside" class="main-sidebar sidebar-dark-primary elevation-4" style="position: fixed;">
             
             <a href="../horarios.php" class="brand-link">
               <img src="../../img/logo1.png"
@@ -132,7 +132,7 @@ if (isset($_GET['trims'])) {
                   ?>
               <div class="user-panel mt-4 pb-4 mb-4 d-flex">               
                 <div class="info">
-                  <a href="../horarios_imprimir.php?fich=<?php echo $id_ficha; ?>" target="_blank" >  <div class="far fa-file"> Imprimir | Descargar</div></a>
+                  <a href="../imprimir/horarios_ficha_Im.php?fich=<?php echo $id_ficha; ?>" target="_blank" >  <div class="far fa-file"> Imprimir | Descargar</div></a>
                 </div>
               </div> 
                   
@@ -487,7 +487,7 @@ if (isset($_GET['trims'])) {
                 </tr>
                    <tr>
                     <th bgcolor="E69138" WIDTH="200" HEIGHT="100" style="border: 1px solid;"> <center> 13:40 - 14:20 </center></th>
-                    <th colspan="12" WIDTH="50" HEIGHT="50" bgcolor="E69138" style = "position: relative; z-index: 1;border: 1px solid;"><center> DESCANSO </center></th>
+                    <th colspan="12" WIDTH="50" HEIGHT="50" bgcolor="E69138" style = "position: relative; z-index: 1;border: 1px solid;"><center> ALMUERZO </center></th>
                    </tr>
                 <tr>
                   <th bgcolor="E69138" WIDTH="200" HEIGHT="100" style="border: 1px solid;"> <center>14:20-16:00</center></th>

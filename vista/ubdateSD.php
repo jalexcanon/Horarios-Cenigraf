@@ -34,7 +34,7 @@
  </div>
   <!--divnav-->
  <div>
-    <nav class="main-header navbar navbar-expand-md navbar-dark navbar-light sticky-top">
+    <nav id="lt_nav" class="main-header navbar navbar-expand-md navbar-dark navbar-light sticky-top">
         <ul class="navbar-nav">
             <li class="nav-item">
               <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
@@ -54,7 +54,7 @@
  </div><!--/divnav-->
  <!--lateral-->
  <div>
-    <aside class="main-sidebar sidebar-dark-primary elevation-4" style="position: fixed;">
+    <aside id="lt_aside" class="main-sidebar sidebar-dark-primary elevation-4" style="position: fixed;">
             
             <a href="horarios.php" class="brand-link">
               <img src="../img/logo1.png"

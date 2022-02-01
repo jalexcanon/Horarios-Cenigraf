@@ -11,7 +11,7 @@
 
  if (isset($_GET['Trimestres'])) {
 $tm_fch=$_GET['Trimestres'];
-
+$_SESSION['trim']=$tm_fch;
  }
 
 if (isset($_GET['ficha'])) {
@@ -56,7 +56,7 @@ $id_fch_cons=$_SESSION['fch_cons'];
  </div>
   <!--divnav-->
  <div>
-    <nav class="main-header navbar navbar-expand-md navbar-dark navbar-light sticky-top">
+    <nav id="lt_nav" class="main-header navbar navbar-expand-md navbar-dark navbar-light sticky-top">
         <ul class="navbar-nav">
             <li class="nav-item">
               <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
@@ -76,7 +76,7 @@ $id_fch_cons=$_SESSION['fch_cons'];
  </div><!--/divnav-->
  <!--lateral-->
  <div>
-    <aside class="main-sidebar sidebar-dark-primary elevation-4" style="position: fixed;">
+    <aside id="lt_aside" class="main-sidebar sidebar-dark-primary elevation-4" style="position: fixed;">
             
             <a href="horarios.php" class="brand-link">
               <img src="../img/logo1.png"
@@ -99,6 +99,18 @@ $id_fch_cons=$_SESSION['fch_cons'];
                  ?></a>
                 </div>
               </div>
+              <?php 
+               if (isset($_GET['Trimestres'])) {
+                 ?>
+              <div class="user-panel mt-4 pb-4 mb-4 d-flex">               
+                <div class="info">
+                  <a href="imprimir/horarios_ficha_Im.php?fich=<?php echo $id_fch_cons; ?>" target="_blank" >  <div class="far fa-file"> Imprimir | Descargar</div></a>
+                </div>
+              </div>
+                 <?php
+               }
+               ?>
+               
               <nav class="mt-2">
                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                   <li class="nav-item has-treeview">
@@ -156,8 +168,15 @@ $id_fch_cons=$_SESSION['fch_cons'];
 
 <div class="content-wrapper">
   <div class="container">
-<br>
-<?php 
+<br><?php
+   $est_fch=mysqli_query($conn,"SELECT * FROM ficha,tb_trimestre WHERE ficha.ID_F=tb_trimestre.id_fch and ficha.ID_F=$id_fch_cons and tb_trimestre.estatus_trim_H=0");
+    $row_estfch=mysqli_fetch_assoc($est_fch);
+    
+    if(isset($row_estfch['Trimestre'])) 
+    {?><h5><center>El Trimestre activo de la ficha es <?php echo $row_estfch['Trimestre'];?></center></h5>
+  <?php
+    }else{ echo "<h2><center>La ficha no tiene un horario activo</center></h2>";}
+
 
 if (isset($_GET['Trimestres'])) {
 
@@ -193,14 +212,8 @@ $rows=mysqli_fetch_assoc($fchc);
      </style>
      <?php
    }
-    //Fecha 
-    $est_fch=mysqli_query($conn,"SELECT * FROM ficha,tb_trimestre WHERE ficha.ID_F=tb_trimestre.id_fch and ficha.ID_F=$id_fch_cons and tb_trimestre.estatus_trim_H=0");
-    $row_estfch=mysqli_fetch_assoc($est_fch);
-    
-    if(isset($row_estfch['Trimestre'])) 
-    {?><h5><center>El Trimestre activo de la ficha es <?php echo $row_estfch['Trimestre'];?></center></h5>
-  <?php
-    }else{ echo "<h2><center>La ficha no tiene un horario activo</center></h2>";}
+     
+   
 ?>
 
 <!--/tabla_ficha-->
@@ -275,7 +288,7 @@ $rows=mysqli_fetch_assoc($fchc);
                 </tr>
                    <tr>
                     <th bgcolor="E69138" WIDTH="200" HEIGHT="100" style="border: 1px solid;"> <center> 13:40 - 14:20 </center></th>
-                    <th colspan="12" WIDTH="50" HEIGHT="50" bgcolor="E69138" style = "position: relative; z-index: 1;border: 1px solid;"><center> DESCANSO </center></th>
+                    <th colspan="12" WIDTH="50" HEIGHT="50" bgcolor="E69138" style = "position: relative; z-index: 1;border: 1px solid;"><center> ALMUERZO </center></th>
                    </tr>
                 <tr>
                   <th bgcolor="E69138" WIDTH="200" HEIGHT="100" style="border: 1px solid;"> <center>14:20-16:00</center></th>
@@ -405,7 +418,7 @@ $query = "SELECT * FROM horarios,ficha,instructor,dias,horas,ambiente,tb_trimest
 <script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- jQuery UI -- >
 <script src="../plugins/jquery-ui/jquery-ui.min.js"></script>
-<!-- AdminLTE App --> 
+!-- AdminLTE App --> 
 <script src="../css/js/adminlte.min.js"></script>
 
 

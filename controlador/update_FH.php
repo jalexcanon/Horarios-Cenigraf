@@ -49,7 +49,7 @@ $fch=$row['ID_F'];
                   </center>
                 </div>
             </div>
-            <nav class="navbar navbar-expand navbar-dark navbar-light" style="padding-top: 35px;"></nav><br>
+            <nav id="lt_nav" class="navbar navbar-expand navbar-dark navbar-light" style="padding-top: 35px;"></nav><br>
             <center>
             <div class="container-sm border p-3 my-3" style="background-color:#ffffff;">
                 <center><h3>Ficha <?php  echo $row["Nº ficha"]; ?></h3></center>

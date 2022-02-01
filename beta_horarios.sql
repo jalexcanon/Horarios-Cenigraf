@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 26-01-2022 a las 16:34:35
+-- Tiempo de generación: 01-02-2022 a las 21:25:11
 -- Versión del servidor: 10.4.16-MariaDB
 -- Versión de PHP: 7.4.12
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `beta_horario`
+-- Base de datos: `beta_horarios`
 --
 
 -- --------------------------------------------------------
@@ -122,34 +122,11 @@ CREATE TABLE `horarios` (
 --
 
 INSERT INTO `horarios` (`id_hora`, `dia`, `ficha`, `instructor`, `hora`, `id_ambiente`, `horas_instructor`, `id_trim_fch`) VALUES
-(294, 2, 19, 1, 1, 3, 2, 56),
-(295, 3, 19, 2, 1, 4, 2, 56),
-(296, 4, 19, 4, 1, 5, 2, 56),
-(298, 5, 19, 1, 1, 5, 2, 56),
-(299, 6, 19, 1, 1, 3, 2, 56),
-(300, 1, 19, 1, 2, 3, 2, 56),
-(301, 2, 19, 1, 2, 3, 2, 56),
-(302, 3, 19, 1, 2, 3, 2, 56),
-(303, 4, 19, 1, 2, 7, 2, 56),
-(304, 5, 19, 1, 2, 3, 2, 56),
-(305, 6, 19, 1, 2, 3, 2, 56),
-(306, 1, 19, 1, 3, 3, 2, 56),
-(307, 2, 19, 1, 3, 3, 2, 56),
-(308, 3, 19, 1, 3, 3, 2, 56),
-(309, 4, 19, 1, 3, 3, 2, 56),
-(310, 5, 19, 1, 3, 3, 2, 56),
-(311, 6, 19, 1, 3, 3, 2, 56),
-(312, 1, 19, 1, 4, 3, 2, 56),
-(313, 2, 19, 1, 4, 3, 2, 56),
-(314, 3, 19, 1, 4, 3, 2, 56),
-(315, 4, 19, 1, 4, 3, 2, 56),
-(316, 5, 19, 1, 4, 3, 2, 56),
-(317, 1, 19, 2, 1, 5, 2, 60),
-(319, 6, 19, 1, 4, 8, 2, 56),
-(320, 1, 19, 1, 1, 8, 2, 56),
-(322, 2, 19, 1, 1, 3, 2, 56),
-(327, 1, 19, 1, 1, 3, 2, 55),
-(328, 1, 19, 1, 1, 4, 2, 55);
+(335, 1, 19, 1, 1, 3, 2, 56),
+(337, 1, 32, 2, 1, 4, 2, 61),
+(338, 2, 32, 1, 1, 5, 2, 61),
+(340, 6, 19, 1, 8, 3, 2, 56),
+(341, 2, 32, 1, 1, 3, 2, 66);
 
 -- --------------------------------------------------------
 
@@ -197,7 +174,7 @@ CREATE TABLE `instructor` (
 --
 
 INSERT INTO `instructor` (`ID`, `Nombre`, `Apellido`, `Cedula`, `email`, `contrasena`, `rol`) VALUES
-(1, 'Jose', 'Ovalle', 2147483647, 'jose@gmail.com', 'd6581d542c7eaf801284f084478b5fcc', 1),
+(1, 'Jose', 'Ovalle', 2147483647, 'jose@gmail.com', 'd6581d542c7eaf801284f084478b5fcc', 2),
 (2, 'Giovany', 'Ortiz', 123456788, 'gio@gmail.com', 'd6581d542c7eaf801284f084478b5fcc', 1),
 (3, 'Andres', 'martinez', 123456799, 'and@gmail.com', 'd6581d542c7eaf801284f084478b5fcc', 2),
 (4, 'Camilo', 'Ortiz', 3333333, 'camilo@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055', 2),
@@ -293,18 +270,18 @@ CREATE TABLE `tb_trimestre` (
 --
 
 INSERT INTO `tb_trimestre` (`id_T`, `Trim_date_Inc`, `Trim_date_fin`, `Trimestre`, `id_fch`, `estatus_trim_H`) VALUES
-(55, '2022-01-17', '2022-04-08', 'I Trimestre', 19, 2),
-(56, '2022-04-18', '2022-07-04', 'II Trimestre', 19, 2),
-(57, '2022-07-18', '2022-09-30', 'III Trimestre', 19, 2),
-(58, '2021-10-06', '2022-12-17', 'IV Trimestre', 19, 2),
-(59, '2023-01-23', '2023-04-08', 'V Trimestre', 19, 2),
-(60, '2023-04-17', '2023-07-28', 'VI Trimestre', 19, 2),
-(61, '2022-01-17', '2022-04-08', 'I Trimestre', 32, 2),
-(62, '2022-04-18', '2022-07-01', 'II Trimestre', 32, 2),
-(63, '2022-07-18', '2022-09-30', 'III Trimestre', 32, 2),
-(64, '2022-10-07', '2022-12-16', 'IV Trimestre', 32, 2),
-(65, '2023-01-16', '2023-04-10', 'V Trimestre', 32, 2),
-(66, '2023-04-17', '2023-07-03', 'VI Trimestre', 32, 2);
+(55, '2022-01-17', '2022-04-21', 'I Trimestre', 19, 1),
+(56, '2022-04-18', '2022-07-04', 'II Trimestre', 19, 0),
+(57, '2022-07-18', '2022-09-30', 'III Trimestre', 19, 1),
+(58, '2021-10-06', '2022-12-17', 'IV Trimestre', 19, 1),
+(59, '2023-01-23', '2023-04-08', 'V Trimestre', 19, 1),
+(60, '2023-04-17', '2023-07-28', 'VI Trimestre', 19, 1),
+(61, '2022-01-17', '2022-04-08', 'I Trimestre', 32, 1),
+(62, '2022-04-18', '2022-07-01', 'II Trimestre', 32, 1),
+(63, '2022-07-18', '2022-09-30', 'III Trimestre', 32, 1),
+(64, '2022-10-07', '2022-12-16', 'IV Trimestre', 32, 1),
+(65, '2023-01-16', '2023-04-10', 'V Trimestre', 32, 1),
+(66, '2023-04-17', '2023-07-03', 'VI Trimestre', 32, 0);
 
 --
 -- Índices para tablas volcadas
@@ -409,7 +386,7 @@ ALTER TABLE `ficha`
 -- AUTO_INCREMENT de la tabla `horarios`
 --
 ALTER TABLE `horarios`
-  MODIFY `id_hora` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=329;
+  MODIFY `id_hora` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=342;
 
 --
 -- AUTO_INCREMENT de la tabla `horas`

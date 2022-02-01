@@ -61,7 +61,7 @@ $id_amb=$_GET['amb'];
         <!--/div1-->
         <!--div2-->
         <div>
-          <nav class="main-header navbar navbar-expand-md navbar-dark navbar-light sticky-top">
+          <nav id="lt_nav" class="main-header navbar navbar-expand-md navbar-dark navbar-light sticky-top">
                 <ul class="navbar-nav">
                    <li class="nav-item">
                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
@@ -82,7 +82,7 @@ $id_amb=$_GET['amb'];
         </div>
         <!--/div2-->
 
-      <aside class="main-sidebar sidebar-dark-primary elevation-4" style="position: fixed;">
+      <aside id="lt_aside" class="main-sidebar sidebar-dark-primary elevation-4" style="position: fixed;">
             
             <a href="../horarios.php" class="brand-link">
               <img src="../../img/logo1.png"
@@ -100,20 +100,11 @@ $id_amb=$_GET['amb'];
                   <a href="#" class="d-block">ADMIN-<?php  echo $inst; ?></a>
                 </div>
               </div>
-              <?php if (isset($_GET['ficha'])) {
-                ?>
-              <div class="user-panel mt-4 pb-4 mb-4 d-flex">
-                <div class="image">
-                  <img src="../../img/h.png" class="img-circle elevation-2" alt="User Image">
-                </div>
-                
+              <div class="user-panel mt-4 pb-4 mb-4 d-flex">               
                 <div class="info">
-                  <a href="" data-toggle="modal" data-target="#myModal" >Crear Horario</a>
+                  <a href="../imprimir/horarios_Amb_Im.php?amb=<?php echo $id_amb; ?>" target="_blank" >  <div class="far fa-file"> Imprimir | Descargar</div></a>
                 </div>
-                <?php
-                }
-                ?>    
-              </div>
+              </div> 
              <!--   <nav class="mt-2">
                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                   <li class="nav-item has-treeview">
@@ -246,7 +237,7 @@ $id_amb=$_GET['amb'];
                 </tr>
                    <tr>
                     <th bgcolor="E69138" WIDTH="200" HEIGHT="100" style="border: 1px solid;"> <center> 13:40 - 14:20 </center></th>
-                    <th colspan="12" WIDTH="50" HEIGHT="50" bgcolor="E69138" style = "position: relative; z-index: 1;border: 1px solid;"><center> DESCANSO </center></th>
+                    <th colspan="12" WIDTH="50" HEIGHT="50" bgcolor="E69138" style = "position: relative; z-index: 1;border: 1px solid;"><center> ALMUERZO </center></th>
                    </tr>
                 <tr>
                   <th bgcolor="E69138" WIDTH="200" HEIGHT="100" style="border: 1px solid;"> <center>14:20-16:00</center></th>
@@ -322,8 +313,8 @@ $id_amb=$_GET['amb'];
                                                  <td bgcolor="EFD5BA" width="17%" height="100px" style="border: 1px solid; padding: 0;">
 
                                                 <?php
-                        $querys = "SELECT * FROM horarios,ficha,instructor,dias,horas,ambiente,tb_trimestre,programa WHERE horarios.dia=$day AND horarios.hora=$hour AND horarios.dia=dias.id AND horarios.ficha=ficha.ID_F AND horarios.instructor = instructor.ID AND horarios.id_ambiente=ambiente.id_A AND horarios.hora = horas.id_h and horarios.id_trim_fch=tb_trimestre.id_T and ficha.fc_id_programa=programa.id_program and horarios.id_ambiente=$id_amb";
-                        /*$querys = "SELECT * FROM horarios,ficha,instructor,dias,horas,ambiente,tb_trimestre,programa WHERE horarios.dia=$day AND horarios.hora=$hour AND horarios.dia=dias.id AND horarios.ficha=ficha.ID_F AND horarios.instructor = instructor.ID AND horarios.id_ambiente=ambiente.id_A AND horarios.hora = horas.id_h and horarios.id_trim_fch=tb_trimestre.id_T and ficha.fc_id_programa=programa.id_program and horarios.id_ambiente=$id_amb and tb_trimestre.Trimestre='$ambTr'";*/
+                        $querys = "SELECT * FROM horarios,ficha,instructor,dias,horas,ambiente,tb_trimestre,programa WHERE horarios.dia=$day AND horarios.hora=$hour AND horarios.dia=dias.id AND horarios.ficha=ficha.ID_F AND horarios.instructor = instructor.ID AND horarios.id_ambiente=ambiente.id_A AND horarios.hora = horas.id_h and horarios.id_trim_fch=tb_trimestre.id_T and ficha.fc_id_programa=programa.id_program and horarios.id_ambiente=$id_amb and tb_trimestre.estatus_trim_H=0";
+                        
                                                 $result = mysqli_query($conn, $querys);
                                                 $row = mysqli_fetch_assoc($result); 
                                                  if (isset($row)) { ?>                                                                              

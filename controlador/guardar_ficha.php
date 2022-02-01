@@ -26,11 +26,11 @@ $resuls=mysqli_query($conn,$querys);
 $row=mysqli_fetch_array($resuls);
 $sum=$row['total'];
 
-$verificar_dia_hora_ficha=mysqli_query($conn,"SELECT * FROM `horarios`,`tb_trimestre` where `horarios`.`id_trim_fch`=`tb_trimestre`.`id_T` and `horarios`.`dia`='$days'  AND `horarios`.`hora`='$hours' and `horarios`.`ficha`='$ficha_' and `horarios`.`id_trim_fch`= '$id_trim' and `tb_trimestre`.`estatus_trim_H`=0");//verificar_dia_hora_ficha del estado 0 y trimestres
+$verificar_dia_hora_ficha=mysqli_query($conn,"SELECT * FROM `horarios`,`tb_trimestre` where `horarios`.`id_trim_fch`=`tb_trimestre`.`id_T` and `horarios`.`dia`='$days'  AND `horarios`.`hora`='$hours' and `horarios`.`ficha`='$ficha_' and `horarios`.`id_trim_fch`= '$id_trim' and `tb_trimestre`.`estatus_trim_H`=0");//verificar_dia_hora_ficha del estado 0 
 
-$verificar_dia_hora_ambiente=mysqli_query($conn,"SELECT * FROM `horarios`,`tb_trimestre` where `horarios`.`id_trim_fch`=`tb_trimestre`.`id_T` and `horarios`.`dia`='$days' AND `horarios`.`hora`='$hours' and `horarios`.`id_ambiente`='$amb' and `tb_trimestre`.`estatus_trim_H`=0 and `horarios`.`id_trim_fch`= '$id_trim'" );//verificar_dia_hora_ambiente des estado 0 y del trimestre 
+$verificar_dia_hora_ambiente=mysqli_query($conn,"SELECT * FROM `horarios`,`tb_trimestre` where `horarios`.`id_trim_fch`=`tb_trimestre`.`id_T` and `horarios`.`dia`='$days' AND `horarios`.`hora`='$hours' and `horarios`.`id_ambiente`='$amb' and `tb_trimestre`.`estatus_trim_H`=0");//verificar_dia_hora_ambiente des estado 0 
 
-$verificar_dia_hora_instructor=mysqli_query($conn,"SELECT * FROM `horarios`,`tb_trimestre` where `horarios`.`id_trim_fch`=`tb_trimestre`.`id_T` and `horarios`.`dia`='$days' AND `horarios`.`hora`='$hours' and `horarios`.`instructor`='$ins' and `tb_trimestre`.`estatus_trim_H`=0 and `horarios`.`id_trim_fch`= '$id_trim'");//verificar_dia_hora_instructor estado 0 y del trimestre 
+$verificar_dia_hora_instructor=mysqli_query($conn,"SELECT * FROM `horarios`,`tb_trimestre` where `horarios`.`id_trim_fch`=`tb_trimestre`.`id_T` and `horarios`.`dia`='$days' AND `horarios`.`hora`='$hours' and `horarios`.`instructor`='$ins' and `tb_trimestre`.`estatus_trim_H`=0");//verificar_dia_hora_instructor estado 0 
 
 if ($sum<40) {  
   
