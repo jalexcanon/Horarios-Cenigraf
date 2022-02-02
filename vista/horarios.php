@@ -262,8 +262,8 @@ while ($rowUp_3=mysqli_fetch_assoc($consupdate_EntreFechas)) {
                         <label class="control-label col-sm-2" for="ins">Instructor:</label>
                         <div class="col-sm-10">
                           
-                            <select class="form-control" id="ins" name="inst">
-                              <option value="0" >Seleccionar Instructor</option>
+                            <select class="form-control" id="ins" name="inst" required>
+                              <option value="" >Seleccionar Instructor</option>
                               <?php
                                            while ($w=mysqli_fetch_array($ins)) {
                                  ?>
@@ -821,8 +821,8 @@ while ($rowUp_3=mysqli_fetch_assoc($consupdate_EntreFechas)) {
               </div>
                <div class="form-group">
                 <label for="roles">Rol del Instructor:</label>
-                <select class="form-control" id="roles" name="rol" required="">
-                  <option value="0">Seleccione el Rol</option>
+                <select class="form-control" id="roles" name="rol" required>
+                  <option value="">Seleccione el Rol</option>
                   <option value="2">Instructor</option>
                   <option value="1">ADMIN</option>                  
                 </select>
@@ -854,8 +854,8 @@ while ($rowUp_3=mysqli_fetch_assoc($consupdate_EntreFechas)) {
               </div>
               <div class="form-group">
                 <label for="jor">Jornada:</label>
-                <select class="form-control" id="jor" name="jornad" required="">
-                  <option>Seleccione</option>
+                <select class="form-control" id="jor" name="jornad" required>
+                  <option value="">Seleccione</option>
                   <option value="Diurna">Diurna </option>                  
                   <option value="Nocturna">Nocturna</option> 
                   <option value="Mixta">Mixta</option>               
@@ -863,8 +863,8 @@ while ($rowUp_3=mysqli_fetch_assoc($consupdate_EntreFechas)) {
               </div>
               <div class="form-group">
                 <label for="tipf">Tipo de Formacion:</label>
-                <select class="form-control" id="tipf" name="tipof" required="">
-                  <option value="0">Seleccione</option>
+                <select class="form-control" id="tipf" name="tipof" required>
+                  <option value="">Seleccione</option>
                   <option value="Presencial">Presencial </option>
                   <option value="Virtual">Virtual</option>                             
                 </select>
@@ -875,8 +875,8 @@ while ($rowUp_3=mysqli_fetch_assoc($consupdate_EntreFechas)) {
    $cons=mysqli_query($conn,$prog);
             ?>
                 <label for="progC">Nombre del programa:</label>
-                <select class="form-control" id="progC" name="program" required="">
-                  <option value="0">Seleccione</option>
+                <select class="form-control" id="progC" name="program" required>
+                  <option value="">Seleccione</option>
                  <?php
     while ($cod_p=mysqli_fetch_assoc($cons)) {
               ?>
@@ -921,8 +921,8 @@ while ($rowUp_3=mysqli_fetch_assoc($consupdate_EntreFechas)) {
             <form action="../controlador/regTF.php" method="POST" style="padding-left:9%; padding-right:8%;" >
               <div class="form-group">
                 <h4>Ficha:</h4> 
-                <select name="ficha_fecha" class="form-control" >
-                  <option>Selecionar</option>
+                <select name="ficha_fecha" class="form-control" required>
+                  <option value="">Selecionar</option>
                   <?php 
                 while ($rowFT=mysqli_fetch_assoc($conFT)) {?>
                   <option value="<?php echo$rowFT['ID_F'] ?>"><?php echo$rowFT['Nº ficha']." ".$rowFT['nivel_form'] ?></option>
@@ -1025,8 +1025,8 @@ while ($rowUp_3=mysqli_fetch_assoc($consupdate_EntreFechas)) {
    $conSD=mysqli_query($conn,$sed);
             ?>
                 <label for="sede_">Nombre de la sede:</label>
-                <select class="form-control" id="sede_" name="sed" required="">
-                  <option value="0">Seleccione</option>
+                <select class="form-control" id="sede_" name="sed" required>
+                  <option value="">Seleccione</option>
                  <?php
     while ($codSD=mysqli_fetch_assoc($conSD)) {
               ?>
@@ -1073,8 +1073,8 @@ while ($rowUp_3=mysqli_fetch_assoc($consupdate_EntreFechas)) {
               </div>
               <div class="form-group">
                 <label for="nivl">Nivel del programa:</label>
-                <select class="form-control" id="nivl" name="nivel_prog" required="">
-                  <option value="0">Seleccione</option>
+                <select class="form-control" id="nivl" name="nivel_prog" required>
+                  <option value="">Seleccione</option>
                   <option value="Técnico">Técnico</option>
                   <option value="Tecnólogo">Tecnólogo</option>
                   <option value="Especialización">Especialización</option>                                 
@@ -1273,12 +1273,10 @@ $lol=mysqli_fetch_array($re);// nombre tabla instructor
                                        <?php  echo $row['Nom_program'];?><br>
                                        <?php  echo $row['Nombre_ambiente'];?><br>  
                                        <?php  echo $row['Trimestre'];?>                   
-                   </center>   
- 
+                    </center>   
                                       <?php
                                       }elseif (!isset($row)) {
-                                          echo "&nbsp";
-                                          
+                                          echo "&nbsp";                                         
                                       }
                                       ?>
                                       </td>
@@ -1286,8 +1284,6 @@ $lol=mysqli_fetch_array($re);// nombre tabla instructor
                                   }
                                   echo "</tr>";
                               }
-
-
                            ?>  
                        </table>      
           </div><!--/div2 --> 
@@ -1371,11 +1367,18 @@ $lol=mysqli_fetch_array($re);// nombre tabla instructor
      
      if ($_GET['vp']==1) {            
       ?>
-       <div class="alert alert-success alert-dismissible fade show">
+      <div class="alert alert-success alert-dismissible fade show">
         <button type="button" class="close" data-dismiss="alert">&times;</button>
         <strong>Programa registrado</strong>
       </div>
       <?php
+       }elseif ($_GET['vp']==2) {
+         ?>
+      <div class="alert alert-danger alert-dismissible fade show">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <strong>El Programa ya se encuentra registrado</strong>
+      </div>
+         <?php
        }
      }
      ?>
@@ -1394,6 +1397,13 @@ $lol=mysqli_fetch_array($re);// nombre tabla instructor
         <strong>Sede registrada</strong>
       </div>
       <?php
+       }elseif ($_GET['vs']==2) {
+         ?>
+      <div class="alert alert-danger alert-dismissible fade show">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <strong>La direccion y sede ya se encuentran registradas</strong>
+      </div>
+         <?php
        }
      }
      ?>
@@ -1411,6 +1421,13 @@ $lol=mysqli_fetch_array($re);// nombre tabla instructor
         <strong>Ambiente registrado</strong>
       </div>
       <?php
+       }elseif ($_GET['va']==2) {
+         ?>
+      <div class="alert alert-danger alert-dismissible fade show">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <strong>El ambiente de la sede ya se encuentran registrados.</strong>
+      </div>
+         <?php
        }
      }
      ?>

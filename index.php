@@ -27,7 +27,7 @@
   </div>
  </div></center>
  <div>
- 	<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+ 	<nav id="lt_nav" class="navbar navbar-expand-md bg-dark navbar-dark">
 		  <a class="navbar-brand" href="#">Cenigraf</a>
 		  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
 		  <span class="navbar-toggler-icon"></span>
@@ -42,7 +42,7 @@
 		      </li>
 		      <li class="nav-item">
 		        <a class="nav-link" href="#"></a>
-		      </li>    
+		      </li>     
 		    </ul>
      </div>  
 	</nav>

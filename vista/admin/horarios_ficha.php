@@ -202,14 +202,14 @@ if (isset($_GET['trims'])) {
 
                 <form method="GET" class="form-horizontal">
                   <div class="form-group">
-                    <select class="form-control" name="nivel_F">
-                      <option value="0">Selecione nivel programa </option>
+                    <select class="form-control" name="nivel_F" required>
+                      <option value="">Selecione nivel programa </option>
                       <option value="Técnico">Técnico</option>
                       <option value="Tecnólogo">Tecnólogo</option>
                       <option value="Especialización">Especialización</option>                
                     </select><br>
-                <select class="form-control" name="Trimestre">
-                        <option value="0">Seleccione el trimestre </option>
+                <select class="form-control" name="Trimestre" required>
+                        <option value="">Seleccione el trimestre </option>
                         <option value="I Trimestre">I Trimestre</option>
                         <option value="II Trimestre">II Trimestre</option>
                         <option value="III Trimestre">III Trimestre</option> 
@@ -236,8 +236,8 @@ if (isset($_GET['trims'])) {
                   ?>            
                   <div class="container border" style="padding:4%; background-color: #a2a1a5a8;">
                      <form id="Formulario" method="GET"  class="form-horizontal">
-                      <select class="form-control" name="ficha">
-                        <option value="0">Seleccione la ficha </option>
+                      <select class="form-control" name="ficha" required>
+                        <option value="">Seleccione la ficha </option>
                        <?php
                         while ($row=mysqli_fetch_assoc($cont)) {
                           ?>
@@ -313,8 +313,8 @@ if (isset($_GET['trims'])) {
                             <div class="form-group">
                                 <label class="control-label col-sm-2" for="fic">Instructor:</label>
                                 <div class="col-sm-10">
-                                  <select class="form-control" id="fic" name="ins">
-                                    <option value="0">Seleccionar Instructor</option>
+                                  <select class="form-control" id="fic" name="ins" required>
+                                    <option value="">Seleccionar Instructor</option>
                                     <?php
                                     $inst="SELECT * FROM instructor";
                                     $contI=mysqli_query($conn,$inst);
@@ -330,8 +330,8 @@ if (isset($_GET['trims'])) {
                                 <br>
                                 <label class="control-label col-sm-2" for="di">Día:</label>
                                   <div class="col-sm-10">
-                                     <select class="form-control" id="di" name="days">
-                                        <option value="0">Seleccionar dia</option>
+                                     <select class="form-control" id="di" name="days" required>
+                                        <option value="">Seleccionar dia</option>
                                         <option value="1">Lunes</option>
                                         <option value="2">Martes</option>
                                         <option value="3">Miercoles</option>
@@ -343,8 +343,8 @@ if (isset($_GET['trims'])) {
                                   <br>
                                 <label class="control-label col-sm-2" for="ho">Hora:</label>
                                   <div class="col-sm-10">
-                                     <select class="form-control" id="ho" name="hour">
-                                        <option value="0">Seleccionar hora</option>
+                                     <select class="form-control" id="ho" name="hour" required>
+                                        <option value="">Seleccionar hora</option>
                                         <option value="1">6:00 - 7:40</option>
                                         <option value="2">8:00 - 9:40</option>
                                         <option value="3">10:00 - 11:40</option>
@@ -363,8 +363,8 @@ if (isset($_GET['trims'])) {
 
                                 ?>
                               <div class="col-sm-10">
-                                  <select class="form-control" id="ho" name="idAB">
-                                    <option value="0">Seleccionar Ambiente</option>
+                                  <select class="form-control" id="ho" name="idAB" required>
+                                    <option value="">Seleccionar Ambiente</option>
                                       <?php
                                 while ($ambt=mysqli_fetch_assoc($consulA)) {
                                   ?>
