@@ -58,12 +58,12 @@ while ($rowUp_3=mysqli_fetch_assoc($consupdate_EntreFechas)) {
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
-  <div style="margin: 0 0 0 0;" class="jumbotron jumbotron-fluid">
-  <div class="container">
+ <div style="margin: 0 0 0 0;" class="jumbotron jumbotron-fluid">-->
+  <div >
     <center>
       <img class="img" src="../img/cenigraf.png" >
       <img class="img2" src="../img/logo1.png" >
-  </center>
+    </center>
   </div>
  </div>
   <!--divnav-->
@@ -124,7 +124,7 @@ while ($rowUp_3=mysqli_fetch_assoc($consupdate_EntreFechas)) {
                   <img src="../img/perfil.png" class="img-circle elevation-2" alt="User Image">
                 </div>
                 <div class="info">
-                  <a href="#" class="d-block"><?php 
+                  <a href="update_usu.php" class="d-block"><?php 
                   if ($rol==1) {
                    echo "ADMIN-".$inst;
                  }elseif ($rol==2) {
@@ -513,47 +513,6 @@ while ($rowUp_3=mysqli_fetch_assoc($consupdate_EntreFechas)) {
                 </div>             
               </div>
            <!--/Collapse_Ficha_Ficha secl-->       
-        <?php       
-        /* $tablaf="SELECT * FROM ficha,programa WHERE ficha.fc_id_programa = programa.id_program";
-         $contf=mysqli_query($conn,$tablaf);     */  
-        ?>
-      <!--  <div class="table-responsive">             
-          <table class="table table-bordered table-striped" style="text-align:center;">
-            <thead class="thead-dark">
-              <tr>
-                
-                <th>Ficha</th>
-                <th>Nombre del programa</th>
-                <th>Nivel de formacion</th>
-                <th>Jornada </th>
-                <th>Opciones</th>
-              </tr>
-            </thead>
-            <tbody>
-            <?php
-             /* while ($fcon=mysqli_fetch_assoc($contf)) {
-            ?>
-              <tr>
-                
-                <td><?php echo $fcon['Nº ficha'];?></td>
-                <td><?php echo $fcon["Nom_program"];?></td>
-                <td><?php echo $fcon["nivel_form"];?></td>
-                <td><?php echo $fcon["fc_jornada"];?></td>          
-                <td>
-                  <div class="btn-group">
-                    <button class="btn btn-dark btn-sm" onclick="window.open('horarios_ficha.php?ficha=<?php echo $fcon['ID_F']?>','_Self')">Horario</button>
-                    <a href="ubdateF.php?ubf=<?php echo $fcon["ID_F"]?>"><button type="submit" class="btn btn-success btn-sm">Editar</button></a>
-                    <a href="../controlador/deleteF.php?eliF=<?php echo $fcon['ID_F']?>"><button type="submit" class="btn btn-danger btn-sm" onclick="return elif()" >Eliminar</button></a>
-                  </div>
-                </td>
-              </tr>      
-            <?php
-              }*/
-              
-            ?>      
-            </tbody>
-          </table>
-        </div>-->
         </div><!--/container -->
       </div>
     </div>
