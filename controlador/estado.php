@@ -1,5 +1,5 @@
 <?php 
-include ('../../controlador/conexion.php');
+include ('conexion.php');
 session_start();
 $correo=$_SESSION['ema'];
 
@@ -8,7 +8,7 @@ if (!isset($correo)) {
 }
 $rol=$_SESSION['rol'];
  if ($rol==2) {
-   header('location:../horarios.php');
+   header('location:../vista/horarios.php');
 }
 
 $ficha=$_GET['fich'];
@@ -23,15 +23,15 @@ $verificarEstadoFicha=mysqli_query($conn,"SELECT * FROM tb_trimestre where id_fc
 		if (mysqli_num_rows($verificarEstadoFicha)>0) {
 		echo "<script>
 	          alert('La ficha ya tiene un horario activo.');
-	          window.location= 'horarios_ficha.php?ficha=$ficha'
+	          window.location= '../vista/admin/horarios_ficha.php?ficha=$ficha'
 	        </script>";
 	  }else{
 		 mysqli_query($conn,"UPDATE tb_trimestre set estatus_trim_H=0 where id_fch=$ficha and Trimestre='$trim_f'");
-		 header("location:horarios_ficha.php?ficha=$ficha");			
+		 header("location:../vista/admin/horarios_ficha.php?ficha=$ficha");			
 	  }
 	}elseif ($estado==2) {
 		mysqli_query($conn,"UPDATE tb_trimestre set estatus_trim_H=1 where id_fch=$ficha and Trimestre='$trim_f'");
-		header("location:horarios_ficha.php?ficha=$ficha");
+		header("location:../vista/admin/horarios_ficha.php?ficha=$ficha");
 	}
 
 

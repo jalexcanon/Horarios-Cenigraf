@@ -56,9 +56,9 @@ while ($rowUp_3=mysqli_fetch_assoc($consupdate_EntreFechas)) {
     <link rel="stylesheet" href="../css/css/adminlte.min.css">
 
 </head>
-<body class="hold-transition sidebar-mini">
+<body class="hold-transition sidebar-mini"> 
 <div class="wrapper">
- <div style="margin: 0 0 0 0;" class="jumbotron jumbotron-fluid">-->
+ <div style="margin: 0 0 0 0;" class="jumbotron jumbotron-fluid">
   <div >
     <center>
       <img class="img" src="../img/cenigraf.png" >
@@ -96,7 +96,7 @@ while ($rowUp_3=mysqli_fetch_assoc($consupdate_EntreFechas)) {
                 <a class="nav-link" data-toggle="collapse" data-target="#proga_" style="cursor: pointer;">Registrar Programa</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" data-toggle="collapse" data-target="#RegSed" style="cursor: pointer;">Registrar SEDE</a>
+                <a class="nav-link" data-toggle="collapse" data-target="#RegSed" style="cursor: pointer;">Registrar Sede</a>
               </li>
             <?php } ?>  
               <li class="nav-item">
@@ -134,7 +134,7 @@ while ($rowUp_3=mysqli_fetch_assoc($consupdate_EntreFechas)) {
                 </div>
               </div>
               <?php if ($rol==1) {?>          
-              <div class="user-panel mt-4 pb-4 mb-4 d-flex">
+            <div class="user-panel mt-4 pb-4 mb-4 d-flex">
                 <div class="image">
                   <img src="../img/h.png" class="img-circle elevation-2" alt="User Image">
                 </div>
@@ -142,36 +142,65 @@ while ($rowUp_3=mysqli_fetch_assoc($consupdate_EntreFechas)) {
                  <a href="admin/horarios_ficha.php">Crear Horario Ficha</a>
                 </div>
               </div>             
-              <div class="user-panel mt-4 pb-4 mb-4 d-flex">                              
-                <div class="info">
-                 <a data-toggle="collapse" data-parent="" data-target="#usu" style="cursor: pointer;"> Consulta Instructor </a>
-                </div>
-              </div>
-              <div class="user-panel mt-4 pb-4 mb-4 d-flex">               
-                <div class="info">
-                 <a data-toggle="collapse" data-parent="" data-target="#fichas" style="cursor: pointer;">Consulta Fichas</a>
-                </div>
-              </div>              
-              <div class="user-panel mt-4 pb-4 mb-4 d-flex">               
-                <div class="info">
-                 <a data-toggle="collapse" data-target="#ambi" style="cursor: pointer;">Consulta ambiente</a>
-                </div>
-              </div>
-              <div class="user-panel mt-4 pb-4 mb-4 d-flex">               
-                <div class="info">
-                 <a data-toggle="collapse" data-target="#progtl" style="cursor: pointer;">Consulta Programa</a>
-                </div>
-              </div>
-              <div class="user-panel mt-4 pb-4 mb-4 d-flex">               
-                <div class="info">
-                 <a data-toggle="collapse" data-target="#sedet"  style="cursor: pointer;" >Consulta Sedes</a>
-                </div>
-              </div>
-              <div class="user-panel mt-4 pb-4 mb-4 d-flex">               
-                <div class="info">
-                 <a data-toggle="collapse" data-target="#FechT"  style="cursor: pointer;" >Consulta Trimestres</a>
-                </div>
-              </div>
+
+              <nav class="mt-2">
+                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                  <li class="nav-item">
+                    <a class="nav-link" data-toggle="collapse" data-parent="" data-target="#usu" style="cursor: pointer;">
+                      <i class="nav-icon fas fa-address-card fa-2x"></i>
+                      <p>
+                        Consulta Instructor
+                        <span class="badge badge-info right"></span>
+                      </p>
+                    </a>
+                  </li><br>
+                  <li class="nav-item">
+                    <a class="nav-link" data-toggle="collapse" data-parent="" data-target="#fichas" style="cursor: pointer;">
+                      <i class="nav-icon fas fa-list-alt fa-2x"></i>
+                      <p>
+                         Consulta Fichas
+                        <span class="badge badge-info right"></span>
+                      </p>
+                    </a>
+                  </li><br>
+                  <li class="nav-item">
+                    <a class="nav-link" data-toggle="collapse" data-target="#ambi" style="cursor: pointer;">
+                      <i class="nav-icon fas fa-dungeon fa-2x"></i>
+                      <p>
+                        Consulta Ambiente
+                        <span class="badge badge-info right"></span>
+                      </p>
+                    </a>
+                  </li><br>
+                  <li class="nav-item">
+                    <a class="nav-link" data-toggle="collapse" data-target="#progtl" style="cursor: pointer;">
+                      <i class="nav-icon fas fa-clipboard-list fa-2x"></i>
+                      <p>
+                        Consulta Programa
+                        <span class="badge badge-info right"></span>
+                      </p>
+                    </a>
+                  </li><br>
+                  <li class="nav-item">
+                    <a class="nav-link" data-toggle="collapse" data-target="#sedet"  style="cursor: pointer;" >
+                      <i class="nav-icon fas fa-building fa-2x"></i>
+                      <p>
+                        Consulta Sede
+                        <span class="badge badge-info right"></span>
+                      </p>
+                    </a>
+                  </li><br>
+                  <li class="nav-item">
+                    <a class="nav-link" data-toggle="collapse" data-target="#FechT"  style="cursor: pointer;" >
+                      <i class="nav-icon fas fa-calendar-alt fa-2x"></i>
+                      <p>
+                        Consulta Trimestres
+                        <span class="badge badge-info right"></span>
+                      </p>
+                    </a>
+                  </li>
+                </ul>             
+              </nav> 
               <?php
             }elseif ($rol==2) {
               ?>
@@ -181,62 +210,7 @@ while ($rowUp_3=mysqli_fetch_assoc($consupdate_EntreFechas)) {
                 </div>
               </div> 
               <?php
-            }/*elseif ($rol==2) {
-             ?>
-              <nav class="mt-2">
-                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                  <li class="nav-item has-treeview">
-                    <a href="#" class="nav-link">
-                      <i class=" far fa-calendar-alt fa-lg"></i>
-                      <p>
-                        Trimestres del Año
-                        <i class="right fas fa-angle-left"></i>
-                      </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                      <li class="nav-item">
-                        <a href="horarios.php?Trimest=I Trimestre" class="nav-link">
-                          <i class="fas fa-file-export"></i>
-                          <p>I Trimestre del año</p>
-                        </a>
-                      </li>
-                      <li class="nav-item">
-                        <a href="horarios.php?Trimest=II Trimestre" class="nav-link">
-                          <i class="fas fa-file-export"></i>
-                          <p>II Trimestre del año</p>
-                        </a>
-                      </li>
-                      <li class="nav-item">
-                        <a href="horarios.php?Trimest=III Trimestre" class="nav-link">
-                          <i class="fas fa-file-export"></i>
-                          <p>III Trimestre del año</p>
-                        </a>
-                      </li>
-                      <li class="nav-item">
-                        <a href="horarios.php?Trimest=IV Trimestre" class="nav-link">
-                          <i class="fas fa-file-export"></i>
-                          <p>IV Trimestre del año</p>
-                        </a>
-                      </li>
-                      <li class="nav-item">
-                        <a href="horarios.php?Trimest=V Trimestre" class="nav-link">
-                          <i class="fas fa-file-export"></i>
-                          <p>V Trimestre del año</p>
-                        </a>
-                      </li>
-                      <li class="nav-item">
-                        <a href="horarios.php?Trimest=VI Trimestre" class="nav-link">
-                          <i class="fas fa-file-export"></i>
-                          <p>VI Trimestre del año</p>
-                        </a>
-                      </li>
-                    </ul>
-                  </li>
-                </ul>               
-              </nav>             
-
-             <?php
-            }*/
+            }
               ?>
         </div>                  
       </aside>

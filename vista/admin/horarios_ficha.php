@@ -420,8 +420,8 @@ if (isset($_GET['trims'])) {
                   Taller</td>
                   <td colspan="1" bgcolor="5B6269" style="border: 1px solid black;">
                     <div class="btn-group" style="display: flex;">
-                      <button class="btn btn-success" onclick="window.open('estado.php?est=1&fich=<?php echo $id_ficha ?>','_Self')">Activo</button>
-                      <button class="btn btn-danger"  onclick="window.open('estado.php?est=2&fich=<?php echo $id_ficha ?>','_Self')">Inactivo</button>
+                      <button class="btn btn-success" onclick="window.open('../../controlador/estado.php?est=1&fich=<?php echo $id_ficha ?>','_Self')">Activo</button>
+                      <button class="btn btn-danger"  onclick="window.open('../../controlador/estado.php?est=2&fich=<?php echo $id_ficha ?>','_Self')">Inactivo</button>
                     </div>
                   </td>
                   <td id="uso_des" colspan="1" style="border: 1px solid black;">Estado</td>

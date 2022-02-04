@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 01-02-2022 a las 21:25:11
+-- Tiempo de generación: 04-02-2022 a las 20:49:40
 -- Versión del servidor: 10.4.16-MariaDB
 -- Versión de PHP: 7.4.12
 
@@ -45,7 +45,8 @@ INSERT INTO `ambiente` (`id_A`, `Nombre_ambiente`, `Capacidad_ambiente`, `No_equ
 (5, 'Simulación  ', '30 personas ', 30, 2),
 (6, 'Encuadernación  ', '15 personas ', 6, 1),
 (7, 'Animación ', '20 personas ', 30, 1),
-(8, '105 ', '30 personas ', 30, 1);
+(8, '105 ', '30 personas ', 30, 1),
+(9, '107 ', '15', 30, 1);
 
 -- --------------------------------------------------------
 
@@ -98,7 +99,8 @@ INSERT INTO `ficha` (`ID_F`, `Nº ficha`, `fc_cant_aprend`, `fc_jornada`, `fc_ti
 (24, '2061628', 30, 'Diurna', 'Presencial', '2021-11-05', '2021-11-26', 88524459, 0),
 (25, '2231454', 20, 'Diurna', 'Presencial', '2021-11-11', '2022-11-11', 88524464, 0),
 (30, '2061589', 20, 'Diurna', 'Presencial', '2021-11-30', '2021-11-30', 88524465, 0),
-(32, '2986542', 30, 'Mixta', 'Presencial', '2022-01-17', '2023-07-03', 88524464, 1);
+(32, '2986542', 30, 'Mixta', 'Presencial', '2022-01-17', '2023-07-03', 88524464, 1),
+(33, '3215450', 30, 'Nocturna', 'Virtual', '2022-02-02', '2023-08-02', 88524459, 1);
 
 -- --------------------------------------------------------
 
@@ -126,7 +128,8 @@ INSERT INTO `horarios` (`id_hora`, `dia`, `ficha`, `instructor`, `hora`, `id_amb
 (337, 1, 32, 2, 1, 4, 2, 61),
 (338, 2, 32, 1, 1, 5, 2, 61),
 (340, 6, 19, 1, 8, 3, 2, 56),
-(341, 2, 32, 1, 1, 3, 2, 66);
+(342, 3, 19, 1, 4, 6, 2, 56),
+(343, 5, 32, 13, 6, 6, 2, 66);
 
 -- --------------------------------------------------------
 
@@ -180,7 +183,8 @@ INSERT INTO `instructor` (`ID`, `Nombre`, `Apellido`, `Cedula`, `email`, `contra
 (4, 'Camilo', 'Ortiz', 3333333, 'camilo@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055', 2),
 (12, 'Saitama  ', 'Ortiz', 234556942, 'sai@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055', 2),
 (13, 'Nicolás t', 'Tiusaba ', 1000774689, 'tiusabanicolas@gmail.com', '2c9b1d39508edf85487f012c53cd69a3', 2),
-(18, 'Mauricio ', 'ovalle', 1234567489, 'mau@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055', 1);
+(18, 'Mauricio ', 'ovalle', 1234567489, 'mau@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055', 1),
+(22, 'Jose', 'Cifuentes ', 5545464, 'joseC@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055', 2);
 
 -- --------------------------------------------------------
 
@@ -200,13 +204,14 @@ CREATE TABLE `programa` (
 --
 
 INSERT INTO `programa` (`id_program`, `Nom_program`, `nivel_form`, `competencias`) VALUES
-(88524459, 'Encuadernación ', 'Técnico', 'informática\r\n'),
+(88524459, 'Encuadernación ', 'Especialización', 'informática\r\n'),
 (88524460, 'Ingles ', 'Técnico', '0'),
 (88524463, 'Fotografía ', 'Técnico', 'Comunicación\r\ncultura física  '),
 (88524464, 'ADSI-Análisis y desarrollo de sistemas de información ', 'Tecnólogo', 'Matemáticas '),
 (88524465, 'Impresión offset ', 'Tecnólogo', '...'),
 (88524466, 'Animación 3D ', 'Tecnólogo', '......'),
-(88524467, 'Matemáticas ', 'Técnico', 'ffgghkjkj');
+(88524467, 'Matemáticas ', 'Técnico', 'ffgghkjkj'),
+(88524468, 'ADSI', 'Técnico', '58eutd[😂😂👍👍❤❤❤😍😍🎂🎂🎂🎉🎉');
 
 -- --------------------------------------------------------
 
@@ -245,10 +250,11 @@ CREATE TABLE `sede` (
 --
 
 INSERT INTO `sede` (`id`, `nombre_sede`, `direccion_sede`, `telefono_sede`) VALUES
-(1, 'Cenigraf', 'Cl. 15 #31-42, Bogotá', 5960199),
+(1, 'Cenigraf---', 'Cl. 15 #31-42, Bogotá', 5960199),
 (2, 'Fundación Universitaria Horizonte', ' Cl. 69 ## 14 - 30, Bogotá, Cundinamarca', 2147483647),
 (4, 'Fundación Universitaria ', 'Cl. 15 #31-30, Bogotá', 244456),
-(6, 'Fundación ', ' Cl. 69 ## 14 - 30, Bogotá,Colombia', 2321556);
+(6, 'Fundación ', ' Cl. 69 ## 14 - 30, Bogotá,Colombia', 2321556),
+(8, 'Sena Fontibón ', 'Fontibón centro ', 2147483647);
 
 -- --------------------------------------------------------
 
@@ -281,7 +287,13 @@ INSERT INTO `tb_trimestre` (`id_T`, `Trim_date_Inc`, `Trim_date_fin`, `Trimestre
 (63, '2022-07-18', '2022-09-30', 'III Trimestre', 32, 1),
 (64, '2022-10-07', '2022-12-16', 'IV Trimestre', 32, 1),
 (65, '2023-01-16', '2023-04-10', 'V Trimestre', 32, 1),
-(66, '2023-04-17', '2023-07-03', 'VI Trimestre', 32, 0);
+(66, '2023-04-17', '2023-07-03', 'VI Trimestre', 32, 0),
+(67, '2022-01-24', '2022-04-08', 'I Trimestre', 33, 0),
+(68, '2022-04-18', '2022-07-01', 'II Trimestre', 33, 0),
+(69, '2022-07-18', '2022-09-30', 'III Trimestre', 33, 0),
+(70, '2022-10-07', '2022-12-16', 'IV Trimestre', 33, 0),
+(71, '2023-01-23', '2023-04-07', 'V Trimestre', 33, 0),
+(72, '2023-04-17', '2023-07-03', 'VI Trimestre', 33, 0);
 
 --
 -- Índices para tablas volcadas
@@ -368,7 +380,7 @@ ALTER TABLE `tb_trimestre`
 -- AUTO_INCREMENT de la tabla `ambiente`
 --
 ALTER TABLE `ambiente`
-  MODIFY `id_A` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_A` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de la tabla `dias`
@@ -380,13 +392,13 @@ ALTER TABLE `dias`
 -- AUTO_INCREMENT de la tabla `ficha`
 --
 ALTER TABLE `ficha`
-  MODIFY `ID_F` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `ID_F` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT de la tabla `horarios`
 --
 ALTER TABLE `horarios`
-  MODIFY `id_hora` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=342;
+  MODIFY `id_hora` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=344;
 
 --
 -- AUTO_INCREMENT de la tabla `horas`
@@ -398,13 +410,13 @@ ALTER TABLE `horas`
 -- AUTO_INCREMENT de la tabla `instructor`
 --
 ALTER TABLE `instructor`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT de la tabla `programa`
 --
 ALTER TABLE `programa`
-  MODIFY `id_program` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=88524468;
+  MODIFY `id_program` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=88524469;
 
 --
 -- AUTO_INCREMENT de la tabla `roles`
@@ -416,13 +428,13 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT de la tabla `sede`
 --
 ALTER TABLE `sede`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `tb_trimestre`
 --
 ALTER TABLE `tb_trimestre`
-  MODIFY `id_T` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
+  MODIFY `id_T` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
 
 --
 -- Restricciones para tablas volcadas
