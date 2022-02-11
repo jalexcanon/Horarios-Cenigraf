@@ -33,7 +33,7 @@
  </div>
   <!--divnav-->
  <div>
-    <nav id="lt_nav" class="main-header navbar navbar-expand-md navbar-dark navbar-light sticky-top">
+    <nav id="lt_nav" class="main-header navbar navbar-expand-md navbar-orange navbar-light sticky-top">
         <ul class="navbar-nav">
           <li class="nav-item">
               <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
@@ -134,7 +134,7 @@
         ?><br>
         <div class="alert alert-danger alert-dismissible fade show">
           <button type="button" class="close" data-dismiss="alert">&times;</button>
-          <strong>La contraseña es incorrecta</strong>
+          <strong>La contraseña es incorrecta </strong>
         </div>
         <?php
          }elseif ($_GET['pwd_x']=='cons_not') {

@@ -34,13 +34,13 @@
  </div>
   <!--divnav-->
  <div>
-    <nav id="lt_nav" class="main-header navbar navbar-expand-md navbar-dark navbar-light sticky-top">
+    <nav id="lt_nav" class="main-header navbar navbar-expand-md navbar-orange navbar-light sticky-top">
         <ul class="navbar-nav">
             <li class="nav-item">
               <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
           </li> 
         </ul>                  
-            <a class="navbar-brand" onclick="window.open('horarios.php','_Self')">Cenigraf</a>
+            <a class="navbar-brand" onclick="window.open('horarios.php','_Self')" style="cursor: pointer; font-weight: bold;">Cenigraf</a>
               <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
               <span class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="collapsibleNavbar">
@@ -56,12 +56,12 @@
  <div>
     <aside id="lt_aside" class="main-sidebar sidebar-dark-primary elevation-4" style="position: fixed;">
             
-            <a href="horarios.php" class="brand-link">
+            <a href="horarios.php" class="brand-link" style="color:white;">
               <img src="../img/logo1.png"
                    alt="logo1"
                    class="brand-image img-circle elevation-1"
                    style="background-color:#ffffff; width: 40px; height:40px; ">
-              <span class="brand-text font-weight-light">CENIGRAF </span>
+              <span class="brand-text font-weight-bold">CENIGRAF </span>
             </a>
 
            
@@ -72,7 +72,7 @@
                   <img src="../img/perfil.png" class="img-circle elevation-2" alt="User Image">
                 </div>
                 <div class="info">
-                  <a href="#" class="d-block"><?php 
+                  <a href="#" class="d-block" style="color: white;"><?php 
                   
                    echo "ADMIN-".$inst;
                  

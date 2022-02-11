@@ -56,13 +56,13 @@ $id_fch_cons=$_SESSION['fch_cons'];
  </div>
   <!--divnav-->
  <div>
-    <nav id="lt_nav" class="main-header navbar navbar-expand-md navbar-dark navbar-light sticky-top">
+    <nav id="lt_nav" class="main-header navbar navbar-expand-md navbar-orange navbar-light sticky-top">
         <ul class="navbar-nav">
             <li class="nav-item">
               <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
           </li> 
         </ul>                  
-            <a class="navbar-brand" onclick="window.open('horarios.php','_Self')" style="cursor: pointer;">Cenigraf</a>
+            <a class="navbar-brand" onclick="window.open('horarios.php','_Self')" style="cursor: pointer; font-weight: bold;">Cenigraf</a>
               <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
               <span class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="collapsibleNavbar">
@@ -78,12 +78,12 @@ $id_fch_cons=$_SESSION['fch_cons'];
  <div>
     <aside id="lt_aside" class="main-sidebar sidebar-dark-primary elevation-4" style="position: fixed;">
             
-            <a href="horarios.php" class="brand-link">
+            <a href="horarios.php" class="brand-link" style="color:white;">
               <img src="../img/logo1.png"
                    alt="logo1"
                    class="brand-image img-circle elevation-1"
                    style="background-color:#ffffff; width: 40px; height:40px; ">
-              <span class="brand-text font-weight-light">CENIGRAF </span>
+              <span class="brand-text font-weight-bold">CENIGRAF </span>
             </a>
 
            
@@ -94,7 +94,7 @@ $id_fch_cons=$_SESSION['fch_cons'];
                   <img src="../img/perfil.png" class="img-circle elevation-2" alt="User Image">
                 </div>
                 <div class="info">
-                  <a href="#" class="d-block"><?php 
+                  <a href="#" class="d-block" style="color:white;"><?php 
                    echo "ADMIN-".$inst;                
                  ?></a>
                 </div>
@@ -104,7 +104,7 @@ $id_fch_cons=$_SESSION['fch_cons'];
                  ?>
               <div class="user-panel mt-4 pb-4 mb-4 d-flex">               
                 <div class="info">
-                  <a href="imprimir/horarios_ficha_Im.php?fich=<?php echo $id_fch_cons; ?>" target="_blank" >  <div class="far fa-file"> Imprimir | Descargar</div></a>
+                  <a href="imprimir/horarios_ficha_Im.php?fich=<?php echo $id_fch_cons; ?>" target="_blank" >  <div class="far fa-file" style="color:white;"> Imprimir | Descargar</div></a>
                 </div>
               </div>
                  <?php
@@ -114,7 +114,7 @@ $id_fch_cons=$_SESSION['fch_cons'];
               <nav class="mt-2">
                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                   <li class="nav-item has-treeview">
-                    <a href="#" class="nav-link">
+                    <a href="#" class="nav-link" style="color:white;">
                       <i class=" far fa-calendar-alt fa-lg"></i>
                       <p>
                         Trimestres
@@ -123,37 +123,37 @@ $id_fch_cons=$_SESSION['fch_cons'];
                     </a>
                     <ul class="nav nav-treeview">
                       <li class="nav-item">
-                        <a href="horarios_ficha.php?Trimestres=I Trimestre&IT=1" class="nav-link <?php if(isset($_GET['IT'])=="1"){ echo "active";}  ?> ">
+                        <a href="horarios_ficha.php?Trimestres=I Trimestre&IT=1" style="color:white;" class="nav-link <?php if(isset($_GET['IT'])=="1"){ echo "active";}  ?> ">
                           <i class="fas fa-file-export"></i>
                           <p>I Trimestre</p>
                         </a>
                       </li>
                       <li class="nav-item">
-                        <a href="horarios_ficha.php?Trimestres=II Trimestre&IIT=2" class="nav-link <?php if(isset($_GET['IIT'])=="2"){ echo "active";}  ?> ">
+                        <a href="horarios_ficha.php?Trimestres=II Trimestre&IIT=2" style="color:white;" class="nav-link <?php if(isset($_GET['IIT'])=="2"){ echo "active";}  ?> ">
                           <i class="fas fa-file-export"></i>
                           <p>II Trimestre</p>
                         </a>
                       </li>
                       <li class="nav-item">
-                        <a href="horarios_ficha.php?Trimestres=III Trimestre&IIIT=3" class="nav-link <?php if(isset($_GET['IIIT'])=="3"){ echo "active";}  ?> ">
+                        <a href="horarios_ficha.php?Trimestres=III Trimestre&IIIT=3" style="color:white;" class="nav-link <?php if(isset($_GET['IIIT'])=="3"){ echo "active";}  ?> ">
                           <i class="fas fa-file-export"></i>
                           <p>III Trimestre</p>
                         </a>
                       </li>
                       <li class="nav-item">
-                        <a href="horarios_ficha.php?Trimestres=IV Trimestre&IVT=4" class="nav-link <?php if(isset($_GET['IVT'])=="4"){ echo "active";}  ?> ">
+                        <a href="horarios_ficha.php?Trimestres=IV Trimestre&IVT=4" style="color:white;" class="nav-link <?php if(isset($_GET['IVT'])=="4"){ echo "active";}  ?> ">
                           <i class="fas fa-file-export"></i>
                           <p>IV Trimestre</p>
                         </a>
                       </li>
                       <li class="nav-item">
-                        <a href="horarios_ficha.php?Trimestres=V Trimestre&VT=5" class="nav-link <?php if(isset($_GET['VT'])=="5"){ echo "active";}  ?> ">
+                        <a href="horarios_ficha.php?Trimestres=V Trimestre&VT=5" style="color:white;" class="nav-link <?php if(isset($_GET['VT'])=="5"){ echo "active";}  ?> ">
                           <i class="fas fa-file-export"></i>
                           <p>V Trimestre</p>
                         </a>
                       </li>
                       <li class="nav-item">
-                        <a href="horarios_ficha.php?Trimestres=VI Trimestre&VIT=6" class="nav-link <?php if(isset($_GET['VIT'])=="6"){ echo "active";}  ?> ">
+                        <a href="horarios_ficha.php?Trimestres=VI Trimestre&VIT=6" style="color:white;" class="nav-link <?php if(isset($_GET['VIT'])=="6"){ echo "active";}  ?> ">
                           <i class="fas fa-file-export"></i>
                           <p>VI Trimestre</p>
                         </a>

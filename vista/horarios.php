@@ -8,8 +8,7 @@
  if (!isset($correo)) {
     header("location:../index.php");
  }
-$querys="SELECT * FROM instructor";
-$ins=mysqli_query($conn,$querys);// consulta select crear horario instructor 
+$ins=mysqli_query($conn,"SELECT * FROM instructor");// consulta select crear horario instructor 
 /* 
 //Fecha Bogota Colombia          
 date_default_timezone_set('America/Bogota');  
@@ -68,13 +67,13 @@ while ($rowUp_3=mysqli_fetch_assoc($consupdate_EntreFechas)) {
  </div>
   <!--divnav-->
  <div>
-    <nav id="lt_nav" class="main-header navbar navbar-expand-md navbar-dark navbar-light sticky-top">
+    <nav id="lt_nav" class="main-header navbar navbar-expand-md navbar-orange navbar-light sticky-top">
         <ul class="navbar-nav">
           <li class="nav-item">
             <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
           </li> 
         </ul>                  
-            <a class="navbar-brand" onclick="window.open('horarios.php','_Self')" style="cursor: pointer;">Cenigraf</a>
+            <a class="navbar-brand" onclick="window.open('horarios.php','_Self')" style="cursor: pointer; font-weight: bold;">Cenigraf</a>
               <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
               <span class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="collapsibleNavbar">
@@ -110,12 +109,12 @@ while ($rowUp_3=mysqli_fetch_assoc($consupdate_EntreFechas)) {
  <!--lateral-->
     <aside id="lt_aside" class="main-sidebar sidebar-dark-primary elevation-4">
             
-            <a href="horarios.php" class="brand-link">
+            <a href="horarios.php" class="brand-link" style="color: white;">
               <img src="../img/logo1.png"
                    alt="logo1"
                    class="brand-image img-circle elevation-1"
                    style="background-color:#ffffff; width: 40px; height:40px; ">
-              <span class="brand-text font-weight-light">CENIGRAF </span>
+              <span class="brand-text font-weight-bold">CENIGRAF </span>
             </a>     
         <div class="sidebar">
               
@@ -124,7 +123,7 @@ while ($rowUp_3=mysqli_fetch_assoc($consupdate_EntreFechas)) {
                   <img src="../img/perfil.png" class="img-circle elevation-2" alt="User Image">
                 </div>
                 <div class="info">
-                  <a href="update_usu.php" class="d-block"><?php 
+                  <a href="update_usu.php" class="d-block" style="color: white;"><?php 
                   if ($rol==1) {
                    echo "ADMIN-".$inst;
                  }elseif ($rol==2) {
@@ -139,14 +138,14 @@ while ($rowUp_3=mysqli_fetch_assoc($consupdate_EntreFechas)) {
                   <img src="../img/h.png" class="img-circle elevation-2" alt="User Image">
                 </div>
                 <div class="info">
-                 <a href="admin/horarios_ficha.php">Crear Horario Ficha</a>
+                 <a href="admin/horarios_ficha.php" style="color: white;">Crear Horario Ficha</a>
                 </div>
               </div>             
 
               <nav class="mt-2">
                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                   <li class="nav-item">
-                    <a class="nav-link" data-toggle="collapse" data-parent="" data-target="#usu" style="cursor: pointer;">
+                    <a class="nav-link" data-toggle="collapse" data-parent="" data-target="#usu" style="cursor: pointer; color: white;">
                       <i class="nav-icon fas fa-address-card fa-2x"></i>
                       <p>
                         Consulta Instructor
@@ -155,7 +154,7 @@ while ($rowUp_3=mysqli_fetch_assoc($consupdate_EntreFechas)) {
                     </a>
                   </li><br>
                   <li class="nav-item">
-                    <a class="nav-link" data-toggle="collapse" data-parent="" data-target="#fichas" style="cursor: pointer;">
+                    <a class="nav-link" data-toggle="collapse" data-parent="" data-target="#fichas" style="cursor: pointer; color: white;">
                       <i class="nav-icon fas fa-list-alt fa-2x"></i>
                       <p>
                          Consulta Fichas
@@ -164,7 +163,7 @@ while ($rowUp_3=mysqli_fetch_assoc($consupdate_EntreFechas)) {
                     </a>
                   </li><br>
                   <li class="nav-item">
-                    <a class="nav-link" data-toggle="collapse" data-target="#ambi" style="cursor: pointer;">
+                    <a class="nav-link" data-toggle="collapse" data-target="#ambi" style="cursor: pointer; color: white;">
                       <i class="nav-icon fas fa-dungeon fa-2x"></i>
                       <p>
                         Consulta Ambiente
@@ -173,7 +172,7 @@ while ($rowUp_3=mysqli_fetch_assoc($consupdate_EntreFechas)) {
                     </a>
                   </li><br>
                   <li class="nav-item">
-                    <a class="nav-link" data-toggle="collapse" data-target="#progtl" style="cursor: pointer;">
+                    <a class="nav-link" data-toggle="collapse" data-target="#progtl" style="cursor: pointer; color: white;">
                       <i class="nav-icon fas fa-clipboard-list fa-2x"></i>
                       <p>
                         Consulta Programa
@@ -182,7 +181,7 @@ while ($rowUp_3=mysqli_fetch_assoc($consupdate_EntreFechas)) {
                     </a>
                   </li><br>
                   <li class="nav-item">
-                    <a class="nav-link" data-toggle="collapse" data-target="#sedet"  style="cursor: pointer;" >
+                    <a class="nav-link" data-toggle="collapse" data-target="#sedet"  style="cursor: pointer; color: white;" >
                       <i class="nav-icon fas fa-building fa-2x"></i>
                       <p>
                         Consulta Sede
@@ -191,7 +190,7 @@ while ($rowUp_3=mysqli_fetch_assoc($consupdate_EntreFechas)) {
                     </a>
                   </li><br>
                   <li class="nav-item">
-                    <a class="nav-link" data-toggle="collapse" data-target="#FechT"  style="cursor: pointer;" >
+                    <a class="nav-link" data-toggle="collapse" data-target="#FechT"  style="cursor: pointer; color: white;" >
                       <i class="nav-icon fas fa-calendar-alt fa-2x"></i>
                       <p>
                         Consulta Trimestres
@@ -206,7 +205,7 @@ while ($rowUp_3=mysqli_fetch_assoc($consupdate_EntreFechas)) {
               ?>
               <div class="user-panel mt-4 pb-4 mb-4 d-flex">               
                 <div class="info">
-                  <a href="imprimir/horarios_Ins_Im.php?ins=<?php echo $instru; ?>" target="_blank" >  <div class="far fa-file"> Imprimir | Descargar</div></a>
+                  <a href="imprimir/horarios_Ins_Im.php?ins=<?php echo $instru; ?>" target="_blank" >  <div class="far fa-file" style="color:white;"> Imprimir | Descargar</div></a>
                 </div>
               </div> 
               <?php
@@ -218,52 +217,6 @@ while ($rowUp_3=mysqli_fetch_assoc($consupdate_EntreFechas)) {
 
 <div class="content-wrapper">
   <div class="container">
- <!-- Modal -->
-            <div class="modal fade bd-example-modal-lg" id="myModal" role="dialog">
-              <div class="modal-dialog modal-lg">
-              
-                <!-- Modal content-->
-                <div class="modal-content">
-                  <!--Contenido-->
-                  <div class="modal-header">
-                    <h4 class="modal-title">Crear Horario Instructor</h4>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    
-                  </div>
-                  <div class="modal-body">                   
-                   <form class="form-horizontal" action="admin/horarios_beta.php" method="POST">
-                      <div class="form-group">
-                        <label class="control-label col-sm-2" for="ins">Instructor:</label>
-                        <div class="col-sm-10">
-                          
-                            <select class="form-control" id="ins" name="inst" required>
-                              <option value="" >Seleccionar Instructor</option>
-                              <?php
-                                           while ($w=mysqli_fetch_array($ins)) {
-                                 ?>
-                                     <option value="<?php echo $w["ID"]?>"><?php echo $w["Nombre"];?></option>
-
-                                  <?php
-                              }
-                                  ?>
-                            </select>
-                          
-                        </div>
-                      </div>                     
-                     </div>
-                      <div class="form-group">
-                        <div class="modal-footer">
-                          <div class="btn-group">
-                            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-                            <button type="submit" class="btn btn-warning">Crear</button>
-                          </div>                         
-                        </div>
-                      </div>
-                    </form>
-                 </div>   
-              </div>
-           </div>
-    <!--/modal-->
     <center>
       <div class="container">
         <?php
@@ -1204,7 +1157,7 @@ $lol=mysqli_fetch_array($re);// nombre tabla instructor
                     <center style="font-size: small;">
                                        <?php  echo $row['Nº ficha'];?><br>
                                        <?php  echo $row['Nom_program'];?><br>
-                                       <?php  echo $row['Nombre_ambiente'];?><br>  
+                                       <?php  echo "Amb: ".$row['Nombre_ambiente'];?><br>  
                                        <?php  echo $row['Trimestre'];?>                   
                     </center>   
                                       <?php

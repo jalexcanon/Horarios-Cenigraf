@@ -25,9 +25,11 @@
     position: relative;
     
 }
-/*#lt_aside{
-    background-color: #ea7c38;
+
+#lt_aside{
+    background-image: -webkit-linear-gradient(top, #ff8138, #ff8138);
 } 
+
 #lt_nav{
-    background-color: #ea7c38;
-}  */  
+   background-image: -webkit-linear-gradient(top, #ff8138, #ff8138);
+}   
