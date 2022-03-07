@@ -39,7 +39,7 @@
               <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
           </li> 
         </ul>                  
-            <a class="navbar-brand" onclick="window.open('horarios.php','_Self')" style="cursor: pointer;">Cenigraf</a>
+            <a class="navbar-brand" onclick="window.open('horarios.php','_Self')" style="cursor: pointer; font-weight: bold;">Cenigraf</a>
               <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
               <span class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="collapsibleNavbar">
@@ -54,12 +54,12 @@
  <!--lateral-->
  <div>
     <aside id="lt_aside" class="main-sidebar sidebar-dark-primary elevation-4" style="position: fixed;">         
-            <a href="horarios.php" class="brand-link">
+            <a href="horarios.php" class="brand-link" style="color:white">
               <img src="../img/logo1.png"
                    alt="logo1"
                    class="brand-image img-circle elevation-1"
                    style="background-color:#ffffff; width: 40px; height:40px; ">
-              <span class="brand-text font-weight-light">CENIGRAF </span>
+              <span class="brand-text font-weight-bold">CENIGRAF </span>
             </a>           
         <div class="sidebar">          
               <div class="user-panel mt-4 pb-4 mb-4 d-flex">
@@ -67,7 +67,7 @@
                   <img src="../img/perfil.png" class="img-circle elevation-2" alt="User Image">
                 </div>
                 <div class="info">
-                  <a href="#" class="d-block"><?php 
+                  <a href="#" class="d-block" style="color: white;"><?php 
                   if ($rol==1) {
                    echo "ADMIN-".$inst;
                  }elseif ($rol==2) {

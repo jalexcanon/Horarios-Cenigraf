@@ -402,7 +402,7 @@ if (isset($_GET['trims'])) {
             <h4><?php echo "Programa ".$rowfch['Nom_program'];?></h4>
              <?php if(isset($row_estfch['Trimestre'])) 
              {?><h5>El Trimestre activo de la ficha es <?php echo $row_estfch['Trimestre'];?></h5><?php
-              }else{echo "<h2>La ficha no tiene un horario activo</h2>";}
+              }else{echo "<h2>La ficha no cuenta con un horario activo</h2>";}
              ?>
              
             
