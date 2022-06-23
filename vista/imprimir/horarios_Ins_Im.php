@@ -16,6 +16,7 @@ $id_ins = $_GET['ins'];
   <title>Horario Instructor Imprimir </title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 
 <body>
@@ -121,5 +122,4 @@ $id_ins = $_GET['ins'];
 <script>
   window.addEventListener("load", window.print());
 </script>
-
 </html>
