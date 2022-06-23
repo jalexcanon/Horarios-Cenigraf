@@ -90,7 +90,9 @@ $rwfh = mysqli_fetch_array($fh);
             <img src="../img/perfil.png" class="img-circle" alt="User Image">
           </div>
           <div class="info">
-            <a href="#" class="d-block" style="color:white;"><?php echo "ADMIN-" . $inst; ?></a>
+            <a href="#" class="d-block" style="color:white;"><?php
+                                                              echo "ADMIN-" . $inst;
+                                                              ?></a>
           </div>
         </div>
         <?php
@@ -224,7 +226,10 @@ $rwfh = mysqli_fetch_array($fh);
           </style>
         <?php
             }
+
+
         ?>
+
         <!--/tabla_ficha-->
         <div class="container">
           <div class="table-responsive-sm">
@@ -298,20 +303,43 @@ $rwfh = mysqli_fetch_array($fh);
 
 
                   ?>
+
+
+
               </tbody>
             </table>
+
           </div>
+          <!--/div1tabla -->
+          <!--div1 -->
+
+
+
+
+
+
+          </table>
         </div>
+        <!--/div2 -->
     </div>
-  <?php
+    <!--/div1 -->
+  </div>
+  <!--/tabla_ficha-->
+<?php
           }
-  ?>
-  </div>
-  </div>
-  </div>
-  <?php
-  include("parte_inferior.php");
-  ?>
+?>
+
+
+
+
+
+</div>
+</div>
+</div>
+<?php
+include("parte_inferior.php");
+?>
+
 </body>
 
 </html>
