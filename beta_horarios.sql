@@ -197,7 +197,13 @@ CREATE TABLE `instructor` (
 
 LOCK TABLES `instructor` WRITE;
 /*!40000 ALTER TABLE `instructor` DISABLE KEYS */;
-INSERT INTO `instructor` VALUES (2,'Giovany','Ortiz','gio@gmail.com','d6581d542c7eaf801284f084478b5fcc',20,1,NULL),(21,'Dora ','Torres','dora@gmail.com','6786f3c62fbf9021694f6e51cc07fe3c',20,2,'bc576b486902ebd5264bf594047b1b93'),(22,'Carlos','Sánchez','carlos@gmail.com','e1021d43911ca2c1845910d84f40aeae',20,2,'70e31fbd240b8b1f90ccb12e8029adcf'),(23,'William','Ospina','jacaon81@misena.edu.co','e1021d43911ca2c1845910d84f40aeae',40,2,'923e29bf7308f27b985570cc3ec20ad9'),(24,'Andrés','Rubiano','andres@gmail.com','0c74b7f78409a4022a2c4c5a5ca3ee19',40,2,'89e8fe3e7d3424fe5f2732802279ea5f'),(25,'Arnulfo','Bolivar','arnulfo@gmail.com','e1021d43911ca2c1845910d84f40aeae',20,2,'9549920ec9d7817c38ca994d2b215306'),(26,'Camilo','Castillo','camilo@gmail.com','743c41a921516b04afde48bb48e28ce6',20,2,'cd3dea29e269e926fef27df1b7078022');
+INSERT INTO `instructor` VALUES (2,'Giovany','Ortiz','gio@gmail.com','d6581d542c7eaf801284f084478b5fcc',20,1,NULL),
+(21,'Dora ','Torres','dora@gmail.com','6786f3c62fbf9021694f6e51cc07fe3c',20,2,'bc576b486902ebd5264bf594047b1b93'),
+(22,'Carlos','Sánchez','carlos@gmail.com','e1021d43911ca2c1845910d84f40aeae',20,2,'70e31fbd240b8b1f90ccb12e8029adcf'),
+(23,'William','Ospina','jacaon81@misena.edu.co','e1021d43911ca2c1845910d84f40aeae',40,2,'923e29bf7308f27b985570cc3ec20ad9'),
+(24,'Andrés','Rubiano','andres@gmail.com','0c74b7f78409a4022a2c4c5a5ca3ee19',40,2,'89e8fe3e7d3424fe5f2732802279ea5f'),
+(25,'Arnulfo','Bolivar','arnulfo@gmail.com','e1021d43911ca2c1845910d84f40aeae',20,2,'9549920ec9d7817c38ca994d2b215306'),
+(26,'Camilo','Castillo','camilo@gmail.com','743c41a921516b04afde48bb48e28ce6',20,2,'cd3dea29e269e926fef27df1b7078022');
 /*!40000 ALTER TABLE `instructor` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -291,8 +297,10 @@ CREATE TABLE `tb_trimestre` (
   `Trimestre` varchar(20) DEFAULT NULL,
   `id_fch` int(11) NOT NULL,
   `estatus_trim_H` int(11) NOT NULL DEFAULT 1,
+  `instructor_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id_T`),
   KEY `fk_TFCH` (`id_fch`),
+  CONSTRAINT `relacion_instructor` FOREIGN KEY (`instructor_id`) REFERENCES `instructor` (`ID`),
   CONSTRAINT `fk_TFCH` FOREIGN KEY (`id_fch`) REFERENCES `ficha` (`ID_F`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=85 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -303,7 +311,12 @@ CREATE TABLE `tb_trimestre` (
 
 LOCK TABLES `tb_trimestre` WRITE;
 /*!40000 ALTER TABLE `tb_trimestre` DISABLE KEYS */;
-INSERT INTO `tb_trimestre` VALUES (79,'2020-08-02','2020-10-02','I Trimestre',36,0),(80,'2020-10-02','2020-12-02','II Trimestre',36,1),(81,'2021-01-02','2021-03-02','III Trimestre',36,1),(82,'2021-03-02','2021-06-02','IV Trimestre',36,1),(83,'2021-06-02','2021-09-02','V Trimestre',36,1),(84,'2021-09-02','2021-12-02','VI Trimestre',36,1);
+INSERT INTO `tb_trimestre` VALUES (79,'2020-08-02','2020-10-02','I Trimestre',36,0,22),
+(80,'2020-10-02','2020-12-02','II Trimestre',36,1,23),
+(81,'2021-01-02','2021-03-02','III Trimestre',36,1,24),
+(82,'2021-03-02','2021-06-02','IV Trimestre',36,1,2),
+(83,'2021-06-02','2021-09-02','V Trimestre',36,1,25),
+(84,'2021-09-02','2021-12-02','VI Trimestre',36,1,21);
 /*!40000 ALTER TABLE `tb_trimestre` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
