@@ -18,714 +18,82 @@ $inst=$_SESSION['nam'];
 	<meta charset="utf-8">
 	<title>Horario Ficha Imprimir </title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" type="text/css" href="../../css/style.css">
-  <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<style type="text/css">
-	table, tr, th, td {
-	  border: 2px solid black;
-	  border-collapse: collapse;
-	}
-</style>
-
-<table width="100%" style="margin: 10px 10px 10px 10px;">
+<table>
   <?php 
    $fcht=mysqli_query($conn,"SELECT * FROM ficha,programa,tb_trimestre WHERE ficha.fc_id_programa=programa.id_program and tb_trimestre.id_fch=ficha.ID_F AND ficha.ID_F=$id_f and tb_trimestre.Trimestre='$trim_f'");
    $fchT=mysqli_fetch_assoc($fcht);
    ?>
   <tr>
-   <td colspan="6" rowspan="3" ><img src="../../img/sena_horarios.png"></td>
-   <td  WIDTH="200">Vercion: 03</td>       	     		
+   <td colspan="6" rowspan="3" ><img src="../../img/sena_horarios_1.png"></td>
+   <td>Versión: 03</td>       	     		
   </tr>
   <tr>
-  	<td>Fecha: <?php echo date('Y'); ?></td>
+  	<td>Fecha: <?php echo date('M-Y'); ?></td>
   </tr>
   <tr>
   	<td><?php echo $fchT['Trimestre'] ?></td>
   </tr>
   <tr>
     <th colspan="2">Grupo: <?php echo $fchT['Nº ficha']." ".$fchT['Nom_program']?></th>
-    <th colspan="3">TALLER</th>
-    <th colspan="2">Fecha: <?php echo $fchT['Trim_date_Inc']." - ".$fchT['Trim_date_fin']?></th>
+    <th colspan="3">Taller</th>
+    <th colspan="2">Periodo: <?php echo $fchT['Trim_date_Inc']." - ".$fchT['Trim_date_fin']?></th>
   </tr>
   <tr>
-    <th WIDTH="200"><center>Horas</center></th>
-    <th WIDTH="200"><center>Lunes</center></th>
-    <th WIDTH="200"><center>Martes</center></th>
-    <th WIDTH="200"><center>Miercoles</center></th>
-    <th WIDTH="200"><center>Jueves</center></th>
-    <th WIDTH="200"><center>Viernes</center></th>
-    <th WIDTH="200"><center>Sabado</center></th>
+    <th>Horas</th>
+    <th>Lunes</th>
+    <th>Martes</th>
+    <th>Miercoles</th>
+    <th>Jueves</th>
+    <th>Viernes</th>
+    <th>Sabado</th>
   </tr>
-  <tr>
-    <th HEIGHT="100"> <center>6:00 - 7:40</center></th>
-    <td><?php
-    $rows=mysqli_query($conn,"SELECT * FROM horarios,tb_trimestre,ficha,ambiente,instructor where horarios.instructor=instructor.ID and horarios.id_ambiente=ambiente.id_A and horarios.ficha=ficha.ID_F and horarios.id_trim_fch=tb_trimestre.id_T and horarios.ficha=$id_f and horarios.dia=1 and horarios.hora=1 and tb_trimestre.Trimestre='$trim_f'");
-              $row=mysqli_fetch_assoc($rows);
-              if (isset($row)) {
-                echo "<center>";
-                echo $row['Nº ficha']."<br>";           
-                echo $row['Nombre']." ".$row['Apellido']."<br>";
-                echo "Ambiente ".$row['Nombre_ambiente'];
-                echo "</center>";
-              }else{ echo "&nbsp";}
-             
-     ?></td>
-    <td><?php
-    $rows=mysqli_query($conn,"SELECT * FROM horarios,tb_trimestre,ficha,ambiente,instructor where horarios.instructor=instructor.ID and horarios.id_ambiente=ambiente.id_A and horarios.ficha=ficha.ID_F and horarios.id_trim_fch=tb_trimestre.id_T and horarios.ficha=$id_f and horarios.dia=2 and horarios.hora=1 and tb_trimestre.Trimestre='$trim_f'");
-              $row=mysqli_fetch_assoc($rows);
-              if (isset($row)) {
-                echo "<center>";
-                echo $row['Nº ficha']."<br>";           
-                echo $row['Nombre']." ".$row['Apellido']."<br>";
-                echo "Ambiente ".$row['Nombre_ambiente'];
-                echo "</center>";
-              }else{ echo "&nbsp";}
-     ?></td>
-    <td>
-      <?php
-    $rows=mysqli_query($conn,"SELECT * FROM horarios,tb_trimestre,ficha,ambiente,instructor where horarios.instructor=instructor.ID and horarios.id_ambiente=ambiente.id_A and horarios.ficha=ficha.ID_F and horarios.id_trim_fch=tb_trimestre.id_T and horarios.ficha=$id_f and horarios.dia=3 and horarios.hora=1 and tb_trimestre.Trimestre='$trim_f'");
-              $row=mysqli_fetch_assoc($rows);
-              if (isset($row)) {
-                echo "<center>";
-                echo $row['Nº ficha']."<br>";           
-                echo $row['Nombre']." ".$row['Apellido']."<br>";
-                echo "Ambiente ".$row['Nombre_ambiente'];
-                echo "</center>";
-              }else{ echo "&nbsp";}
-     ?>
-    </td>
-    <td>
-      <?php
-    $rows=mysqli_query($conn,"SELECT * FROM horarios,tb_trimestre,ficha,ambiente,instructor where horarios.instructor=instructor.ID and horarios.id_ambiente=ambiente.id_A and horarios.ficha=ficha.ID_F and horarios.id_trim_fch=tb_trimestre.id_T and horarios.ficha=$id_f and horarios.dia=4 and horarios.hora=1 and tb_trimestre.Trimestre='$trim_f'");
-              $row=mysqli_fetch_assoc($rows);
-              if (isset($row)) {
-                echo "<center>";
-                echo $row['Nº ficha']."<br>";           
-                echo $row['Nombre']." ".$row['Apellido']."<br>";
-                echo "Ambiente ".$row['Nombre_ambiente'];
-                echo "</center>";
-              }else{ echo "&nbsp";}
-     ?>
-    </td>
-    <td>
-      <?php
-    $rows=mysqli_query($conn,"SELECT * FROM horarios,tb_trimestre,ficha,ambiente,instructor where horarios.instructor=instructor.ID and horarios.id_ambiente=ambiente.id_A and horarios.ficha=ficha.ID_F and horarios.id_trim_fch=tb_trimestre.id_T and horarios.ficha=$id_f and horarios.dia=5 and horarios.hora=1 and tb_trimestre.Trimestre='$trim_f'");
-              $row=mysqli_fetch_assoc($rows);
-              if (isset($row)) {
-                echo "<center>";
-                echo $row['Nº ficha']."<br>";           
-                echo $row['Nombre']." ".$row['Apellido']."<br>";
-                echo "Ambiente ".$row['Nombre_ambiente'];
-                echo "</center>";
-              }else{ echo "&nbsp";}
-     ?>
-    </td>
-    <td>
-      <?php
-    $rows=mysqli_query($conn,"SELECT * FROM horarios,tb_trimestre,ficha,ambiente,instructor where horarios.instructor=instructor.ID and horarios.id_ambiente=ambiente.id_A and horarios.ficha=ficha.ID_F and horarios.id_trim_fch=tb_trimestre.id_T and horarios.ficha=$id_f and horarios.dia=6 and horarios.hora=1 and tb_trimestre.Trimestre='$trim_f'");
-              $row=mysqli_fetch_assoc($rows);
-              if (isset($row)) {
-                echo "<center>";
-                echo $row['Nº ficha']."<br>";           
-                echo $row['Nombre']." ".$row['Apellido']."<br>";
-                echo "Ambiente ".$row['Nombre_ambiente'];
-                echo "</center>";
-              }else{ echo "&nbsp";}
-     ?>
-    </td>
-  </tr>
-    <tr>
-      <th><center> 7:40 - 8:00 </center></th>
-      <th colspan="6" style = "position: relative; z-index: 1;"><center> DESCANSO </center></th>
-    </tr>
-  <tr>
-    <th HEIGHT="100" style="border: 1px solid;"> <center>8:00-9:40</center></th>
-    <td>
-      <?php
-    $rows=mysqli_query($conn,"SELECT * FROM horarios,tb_trimestre,ficha,ambiente,instructor where horarios.instructor=instructor.ID and horarios.id_ambiente=ambiente.id_A and horarios.ficha=ficha.ID_F and horarios.id_trim_fch=tb_trimestre.id_T and horarios.ficha=$id_f and horarios.dia=1 and horarios.hora=2 and tb_trimestre.Trimestre='$trim_f'");
-              $row=mysqli_fetch_assoc($rows);
-              if (isset($row)) {
-                echo "<center>";
-                echo $row['Nº ficha']."<br>";           
-                echo $row['Nombre']." ".$row['Apellido']."<br>";
-                echo "Ambiente ".$row['Nombre_ambiente'];
-                echo "</center>";
-              }else{ echo "&nbsp";}
-     ?>
-    </td>
-    <td>
-      <?php
-    $rows=mysqli_query($conn,"SELECT * FROM horarios,tb_trimestre,ficha,ambiente,instructor where horarios.instructor=instructor.ID and horarios.id_ambiente=ambiente.id_A and horarios.ficha=ficha.ID_F and horarios.id_trim_fch=tb_trimestre.id_T and horarios.ficha=$id_f and horarios.dia=2 and horarios.hora=2 and tb_trimestre.Trimestre='$trim_f'");
-              $row=mysqli_fetch_assoc($rows);
-              if (isset($row)) {
-                echo "<center>";
-                echo $row['Nº ficha']."<br>";           
-                echo $row['Nombre']." ".$row['Apellido']."<br>";
-                echo "Ambiente ".$row['Nombre_ambiente'];
-                echo "</center>";
-              }else{ echo "&nbsp";}
-     ?>
-    </td>
-    <td>
-      <?php
-    $rows=mysqli_query($conn,"SELECT * FROM horarios,tb_trimestre,ficha,ambiente,instructor where horarios.instructor=instructor.ID and horarios.id_ambiente=ambiente.id_A and horarios.ficha=ficha.ID_F and horarios.id_trim_fch=tb_trimestre.id_T and horarios.ficha=$id_f and horarios.dia=3 and horarios.hora=2 and tb_trimestre.Trimestre='$trim_f'");
-              $row=mysqli_fetch_assoc($rows);
-              if (isset($row)) {
-                echo "<center>";
-                echo $row['Nº ficha']."<br>";           
-                echo $row['Nombre']." ".$row['Apellido']."<br>";
-                echo "Ambiente ".$row['Nombre_ambiente'];
-                echo "</center>";
-              }else{ echo "&nbsp";}
-     ?>
-    </td>
-    <td>
-      <?php
-    $rows=mysqli_query($conn,"SELECT * FROM horarios,tb_trimestre,ficha,ambiente,instructor where horarios.instructor=instructor.ID and horarios.id_ambiente=ambiente.id_A and horarios.ficha=ficha.ID_F and horarios.id_trim_fch=tb_trimestre.id_T and horarios.ficha=$id_f and horarios.dia=4 and horarios.hora=2 and tb_trimestre.Trimestre='$trim_f'");
-              $row=mysqli_fetch_assoc($rows);
-              if (isset($row)) {
-                echo "<center>";
-                echo $row['Nº ficha']."<br>";           
-                echo $row['Nombre']." ".$row['Apellido']."<br>";
-                echo "Ambiente ".$row['Nombre_ambiente'];
-                echo "</center>";
-              }else{ echo "&nbsp";}
-     ?>
-    </td>
-    <td>
-      <?php
-    $rows=mysqli_query($conn,"SELECT * FROM horarios,tb_trimestre,ficha,ambiente,instructor where horarios.instructor=instructor.ID and horarios.id_ambiente=ambiente.id_A and horarios.ficha=ficha.ID_F and horarios.id_trim_fch=tb_trimestre.id_T and horarios.ficha=$id_f and horarios.dia=5 and horarios.hora=2 and tb_trimestre.Trimestre='$trim_f'");
-              $row=mysqli_fetch_assoc($rows);
-              if (isset($row)) {
-                echo "<center>";
-                echo $row['Nº ficha']."<br>";           
-                echo $row['Nombre']." ".$row['Apellido']."<br>";
-                echo "Ambiente ".$row['Nombre_ambiente'];
-                echo "</center>";
-              }else{ echo "&nbsp";}
-     ?>
-    </td>
-    <td>
-      <?php
-    $rows=mysqli_query($conn,"SELECT * FROM horarios,tb_trimestre,ficha,ambiente,instructor where horarios.instructor=instructor.ID and horarios.id_ambiente=ambiente.id_A and horarios.ficha=ficha.ID_F and horarios.id_trim_fch=tb_trimestre.id_T and horarios.ficha=$id_f and horarios.dia=6 and horarios.hora=2 and tb_trimestre.Trimestre='$trim_f'");
-              $row=mysqli_fetch_assoc($rows);
-              if (isset($row)) {
-                echo "<center>";
-                echo $row['Nº ficha']."<br>";           
-                echo $row['Nombre']." ".$row['Apellido']."<br>";
-                echo "Ambiente ".$row['Nombre_ambiente'];
-                echo "</center>";
-              }else{ echo "&nbsp";}
-     ?>
-    </td>
-  </tr>
-     <tr>
-      <th><center> 9:40 - 10:00 </center></th>
-      <th colspan="6" style = "position: relative; z-index: 1; border: 1px solid;"><center> DESCANSO </center></th>
-    </tr>
-  <tr>
-    <th  HEIGHT="100" style="border: 1px solid;"> <center>10:00-11:40</center></th>
-    <td>
-      <?php
-    $rows=mysqli_query($conn,"SELECT * FROM horarios,tb_trimestre,ficha,ambiente,instructor where horarios.instructor=instructor.ID and horarios.id_ambiente=ambiente.id_A and horarios.ficha=ficha.ID_F and horarios.id_trim_fch=tb_trimestre.id_T and horarios.ficha=$id_f and horarios.dia=1 and horarios.hora=3 and tb_trimestre.Trimestre='$trim_f'");
-              $row=mysqli_fetch_assoc($rows);
-              if (isset($row)) {
-                echo "<center>";
-                echo $row['Nº ficha']."<br>";           
-                echo $row['Nombre']." ".$row['Apellido']."<br>";
-                echo "Ambiente ".$row['Nombre_ambiente'];
-                echo "</center>";
-              }else{ echo "&nbsp";}
-     ?>
-    </td>
-    <td>
-      <?php
-    $rows=mysqli_query($conn,"SELECT * FROM horarios,tb_trimestre,ficha,ambiente,instructor where horarios.instructor=instructor.ID and horarios.id_ambiente=ambiente.id_A and horarios.ficha=ficha.ID_F and horarios.id_trim_fch=tb_trimestre.id_T and horarios.ficha=$id_f and horarios.dia=2 and horarios.hora=3 and tb_trimestre.Trimestre='$trim_f'");
-              $row=mysqli_fetch_assoc($rows);
-              if (isset($row)) {
-                echo "<center>";
-                echo $row['Nº ficha']."<br>";           
-                echo $row['Nombre']." ".$row['Apellido']."<br>";
-                echo "Ambiente ".$row['Nombre_ambiente'];
-                echo "</center>";
-              }else{ echo "&nbsp";}
-     ?>
-    </td>
-    <td>
-      <?php
-    $rows=mysqli_query($conn,"SELECT * FROM horarios,tb_trimestre,ficha,ambiente,instructor where horarios.instructor=instructor.ID and horarios.id_ambiente=ambiente.id_A and horarios.ficha=ficha.ID_F and horarios.id_trim_fch=tb_trimestre.id_T and horarios.ficha=$id_f and horarios.dia=3 and horarios.hora=3 and tb_trimestre.Trimestre='$trim_f'");
-              $row=mysqli_fetch_assoc($rows);
-              if (isset($row)) {
-                echo "<center>";
-                echo $row['Nº ficha']."<br>";           
-                echo $row['Nombre']." ".$row['Apellido']."<br>";
-                echo "Ambiente ".$row['Nombre_ambiente'];
-                echo "</center>";
-              }else{ echo "&nbsp";}
-     ?>
-    </td>
-    <td>
-      <?php
-    $rows=mysqli_query($conn,"SELECT * FROM horarios,tb_trimestre,ficha,ambiente,instructor where horarios.instructor=instructor.ID and horarios.id_ambiente=ambiente.id_A and horarios.ficha=ficha.ID_F and horarios.id_trim_fch=tb_trimestre.id_T and horarios.ficha=$id_f and horarios.dia=4 and horarios.hora=3 and tb_trimestre.Trimestre='$trim_f'");
-              $row=mysqli_fetch_assoc($rows);
-              if (isset($row)) {
-                echo "<center>";
-                echo $row['Nº ficha']."<br>";           
-                echo $row['Nombre']." ".$row['Apellido']."<br>";
-                echo "Ambiente ".$row['Nombre_ambiente'];
-                echo "</center>";
-              }else{ echo "&nbsp";}
-     ?>
-    </td>
-    <td>
-      <?php
-    $rows=mysqli_query($conn,"SELECT * FROM horarios,tb_trimestre,ficha,ambiente,instructor where horarios.instructor=instructor.ID and horarios.id_ambiente=ambiente.id_A and horarios.ficha=ficha.ID_F and horarios.id_trim_fch=tb_trimestre.id_T and horarios.ficha=$id_f and horarios.dia=5 and horarios.hora=3 and tb_trimestre.Trimestre='$trim_f'");
-              $row=mysqli_fetch_assoc($rows);
-              if (isset($row)) {
-                echo "<center>";
-                echo $row['Nº ficha']."<br>";           
-                echo $row['Nombre']." ".$row['Apellido']."<br>";
-                echo "Ambiente ".$row['Nombre_ambiente'];
-                echo "</center>";
-              }else{ echo "&nbsp";}
-     ?>
-    </td>
-    <td>
-      <?php
-    $rows=mysqli_query($conn,"SELECT * FROM horarios,tb_trimestre,ficha,ambiente,instructor where horarios.instructor=instructor.ID and horarios.id_ambiente=ambiente.id_A and horarios.ficha=ficha.ID_F and horarios.id_trim_fch=tb_trimestre.id_T and horarios.ficha=$id_f and horarios.dia=6 and horarios.hora=3 and tb_trimestre.Trimestre='$trim_f'");
-              $row=mysqli_fetch_assoc($rows);
-              if (isset($row)) {
-                echo "<center>";
-                echo $row['Nº ficha']."<br>";           
-                echo $row['Nombre']." ".$row['Apellido']."<br>";
-                echo "Ambiente ".$row['Nombre_ambiente'];
-                echo "</center>";
-              }else{ echo "&nbsp";}
-     ?>
-    </td>
-  </tr>
-  <tr>
-    <th style="border: 1px solid;"> <center> 11:40 - 12:00 </center></th>
-    <th colspan="6" style = "position: relative; z-index: 1; border: 1px solid;"><center> DESCANSO </center></th>
-  </tr>
-    <th HEIGHT="100" style="border: 1px solid;"><center>12:00-13:40</center></th>
-    <td>
-      <?php
-    $rows=mysqli_query($conn,"SELECT * FROM horarios,tb_trimestre,ficha,ambiente,instructor where horarios.instructor=instructor.ID and horarios.id_ambiente=ambiente.id_A and horarios.ficha=ficha.ID_F and horarios.id_trim_fch=tb_trimestre.id_T and horarios.ficha=$id_f and horarios.dia=1 and horarios.hora=4 and tb_trimestre.Trimestre='$trim_f'");
-              $row=mysqli_fetch_assoc($rows);
-              if (isset($row)) {
-                echo "<center>";
-                echo $row['Nº ficha']."<br>";           
-                echo $row['Nombre']." ".$row['Apellido']."<br>";
-                echo "Ambiente ".$row['Nombre_ambiente'];
-                echo "</center>";
-              }else{ echo "&nbsp";}
-     ?>
-    </td>
-    <td>
-       <?php
-    $rows=mysqli_query($conn,"SELECT * FROM horarios,tb_trimestre,ficha,ambiente,instructor where horarios.instructor=instructor.ID and horarios.id_ambiente=ambiente.id_A and horarios.ficha=ficha.ID_F and horarios.id_trim_fch=tb_trimestre.id_T and horarios.ficha=$id_f and horarios.dia=2 and horarios.hora=4 and tb_trimestre.Trimestre='$trim_f'");
-              $row=mysqli_fetch_assoc($rows);
-              if (isset($row)) {
-                echo "<center>";
-                echo $row['Nº ficha']."<br>";           
-                echo $row['Nombre']." ".$row['Apellido']."<br>";
-                echo "Ambiente ".$row['Nombre_ambiente'];
-                echo "</center>";
-              }else{ echo "&nbsp";}
-     ?>
-    </td>
-    <td>
-       <?php
-    $rows=mysqli_query($conn,"SELECT * FROM horarios,tb_trimestre,ficha,ambiente,instructor where horarios.instructor=instructor.ID and horarios.id_ambiente=ambiente.id_A and horarios.ficha=ficha.ID_F and horarios.id_trim_fch=tb_trimestre.id_T and horarios.ficha=$id_f and horarios.dia=3 and horarios.hora=4 and tb_trimestre.Trimestre='$trim_f'");
-              $row=mysqli_fetch_assoc($rows);
-              if (isset($row)) {
-                echo "<center>";
-                echo $row['Nº ficha']."<br>";           
-                echo $row['Nombre']." ".$row['Apellido']."<br>";
-                echo "Ambiente ".$row['Nombre_ambiente'];
-                echo "</center>";
-              }else{ echo "&nbsp";}
-     ?>
-    </td>
-    <td>
-       <?php
-    $rows=mysqli_query($conn,"SELECT * FROM horarios,tb_trimestre,ficha,ambiente,instructor where horarios.instructor=instructor.ID and horarios.id_ambiente=ambiente.id_A and horarios.ficha=ficha.ID_F and horarios.id_trim_fch=tb_trimestre.id_T and horarios.ficha=$id_f and horarios.dia=4 and horarios.hora=4 and tb_trimestre.Trimestre='$trim_f'");
-              $row=mysqli_fetch_assoc($rows);
-              if (isset($row)) {
-                echo "<center>";
-                echo $row['Nº ficha']."<br>";           
-                echo $row['Nombre']." ".$row['Apellido']."<br>";
-                echo "Ambiente ".$row['Nombre_ambiente'];
-                echo "</center>";
-              }else{ echo "&nbsp";}
-     ?>
-    </td>
-    <td>
-       <?php
-    $rows=mysqli_query($conn,"SELECT * FROM horarios,tb_trimestre,ficha,ambiente,instructor where horarios.instructor=instructor.ID and horarios.id_ambiente=ambiente.id_A and horarios.ficha=ficha.ID_F and horarios.id_trim_fch=tb_trimestre.id_T and horarios.ficha=$id_f and horarios.dia=5 and horarios.hora=4 and tb_trimestre.Trimestre='$trim_f'");
-              $row=mysqli_fetch_assoc($rows);
-              if (isset($row)) {
-                echo "<center>";
-                echo $row['Nº ficha']."<br>";           
-                echo $row['Nombre']." ".$row['Apellido']."<br>";
-                echo "Ambiente ".$row['Nombre_ambiente'];
-                echo "</center>";
-              }else{ echo "&nbsp";}
-     ?>
-    </td>
-    <td>
-       <?php
-    $rows=mysqli_query($conn,"SELECT * FROM horarios,tb_trimestre,ficha,ambiente,instructor where horarios.instructor=instructor.ID and horarios.id_ambiente=ambiente.id_A and horarios.ficha=ficha.ID_F and horarios.id_trim_fch=tb_trimestre.id_T and horarios.ficha=$id_f and horarios.dia=6 and horarios.hora=4 and tb_trimestre.Trimestre='$trim_f'");
-              $row=mysqli_fetch_assoc($rows);
-              if (isset($row)) {
-                echo "<center>";
-                echo $row['Nº ficha']."<br>";           
-                echo $row['Nombre']." ".$row['Apellido']."<br>";
-                echo "Ambiente ".$row['Nombre_ambiente'];
-                echo "</center>";
-              }else{ echo "&nbsp";}
-     ?>
-    </td>
-  </tr>
-     <tr>
-      <th style="border: 1px solid;"> <center>13:40 - 14:20</center></th>
-      <th colspan="6" style = "position: relative; z-index: 1;border: 1px solid;"><center>Almuerzo</center></th>
-     </tr>
-  <tr>
-    <th  HEIGHT="100" style="border: 1px solid;"> <center>14:20-16:00</center></th>
-    <td>
-       <?php
-    $rows=mysqli_query($conn,"SELECT * FROM horarios,tb_trimestre,ficha,ambiente,instructor where horarios.instructor=instructor.ID and horarios.id_ambiente=ambiente.id_A and horarios.ficha=ficha.ID_F and horarios.id_trim_fch=tb_trimestre.id_T and horarios.ficha=$id_f and horarios.dia=1 and horarios.hora=5 and tb_trimestre.Trimestre='$trim_f'");
-              $row=mysqli_fetch_assoc($rows);
-              if (isset($row)) {
-                echo "<center>";
-                echo $row['Nº ficha']."<br>";           
-                echo $row['Nombre']." ".$row['Apellido']."<br>";
-                echo "Ambiente ".$row['Nombre_ambiente'];
-                echo "</center>";
-              }else{ echo "&nbsp";}
-     ?>
-    </td>
-    <td>
-      <?php
-    $rows=mysqli_query($conn,"SELECT * FROM horarios,tb_trimestre,ficha,ambiente,instructor where horarios.instructor=instructor.ID and horarios.id_ambiente=ambiente.id_A and horarios.ficha=ficha.ID_F and horarios.id_trim_fch=tb_trimestre.id_T and horarios.ficha=$id_f and horarios.dia=2 and horarios.hora=5 and tb_trimestre.Trimestre='$trim_f'");
-              $row=mysqli_fetch_assoc($rows);
-              if (isset($row)) {
-                echo "<center>";
-                echo $row['Nº ficha']."<br>";           
-                echo $row['Nombre']." ".$row['Apellido']."<br>";
-                echo "Ambiente ".$row['Nombre_ambiente'];
-                echo "</center>";
-              }else{ echo "&nbsp";}
-     ?>
-    </td>
-    <td>
-      <?php
-    $rows=mysqli_query($conn,"SELECT * FROM horarios,tb_trimestre,ficha,ambiente,instructor where horarios.instructor=instructor.ID and horarios.id_ambiente=ambiente.id_A and horarios.ficha=ficha.ID_F and horarios.id_trim_fch=tb_trimestre.id_T and horarios.ficha=$id_f and horarios.dia=3 and horarios.hora=5 and tb_trimestre.Trimestre='$trim_f'");
-              $row=mysqli_fetch_assoc($rows);
-              if (isset($row)) {
-                echo "<center>";
-                echo $row['Nº ficha']."<br>";           
-                echo $row['Nombre']." ".$row['Apellido']."<br>";
-                echo "Ambiente ".$row['Nombre_ambiente'];
-                echo "</center>";
-              }else{ echo "&nbsp";}
-     ?>
-    </td>
-    <td>
-      <?php
-    $rows=mysqli_query($conn,"SELECT * FROM horarios,tb_trimestre,ficha,ambiente,instructor where horarios.instructor=instructor.ID and horarios.id_ambiente=ambiente.id_A and horarios.ficha=ficha.ID_F and horarios.id_trim_fch=tb_trimestre.id_T and horarios.ficha=$id_f and horarios.dia=4 and horarios.hora=5 and tb_trimestre.Trimestre='$trim_f'");
-              $row=mysqli_fetch_assoc($rows);
-              if (isset($row)) {
-                echo "<center>";
-                echo $row['Nº ficha']."<br>";           
-                echo $row['Nombre']." ".$row['Apellido']."<br>";
-                echo "Ambiente ".$row['Nombre_ambiente'];
-                echo "</center>";
-              }else{ echo "&nbsp";}
-     ?>
-    </td>
-    <td>
-      <?php
-    $rows=mysqli_query($conn,"SELECT * FROM horarios,tb_trimestre,ficha,ambiente,instructor where horarios.instructor=instructor.ID and horarios.id_ambiente=ambiente.id_A and horarios.ficha=ficha.ID_F and horarios.id_trim_fch=tb_trimestre.id_T and horarios.ficha=$id_f and horarios.dia=5 and horarios.hora=5 and tb_trimestre.Trimestre='$trim_f'");
-              $row=mysqli_fetch_assoc($rows);
-              if (isset($row)) {
-                echo "<center>";
-                echo $row['Nº ficha']."<br>";           
-                echo $row['Nombre']." ".$row['Apellido']."<br>";
-                echo "Ambiente ".$row['Nombre_ambiente'];
-                echo "</center>";
-              }else{ echo "&nbsp";}
-     ?>
-    </td>
-    <td>
-      <?php
-    $rows=mysqli_query($conn,"SELECT * FROM horarios,tb_trimestre,ficha,ambiente,instructor where horarios.instructor=instructor.ID and horarios.id_ambiente=ambiente.id_A and horarios.ficha=ficha.ID_F and horarios.id_trim_fch=tb_trimestre.id_T and horarios.ficha=$id_f and horarios.dia=6 and horarios.hora=5 and tb_trimestre.Trimestre='$trim_f'");
-              $row=mysqli_fetch_assoc($rows);
-              if (isset($row)) {
-                echo "<center>";
-                echo $row['Nº ficha']."<br>";           
-                echo $row['Nombre']." ".$row['Apellido']."<br>";
-                echo "Ambiente ".$row['Nombre_ambiente'];
-                echo "</center>";
-              }else{ echo "&nbsp";}
-     ?>
-    </td>
-  </tr>
-     <tr>
-      <th style="border: 1px solid;"> <center> 16:00 - 16:20 </center></th>
-      <th colspan="6" style = "position: relative; z-index: 1; border: 1px solid;"><center> DESCANSO </center></th>
-     </tr>
-  <tr>
-    <th HEIGHT="100" style="border: 1px solid;"> <center>16:20-18:00</center></th>
-    <td>
-      <?php
-    $rows=mysqli_query($conn,"SELECT * FROM horarios,tb_trimestre,ficha,ambiente,instructor where horarios.instructor=instructor.ID and horarios.id_ambiente=ambiente.id_A and horarios.ficha=ficha.ID_F and horarios.id_trim_fch=tb_trimestre.id_T and horarios.ficha=$id_f and horarios.dia=1 and horarios.hora=6 and tb_trimestre.Trimestre='$trim_f'");
-              $row=mysqli_fetch_assoc($rows);
-              if (isset($row)) {
-                echo "<center>";
-                echo $row['Nº ficha']."<br>";           
-                echo $row['Nombre']." ".$row['Apellido']."<br>";
-                echo "Ambiente ".$row['Nombre_ambiente'];
-                echo "</center>";
-              }else{ echo "&nbsp";}
-     ?>
-    </td>
-    <td>
-      <?php
-    $rows=mysqli_query($conn,"SELECT * FROM horarios,tb_trimestre,ficha,ambiente,instructor where horarios.instructor=instructor.ID and horarios.id_ambiente=ambiente.id_A and horarios.ficha=ficha.ID_F and horarios.id_trim_fch=tb_trimestre.id_T and horarios.ficha=$id_f and horarios.dia=2 and horarios.hora=6 and tb_trimestre.Trimestre='$trim_f'");
-              $row=mysqli_fetch_assoc($rows);
-              if (isset($row)) {
-                echo "<center>";
-                echo $row['Nº ficha']."<br>";           
-                echo $row['Nombre']." ".$row['Apellido']."<br>";
-                echo "Ambiente ".$row['Nombre_ambiente'];
-                echo "</center>";
-              }else{ echo "&nbsp";}
-     ?>
-    </td>
-    <td>
-      <?php
-    $rows=mysqli_query($conn,"SELECT * FROM horarios,tb_trimestre,ficha,ambiente,instructor where horarios.instructor=instructor.ID and horarios.id_ambiente=ambiente.id_A and horarios.ficha=ficha.ID_F and horarios.id_trim_fch=tb_trimestre.id_T and horarios.ficha=$id_f and horarios.dia=3 and horarios.hora=6 and tb_trimestre.Trimestre='$trim_f'");
-              $row=mysqli_fetch_assoc($rows);
-              if (isset($row)) {
-                echo "<center>";
-                echo $row['Nº ficha']."<br>";           
-                echo $row['Nombre']." ".$row['Apellido']."<br>";
-                echo "Ambiente ".$row['Nombre_ambiente'];
-                echo "</center>";
-              }else{ echo "&nbsp";}
-     ?>
-    </td>
-    <td>
-      <?php
-    $rows=mysqli_query($conn,"SELECT * FROM horarios,tb_trimestre,ficha,ambiente,instructor where horarios.instructor=instructor.ID and horarios.id_ambiente=ambiente.id_A and horarios.ficha=ficha.ID_F and horarios.id_trim_fch=tb_trimestre.id_T and horarios.ficha=$id_f and horarios.dia=4 and horarios.hora=6 and tb_trimestre.Trimestre='$trim_f'");
-              $row=mysqli_fetch_assoc($rows);
-              if (isset($row)) {
-                echo "<center>";
-                echo $row['Nº ficha']."<br>";           
-                echo $row['Nombre']." ".$row['Apellido']."<br>";
-                echo "Ambiente ".$row['Nombre_ambiente'];
-                echo "</center>";
-              }else{ echo "&nbsp";}
-     ?>
-    </td>
-    <td>
-      <?php
-    $rows=mysqli_query($conn,"SELECT * FROM horarios,tb_trimestre,ficha,ambiente,instructor where horarios.instructor=instructor.ID and horarios.id_ambiente=ambiente.id_A and horarios.ficha=ficha.ID_F and horarios.id_trim_fch=tb_trimestre.id_T and horarios.ficha=$id_f and horarios.dia=5 and horarios.hora=6 and tb_trimestre.Trimestre='$trim_f'");
-              $row=mysqli_fetch_assoc($rows);
-              if (isset($row)) {
-                echo "<center>";
-                echo $row['Nº ficha']."<br>";           
-                echo $row['Nombre']." ".$row['Apellido']."<br>";
-                echo "Ambiente ".$row['Nombre_ambiente'];
-                echo "</center>";
-              }else{ echo "&nbsp";}
-     ?>
-    </td>
-    <td>
-      <?php
-    $rows=mysqli_query($conn,"SELECT * FROM horarios,tb_trimestre,ficha,ambiente,instructor where horarios.instructor=instructor.ID and horarios.id_ambiente=ambiente.id_A and horarios.ficha=ficha.ID_F and horarios.id_trim_fch=tb_trimestre.id_T and horarios.ficha=$id_f and horarios.dia=6 and horarios.hora=6 and tb_trimestre.Trimestre='$trim_f'");
-              $row=mysqli_fetch_assoc($rows);
-              if (isset($row)) {
-                echo "<center>";
-                echo $row['Nº ficha']."<br>";           
-                echo $row['Nombre']." ".$row['Apellido']."<br>";
-                echo "Ambiente ".$row['Nombre_ambiente'];
-                echo "</center>";
-              }else{ echo "&nbsp";}
-     ?>
-    </td>
-  </tr>
-  <tr>
-    <th HEIGHT="100" style="border: 1px solid;"> <center>18:15-19:45</center></th>
-    <td>
-      <?php
-    $rows=mysqli_query($conn,"SELECT * FROM horarios,tb_trimestre,ficha,ambiente,instructor where horarios.instructor=instructor.ID and horarios.id_ambiente=ambiente.id_A and horarios.ficha=ficha.ID_F and horarios.id_trim_fch=tb_trimestre.id_T and horarios.ficha=$id_f and horarios.dia=1 and horarios.hora=7 and tb_trimestre.Trimestre='$trim_f'");
-              $row=mysqli_fetch_assoc($rows);
-              if (isset($row)) {
-                echo "<center>";
-                echo $row['Nº ficha']."<br>";           
-                echo $row['Nombre']." ".$row['Apellido']."<br>";
-                echo "Ambiente ".$row['Nombre_ambiente'];
-                echo "</center>";
-              }else{ echo "&nbsp";}
-     ?>
-    </td>
-    <td>
-      <?php
-    $rows=mysqli_query($conn,"SELECT * FROM horarios,tb_trimestre,ficha,ambiente,instructor where horarios.instructor=instructor.ID and horarios.id_ambiente=ambiente.id_A and horarios.ficha=ficha.ID_F and horarios.id_trim_fch=tb_trimestre.id_T and horarios.ficha=$id_f and horarios.dia=2 and horarios.hora=7 and tb_trimestre.Trimestre='$trim_f'");
-              $row=mysqli_fetch_assoc($rows);
-              if (isset($row)) {
-                echo "<center>";
-                echo $row['Nº ficha']."<br>";           
-                echo $row['Nombre']." ".$row['Apellido']."<br>";
-                echo "Ambiente ".$row['Nombre_ambiente'];
-                echo "</center>";
-              }else{ echo "&nbsp";}
-     ?>
-    </td>
-    <td>
-      <?php
-    $rows=mysqli_query($conn,"SELECT * FROM horarios,tb_trimestre,ficha,ambiente,instructor where horarios.instructor=instructor.ID and horarios.id_ambiente=ambiente.id_A and horarios.ficha=ficha.ID_F and horarios.id_trim_fch=tb_trimestre.id_T and horarios.ficha=$id_f and horarios.dia=3 and horarios.hora=7 and tb_trimestre.Trimestre='$trim_f'");
-              $row=mysqli_fetch_assoc($rows);
-              if (isset($row)) {
-                echo "<center>";
-                echo $row['Nº ficha']."<br>";           
-                echo $row['Nombre']." ".$row['Apellido']."<br>";
-                echo "Ambiente ".$row['Nombre_ambiente'];
-                echo "</center>";
-              }else{ echo "&nbsp";}
-     ?>
-    </td>
-    <td>
-      <?php
-    $rows=mysqli_query($conn,"SELECT * FROM horarios,tb_trimestre,ficha,ambiente,instructor where horarios.instructor=instructor.ID and horarios.id_ambiente=ambiente.id_A and horarios.ficha=ficha.ID_F and horarios.id_trim_fch=tb_trimestre.id_T and horarios.ficha=$id_f and horarios.dia=4 and horarios.hora=7 and tb_trimestre.Trimestre='$trim_f'");
-              $row=mysqli_fetch_assoc($rows);
-              if (isset($row)) {
-                echo "<center>";
-                echo $row['Nº ficha']."<br>";           
-                echo $row['Nombre']." ".$row['Apellido']."<br>";
-                echo "Ambiente ".$row['Nombre_ambiente'];
-                echo "</center>";
-              }else{ echo "&nbsp";}
-     ?>
-    </td>
-    <td>
-      <?php
-    $rows=mysqli_query($conn,"SELECT * FROM horarios,tb_trimestre,ficha,ambiente,instructor where horarios.instructor=instructor.ID and horarios.id_ambiente=ambiente.id_A and horarios.ficha=ficha.ID_F and horarios.id_trim_fch=tb_trimestre.id_T and horarios.ficha=$id_f and horarios.dia=5 and horarios.hora=7 and tb_trimestre.Trimestre='$trim_f'");
-              $row=mysqli_fetch_assoc($rows);
-              if (isset($row)) {
-                echo "<center>";
-                echo $row['Nº ficha']."<br>";           
-                echo $row['Nombre']." ".$row['Apellido']."<br>";
-                echo "Ambiente ".$row['Nombre_ambiente'];
-                echo "</center>";
-              }else{ echo "&nbsp";}
-     ?>
-    </td>
-    <td>
-      <?php
-    $rows=mysqli_query($conn,"SELECT * FROM horarios,tb_trimestre,ficha,ambiente,instructor where horarios.instructor=instructor.ID and horarios.id_ambiente=ambiente.id_A and horarios.ficha=ficha.ID_F and horarios.id_trim_fch=tb_trimestre.id_T and horarios.ficha=$id_f and horarios.dia=6 and horarios.hora=7 and tb_trimestre.Trimestre='$trim_f'");
-              $row=mysqli_fetch_assoc($rows);
-              if (isset($row)) {
-                echo "<center>";
-                echo $row['Nº ficha']."<br>";           
-                echo $row['Nombre']." ".$row['Apellido']."<br>";
-                echo "Ambiente ".$row['Nombre_ambiente'];
-                echo "</center>";
-              }else{ echo "&nbsp";}
-     ?>
-    </td>
-  </tr>
-     <tr>
-      <th style="border: 1px solid;"> <center> 19:45 - 20:00 </center></th>
-      <th colspan="6" style = "position: relative; z-index: 1; border: 1px solid;"><center> DESCANSO </center></th>
-     </tr>
-  <tr>
-    <th HEIGHT="100" style="border: 1px solid;"> <center>20:00-21:40</center></th>
-    <td>
-      <?php
-    $rows=mysqli_query($conn,"SELECT * FROM horarios,tb_trimestre,ficha,ambiente,instructor where horarios.instructor=instructor.ID and horarios.id_ambiente=ambiente.id_A and horarios.ficha=ficha.ID_F and horarios.id_trim_fch=tb_trimestre.id_T and horarios.ficha=$id_f and horarios.dia=1 and horarios.hora=8 and tb_trimestre.Trimestre='$trim_f'");
-              $row=mysqli_fetch_assoc($rows);
-              if (isset($row)) {
-                echo "<center>";
-                echo $row['Nº ficha']."<br>";           
-                echo $row['Nombre']." ".$row['Apellido']."<br>";
-                echo "Ambiente ".$row['Nombre_ambiente'];
-                echo "</center>";
-              }else{ echo "&nbsp";}
-     ?>
-    </td>
-    <td>
-      <?php
-    $rows=mysqli_query($conn,"SELECT * FROM horarios,tb_trimestre,ficha,ambiente,instructor where horarios.instructor=instructor.ID and horarios.id_ambiente=ambiente.id_A and horarios.ficha=ficha.ID_F and horarios.id_trim_fch=tb_trimestre.id_T and horarios.ficha=$id_f and horarios.dia=2 and horarios.hora=8 and tb_trimestre.Trimestre='$trim_f'");
-              $row=mysqli_fetch_assoc($rows);
-              if (isset($row)) {
-                echo "<center>";
-                echo $row['Nº ficha']."<br>";           
-                echo $row['Nombre']." ".$row['Apellido']."<br>";
-                echo "Ambiente ".$row['Nombre_ambiente'];
-                echo "</center>";
-              }else{ echo "&nbsp";}
-     ?>
-    </td>
-    <td>
-      <?php
-    $rows=mysqli_query($conn,"SELECT * FROM horarios,tb_trimestre,ficha,ambiente,instructor where horarios.instructor=instructor.ID and horarios.id_ambiente=ambiente.id_A and horarios.ficha=ficha.ID_F and horarios.id_trim_fch=tb_trimestre.id_T and horarios.ficha=$id_f and horarios.dia=3 and horarios.hora=8 and tb_trimestre.Trimestre='$trim_f'");
-              $row=mysqli_fetch_assoc($rows);
-              if (isset($row)) {
-                echo "<center>";
-                echo $row['Nº ficha']."<br>";           
-                echo $row['Nombre']." ".$row['Apellido']."<br>";
-                echo "Ambiente ".$row['Nombre_ambiente'];
-                echo "</center>";
-              }else{ echo "&nbsp";}
-     ?>
-    </td>
-    <td>
-      <?php
-    $rows=mysqli_query($conn,"SELECT * FROM horarios,tb_trimestre,ficha,ambiente,instructor where horarios.instructor=instructor.ID and horarios.id_ambiente=ambiente.id_A and horarios.ficha=ficha.ID_F and horarios.id_trim_fch=tb_trimestre.id_T and horarios.ficha=$id_f and horarios.dia=4 and horarios.hora=8 and tb_trimestre.Trimestre='$trim_f'");
-              $row=mysqli_fetch_assoc($rows);
-              if (isset($row)) {
-                echo "<center>";
-                echo $row['Nº ficha']."<br>";           
-                echo $row['Nombre']." ".$row['Apellido']."<br>";
-                echo "Ambiente ".$row['Nombre_ambiente'];
-                echo "</center>";
-              }else{ echo "&nbsp";}
-     ?>
-    </td>
-    <td>
-      <?php
-    $rows=mysqli_query($conn,"SELECT * FROM horarios,tb_trimestre,ficha,ambiente,instructor where horarios.instructor=instructor.ID and horarios.id_ambiente=ambiente.id_A and horarios.ficha=ficha.ID_F and horarios.id_trim_fch=tb_trimestre.id_T and horarios.ficha=$id_f and horarios.dia=5 and horarios.hora=8 and tb_trimestre.Trimestre='$trim_f'");
-              $row=mysqli_fetch_assoc($rows);
-              if (isset($row)) {
-                echo "<center>";
-                echo $row['Nº ficha']."<br>";           
-                echo $row['Nombre']." ".$row['Apellido']."<br>";
-                echo "Ambiente ".$row['Nombre_ambiente'];
-                echo "</center>";
-              }else{ echo "&nbsp";}
-     ?>
-    </td>
-    <td>
-      <?php
-    $rows=mysqli_query($conn,"SELECT * FROM horarios,tb_trimestre,ficha,ambiente,instructor where horarios.instructor=instructor.ID and horarios.id_ambiente=ambiente.id_A and horarios.ficha=ficha.ID_F and horarios.id_trim_fch=tb_trimestre.id_T and horarios.ficha=$id_f and horarios.dia=6 and horarios.hora=8 and tb_trimestre.Trimestre='$trim_f'");
-              $row=mysqli_fetch_assoc($rows);
-              if (isset($row)) {
-                echo "<center>";
-                echo $row['Nº ficha']."<br>";           
-                echo $row['Nombre']." ".$row['Apellido']."<br>";
-                echo "Ambiente ".$row['Nombre_ambiente'];
-                echo "</center>";
-              }else{ echo "&nbsp";}
-     ?>
-    </td>
-  </tr>
+  <?php
+     $days = array(0,1,2,3,4,5,6,);
+     $hours = array(1,0,2,0,3,0,4,0,5,0,6,7,0,8);
+     foreach ($hours as $hour) {
+       ?>
+       <tr>
+         <?php
+         foreach ($days as $day) {
+           ?>
+           <td>
+             <?php
+             $querys_horas = "SELECT * FROM horas WHERE id_h=$hour"; 
+             $result_horas = mysqli_query($conn, $querys_horas);
+              while ($rcon=mysqli_fetch_assoc($result_horas)) {
+                if ($day==0) {?> <strong><?php echo $rcon['hora'];?></strong>
+                <?php }?> 
+                <?php } ?>
+                <?php
+                $query = "SELECT * FROM horarios,ficha,dias,horas,ambiente,tb_trimestre, programa, instructor 
+                WHERE horarios.dia=$day AND horarios.hora=$hour
+                AND horarios.id_ambiente=ambiente.id_A 
+                AND horarios.instructor = instructor.ID
+                and horarios.ficha=$id_f
+                AND ficha.ID_F = tb_trimestre.id_fch 
+                AND horarios.id_trim_fch=tb_trimestre.id_T
+                AND horarios.hora = horas.id_h 
+                AND ficha.fc_id_programa=programa.id_program";
+                $result = mysqli_query($conn, $query);
+                $row = mysqli_fetch_assoc($result); 
+                if (isset($row)) { ?>
+                <ul>
+                      <li><?php  echo $row['Nombre']." ". $row['Apellido'];?></li>
+                      <li><?php  echo $row['Trimestre'];?></li>
+                      <li><?php  echo "Amb: ".$row['Nombre_ambiente'];?></li>
+                      <li><?php  echo "Descripción: ".$row['descripcion'];?></li>
+                </ul> 
+              <?php 
+              }elseif (!isset($row)) {
+                echo "&nbsp"; }?>
+                              </td><?php                                     
+                                  }
+                                  echo "</tr>";
+                              }
+                           ?> 
   <tr style="color: black;">
     <th colspan="4">COMPETENCIAS A DESARROLLAR</th>
     <th colspan="3">INSTRUCTOR: </th>                                    
@@ -759,23 +127,9 @@ $inst=$_SESSION['nam'];
      <td colspan="2">&nbsp</td>
      <td colspan="1">&nbsp</td>             
   </tr>
-
-
-</table>       
-     
- 
-<script type="text/javascript"> 
- window.addEventListener("load", window.print());
-</script> 
-<!-- jQuery-->
-<script src="../../plugins/jquery/jquery.min.js"></script>
-<!-- Bootstrap -->
-<script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- jQuery UI -- >
-<script src="../plugins/jquery-ui/jquery-ui.min.js"></script>
- AdminLTE App --> 
-<script src="../../css/js/adminlte.min.js"></script>
-
-
+</table>
+<script> 
+    window.addEventListener("load", window.print());
+</script>       
 </body>
 </html>

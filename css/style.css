@@ -32,4 +32,9 @@
 
 #lt_nav{
    background-image: -webkit-linear-gradient(top, #ff8138, #ff8138);
-}   
+}  
+
+
+.container li{
+    list-style-type: none;
+}

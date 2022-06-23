@@ -1,84 +1,83 @@
--- phpMyAdmin SQL Dump
--- version 5.0.3
--- https://www.phpmyadmin.net/
+-- MariaDB dump 10.19  Distrib 10.4.24-MariaDB, for Win64 (AMD64)
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 11-02-2022 a las 01:14:12
--- Versión del servidor: 10.4.14-MariaDB
--- Versión de PHP: 7.3.23
-
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-START TRANSACTION;
-SET time_zone = "+00:00";
-
+-- Host: localhost    Database: beta_horarios
+-- ------------------------------------------------------
+-- Server version	10.4.24-MariaDB
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8mb4 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Base de datos: `beta_horarios`
+-- Table structure for table `ambiente`
 --
 
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `ambiente`
---
-
+DROP TABLE IF EXISTS `ambiente`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `ambiente` (
-  `id_A` int(11) NOT NULL,
+  `id_A` int(11) NOT NULL AUTO_INCREMENT,
   `Nombre_ambiente` varchar(100) NOT NULL,
   `Capacidad_ambiente` varchar(100) NOT NULL,
   `No_equipos` int(11) NOT NULL,
-  `id_sede` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `id_sede` int(11) NOT NULL,
+  PRIMARY KEY (`id_A`),
+  KEY `relacion_sede` (`id_sede`),
+  CONSTRAINT `relacion_sede` FOREIGN KEY (`id_sede`) REFERENCES `sede` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Volcado de datos para la tabla `ambiente`
+-- Dumping data for table `ambiente`
 --
 
-INSERT INTO `ambiente` (`id_A`, `Nombre_ambiente`, `Capacidad_ambiente`, `No_equipos`, `id_sede`) VALUES
-(3, 'Multimedia  ', '30 personas ', 2, 1),
-(4, 'ADSI ', '30 personas ', 30, 1),
-(5, 'Simulación  ', '30 personas ', 30, 2),
-(6, 'Encuadernación  ', '15 personas ', 6, 1),
-(7, 'Animación ', '20 personas ', 30, 1),
-(8, '110 ', '15', 30, 1),
-(9, '102 ', '15', 15, 1);
-
--- --------------------------------------------------------
+LOCK TABLES `ambiente` WRITE;
+/*!40000 ALTER TABLE `ambiente` DISABLE KEYS */;
+INSERT INTO `ambiente` VALUES (11,'ADSI 301 ','30',30,7),(12,'302 ','20',20,7),(13,'304','25',25,7),(14,'305 ','40',40,7);
+/*!40000 ALTER TABLE `ambiente` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
--- Estructura de tabla para la tabla `dias`
+-- Table structure for table `dias`
 --
 
+DROP TABLE IF EXISTS `dias`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `dias` (
-  `id` int(11) NOT NULL,
-  `dia_s` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `dia_s` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `dia_s` (`dia_s`)
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Volcado de datos para la tabla `dias`
+-- Dumping data for table `dias`
 --
 
-INSERT INTO `dias` (`id`, `dia_s`) VALUES
-(4, 'Jueves'),
-(1, 'Lunes'),
-(2, 'Martes'),
-(3, 'Miercoles'),
-(6, 'Sabado'),
-(5, 'Viernes');
-
--- --------------------------------------------------------
+LOCK TABLES `dias` WRITE;
+/*!40000 ALTER TABLE `dias` DISABLE KEYS */;
+INSERT INTO `dias` VALUES (1,'Lunes'),(2,'Martes'),(3,'Miercoles'),(4,'Jueves'),(5,'Viernes'),(6,'Sabado');
+/*!40000 ALTER TABLE `dias` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
--- Estructura de tabla para la tabla `ficha`
+-- Table structure for table `ficha`
 --
 
+DROP TABLE IF EXISTS `ficha`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `ficha` (
-  `ID_F` int(11) NOT NULL,
+  `ID_F` int(11) NOT NULL AUTO_INCREMENT,
   `Nº ficha` varchar(11) NOT NULL,
   `fc_cant_aprend` int(11) NOT NULL,
   `fc_jornada` varchar(45) NOT NULL,
@@ -86,418 +85,235 @@ CREATE TABLE `ficha` (
   `fic_date_I` date NOT NULL,
   `fic_date_F` date NOT NULL,
   `fc_id_programa` int(11) NOT NULL,
-  `estatus_trim` int(11) NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `estatus_trim` int(11) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`ID_F`),
+  KEY `relacion_prog` (`fc_id_programa`),
+  CONSTRAINT `relacion_prog` FOREIGN KEY (`fc_id_programa`) REFERENCES `programa` (`id_program`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Volcado de datos para la tabla `ficha`
+-- Dumping data for table `ficha`
 --
 
-INSERT INTO `ficha` (`ID_F`, `Nº ficha`, `fc_cant_aprend`, `fc_jornada`, `fc_tipo_formacion`, `fic_date_I`, `fic_date_F`, `fc_id_programa`, `estatus_trim`) VALUES
-(19, '1234567', 50, 'Diurna', 'Presencial', '2021-11-30', '2021-11-12', 88524459, 1),
-(20, '1234569', 10, 'Nocturna', 'Virtual', '2021-11-04', '2021-11-12', 88524463, 1),
-(24, '2061628', 30, 'Diurna', 'Presencial', '2021-11-05', '2021-11-26', 88524459, 1),
-(25, '2231454', 20, 'Diurna', 'Presencial', '2021-11-11', '2022-11-11', 88524464, 1),
-(30, '2061589', 20, 'Diurna', 'Presencial', '2021-11-30', '2021-11-30', 88524465, 1),
-(32, '6593271', 8, 'Mixta', 'Presencial', '2022-01-16', '2023-02-10', 88524466, 1),
-(33, '1243256', 12, 'Nocturna', 'Virtual', '2022-02-08', '2023-11-08', 88524466, 1),
-(34, '9996668', 12, 'Diurna', 'Presencial', '2022-02-10', '2022-02-28', 88524467, 1);
-
--- --------------------------------------------------------
+LOCK TABLES `ficha` WRITE;
+/*!40000 ALTER TABLE `ficha` DISABLE KEYS */;
+INSERT INTO `ficha` VALUES (36,'145236',23,'Diurna','Presencial','2020-08-02','2022-08-02',88524469,1);
+/*!40000 ALTER TABLE `ficha` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
--- Estructura de tabla para la tabla `horarios`
+-- Table structure for table `horarios`
 --
 
+DROP TABLE IF EXISTS `horarios`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `horarios` (
-  `id_hora` int(11) NOT NULL,
+  `id_hora` int(11) NOT NULL AUTO_INCREMENT,
   `dia` int(11) DEFAULT NULL,
   `ficha` int(11) DEFAULT NULL,
   `instructor` int(11) DEFAULT NULL,
   `hora` int(11) DEFAULT NULL,
   `id_ambiente` int(11) DEFAULT NULL,
   `horas_instructor` int(11) NOT NULL DEFAULT 2,
-  `id_trim_fch` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `id_trim_fch` int(11) DEFAULT NULL,
+  `descripcion` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`id_hora`),
+  KEY `dia` (`dia`) USING BTREE,
+  KEY `ficha` (`ficha`),
+  KEY `instructor` (`instructor`),
+  KEY `hora` (`hora`),
+  KEY `R` (`id_ambiente`),
+  KEY `Prueba_relacion` (`id_trim_fch`),
+  CONSTRAINT `Prueba_relacion` FOREIGN KEY (`id_trim_fch`) REFERENCES `tb_trimestre` (`id_T`) ON DELETE SET NULL ON UPDATE CASCADE,
+  CONSTRAINT `relacion_H1` FOREIGN KEY (`dia`) REFERENCES `dias` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `relacion_H2` FOREIGN KEY (`ficha`) REFERENCES `ficha` (`ID_F`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `relacion_H3` FOREIGN KEY (`hora`) REFERENCES `horas` (`id_h`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `relacion_H4` FOREIGN KEY (`instructor`) REFERENCES `instructor` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=307 DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Volcado de datos para la tabla `horarios`
+-- Dumping data for table `horarios`
 --
 
-INSERT INTO `horarios` (`id_hora`, `dia`, `ficha`, `instructor`, `hora`, `id_ambiente`, `horas_instructor`, `id_trim_fch`) VALUES
-(292, 1, 19, 1, 1, 3, 2, 33);
-
--- --------------------------------------------------------
+LOCK TABLES `horarios` WRITE;
+/*!40000 ALTER TABLE `horarios` DISABLE KEYS */;
+INSERT INTO `horarios` VALUES (295,1,36,21,1,12,2,79,'Inglés'),(296,1,36,22,2,13,2,79,'Comunicación'),(297,1,36,23,3,11,2,79,'Inge Software'),(298,2,36,24,2,11,2,79,'Algoritmos 1'),(299,2,36,23,3,11,2,79,'Inge Software'),(300,3,36,24,3,11,2,79,'Algoritmos 1'),(301,3,36,25,2,14,2,79,'Emprendimiento'),(302,4,36,23,1,11,2,79,'Inge Software'),(303,4,36,24,3,11,2,79,'Algoritmos 1'),(304,5,36,26,2,12,2,79,'Cultura'),(305,6,36,24,1,11,2,79,'Algoritmos 1'),(306,6,36,23,3,11,2,79,'Inge Software');
+/*!40000 ALTER TABLE `horarios` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
--- Estructura de tabla para la tabla `horas`
+-- Table structure for table `horas`
 --
 
+DROP TABLE IF EXISTS `horas`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `horas` (
-  `id_h` int(11) NOT NULL,
-  `hora` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `id_h` int(11) NOT NULL AUTO_INCREMENT,
+  `hora` varchar(100) NOT NULL,
+  PRIMARY KEY (`id_h`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Volcado de datos para la tabla `horas`
+-- Dumping data for table `horas`
 --
 
-INSERT INTO `horas` (`id_h`, `hora`) VALUES
-(1, '6:00-7:40'),
-(2, '8:00-9:40'),
-(3, '10:00-11:40'),
-(4, '12:00-13:40'),
-(5, '14:20-16:00'),
-(6, '16:20-18:00'),
-(7, '18:15-19:45'),
-(8, '20:00-21:40');
-
--- --------------------------------------------------------
+LOCK TABLES `horas` WRITE;
+/*!40000 ALTER TABLE `horas` DISABLE KEYS */;
+INSERT INTO `horas` VALUES (1,'6:00-7:40'),(2,'8:00-9:40'),(3,'10:00-11:40'),(4,'12:00-13:40'),(5,'14:20-16:00'),(6,'16:20-18:00'),(7,'18:15-19:45'),(8,'20:00-21:40');
+/*!40000 ALTER TABLE `horas` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
--- Estructura de tabla para la tabla `instructor`
+-- Table structure for table `instructor`
 --
 
+DROP TABLE IF EXISTS `instructor`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `instructor` (
-  `ID` int(11) NOT NULL,
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
   `Nombre` varchar(100) NOT NULL,
   `Apellido` varchar(100) NOT NULL,
-  `Cedula` int(11) NOT NULL,
   `email` varchar(100) NOT NULL,
   `contrasena` varchar(100) NOT NULL,
-  `rol` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `horas_inst` int(11) DEFAULT NULL,
+  `rol` int(11) NOT NULL,
+  `token` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`ID`),
+  UNIQUE KEY `email` (`email`),
+  KEY `relacion_rol` (`rol`),
+  CONSTRAINT `relacion_rol` FOREIGN KEY (`rol`) REFERENCES `roles` (`id_rol`)
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Volcado de datos para la tabla `instructor`
+-- Dumping data for table `instructor`
 --
 
-INSERT INTO `instructor` (`ID`, `Nombre`, `Apellido`, `Cedula`, `email`, `contrasena`, `rol`) VALUES
-(1, 'Jose', 'Ovalle', 2147483647, 'jose@gmail.com', 'd6581d542c7eaf801284f084478b5fcc', 2),
-(2, 'Giovany', 'Ortiz', 123456788, 'gio@gmail.com', 'd6581d542c7eaf801284f084478b5fcc', 1),
-(3, 'Andres', 'martinez', 123456799, 'and@gmail.com', 'd6581d542c7eaf801284f084478b5fcc', 2),
-(4, 'Camilo', 'Ortiz', 3333333, 'camilo@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055', 2),
-(12, 'Saitama  ', 'Ortiz', 234556942, 'sai@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055', 2),
-(13, 'Nicolás t', 'Tiusaba ', 1000774689, 'tiusabanicolas@gmail.com', '2c9b1d39508edf85487f012c53cd69a3', 2),
-(18, 'ana', 'chaves', 123456789, 'anita@gmail.com', 'd6581d542c7eaf801284f084478b5fcc', 2);
-
--- --------------------------------------------------------
+LOCK TABLES `instructor` WRITE;
+/*!40000 ALTER TABLE `instructor` DISABLE KEYS */;
+INSERT INTO `instructor` VALUES (2,'Giovany','Ortiz','gio@gmail.com','d6581d542c7eaf801284f084478b5fcc',20,1,NULL),(21,'Dora ','Torres','dora@gmail.com','6786f3c62fbf9021694f6e51cc07fe3c',20,2,'bc576b486902ebd5264bf594047b1b93'),(22,'Carlos','Sánchez','carlos@gmail.com','e1021d43911ca2c1845910d84f40aeae',20,2,'70e31fbd240b8b1f90ccb12e8029adcf'),(23,'William','Ospina','jacaon81@misena.edu.co','e1021d43911ca2c1845910d84f40aeae',40,2,'923e29bf7308f27b985570cc3ec20ad9'),(24,'Andrés','Rubiano','andres@gmail.com','0c74b7f78409a4022a2c4c5a5ca3ee19',40,2,'89e8fe3e7d3424fe5f2732802279ea5f'),(25,'Arnulfo','Bolivar','arnulfo@gmail.com','e1021d43911ca2c1845910d84f40aeae',20,2,'9549920ec9d7817c38ca994d2b215306'),(26,'Camilo','Castillo','camilo@gmail.com','743c41a921516b04afde48bb48e28ce6',20,2,'cd3dea29e269e926fef27df1b7078022');
+/*!40000 ALTER TABLE `instructor` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
--- Estructura de tabla para la tabla `programa`
+-- Table structure for table `programa`
 --
 
+DROP TABLE IF EXISTS `programa`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `programa` (
-  `id_program` int(11) NOT NULL,
+  `id_program` int(11) NOT NULL AUTO_INCREMENT,
   `Nom_program` varchar(100) NOT NULL,
   `nivel_form` varchar(45) NOT NULL,
-  `competencias` varchar(250) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `competencias` varchar(250) DEFAULT NULL,
+  PRIMARY KEY (`id_program`)
+) ENGINE=InnoDB AUTO_INCREMENT=88524470 DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Volcado de datos para la tabla `programa`
+-- Dumping data for table `programa`
 --
 
-INSERT INTO `programa` (`id_program`, `Nom_program`, `nivel_form`, `competencias`) VALUES
-(88524459, 'Encuadernación ', 'Técnico', 'informática\r\n'),
-(88524460, 'Ingles ', 'Técnico', '0'),
-(88524463, 'Fotografía ', 'Técnico', 'Comunicación\r\ncultura física  '),
-(88524464, 'ADSI-Análisis y desarrollo de sistemas de información ', 'Tecnólogo', 'Matemáticas '),
-(88524465, 'Impresión offset ', 'Tecnólogo', '...'),
-(88524466, 'Animación 3D ', 'Tecnólogo', '......'),
-(88524467, 'Animación 4D', 'Tecnólogo', 'hgsjghshdsh🙂🤗🤗🥱😲🥺😈👽🐱‍🐉🦁🐯🐯🦄🦍🐽');
-
--- --------------------------------------------------------
+LOCK TABLES `programa` WRITE;
+/*!40000 ALTER TABLE `programa` DISABLE KEYS */;
+INSERT INTO `programa` VALUES (88524459,'Encuadernación ','Técnico','informática\r\n'),(88524460,'Ingles ','Técnico','0'),(88524463,'Fotografía ','Técnico','Comunicación\r\ncultura física  '),(88524464,'ADSI-Análisis y desarrollo de sistemas de información ','Tecnólogo','Matemáticas '),(88524465,'Impresión offset ','Tecnólogo','...'),(88524466,'Animación 3D ','Tecnólogo','......'),(88524467,'Animación 4D','Tecnólogo','.'),(88524468,'Lingüística','Técnico',''),(88524469,'ADSI','Tecnólogo','');
+/*!40000 ALTER TABLE `programa` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
--- Estructura de tabla para la tabla `roles`
+-- Table structure for table `roles`
 --
 
+DROP TABLE IF EXISTS `roles`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `roles` (
-  `id_rol` int(11) NOT NULL,
-  `rol` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `id_rol` int(11) NOT NULL AUTO_INCREMENT,
+  `rol` varchar(20) NOT NULL,
+  PRIMARY KEY (`id_rol`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Volcado de datos para la tabla `roles`
+-- Dumping data for table `roles`
 --
 
-INSERT INTO `roles` (`id_rol`, `rol`) VALUES
-(1, 'ADMIN'),
-(2, 'Instructor');
-
--- --------------------------------------------------------
+LOCK TABLES `roles` WRITE;
+/*!40000 ALTER TABLE `roles` DISABLE KEYS */;
+INSERT INTO `roles` VALUES (1,'ADMIN'),(2,'Instructor');
+/*!40000 ALTER TABLE `roles` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
--- Estructura de tabla para la tabla `sede`
+-- Table structure for table `sede`
 --
 
+DROP TABLE IF EXISTS `sede`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `sede` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre_sede` varchar(100) NOT NULL,
   `direccion_sede` varchar(200) DEFAULT NULL,
-  `telefono_sede` int(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `telefono_sede` int(100) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Volcado de datos para la tabla `sede`
+-- Dumping data for table `sede`
 --
 
-INSERT INTO `sede` (`id`, `nombre_sede`, `direccion_sede`, `telefono_sede`) VALUES
-(1, 'Cenigraf', 'Cl. 15 #31-42, Bogotá', 5960199),
-(2, 'Fundación Universitaria Horizonte', ' Cl. 69 ## 14 - 30, Bogotá, Cundinamarca', 2147483647),
-(4, 'Fundación Universitaria ', 'Cl. 15 #31-30, Bogotá', 244456);
-
--- --------------------------------------------------------
+LOCK TABLES `sede` WRITE;
+/*!40000 ALTER TABLE `sede` DISABLE KEYS */;
+INSERT INTO `sede` VALUES (7,'Centro de servicios financieros','Calle 42 C # 79D 65 sur',2147483647);
+/*!40000 ALTER TABLE `sede` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
--- Estructura de tabla para la tabla `tb_trimestre`
+-- Table structure for table `tb_trimestre`
 --
 
+DROP TABLE IF EXISTS `tb_trimestre`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `tb_trimestre` (
-  `id_T` int(11) NOT NULL,
+  `id_T` int(11) NOT NULL AUTO_INCREMENT,
   `Trim_date_Inc` date DEFAULT NULL,
   `Trim_date_fin` date DEFAULT NULL,
   `Trimestre` varchar(20) DEFAULT NULL,
   `id_fch` int(11) NOT NULL,
-  `estatus_trim_H` int(11) NOT NULL DEFAULT 1
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `estatus_trim_H` int(11) NOT NULL DEFAULT 1,
+  PRIMARY KEY (`id_T`),
+  KEY `fk_TFCH` (`id_fch`),
+  CONSTRAINT `fk_TFCH` FOREIGN KEY (`id_fch`) REFERENCES `ficha` (`ID_F`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=85 DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Volcado de datos para la tabla `tb_trimestre`
+-- Dumping data for table `tb_trimestre`
 --
 
-INSERT INTO `tb_trimestre` (`id_T`, `Trim_date_Inc`, `Trim_date_fin`, `Trimestre`, `id_fch`, `estatus_trim_H`) VALUES
-(19, '2021-11-25', '2021-11-26', 'I Trimestre', 24, 1),
-(20, '2021-11-27', '2021-11-28', 'II Trimestre', 24, 1),
-(21, '2021-11-29', '2021-11-30', 'III Trimestre', 24, 1),
-(22, '2021-12-01', '2021-12-02', 'IV Trimestre', 24, 1),
-(23, '2021-12-03', '2021-12-04', 'V Trimestre', 24, 1),
-(24, '2021-12-05', '2021-12-06', 'VI Trimestre', 24, 1),
-(25, '2021-11-25', '2021-11-26', 'I Trimestre', 25, 1),
-(26, '2021-11-27', '2021-11-28', 'II Trimestre', 25, 1),
-(27, '2021-11-29', '2021-11-30', 'III Trimestre', 25, 1),
-(28, '2021-12-01', '2021-12-02', 'IV Trimestre', 25, 1),
-(29, '2021-12-03', '2021-12-04', 'V Trimestre', 25, 1),
-(30, '2021-12-05', '2021-12-06', 'VI Trimestre', 25, 1),
-(31, '2021-11-30', '2021-12-01', 'I Trimestre', 19, 1),
-(32, '2021-12-01', '2021-12-02', 'II Trimestre', 19, 1),
-(33, '2021-12-03', '2021-12-04', 'III Trimestre', 19, 0),
-(34, '2021-12-05', '2021-12-06', 'IV Trimestre', 19, 1),
-(35, '2021-12-07', '2021-12-08', 'V Trimestre', 19, 1),
-(36, '2021-12-09', '2021-12-10', 'VI Trimestre', 19, 1),
-(43, '2021-12-06', '2021-12-07', 'I Trimestre', 20, 1),
-(44, '2021-12-08', '2021-12-09', 'II Trimestre', 20, 1),
-(45, '2021-12-10', '2021-12-09', 'III Trimestre', 20, 1),
-(46, '2021-12-12', '2021-12-13', 'IV Trimestre', 20, 1),
-(47, '2021-12-14', '2021-12-15', 'V Trimestre', 20, 1),
-(48, '2021-12-16', '2021-12-17', 'VI Trimestre', 20, 1),
-(49, '2021-11-29', '2021-11-30', 'I Trimestre', 30, 1),
-(50, '2021-12-06', '2021-12-07', 'II Trimestre', 30, 1),
-(51, '2021-12-05', '2021-12-06', 'III Trimestre', 30, 1),
-(52, '2021-12-10', '2021-12-11', 'IV Trimestre', 30, 1),
-(53, '2021-12-14', '2021-12-23', 'V Trimestre', 30, 1),
-(54, '2021-12-17', '2021-12-23', 'VI Trimestre', 30, 1),
-(55, '2021-12-10', '2021-12-11', 'I Trimestre', 32, 1),
-(56, '2021-12-12', '2021-12-13', 'II Trimestre', 32, 1),
-(57, '2021-12-14', '2021-12-15', 'III Trimestre', 32, 1),
-(58, '2021-12-16', '2021-12-17', 'IV Trimestre', 32, 1),
-(59, '2021-12-18', '2021-12-19', 'V Trimestre', 32, 1),
-(60, '2021-12-20', '2021-12-21', 'VI Trimestre', 32, 1),
-(61, '2022-02-08', '2022-02-09', 'I Trimestre', 33, 1),
-(62, '2022-02-10', '2022-02-11', 'II Trimestre', 33, 0),
-(63, '2022-02-12', '2022-02-13', 'III Trimestre', 33, 1),
-(64, '2022-02-14', '2022-02-15', 'IV Trimestre', 33, 1),
-(65, '2022-02-16', '2022-02-17', 'V Trimestre', 33, 1),
-(66, '2022-02-18', '2022-02-18', 'VI Trimestre', 33, 1),
-(67, '2022-02-09', '2022-02-10', 'I Trimestre', 34, 1),
-(68, '2022-02-11', '2022-02-12', 'II Trimestre', 34, 1),
-(69, '2022-02-13', '2022-02-14', 'III Trimestre', 34, 1),
-(70, '2022-02-15', '2022-02-16', 'IV Trimestre', 34, 1),
-(71, '2022-02-17', '2022-02-18', 'V Trimestre', 34, 1),
-(72, '2022-02-19', '2022-02-20', 'VI Trimestre', 34, 1);
+LOCK TABLES `tb_trimestre` WRITE;
+/*!40000 ALTER TABLE `tb_trimestre` DISABLE KEYS */;
+INSERT INTO `tb_trimestre` VALUES (79,'2020-08-02','2020-10-02','I Trimestre',36,0),(80,'2020-10-02','2020-12-02','II Trimestre',36,1),(81,'2021-01-02','2021-03-02','III Trimestre',36,1),(82,'2021-03-02','2021-06-02','IV Trimestre',36,1),(83,'2021-06-02','2021-09-02','V Trimestre',36,1),(84,'2021-09-02','2021-12-02','VI Trimestre',36,1);
+/*!40000 ALTER TABLE `tb_trimestre` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
---
--- Índices para tablas volcadas
---
-
---
--- Indices de la tabla `ambiente`
---
-ALTER TABLE `ambiente`
-  ADD PRIMARY KEY (`id_A`),
-  ADD KEY `relacion_sede` (`id_sede`);
-
---
--- Indices de la tabla `dias`
---
-ALTER TABLE `dias`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `dia_s` (`dia_s`);
-
---
--- Indices de la tabla `ficha`
---
-ALTER TABLE `ficha`
-  ADD PRIMARY KEY (`ID_F`),
-  ADD KEY `relacion_prog` (`fc_id_programa`);
-
---
--- Indices de la tabla `horarios`
---
-ALTER TABLE `horarios`
-  ADD PRIMARY KEY (`id_hora`),
-  ADD KEY `dia` (`dia`) USING BTREE,
-  ADD KEY `ficha` (`ficha`),
-  ADD KEY `instructor` (`instructor`),
-  ADD KEY `hora` (`hora`),
-  ADD KEY `R` (`id_ambiente`),
-  ADD KEY `Prueba_relacion` (`id_trim_fch`);
-
---
--- Indices de la tabla `horas`
---
-ALTER TABLE `horas`
-  ADD PRIMARY KEY (`id_h`);
-
---
--- Indices de la tabla `instructor`
---
-ALTER TABLE `instructor`
-  ADD PRIMARY KEY (`ID`),
-  ADD UNIQUE KEY `email` (`email`),
-  ADD UNIQUE KEY `Cedula` (`Cedula`),
-  ADD KEY `relacion_rol` (`rol`);
-
---
--- Indices de la tabla `programa`
---
-ALTER TABLE `programa`
-  ADD PRIMARY KEY (`id_program`);
-
---
--- Indices de la tabla `roles`
---
-ALTER TABLE `roles`
-  ADD PRIMARY KEY (`id_rol`);
-
---
--- Indices de la tabla `sede`
---
-ALTER TABLE `sede`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indices de la tabla `tb_trimestre`
---
-ALTER TABLE `tb_trimestre`
-  ADD PRIMARY KEY (`id_T`),
-  ADD KEY `fk_TFCH` (`id_fch`);
-
---
--- AUTO_INCREMENT de las tablas volcadas
---
-
---
--- AUTO_INCREMENT de la tabla `ambiente`
---
-ALTER TABLE `ambiente`
-  MODIFY `id_A` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
-
---
--- AUTO_INCREMENT de la tabla `dias`
---
-ALTER TABLE `dias`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
-
---
--- AUTO_INCREMENT de la tabla `ficha`
---
-ALTER TABLE `ficha`
-  MODIFY `ID_F` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
-
---
--- AUTO_INCREMENT de la tabla `horarios`
---
-ALTER TABLE `horarios`
-  MODIFY `id_hora` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=293;
-
---
--- AUTO_INCREMENT de la tabla `horas`
---
-ALTER TABLE `horas`
-  MODIFY `id_h` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
-
---
--- AUTO_INCREMENT de la tabla `instructor`
---
-ALTER TABLE `instructor`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
-
---
--- AUTO_INCREMENT de la tabla `programa`
---
-ALTER TABLE `programa`
-  MODIFY `id_program` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=88524468;
-
---
--- AUTO_INCREMENT de la tabla `roles`
---
-ALTER TABLE `roles`
-  MODIFY `id_rol` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT de la tabla `sede`
---
-ALTER TABLE `sede`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
--- AUTO_INCREMENT de la tabla `tb_trimestre`
---
-ALTER TABLE `tb_trimestre`
-  MODIFY `id_T` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
-
---
--- Restricciones para tablas volcadas
---
-
---
--- Filtros para la tabla `ambiente`
---
-ALTER TABLE `ambiente`
-  ADD CONSTRAINT `relacion_sede` FOREIGN KEY (`id_sede`) REFERENCES `sede` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `ficha`
---
-ALTER TABLE `ficha`
-  ADD CONSTRAINT `relacion_prog` FOREIGN KEY (`fc_id_programa`) REFERENCES `programa` (`id_program`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `horarios`
---
-ALTER TABLE `horarios`
-  ADD CONSTRAINT `Prueba_relacion` FOREIGN KEY (`id_trim_fch`) REFERENCES `tb_trimestre` (`id_T`) ON DELETE SET NULL ON UPDATE CASCADE,
-  ADD CONSTRAINT `R` FOREIGN KEY (`id_ambiente`) REFERENCES `ambiente` (`id_A`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `relacion_H1` FOREIGN KEY (`dia`) REFERENCES `dias` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `relacion_H2` FOREIGN KEY (`ficha`) REFERENCES `ficha` (`ID_F`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `relacion_H3` FOREIGN KEY (`hora`) REFERENCES `horas` (`id_h`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `relacion_H4` FOREIGN KEY (`instructor`) REFERENCES `instructor` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `instructor`
---
-ALTER TABLE `instructor`
-  ADD CONSTRAINT `relacion_rol` FOREIGN KEY (`rol`) REFERENCES `roles` (`id_rol`);
-
---
--- Filtros para la tabla `tb_trimestre`
---
-ALTER TABLE `tb_trimestre`
-  ADD CONSTRAINT `fk_TFCH` FOREIGN KEY (`id_fch`) REFERENCES `ficha` (`ID_F`) ON DELETE CASCADE ON UPDATE CASCADE;
-COMMIT;
-
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2022-05-02 10:51:56
