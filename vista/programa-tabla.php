@@ -11,42 +11,47 @@ include("parte_superior.php");
         $contprog = mysqli_query($conn, $tablaprog);
 
         ?>
-        <div class="table-responsive">
-          <table class="table table-bordered table-striped mt-4" style="text-align:center;">
-            <tr>
-              <th>Nombre del Programa</th>
-              <th>Nivel de formacion</th>
-              <th>Competencias</th>
-              <th>Opciones</th>
-            </tr>
-            </thead>
-            <tbody>
-              <?php
-              while ($progcon = mysqli_fetch_assoc($contprog)) {
-              ?>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table id="table" class="table table-bordered table-striped mt-4">
+              <thead>
                 <tr>
-                  <td><?php echo $progcon["Nom_program"]; ?></td>
-                  <td><?php echo $progcon["nivel_form"]; ?></td>
-                  <td><?php echo $progcon["competencias"]; ?></td>
-                  <td>
-                    <div class="btn-group">
-                      <a href="update-programa.php?ubP=<?php echo $progcon["id_program"] ?>"><button type="submit" class="btn btn-success btn-sm"><i class="bi-pencil-square"></i>
-                        </button></a>
-                    </div>
-                  </td>
+                  <th>Nombre del Programa</th>
+                  <th>Nivel de formacion</th>
+                  <th>Competencias</th>
+                  <th>Opciones</th>
                 </tr>
-              <?php
-              }
+              </thead>
+              <tbody>
+                <?php
+                while ($progcon = mysqli_fetch_assoc($contprog)) {
+                ?>
+                  <tr>
+                    <td><?php echo $progcon["Nom_program"]; ?></td>
+                    <td><?php echo $progcon["nivel_form"]; ?></td>
+                    <td><?php echo $progcon["competencias"]; ?></td>
+                    <td>
+                      <div class="btn-group">
+                        <a href="update-programa.php?ubP=<?php echo $progcon["id_program"] ?>">
+                          <button type="submit" class="btn btn-success btn-sm"><i class="bi-pencil-square"></i>
+                          </button></a>
+                      </div>
+                    </td>
+                  </tr>
+                <?php
+                }
 
-              ?>
-            </tbody>
-          </table>
+                ?>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </div>
 </div>
+<script src="js.js"></script>
 <?php
 include("parte_inferior.php")
 ?>

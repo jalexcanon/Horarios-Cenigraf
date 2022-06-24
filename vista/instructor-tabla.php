@@ -10,8 +10,9 @@ include("parte_superior.php");
         $tablai = "SELECT * FROM `instructor`,`roles` WHERE instructor.rol = roles.id_rol";
         $cont = mysqli_query($conn, $tablai);
         ?>
+        <div class="card-body">
         <div class="table-responsive">
-          <table class="table table-bordered table-striped mt-4">
+          <table id="table" class="table table-bordered table-striped mt-4">
             <thead>
               <tr>
 
@@ -48,7 +49,8 @@ include("parte_superior.php");
                     <div class="btn-group">
                       <a href="admin/horarios_ins.php?instructor=<?php echo $icon["ID"]; ?>"><button type="submit" class="btn btn-secondary btn-sm">Horario</button></a>
                       <a href="update-instructor.php?ubds=<?php echo $icon["ID"]; ?>"><button type="submit" class="btn btn-success btn-sm"><i class="bi-pencil-square"></i></button></a>
-                      <a href="../controlador/InstructorControllers/delete.php?eli=<?php echo $icon["ID"]; ?>"><button type="submit" class="btn btn-info btn-sm" onclick="return eli()"><i class="bi-trash"></i></button></a>
+                      <a href="../controlador/InstructorControllers/delete.php?eli=<?php echo $icon["ID"]; ?>"><button type="submit" class="btn btn-info btn-sm" onclick="return delete_('¿Está seguro de eliminar este instructor?',
+                      'Se eliminó el instructor exitosamente.')"><i class="bi-trash"></i></button></a>
                     </div>
                   </td>
                 </tr>
@@ -64,19 +66,8 @@ include("parte_superior.php");
   </div>
 </div>
 </div>
-<script type="text/javascript">
-  function eli() {
-
-    var res = confirm("¿Está seguro de eliminar este instructor?")
-    if (res == true) {
-      alert("Se eliminó el instructor exitosamente.")
-    } else {
-      return false;
-    }
-
-  }
-</script>
-
+</div>
+<script src="js.js"></script>
 <?php
 include("parte_inferior.php")
 ?>

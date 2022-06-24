@@ -11,8 +11,9 @@ include("parte_superior.php");
          $contA=mysqli_query($conn,$tablaA);
         
         ?>  
+        <div class="card-body">
         <div class="table-responsive"> 
-          <table class="table .thead-light table-striped mt-4">
+          <table id="table" class="table .thead-light table-striped mt-4">
             <thead>
               <tr>              
                 <th>Sede</th>
@@ -35,7 +36,7 @@ include("parte_superior.php");
                   <div class="btn-group">
                     <button class="btn btn-secondary btn-sm" onclick="window.open('admin/horarios_ambiente.php?amb=<?php echo $Acon['id_A']?>','_Self')">Horario</button>
                     <a href="update-ambiente.php?ubA=<?php echo $Acon["id_A"]?>"><button type="submit" class="btn btn-success btn-sm"><i class="bi-pencil-square"></i></button></a>
-                    <a href="../controlador/AmbienteControllers/delete.php?eliA=<?php echo $Acon['id_A']?>"><button type="submit" class="btn btn-info btn-sm" onclick="return eliminar_ambiente()" ><i class="bi-trash"></i></button></a>
+                    <a href="../controlador/AmbienteControllers/delete.php?eliA=<?php echo $Acon['id_A']?>"><button type="submit" class="btn btn-info btn-sm" onclick="return delete_('¿Esta seguro de eliminar el ambiente?','Se eliminó el ambiente exitosamente.')" ><i class="bi-trash"></i></button></a>
                   </div>
                 </td>
               </tr>      
@@ -50,16 +51,9 @@ include("parte_superior.php");
       </div>
     </div>
   </div>
+  </div>
 <?php
 include("parte_inferior.php")
 ?>
 
-<script type="text/javascript">
-  function eliminar_ambiente(){
-    var res=confirm("¿Esta seguro de eliminar el ambiente?")
-    if (res==true) {
-      alert('Se eliminó el ambiente exitosamente.');
-    } else{
-      return false; }
-          }
-</script>  
+<script src="js.js"></script>  

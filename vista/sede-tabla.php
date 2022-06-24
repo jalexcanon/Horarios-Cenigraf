@@ -37,7 +37,8 @@ include("parte_superior.php");
                   <td>
                     <div class="btn-group">
                       <a href="update-sede.php?ubS=<?php echo $Scon["id"] ?>"><button type="submit" class="btn btn-success btn-sm"><i class="bi-pencil-square"></i></button></a>
-                      <a href="../controlador/SedeControllers/delete.php?eliS=<?php echo $Scon['id'] ?>"><button type="submit" class="btn btn-info btn-sm" onclick="return elis()"><i class="bi-trash"></i></button></a>
+                      <a href="../controlador/SedeControllers/delete.php?eliS=<?php echo $Scon['id'] ?>"><button type="submit" class="btn btn-info btn-sm" 
+                      onclick="return delete_('¿Está seguro de eliminar esta sede?','Se eliminó la sede exitosamente.')"><i class="bi-trash"></i></button></a>
                     </div>
                   </td>
                 </tr>
@@ -57,15 +58,5 @@ include("parte_superior.php");
 include("parte_inferior.php")
 ?>
 
-<script type="text/javascript">
-  function elis() {
-
-    var res = confirm("¿Está seguro de eliminar esta sede?")
-    if (res == true) {
-      alert('Se eliminó la sede exitosamente.');
-    } else {
-      return false;
-    }
-
-  }
+<script src="js.js">
 </script>
