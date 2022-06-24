@@ -9,7 +9,7 @@ include("parte_superior.php");
         <?php
         $conFT = mysqli_query($conn, "SELECT * FROM ficha,programa where ficha.fc_id_programa=programa.id_program AND ficha.estatus_trim=0");
         ?>
-        <form action="../controlador/regTF.php" method="POST" style="padding-left:5%;">
+        <form action="../controlador/trimestreControllers/create.php" method="POST" style="padding-left:5%;">
           <div class="form-group">
             <h4>Ficha:</h4>
             <select name="ficha_fecha" class="form-control" required>

@@ -1,5 +1,5 @@
 <?php 
-include("conexion.php");
+include("../conexion.php");
  session_start();
 
   $correo=$_SESSION['ema'];
@@ -15,8 +15,10 @@ $id_ficha=$_GET['id_F'];
 $id_fech=$_POST['id_fech'];
 $date_Iup=$_POST['date_Iup'];
 $date_Fup=$_POST['date_Fup'];
+$instructor=$_POST['instructor_update'];
 
-mysqli_query($conn,"UPDATE tb_trimestre set Trim_date_Inc='$date_Iup', Trim_date_fin='$date_Fup' where id_T='$id_fech'");
+mysqli_query($conn,"UPDATE tb_trimestre set Trim_date_Inc='$date_Iup', 
+Trim_date_fin='$date_Fup', instructor_id='$instructor' where id_T='$id_fech'");
 
 //actualizar fechas de inicio y fin de la ficha
 $consulta1=mysqli_query($conn,"SELECT * FROM tb_trimestre where id_T='$id_fech' and Trimestre='I Trimestre'");
@@ -30,5 +32,5 @@ if (mysqli_num_rows($consulta2)>0) {
 }
 
   
-header("location:../vista/update_fechT.php?upfech=$id_ficha");
+header("location:../../vista/update_trimestre.php?upfech=$id_ficha");
  ?>

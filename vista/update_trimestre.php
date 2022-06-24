@@ -20,14 +20,17 @@ include("parte_superior.php");
               <th>Trimestre</th>
               <th>Fecha de inicio</th>
               <th>Fecha Fin</th>
+              <th>Instructor</th>
               <th>Opciones</th>
             </tr>
           </thead>
           <tbody>
             <?php
-            $query2 = mysqli_query($conn, "SELECT * FROM ficha,tb_trimestre WHERE tb_trimestre.id_fch=ficha.ID_F AND tb_trimestre.id_fch=$upfech");
+            $query2 = mysqli_query($conn, "SELECT * FROM ficha,tb_trimestre,instructor
+             WHERE tb_trimestre.id_fch=ficha.ID_F AND instructor.id= tb_trimestre.instructor_id 
+             AND tb_trimestre.id_fch=$upfech");
             while ($Fechcon = mysqli_fetch_assoc($query2)) {
-            ?><form method="post" action="../controlador/update_fechT.php?id_F=<?php echo $upfech; ?>">
+            ?><form method="post" action="../controlador/trimestreControllers/update.php?id_F=<?php echo $upfech; ?>">
                 <tr>
                   <td><?php echo $Fechcon["Nº ficha"]; ?></td>
                   <td><?php echo $Fechcon["Trimestre"]; ?></td>
@@ -37,8 +40,20 @@ include("parte_superior.php");
                     <input type="number" name="id_fech" style="display:none;" value="<?php echo $Fechcon['id_T']; ?>">
                   </td>
                   <td>
+                    <select name="instructor_update" id="">
+                      <div class="form-group">
+                        <option value="">Selecciona el instructor</option>
+                        <?php
+                        $instructor= mysqli_query($conn, "SELECT * FROM instructor");
+                        while ($ins = mysqli_fetch_array($instructor)) { ?>
+                          <option value="<?php echo $ins["ID"]; ?>"><?php echo $ins['Nombre'] . " " . $ins['Apellido'] ?></option>
+                        <?php } ?>
+                    </select>
+                  </td>
+                  <td>
                     <div class="btn-group">
-                      <button type="submit" class="btn btn-success">Actualizar</button>
+                      <button type="submit" class="btn btn-success"
+                      onclick="updatetrimestre()">Actualizar</button>
                     </div>
                   </td>
                 </tr>
@@ -59,5 +74,9 @@ include("parte_superior.php");
 include("parte_inferior.php");
 ?>
 </body>
-
+<script>
+  function updatetrimestre() {
+    alert("Se actualizó el trimestre satisfactoriamente")
+  }
+</script>
 </html>

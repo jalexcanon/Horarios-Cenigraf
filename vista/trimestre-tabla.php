@@ -29,7 +29,7 @@ include("parte_superior.php");
                   <td><?php echo $Fechcon["fic_date_F"]; ?></td>
                   <td>
                     <div class="btn-group">
-                      <a href="update_fechT.php?upfech=<?php echo $Fechcon["ID_F"] ?>"><button type="submit" class="btn btn-success btn-sm"><i class="bi-pencil-square"></i></button></a>
+                      <a href="update_trimestre.php?upfech=<?php echo $Fechcon["ID_F"] ?>"><button type="submit" class="btn btn-success btn-sm"><i class="bi-pencil-square"></i></button></a>
                     </div>
                   </td>
                 </tr>
