@@ -43,7 +43,6 @@ $rwfh = mysqli_fetch_array($fh);
   <link rel="stylesheet" type="text/css" href="../css/style.css">
   <link rel="stylesheet" href="../plugins/fontawesome-free/css/all.min.css">
   <link rel="stylesheet" href="../css/css/adminlte.min.css">
-
 </head>
 
 <body class="hold-transition skin-blue sidebar-collapse sidebar-mini">
@@ -69,22 +68,17 @@ $rwfh = mysqli_fetch_array($fh);
               <li><a class="dropdown-item" onclick="window.open('../controlador/exit.php','_Self')" style="cursor: pointer"> Cerrar sesión</a></li>
             </ul>
           </li>
-
     </nav>
   </div>
   <!--/divnav-->
   <!--lateral-->
   <div>
     <aside id="lt_aside" class="main-sidebar sidebar-dark-primary" style="position: fixed;">
-
       <a href="horarios.php" class="brand-link" style="color:white;">
         <img src="../img/logo2.png" alt="logo1" class="brand-image img-circle" style="background-color:#ffffff; width: 40px; height:40px; ">
         <span class="brand-text font-weight-bold">CENIGRAF </span>
       </a>
-
-
       <div class="sidebar">
-
         <div class="user-panel mt-4 pb-4 mb-4 d-flex">
           <div class="image">
             <img src="../img/perfil.png" class="img-circle" alt="User Image">
@@ -111,7 +105,6 @@ $rwfh = mysqli_fetch_array($fh);
             <?php
           }
             ?>
-
             <nav class="mt-2">
               <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <li class="nav-item has-treeview">
@@ -303,43 +296,19 @@ $rwfh = mysqli_fetch_array($fh);
 
 
                   ?>
-
-
-
               </tbody>
             </table>
-
           </div>
-          <!--/div1tabla -->
-          <!--div1 -->
-
-
-
-
-
-
-          </table>
         </div>
-        <!--/div2 -->
     </div>
-    <!--/div1 -->
   </div>
-  <!--/tabla_ficha-->
 <?php
           }
 ?>
-
-
-
-
-
 </div>
 </div>
 </div>
+</body>
 <?php
 include("parte_inferior.php");
 ?>
-
-</body>
-
-</html>

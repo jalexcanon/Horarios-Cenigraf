@@ -21,14 +21,11 @@ $ins = mysqli_query($conn, "SELECT * FROM instructor"); // consulta select crear
   <link rel="stylesheet" href="../css/css/adminlte.min.css">
   <script src="https://kit.fontawesome.com/d73cc36adc.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
-
   <script src="../plugins/jquery/jquery.min.js"></script>
   <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
   <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
   <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
-  
 </head>
-
 
 <body class="hold-transition skin-blue sidebar-collapse sidebar-mini">
   <!--divnav-->
@@ -71,8 +68,6 @@ $ins = mysqli_query($conn, "SELECT * FROM instructor"); // consulta select crear
             </ul>
           </li>
         </ul>
-
-
         <!--imagen Cenigraf-->
         <div class="collapse navbar-collapse d-flex justify-content-end">
           <ul class="navbar-nav">
@@ -95,19 +90,15 @@ $ins = mysqli_query($conn, "SELECT * FROM instructor"); // consulta select crear
     <span class="brand-text font-weight-bold">CENIGRAF </span>
   </a>
   <div class="sidebar">
-
-
     <?php if ($rol == 1) { ?>
       <div class="user-panel mt-4 pb-4 mb-4 d-flex">
         <div class="image">
           <img src="../img/horario.png" alt="User Image">
         </div>
         <div class="info">
-
           <a href="http://localhost/horarios/vista/admin/horarios_ficha.php" style="color: white;">Crear Horario Ficha</a>
         </div>
       </div>
-
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" role="menu">
           <li class="nav-item">
