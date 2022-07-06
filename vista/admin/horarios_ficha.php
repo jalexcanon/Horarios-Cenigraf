@@ -71,7 +71,7 @@ include("plantilla.php");
     ?>
       <div class="container border" style="padding:4%; background-color: #a2a1a5a8;">
         <form id="Formulario" method="GET" class="form-horizontal">
-          <select class="form-control" name="ficha" required>
+          <select class="form-control" name="ficha"  data-live-search="true"  data-show-subtext="false" required>
             <option value="">Seleccione la ficha </option>
             <?php
             while ($row = mysqli_fetch_assoc($cont)) {

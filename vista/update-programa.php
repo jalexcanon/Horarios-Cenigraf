@@ -30,13 +30,9 @@ include("parte_superior.php");
                 <option value="Especialización">Especialización</option>
               </select>
             </div>
-            <div class="form-group">
-              <label for="compt">Competencias:</label>
-              <textarea class="form-control" name="texto" id="compt" placeholder="Digite las Competencias"><?php echo $rows['competencias'] ?></textarea>
-            </div>
             <div class="btn-group">
               <button type="button" class="btn btn-secondary" onclick="window.open('programa-tabla.php','_Self')"> <i class="bi-arrow-left"></i>Atrás</button>
-              <button type="submit" class="btn btn-success" onclick="updateprograma()">Actualizar</button>
+              <button type="submit" class="btn btn-success" onclick="update('El programa se actualizó exitosamente')">Actualizar</button>
             </div>
           </form>
         </div>
@@ -47,10 +43,26 @@ include("parte_superior.php");
 <?php
 include("parte_inferior.php");
 ?>
+<script src="js.js"></script>
 <script>
-  function updateprograma() {
-    alert("El programa se actualizó exitosamente")
-  }
+   // agregar registro
+   $("#addRow").click(function() {
+    var html = '';
+    html += '<div id="inputFormRow">';
+    html += '<div class="input-group mb-3">';
+    html += '<input type="text" name="competencias[]" class="form-control m-input" autocomplete="off">';
+    html += '<div class="input-group-append ml-2">';
+    html += '<button id="removeRow" type="button" class="btn btn-danger rounded-circle"><i class="fa-solid fa-trash"></i></button>';
+    html += '</div>';
+    html += '</div>';
+
+    $('#newRow').append(html);
+  });
+
+  // borrar registro
+  $(document).on('click', '#removeRow', function() {
+    $(this).closest('#inputFormRow').remove();
+  });
 </script>
 </body>
 

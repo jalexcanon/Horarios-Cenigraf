@@ -43,7 +43,7 @@ include("parte_superior.php");
             </div>
             <div class="btn-group">
               <button type="button" class="btn btn-secondary" onclick="window.open('instructor-tabla.php','_Self')"><i class="bi-arrow-left"></i>Atrás</button>
-              <button type="submit" class="btn btn-success" onclick="updateinstructor()">Actualizar</button>
+              <button type="submit" class="btn btn-success" onclick="update('Se actualizó el instructor correctamente')">Actualizar</button>
             </div>
           </form>
         </div>
@@ -55,10 +55,7 @@ include("parte_superior.php");
 <?php
 include("parte_inferior.php");
 ?>
-<script>
-  function updateinstructor() {
-    alert("Se actualizó el instructor correctamente")
-  }
+<script src="js.js">
 </script>
 
 </body>

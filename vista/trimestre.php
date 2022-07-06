@@ -13,7 +13,7 @@ include("parte_superior.php");
           <div class="form-group">
             <h4>Ficha:</h4>
             <select name="ficha_fecha" class="form-control" required>
-              <option value="">Selecionar</option>
+              <option value="">Seleccionar</option>
               <?php
               while ($rowFT = mysqli_fetch_assoc($conFT)) { ?>
                 <option value="<?php echo $rowFT['ID_F'] ?>"><?php echo $rowFT['Nº ficha'] . " " . $rowFT['nivel_form'] ?></option>
@@ -39,7 +39,7 @@ include("parte_superior.php");
               <div class="col">
                 <label for="">Instructor: </label>
                 <select name="instructor_1" class="form-control" required>
-                  <option value="">Selecionar</option>
+                  <option value="">Seleccionar</option>
                   <?php
                   $instructor = mysqli_query($conn, "SELECT * FROM instructor");
                   while ($ins = mysqli_fetch_array($instructor)) { ?>

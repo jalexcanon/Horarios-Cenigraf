@@ -13,4 +13,11 @@ function delete_(message, vista) {
       return false;
     }
   }
+
+function update(message){
+  alert(message)
+}
+  
+
+
  

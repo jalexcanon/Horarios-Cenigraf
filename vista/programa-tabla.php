@@ -7,9 +7,7 @@ include("parte_superior.php");
     <div class="col-lg-12 mx-auto">
       <div class="container">
         <?php
-        $tablaprog = "SELECT * FROM `programa`";
-        $contprog = mysqli_query($conn, $tablaprog);
-
+        $contprog= mysqli_query($conn,"SELECT * FROM `programa`");
         ?>
         <div class="card-body">
           <div class="table-responsive">
@@ -18,7 +16,6 @@ include("parte_superior.php");
                 <tr>
                   <th>Nombre del Programa</th>
                   <th>Nivel de formacion</th>
-                  <th>Competencias</th>
                   <th>Opciones</th>
                 </tr>
               </thead>
@@ -29,12 +26,16 @@ include("parte_superior.php");
                   <tr>
                     <td><?php echo $progcon["Nom_program"]; ?></td>
                     <td><?php echo $progcon["nivel_form"]; ?></td>
-                    <td><?php echo $progcon["competencias"]; ?></td>
                     <td>
                       <div class="btn-group">
+                      <a href="competencias-resultados.php?ubP=<?php echo $progcon["id_program"] ?>">
+                          <button type="submit" class="btn btn-secondary btn-sm">Competencias
+                          </button></a>
                         <a href="update-programa.php?ubP=<?php echo $progcon["id_program"] ?>">
                           <button type="submit" class="btn btn-success btn-sm"><i class="bi-pencil-square"></i>
                           </button></a>
+                          <a href="../controlador/ProgramaControllers/delete.php?eliP=<?php echo $progcon['id_program'] ?>"><button type="submit" class="btn btn-info btn-sm" 
+                            onclick="return delete_('¿Está seguro de eliminar este programa?','Se eliminó el programa exitosamente.')"><i class="bi-trash"></i></button></a>
                       </div>
                     </td>
                   </tr>

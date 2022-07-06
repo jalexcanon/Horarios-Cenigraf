@@ -14,10 +14,11 @@ $rol=$_SESSION['rol'];
 $idpo=$_GET['ubPO'];
 $nom_p=$_POST['nomp'];
 $nivl_p=$_POST['nivel_prog'];
-$comp=$_POST['texto'];
 
 
-$query="UPDATE `programa` set `Nom_program`='$nom_p', `nivel_form`='$nivl_p', `competencias`='$comp' where `id_program`='$idpo'";
+
+$query="UPDATE `programa` set `Nom_program`='$nom_p', 
+`nivel_form`='$nivl_p' where `id_program`='$idpo'";
  mysqli_query($conn,$query);
  echo "<script>
  window.location= '../../vista/programa-tabla.php';

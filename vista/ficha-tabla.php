@@ -23,6 +23,7 @@ include("parte_superior.php");
                       <th>Nombre del programa</th>
                       <th>Nivel de formacion</th>
                       <th>Jornada </th>
+                      <th>Trimestres</th>
                       <th>Opciones</th>
                     </tr>
                   </thead>
@@ -36,6 +37,7 @@ include("parte_superior.php");
                         <td><?php echo $fcon["Nom_program"]; ?></td>
                         <td><?php echo $fcon["nivel_form"]; ?></td>
                         <td><?php echo $fcon["fc_jornada"]; ?></td>
+                        <th class="d-flex justify-content-center"> <a href="update_trimestre.php?upfech=<?php echo $fcon["ID_F"] ?>"><button type="submit" class="btn btn-light btn-sm"><i class="fa-solid fa-calendar-days"></i></button></a></th>
                         <td>
                           <div class="btn-group">
                             <button class="btn btn-secondary btn-sm" onclick="window.open('horarios_ficha.php?ficha=<?php echo $fcon['ID_F'] ?>','_Self')">Horario</button>
