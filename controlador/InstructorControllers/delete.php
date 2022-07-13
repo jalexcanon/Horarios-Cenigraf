@@ -17,5 +17,5 @@ $eliminar=$_GET['eli'];
 $query="DELETE FROM instructor WHERE instructor.ID='$eliminar'";
 mysqli_query($conn,$query);
 echo "<script>
-window.location= '../../vista/instructor-tabla.php';</script>";   
+window.location= '../../vista/show-instructor.php';</script>";   
  ?>

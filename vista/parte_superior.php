@@ -45,12 +45,12 @@ $ins = mysqli_query($conn, "SELECT * FROM instructor"); // consulta select crear
             Crear nuevos registros
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
-            <li><a class="dropdown-item" href="instructor.create.php">Usuario</a></li>
-            <li><a class="dropdown-item" href="ficha.create.php">Ficha</a></li>
-            <li><a class="dropdown-item" href="trimestre.php">Trimestre</a></li>
-            <li><a class="dropdown-item" href="ambiente.php">Ambiente</a></li>
-            <li><a class="dropdown-item" href="programa.php">Programa</a></li>
-            <li><a class="dropdown-item" href="sede.php">Sede</a></li>
+            <li><a class="dropdown-item" href="create-instructor.php">Usuario</a></li>
+            <li><a class="dropdown-item" href="create-ficha.php">Ficha</a></li>
+            <li><a class="dropdown-item" href="create-trimestre.php">Trimestre</a></li>
+            <li><a class="dropdown-item" href="create-ambiente.php">Ambiente</a></li>
+            <li><a class="dropdown-item" href="create-programa.php">Programa</a></li>
+            <li><a class="dropdown-item" href="create-sede.php">Sede</a></li>
           </ul>
         </li>
     </ul>
@@ -97,7 +97,7 @@ $ins = mysqli_query($conn, "SELECT * FROM instructor"); // consulta select crear
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" role="menu">
           <li class="nav-item">
-            <a class="nav-link" href="instructor-tabla.php" style="cursor: pointer; color: white;">
+            <a class="nav-link" href="show-instructor.php" style="cursor: pointer; color: white;">
               <i class="nav-icon fas fa-address-card fa-2x"></i>
               <p>
                 Consulta Instructor
@@ -105,7 +105,7 @@ $ins = mysqli_query($conn, "SELECT * FROM instructor"); // consulta select crear
             </a>
           </li><br>
           <li class="nav-item">
-            <a class="nav-link" href="ficha-tabla.php" style="cursor: pointer; color: white;">
+            <a class="nav-link" href="show-ficha.php" style="cursor: pointer; color: white;">
               <i class="nav-icon fas fa-list-alt fa-2x"></i>
               <p>
                 Consulta Fichas
@@ -113,7 +113,7 @@ $ins = mysqli_query($conn, "SELECT * FROM instructor"); // consulta select crear
             </a>
           </li><br>
           <li class="nav-item">
-            <a class="nav-link" href="ambiente-tabla.php" style="cursor: pointer; color: white;">
+            <a class="nav-link" href="show-ambiente.php" style="cursor: pointer; color: white;">
               <i class="nav-icon fas fa-dungeon fa-2x"></i>
               <p>
                 Consulta Ambiente
@@ -121,7 +121,7 @@ $ins = mysqli_query($conn, "SELECT * FROM instructor"); // consulta select crear
             </a>
           </li><br>
           <li class="nav-item">
-            <a class="nav-link" href="programa-tabla.php" style="cursor: pointer; color: white;">
+            <a class="nav-link" href="show-programa.php" style="cursor: pointer; color: white;">
               <i class="nav-icon fas fa-clipboard-list fa-2x"></i>
               <p>
                 Consulta Programa
@@ -129,7 +129,7 @@ $ins = mysqli_query($conn, "SELECT * FROM instructor"); // consulta select crear
             </a>
           </li><br>
           <li class="nav-item">
-            <a class="nav-link" href="sede-tabla.php" style="cursor: pointer; color: white;">
+            <a class="nav-link" href="show-sede.php" style="cursor: pointer; color: white;">
               <i class="nav-icon fas fa-building fa-2x"></i>
               <p>
                 Consulta Sede

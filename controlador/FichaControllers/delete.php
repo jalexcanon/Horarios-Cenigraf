@@ -18,5 +18,5 @@ $eliminarf=$_GET['eliF'];
 $query="DELETE FROM `ficha` WHERE `ficha`.`ID_F`='$eliminarf'";
 
 mysqli_query($conn,$query);
-echo "<script> window.location= '../../vista/ficha-tabla.php';</script>";   
+echo "<script> window.location= '../../vista/show-ficha.php';</script>";   
  ?>

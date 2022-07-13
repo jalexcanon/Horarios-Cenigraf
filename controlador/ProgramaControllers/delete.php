@@ -18,5 +18,5 @@ $eliminarP=$_GET['eliP'];
 $query="DELETE FROM `programa` WHERE `id_program`='$eliminarP'";
 
 mysqli_query($conn,$query);
-echo "<script>window.location= '../../vista/programa-tabla.php';</script>";   
+echo "<script>window.location= '../../vista/show-programa.php';</script>";   
  ?>

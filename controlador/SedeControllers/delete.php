@@ -18,5 +18,5 @@ $eliminarS=$_GET['eliS'];
 $query="DELETE FROM `sede` WHERE `id`='$eliminarS'";
 
 mysqli_query($conn,$query);
-echo "<script>window.location= '../../vista/sede-tabla.php';</script>";   
+echo "<script>window.location= '../../vista/show-sede.php';</script>";   
  ?>

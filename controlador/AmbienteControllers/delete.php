@@ -18,5 +18,5 @@ $eliminarA=$_GET['eliA'];
 $query="DELETE FROM `ambiente` WHERE `id_A`='$eliminarA'";
 
 mysqli_query($conn,$query);
-echo "<script>window.location= '../../vista/ambiente-tabla.php';</script>";   
+echo "<script>window.location= '../../vista/show-ambiente.php';</script>";   
  ?>

@@ -21,6 +21,6 @@ $query="UPDATE `ambiente` set `Nombre_ambiente`='$nom_A', `Capacidad_ambiente`='
 mysqli_query($conn, $query); 
 
 echo "<script>
-window.location= '../../vista/ambiente-tabla.php';
+window.location= '../../vista/show-ambiente.php';
 </script>"; 
 ?>

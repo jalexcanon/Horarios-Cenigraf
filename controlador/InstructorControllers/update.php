@@ -24,6 +24,6 @@ $query="UPDATE `instructor` set `Nombre`='$nom', `Apellido`='$ape', `horas_inst`
 mysqli_query($conn,$query);
 
 echo "<script>
-window.location= '../../vista/instructor-tabla.php';
+window.location= '../../vista/show-instructor.php';
 </script>"; 
 ?>

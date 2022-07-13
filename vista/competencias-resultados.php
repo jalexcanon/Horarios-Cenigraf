@@ -12,7 +12,7 @@ include("parte_superior.php");
         $row = mysqli_fetch_assoc($query);
         ?>
         <div class="card-body">
-          <a href="crear-competencias.php?ubP=<?php echo $progcon ?>" class="btn btn-success mb-2"> Crear competencias</a>
+          <a href="create-competencias.php?ubP=<?php echo $progcon ?>" class="btn btn-success mb-2"> Crear competencias</a>
           <div class="table-responsive">
             <table class="table table-bordered table-striped mt-4">
               <thead>

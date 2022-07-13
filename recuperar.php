@@ -16,7 +16,7 @@ function send_password_reset($get_name, $get_email, $token){
 	
 	$mail->Host       = 'smtp.gmail.com';    
     $mail->Username   = 'pruebasparkymaya@gmail.com';                     
-    $mail->Password   = 'MayaSparky94?';                               
+    $mail->Password   = '-2-3-4';                               
     $mail->SMTPSecure = "tls";            
     $mail->Port       = 587;                                    
 
