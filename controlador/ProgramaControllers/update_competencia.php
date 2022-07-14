@@ -23,6 +23,6 @@ fecha_ini = '$fecha_inicio', fecha_fin = '$fecha_fin',
 instructor_id = '$instructor' WHERE  id='$id_competencia'";
 
 $resultado = mysqli_query($conn, $queryInsertCode);
-header("location:../../vista/competencias-resultados.php?ubP=$idpo");
+header("location:../../vista/competencias-resultados.php?ubP=$idpo&v=1");
 
 ?>

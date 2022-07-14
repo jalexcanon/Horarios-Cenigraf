@@ -48,8 +48,8 @@ include("parte_superior.php");
             </div>
 
             <div class="btn-group">
-              <button type="button" class="btn btn-secondary" onclick="window.open('ambiente-tabla.php','_Self')"><i class="bi-arrow-left"></i>Atrás</button>
-              <button type="submit" class="btn btn-success" onclick="updateAmbiente()">Actualizar</button>
+              <button type="button" class="btn btn-secondary" onclick="window.open('show-ambiente.php','_Self')"><i class="bi-arrow-left"></i>Atrás</button>
+              <button type="submit" class="btn btn-success">Actualizar</button>
             </div>
           </form>
         </div>
@@ -60,11 +60,6 @@ include("parte_superior.php");
 <?php
 include("parte_inferior.php");
 ?>
-<script>
-  function updateAmbiente() {
-    alert("Se actualizó el ambiente exitosamente")
-  }
-</script>
 </body>
 
 </html>

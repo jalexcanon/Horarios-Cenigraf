@@ -47,6 +47,7 @@ $row = mysqli_fetch_assoc($query);
           <label for="">Agregar más competencias</label>
           <button id="addRow" type="button" class="btn btn-success rounded-circle"><i class="fa-solid fa-plus"></i></button>
         </div>
+        <button class="btn btn-secondary" onclick="window.open('competencias-resultados.php','_Self')">Atrás</button>
         <button type="submit" class="btn btn-dark">Registrar</button>
       </form>
     </div>

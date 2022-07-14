@@ -18,14 +18,14 @@ $phone=$_POST['phone'];
 $verificar_nombre_sede_direccion=mysqli_query($conn,"SELECT * FROM sede where nombre_sede='$nombreC' and direccion_sede='$Direc' ");
 
 if (mysqli_num_rows($verificar_nombre_sede_direccion)>0) {
-  header("location:../../vista/horarios.php?vs=2"); 
+  header("location:../../vista/create-sede.php?vs=2"); 
 }else{
 
 $query = "INSERT INTO `sede` (`id`,`nombre_sede`,`direccion_sede`,`telefono_sede`) VALUES (NULL, '$nombreC', '$Direc', '$phone');";
 mysqli_query($conn, $query); 
 
    
-header("location:../../vista/horarios.php?vs=1"); 
+header("location:../../vista/create-sede.php?vs=1"); 
       
 }
 

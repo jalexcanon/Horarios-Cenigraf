@@ -21,7 +21,7 @@ $query="UPDATE `programa` set `Nom_program`='$nom_p',
 `nivel_form`='$nivl_p' where `id_program`='$idpo'";
  mysqli_query($conn,$query);
  echo "<script>
- window.location= '../../vista/show-programa.php';
+ window.location= '../../vista/show-programa.php?v=1';
 </script>";    
 
 

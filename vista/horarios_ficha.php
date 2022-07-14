@@ -22,9 +22,8 @@ if (isset($_GET['ficha'])) {
   $ValH = mysqli_fetch_array($validacion_horario);
   if (!isset($ValH['ficha'])) {
     echo "<script>
-                  alert('Ficha sin Horaios registrados.');
-                  window.location= 'ficha-tabla.php'   
-              </script>";
+    window.location= 'show-ficha.php?v=2' 
+     </script>";
   }
 }
 $id_fch_cons = $_SESSION['fch_cons'];

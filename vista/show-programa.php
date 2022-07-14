@@ -10,6 +10,18 @@ include("parte_superior.php");
         $contprog= mysqli_query($conn,"SELECT * FROM `programa`");
         ?>
         <div class="card-body">
+        <?php
+          if (isset($_GET['v'])) {
+            if ($_GET['v'] == 1) {
+          ?>
+              <div class="alert alert-success alert-dismissible fade show">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">&times;</button>
+                <strong>El programa se actualizó correctamente</strong>
+              </div>
+          <?php
+            }
+          }
+          ?>
           <div class="table-responsive">
             <table id="table" class="table table-bordered table-striped mt-4">
               <thead>

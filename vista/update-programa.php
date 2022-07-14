@@ -31,8 +31,8 @@ include("parte_superior.php");
               </select>
             </div>
             <div class="btn-group">
-              <button type="button" class="btn btn-secondary" onclick="window.open('programa-tabla.php','_Self')"> <i class="bi-arrow-left"></i>Atrás</button>
-              <button type="submit" class="btn btn-success" onclick="update('El programa se actualizó exitosamente')">Actualizar</button>
+              <button type="button" class="btn btn-secondary" onclick="window.open('show-programa.php','_Self')"> <i class="bi-arrow-left"></i>Atrás</button>
+              <button type="submit" class="btn btn-success">Actualizar</button>
             </div>
           </form>
         </div>

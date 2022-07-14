@@ -1,4 +1,5 @@
 <?php
+
 $pageTitle = 'Fichas';
 include("parte_superior.php");
 ?>
@@ -10,6 +11,25 @@ include("parte_superior.php");
         <div id="accordion">
           <a type="button" class="btn btn-outline-secondary mt-4" href="fichas-activas-tabla.php">Consultar fichas activas</a>
           <div id="collapseOne" class="collapse show" data-parent="#accordion">
+          <?php
+            if (isset($_GET['v'])) {
+              if ($_GET['v'] == 1) {
+            ?>
+                <div class="alert alert-success alert-dismissible fade show mt-4">
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">&times;</button>
+                  <strong>La ficha se actualizó correctamente</strong>
+                </div>
+            <?php
+              } elseif($_GET['v']==2){
+                ?>
+                <div class="alert alert-danger alert-dismissible fade show mt-4">
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">&times;</button>
+                  <strong>Ficha sin horarios registrados</strong>
+                </div>
+                <?php
+              }
+            }
+            ?>
             <div class="card-body">
               <?php
               $tablaf = "SELECT * FROM ficha,programa WHERE ficha.fc_id_programa = programa.id_program";
@@ -57,7 +77,6 @@ include("parte_superior.php");
           </div>
         </div>
       </div>
-      <!--/container -->
     </div>
   </div>
 </div>

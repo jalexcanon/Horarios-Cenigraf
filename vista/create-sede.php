@@ -22,6 +22,26 @@ include("parte_superior.php");
           <button type="submit" class="btn btn-dark">Registrar</button>
         </form>
       </div>
+      <?php
+      if (isset($_GET['vs'])) {
+
+        if ($_GET['vs'] == 1) {
+      ?>
+          <div class="alert alert-success alert-dismissible fade show">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>Sede registrada</strong>
+          </div>
+        <?php
+        } elseif ($_GET['vs'] == 2) {
+        ?>
+          <div class="alert alert-danger alert-dismissible fade show">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>La direccion y sede ya se encuentran registradas</strong>
+          </div>
+      <?php
+        }
+      }
+      ?>
     </div>
   </div>
 </div>

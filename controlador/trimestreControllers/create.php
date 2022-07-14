@@ -38,7 +38,7 @@ $trim_VI="VI Trimestre";
  
   
    
-    header("location:../../vista/horarios.php?vtf=1"); 
+    header("location:../../vista/create-trimestre.php?vtf=1"); 
  
 
 	

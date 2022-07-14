@@ -60,6 +60,26 @@ include("parte_superior.php");
           <button type="submit" class="btn btn-dark">Registrar</button>
         </form>
       </div>
+      <?php
+      if (isset($_GET['vl'])) {
+
+        if ($_GET['vl'] == 1) {
+      ?>
+          <div class="alert alert-success alert-dismissible fade show">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>Ficha registrada</strong>
+          </div>
+        <?php
+        } elseif ($_GET['vl'] == 2) {
+        ?>
+          <div class="alert alert-warning alert-dismissible fade show">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>La ficha ya esta registrada.</strong>
+          </div>
+      <?php
+        }
+      }
+      ?>
     </div>
   </div>
 </div>

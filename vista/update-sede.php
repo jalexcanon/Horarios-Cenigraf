@@ -7,8 +7,7 @@ include("parte_superior.php");
   <div class="container">
     <br>
     <?php
-    $idsd = $_GET['ubS']; //id del sede------------------------------------------------------
-
+    $idsd = $_GET['ubS']; //id del sede-
     $query = "SELECT * FROM sede where `id`='$idsd'";
     $result = mysqli_query($conn, $query);
     $rows = $result->fetch_array();
@@ -30,8 +29,8 @@ include("parte_superior.php");
               <input type="number" class="mr-sm-2 form-control" value="<?php echo $rows['telefono_sede'] ?>" placeholder="Digite el telefono" name="phone" id="tl" required="">
             </div>
             <div class="btn-group">
-              <button type="button" class="btn btn-secondary" onclick="window.open('sede-tabla.php','_Self')"><i class="bi-arrow-left"></i>Atrás</button>
-              <button type="submit" class="btn btn-success" onclick="updatesede()">Actualizar</button>
+              <button type="button" class="btn btn-secondary" onclick="window.open('show-sede.php','_Self')"><i class="bi-arrow-left"></i>Atrás</button>
+              <button type="submit" class="btn btn-success">Actualizar</button>
             </div>
           </form>
         </div>
@@ -42,10 +41,5 @@ include("parte_superior.php");
 <?php
 include("parte_inferior.php");
 ?>
-<script>
-  function updatesede() {
-    alert("La sede se actualizó exitosamente")
-  }
-</script>
 </body>
 </html>

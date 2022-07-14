@@ -12,6 +12,18 @@ include("parte_superior.php");
         $row = mysqli_fetch_assoc($query);
         ?>
         <div class="card-body">
+          <?php
+          if (isset($_GET['v'])) {
+            if ($_GET['v'] == 1) {
+          ?>
+              <div class="alert alert-success alert-dismissible fade show">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">&times;</button>
+                <strong>Las competencias se actualizaron correctamente</strong>
+              </div>
+          <?php
+            }
+          }
+          ?>
           <a href="create-competencias.php?ubP=<?php echo $progcon ?>" class="btn btn-success mb-2"> Crear competencias</a>
           <div class="table-responsive">
             <table class="table table-bordered table-striped mt-4">
@@ -27,10 +39,10 @@ include("parte_superior.php");
               </thead>
               <tbody>
                 <?php
-                 $contprog = mysqli_query($conn, "SELECT * FROM competencias, 
+                $contprog = mysqli_query($conn, "SELECT * FROM competencias, 
                  instructor WHERE competencias.instructor_id = instructor.ID
                  AND programas_id = $progcon");
-                  while ($row = mysqli_fetch_assoc($contprog)) {
+                while ($row = mysqli_fetch_assoc($contprog)) {
                 ?>
                   <form method="post" action="../controlador/ProgramaControllers/update_competencia.php?ubP=<?php echo $progcon ?>">
                     <tr>
@@ -58,7 +70,8 @@ include("parte_superior.php");
                       <td></td>
                       <td>
                         <button type="submit" class="btn btn-success btn-sm"><i class="bi-pencil-square"></i></button>
-                        <a  class="btn btn-info btn-sm" href="../controlador/ProgramaControllers/delete_competencia.php?delete=<?php echo $row['id']; ?>"> <i class="bi-trash"></i></a>
+                        <a class="btn btn-info btn-sm" 
+                        href="../controlador/ProgramaControllers/delete_competencia.php?delete=<?php echo $row['id']; ?>&ubP=<?php echo $progcon?> "> <i class="bi-trash"></i></a>
                       </td>
                     </tr>
                   </form>

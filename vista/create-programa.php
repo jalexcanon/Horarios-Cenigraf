@@ -56,6 +56,26 @@ include("parte_superior.php");
       </form>
     </div>
   </div>
+  <?php
+      if (isset($_GET['vp'])) {
+
+        if ($_GET['vp'] == 1) {
+      ?>
+          <div class="alert alert-success alert-dismissible fade show">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>Programa registrado</strong>
+          </div>
+        <?php
+        } elseif ($_GET['vp'] == 2) {
+        ?>
+          <div class="alert alert-danger alert-dismissible fade show">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>El Programa ya se encuentra registrado</strong>
+          </div>
+      <?php
+        }
+      }
+      ?>
 </div>
 </div>
 <script src="js.js"></script>

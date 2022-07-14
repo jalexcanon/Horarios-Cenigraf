@@ -42,6 +42,33 @@ include("parte_superior.php");
           <button type="submit" class="btn btn-dark">Registrar</button>
         </form>
       </div>
+            <?php
+      if (isset($_GET['v'])) {
+
+        if ($_GET['v'] == 1) {
+      ?>
+          <div class="alert alert-success alert-dismissible fade show">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">&times;</button>
+            <strong>Usuario registrado</strong>
+          </div>
+        <?php
+        } elseif ($_GET['v'] == 2) {
+        ?>
+          <div class="alert alert-warning alert-dismissible fade show">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>El correo ya está registrado, intente con otro correo.</strong>
+          </div>
+        <?php
+        } elseif ($_GET['v'] == 3) {
+        ?>
+          <div class="alert alert-danger alert-dismissible fade show">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>La contraseña no coincide</strong>
+          </div>
+      <?php
+        }
+      }
+      ?>
     </div>
   </div>
 </div>

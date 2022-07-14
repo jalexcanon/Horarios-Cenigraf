@@ -14,8 +14,9 @@ if (!isset($correo)) {
 }
 
 $id_competencia=$_GET['delete'];
-
+$id=$_GET['ubP'];
 
 $query="DELETE FROM competencias WHERE id ='$id_competencia'";
 mysqli_query($conn,$query);
+echo "<script>window.location= '../../vista/competencias-resultados.php?ubP=$id';</script>";
  ?>

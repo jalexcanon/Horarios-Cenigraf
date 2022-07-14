@@ -42,8 +42,8 @@ include("parte_superior.php");
               </select>
             </div>
             <div class="btn-group">
-              <button type="button" class="btn btn-secondary" onclick="window.open('instructor-tabla.php','_Self')"><i class="bi-arrow-left"></i>Atrás</button>
-              <button type="submit" class="btn btn-success" onclick="update('Se actualizó el instructor correctamente')">Actualizar</button>
+              <button type="button" class="btn btn-secondary" onclick="window.open('show-instructor.php','_Self')"><i class="bi-arrow-left"></i>Atrás</button>
+              <button type="submit" class="btn btn-success">Actualizar</button>
             </div>
           </form>
         </div>

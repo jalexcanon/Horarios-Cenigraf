@@ -12,6 +12,18 @@ include("parte_superior.php");
 
         ?>
         <div class="card-body">
+        <?php
+          if (isset($_GET['v'])) {
+            if ($_GET['v'] == 1) {
+          ?>
+              <div class="alert alert-success alert-dismissible fade show">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">&times;</button>
+                <strong>El ambiente se actualizó correctamente</strong>
+              </div>
+          <?php
+            }
+          }
+          ?>
           <div class="table-responsive">
             <table id="table" class="table .thead-light table-striped mt-4">
               <thead>

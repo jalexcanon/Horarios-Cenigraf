@@ -30,12 +30,12 @@ if (mysqli_num_rows($verificarficha) > 0) {
 
     //-----------fichaexise
 	
-    header("location:../vista/horarios.php?vl=2");	
+    header("location:../vista/create-ficha.php?vl=2");	
 }else{
 	 $query = "INSERT INTO `ficha` (`ID_F`, `Nº ficha`,`fc_cant_aprend`,`fc_jornada`,`fc_tipo_formacion`,`fic_date_I`,`fic_date_F`,`fc_id_programa`) VALUES (NULL, '$fich', '$cantap', '$jor', '$tipf','$dateI','$dateF','$cod_prog')";
   
    
-    header("location:../../vista/horarios.php?vl=1"); 
+    header("location:../../vista/create-ficha.php?vl=1"); 
   	
 }
 

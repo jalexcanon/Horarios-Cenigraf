@@ -23,7 +23,7 @@ $verificar_nombre_programa=mysqli_query($conn,"SELECT * FROM `programa` where `N
 
 if (mysqli_num_rows($verificar_nombre_programa)>0) {
 
-header("location:../../vista/horarios.php?vp=2"); 
+header("location:../../vista/create-programa.php?vp=2"); 
   
 }else{
 
@@ -47,12 +47,6 @@ if($dataCode >0){
     } 
 
    
-header("location:../../vista/horarios.php?vp=1"); 
+header("location:../../vista/create-programa.php?vp=1"); 
 
 }}
-?>
-
-
-
-
-

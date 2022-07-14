@@ -32,5 +32,5 @@ if (mysqli_num_rows($consulta2)>0) {
 }
 
   
-header("location:../../vista/update_trimestre.php?upfech=$id_ficha");
+header("location:../../vista/update_trimestre.php?upfech=$id_ficha&v=1");
  ?>

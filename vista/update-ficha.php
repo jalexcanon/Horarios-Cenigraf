@@ -67,8 +67,8 @@ include("parte_superior.php");
               <input type="date" class="form-control" value="<?php echo $rows['fic_date_F'] ?>" name="date_f" id="f_f" required="">
             </div>
             <div class="btn-group">
-              <button type="button" class="btn btn-secondary" onclick="window.open('ficha-tabla.php','_Self')"><i class="bi-arrow-left"></i>Atrás</button>
-              <button type="submit" class="btn btn-success" onclick="return update_ficha()">Actualizar</button>
+              <button type="button" class="btn btn-secondary" onclick="window.open('show-ficha.php','_Self')"><i class="bi-arrow-left"></i>Atrás</button>
+              <button type="submit" class="btn btn-success">Actualizar</button>
             </div>
           </form>
         </div>
@@ -79,11 +79,6 @@ include("parte_superior.php");
 <?php
 include("parte_inferior.php");
 ?>
-<script>
-  function update_ficha() {
-    alert('La ficha se actualizó exitosamente.');
-  }
-</script>
 </body>
 
 </html>

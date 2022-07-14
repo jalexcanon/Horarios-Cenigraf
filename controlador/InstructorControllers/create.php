@@ -28,13 +28,13 @@ $verificarcorreo= mysqli_query($conn,"SELECT * FROM instructor where email='$ema
 if (mysqli_num_rows($verificarcorreo) > 0) {
 
     //------------------
-    header("location:../../vista/horarios.php?v=2");	
+    header("location:../../vista/create-instructor.php?v=2");	
 }
 elseif($pcon==$scon) {
 	$query = "INSERT INTO `instructor` (`ID`, `Nombre`, `Apellido`, `horas_inst`, `email`, `contrasena`, `rol`, `token`) VALUES (NULL,'$nom','$ape','$horasi', '$email','$pcon','$rol', '$token')";
   
     mysqli_query($conn, $query);
-    header("location:../../vista/horarios.php?v=1"); 
+    header("location:../../vista/create-instructor.php?v=1"); 
   	
 	 
 	 

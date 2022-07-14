@@ -40,11 +40,30 @@ include("parte_superior.php");
           <button type="submit" class="btn btn-dark">Registrar</button>
         </form>
       </div>
+      <?php
+      if (isset($_GET['va'])) {
+
+        if ($_GET['va'] == 1) {
+      ?>
+          <div class="alert alert-success alert-dismissible fade show mt-3">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>Ambiente registrado</strong>
+          </div>
+        <?php
+        } elseif ($_GET['va'] == 2) {
+        ?>
+          <div class="alert alert-danger alert-dismissible fade show mt-3">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>El ambiente de la sede ya se encuentran registrados.</strong>
+          </div>
+      <?php
+        }
+      }
+      ?>
     </div>
   </div>
 </div>
 </div>
-<br>
 <?php
 include("parte_inferior.php")
 ?>

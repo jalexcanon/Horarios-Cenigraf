@@ -14,10 +14,5 @@ function delete_(message, vista) {
     }
   }
 
-function update(message){
-  alert(message)
-}
-  
-
 
  

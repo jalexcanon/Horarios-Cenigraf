@@ -20,7 +20,7 @@ $phone=$_POST['phone'];
 $query="UPDATE `sede` set `nombre_sede`='$nombreC', `direccion_sede`='$Direc', `telefono_sede`='$phone' where `id`='$ubs'";
  mysqli_query($conn,$query);
  echo "<script>
- window.location= '../../vista/show-sede.php';
+ window.location= '../../vista/show-sede.php?v=1';
 </script>";  
 
  ?>
