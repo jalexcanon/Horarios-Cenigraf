@@ -31,6 +31,7 @@ $id_fch_cons = $_SESSION['fch_cons'];
 $fh = mysqli_query($conn, "SELECT * FROM ficha WHERE ID_F = '$id_fch_cons'");
 $rwfh = mysqli_fetch_array($fh);
 
+$programa = $_GET['pro'];
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -78,15 +79,10 @@ $rwfh = mysqli_fetch_array($fh);
         <span class="brand-text font-weight-bold">CENIGRAF </span>
       </a>
       <div class="sidebar">
-        <div class="user-panel mt-4 pb-4 mb-4 d-flex">
-          <div class="image">
-            <img src="../img/perfil.png" class="img-circle" alt="User Image">
-          </div>
-          <div class="info">
-            <a href="#" class="d-block" style="color:white;"><?php
-                                                              echo "ADMIN-" . $inst;
-                                                              ?></a>
-          </div>
+      <div class="user-panel mt-4 pb-4" style="color:white;">
+      <i class="nav-icon fas fa-solid fa-user ml-3"></i>
+          <span class="brand-text font-weight-bold"> Admin-<?php echo $inst; ?></span>
+      </div>
         </div>
         <?php
         if (isset($_GET['Trimestres'])) {
@@ -94,7 +90,7 @@ $rwfh = mysqli_fetch_array($fh);
           <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" role="menu">
               <li class="nav-item">
-                <a href="imprimir/horarios_ficha_Im.php?fich=<?php echo $id_fch_cons; ?>" class="nav-link" style="color:white;">
+                <a href="imprimir/horarios_ficha_Im.php?fich=<?php echo $id_fch_cons; ?>&pro=<?php echo $programa; ?>" class="nav-link" style="color:white;">
                   <i class="nav-icon fas fa-solid fa-print"></i>
                   <p>
                     Imprimir | Descargar
@@ -116,7 +112,7 @@ $rwfh = mysqli_fetch_array($fh);
                   </a>
                   <ul class="nav nav-treeview">
                     <li class="nav-item">
-                      <a href="horarios_ficha.php?Trimestres=I Trimestre&IT=1" style="color:white;" class="nav-link <?php if (isset($_GET['IT']) == "1") {
+                      <a href="horarios_ficha.php?Trimestres=I Trimestre&IT=1&pro=<?php echo $programa; ?>" style="color:white;" class="nav-link <?php if (isset($_GET['IT']) == "1") {
                                                                                                                       echo "active";
                                                                                                                     }  ?> ">
                         <i class="fas fa-file-export"></i>
@@ -124,7 +120,7 @@ $rwfh = mysqli_fetch_array($fh);
                       </a>
                     </li>
                     <li class="nav-item">
-                      <a href="horarios_ficha.php?Trimestres=II Trimestre&IIT=2" style="color:white;" class="nav-link <?php if (isset($_GET['IIT']) == "2") {
+                      <a href="horarios_ficha.php?Trimestres=II Trimestre&IIT=2&pro=<?php echo $programa; ?>" style="color:white;" class="nav-link <?php if (isset($_GET['IIT']) == "2") {
                                                                                                                         echo "active";
                                                                                                                       }  ?> ">
                         <i class="fas fa-file-export"></i>
@@ -132,7 +128,7 @@ $rwfh = mysqli_fetch_array($fh);
                       </a>
                     </li>
                     <li class="nav-item">
-                      <a href="horarios_ficha.php?Trimestres=III Trimestre&IIIT=3" style="color:white;" class="nav-link <?php if (isset($_GET['IIIT']) == "3") {
+                      <a href="horarios_ficha.php?Trimestres=III Trimestre&IIIT=3&pro=<?php echo $programa; ?>" style="color:white;" class="nav-link <?php if (isset($_GET['IIIT']) == "3") {
                                                                                                                           echo "active";
                                                                                                                         }  ?> ">
                         <i class="fas fa-file-export"></i>
@@ -140,7 +136,7 @@ $rwfh = mysqli_fetch_array($fh);
                       </a>
                     </li>
                     <li class="nav-item">
-                      <a href="horarios_ficha.php?Trimestres=IV Trimestre&IVT=4" style="color:white;" class="nav-link <?php if (isset($_GET['IVT']) == "4") {
+                      <a href="horarios_ficha.php?Trimestres=IV Trimestre&IVT=4&pro=<?php echo $programa; ?>" style="color:white;" class="nav-link <?php if (isset($_GET['IVT']) == "4") {
                                                                                                                         echo "active";
                                                                                                                       }  ?> ">
                         <i class="fas fa-file-export"></i>
@@ -148,7 +144,7 @@ $rwfh = mysqli_fetch_array($fh);
                       </a>
                     </li>
                     <li class="nav-item">
-                      <a href="horarios_ficha.php?Trimestres=V Trimestre&VT=5" style="color:white;" class="nav-link <?php if (isset($_GET['VT']) == "5") {
+                      <a href="horarios_ficha.php?Trimestres=V Trimestre&VT=5&pro=<?php echo $programa; ?>" style="color:white;" class="nav-link <?php if (isset($_GET['VT']) == "5") {
                                                                                                                       echo "active";
                                                                                                                     }  ?> ">
                         <i class="fas fa-file-export"></i>
@@ -156,7 +152,7 @@ $rwfh = mysqli_fetch_array($fh);
                       </a>
                     </li>
                     <li class="nav-item">
-                      <a href="horarios_ficha.php?Trimestres=VI Trimestre&VIT=6" style="color:white;" class="nav-link <?php if (isset($_GET['VIT']) == "6") {
+                      <a href="horarios_ficha.php?Trimestres=VI Trimestre&VIT=6&pro=<?php echo $programa; ?>" style="color:white;" class="nav-link <?php if (isset($_GET['VIT']) == "6") {
                                                                                                                         echo "active";
                                                                                                                       }  ?> ">
                         <i class="fas fa-file-export"></i>

@@ -1257,9 +1257,17 @@ CREATE TABLE `competencias` (
   `competencias` text DEFAULT NULL,
   `fecha_ini` date DEFAULT NULL,
   `fecha_fin` date DEFAULT NULL,
-  `instructor_id` int(11) NOT NULL,
+  `instructor` varchar(25),
   `programas_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE `resultados` (
+  `id` int(11) NOT NULL,
+  `resultados` text DEFAULT NULL,
+  `instructor` varchar(25),
+  `programas_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 
 --
 -- Indices de la tabla `ambiente`
@@ -1296,8 +1304,11 @@ ALTER TABLE `horarios`
 
 ALTER TABLE `competencias`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `relacion_programas` (`programas_id`),
-  ADD KEY `relacion_instructor` (`instructor_id`);
+  ADD KEY `relacion_programas` (`programas_id`);
+
+ALTER TABLE `resultados`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `relacion_programas_resultados` (`programas_id`);
 
 --
 -- Indices de la tabla `horas`
@@ -1407,6 +1418,10 @@ ALTER TABLE `tb_trimestre`
 ALTER TABLE `competencias`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=128;
 
+
+ALTER TABLE `resultados`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=128;
+
 --
 -- Restricciones para tablas volcadas
 --
@@ -1442,14 +1457,17 @@ ALTER TABLE `instructor`
 
 ALTER TABLE `competencias`
   ADD CONSTRAINT `relacion_programas` FOREIGN KEY (`programas_id`) REFERENCES `programa` (`id_program`) ON DELETE CASCADE ON UPDATE CASCADE;
-  ADD CONSTRAINT `relacion_instructor` FOREIGN KEY (`instructor_id`) REFERENCES `instructor` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+
+ALTER TABLE `resultados`
+  ADD CONSTRAINT `relacion_programas_resultados` FOREIGN KEY (`programas_id`) REFERENCES `programa` (`id_program`) ON DELETE CASCADE ON UPDATE CASCADE;
+  
 
 --
 -- Filtros para la tabla `tb_trimestre`
 --
 ALTER TABLE `tb_trimestre` 
-  ADD CONSTRAINT `fk_TFCH` FOREIGN KEY (`id_fch`) REFERENCES `ficha`(`ID_F`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `relacion_instructor` FOREIGN KEY (`instructor_id`) REFERENCES `instructor` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `fk_TFCH` FOREIGN KEY (`id_fch`) REFERENCES `ficha`(`ID_F`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

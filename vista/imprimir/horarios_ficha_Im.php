@@ -9,7 +9,7 @@ if (!isset($correo)) {
 
 $trim_f = $_SESSION['trim'];
 $id_f = $_GET['fich'];
-
+$programa = $_GET['pro'];
 
 //echo $trim_f,$id_f;
 ?>
@@ -114,34 +114,30 @@ $id_f = $_GET['fich'];
         </th>
       </tr>
       <tr>
-        <td colspan="2" style="text-align: center;">NOMBRE DE LA COMPETENCIA</td>
-        <td colspan="1" style="text-align: center;">FECHA INICIA</td>
-        <td colspan="1" style="text-align: center;">FECHA TERMINA</td>
-        <td colspan="3" rowspan="6">
-          Observaciones:<br>
-          Competencia:
+        <td colspan="2" style="text-align: center;">Competencia</td>
+        <td colspan="1" style="text-align: center;">Fecha de inicio y fin</td>
+        <td colspan="1" style="text-align: center;">Instructor</td>
+        <td colspan="3">
+          Observaciones:
         </td>
       </tr>
-      <tr>
-        <td colspan="2">&nbsp</td>
-        <td colspan="1">&nbsp</td>
-      </tr>
-      <tr>
-        <td colspan="2">&nbsp</td>
-        <td colspan="1">&nbsp</td>
-      </tr>
-      <tr>
-        <td colspan="2">&nbsp</td>
-        <td colspan="1">&nbsp</td>
-      </tr>
-      <tr>
-        <td colspan="2">&nbsp</td>
-        <td colspan="1">&nbsp</td>
-      </tr>
-      <tr>
-        <td colspan="2">&nbsp</td>
-        <td colspan="1">&nbsp</td>
-      </tr>
+        <?php
+        $competencias = mysqli_query($conn, "SELECT * FROM competencias, programa,
+        ficha WHERE ficha.fc_id_programa=programa.id_program
+        AND competencias.programas_id = programa.id_program
+        AND competencias.programas_id = $programa
+        AND ficha.ID_F=$id_f ");
+        while ($row = mysqli_fetch_assoc($competencias)) {
+        ?>
+          <tr>
+            <td colspan="2"><?php echo $row['competencias']; ?></td>
+            <td><?php echo $row["fecha_ini"]." - ".$row["fecha_fin"]; ?></td>
+            <td><?php echo $row["instructor"]; ?></td>
+            <td colspan="3">&nbsp</td>
+          </tr>
+        <?php
+        }
+        ?>
   </table>
   <script>
     window.addEventListener("load", window.print());

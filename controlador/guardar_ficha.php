@@ -56,7 +56,6 @@ if ($sum<40) {
         mysqli_query($conn,$query);
   
       echo "<script>
-                  alert('Horario registrado.');
                   window.location= '../vista/admin/horarios_ficha.php?ficha=$ficha_'
               </script>";
             }
@@ -74,4 +73,3 @@ elseif ($sum>=40) {
               </script>"; 
    
 }
-?>

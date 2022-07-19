@@ -60,7 +60,8 @@ include("parte_superior.php");
                         <th class="d-flex justify-content-center"> <a href="update_trimestre.php?upfech=<?php echo $fcon["ID_F"] ?>"><button type="submit" class="btn btn-light btn-sm"><i class="fa-solid fa-calendar-days"></i></button></a></th>
                         <td>
                           <div class="btn-group">
-                            <button class="btn btn-secondary btn-sm" onclick="window.open('horarios_ficha.php?ficha=<?php echo $fcon['ID_F'] ?>','_Self')">Horario</button>
+                            <button class="btn btn-secondary btn-sm" 
+                            onclick="window.open('horarios_ficha.php?ficha=<?php echo $fcon['ID_F']?>&pro=<?php echo $fcon['id_program']?>','_Self')">Horario</button>
                             <a href="update-ficha.php?ubf=<?php echo $fcon["ID_F"] ?>"><button type="submit" class="btn btn-success btn-sm"><i class="bi-pencil-square"></i></button></a>
                             <a href="../controlador/FichaControllers/delete.php?eliF=<?php echo $fcon['ID_F'] ?>"><button type="submit" class="btn btn-info btn-sm" onclick="return delete_('¿Está seguro de eliminar esta ficha?', 'Se eliminó la ficha exitosamente.')"><i class="bi-trash"></i></button></a>
                           </div>

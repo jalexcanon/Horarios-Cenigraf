@@ -24,14 +24,11 @@ $ins = mysqli_query($conn, "SELECT * FROM instructor"); // consulta select crear
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
   <!--datatables-->
   <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-  <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
   <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
   <!-- Bootstrap -->
-  <script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
   <!-- jQuery UI -- >
 <script src="../plugins/jquery-ui/jquery-ui.min.js"></script>
  AdminLTE App -->
-  <script src="../css/js/adminlte.min.js"></script>
 </head>
 <nav id="lt_nav" class="main-header navbar navbar-expand-md navbar-orange navbar-light sticky-top">
   <!--icono de navegación-->

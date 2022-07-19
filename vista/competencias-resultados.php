@@ -34,14 +34,15 @@ include("parte_superior.php");
                   <th>Fecha Final</th>
                   <th>Instructor</th>
                   <th>Resultados</th>
+                  <th>Instructor</th>
                   <th>Opciones</th>
                 </tr>
               </thead>
               <tbody>
                 <?php
-                $contprog = mysqli_query($conn, "SELECT * FROM competencias, 
-                 instructor WHERE competencias.instructor_id = instructor.ID
-                 AND programas_id = $progcon");
+                $contprog = mysqli_query($conn, "SELECT * FROM competencias, resultados
+                WHERE competencias.programas_id = $progcon
+                AND competencias.programas_id = $progcon");
                 while ($row = mysqli_fetch_assoc($contprog)) {
                 ?>
                   <form method="post" action="../controlador/ProgramaControllers/update_competencia.php?ubP=<?php echo $progcon ?>">
@@ -52,22 +53,14 @@ include("parte_superior.php");
                       <td><input type="date" name="fecha_inicial" value="<?php echo $row["fecha_ini"]; ?>"></td>
                       <td><input type="date" name="fecha_fin" value="<?php echo $row["fecha_fin"]; ?>"></td>
                       <td>
-                        <?php
-                        $instructor = mysqli_query($conn, "SELECT * FROM instructor");
-                        ?>
-                        <select class="form-control" name="instructor" required="">
-                          <option value="<?php echo $row['instructor_id'] ?>"><?php echo $row['Nombre'] . " " . $row['Apellido']  ?></option>
-                          <?php
-                          while ($ins = mysqli_fetch_assoc($instructor)) {
-                          ?>
-                            <option value="<?php echo $ins['ID'] ?>"><?php echo $ins['Nombre'] . " " . $ins['Apellido']  ?></option>
-                          <?php
-                          }
-                          ?>
-                        </select>
-                        </select>
+                      <input type="text" name="instructor" value="<?php echo $row["instructor"]; ?>">
                       </td>
-                      <td></td>
+                      <td>
+                      <input type="text" name="resultados" value="<?php echo $row["resultados"]; ?>">
+                      </td>
+                      <td>
+                      <input type="text" name="instructor" value="<?php echo $row["instructor"]; ?>">
+                      </td>
                       <td>
                         <button type="submit" class="btn btn-success btn-sm"><i class="bi-pencil-square"></i></button>
                         <a class="btn btn-info btn-sm" 

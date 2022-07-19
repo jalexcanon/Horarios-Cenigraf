@@ -18,6 +18,8 @@ $fecha_inicio=$_POST['fecha_inicio'];
 $fecha_fin=$_POST['fecha_fin'];
 $instructor=$_POST['instructor'];
 
+$resultados_programa=$_POST['resultados'];
+$resultados_instructor=$_POST['instructor_resultados'];
 
 $verificar_nombre_programa=mysqli_query($conn,"SELECT * FROM `programa` where `Nom_program`='$nom_p'");
 
@@ -39,14 +41,30 @@ if($dataCode >0){
     if(mysqli_num_rows($queryCode)>0){
         }else{
             $queryInsertCode = "INSERT INTO `competencias` (`id`, `competencias`, 
-            `fecha_ini`, `fecha_fin`,`instructor_id`,`programas_id`) 
+            `fecha_ini`, `fecha_fin`,`instructor`,`programas_id`) 
             VALUES (null,'$competencias_programa[$i]', 
             '$fecha_inicio[$i]', '$fecha_fin[$i]', '$instructor[$i]', '$newid');";
             $resultado = mysqli_query($conn, $queryInsertCode);
         }
     } 
 
+}
+
+$dataCode_resultados = count($resultados_programa);
+if($dataCode_resultados >0){
+    for ($i=0; $i <$dataCode_resultados; $i++) { 
+    $sqlCode_resultados  = ("SELECT *  FROM resultados WHERE resultados='$resultados_programa[$i]' ");
+    $queryCode_resultados  	= mysqli_query($conn, $sqlCode_resultados);
+    if(mysqli_num_rows($queryCode_resultados)>0){
+        }else{
+            $queryInsertCode_resultados = "INSERT INTO `resultados` (`id`, `resultados`,`instructor`,`programas_id`) 
+            VALUES (null,'$resultados_programa[$i]','$resultados_instructor[$i]', '$newid');";
+            $resultado = mysqli_query($conn, $queryInsertCode_resultados);
+        }
+    } 
+
    
 header("location:../../vista/create-programa.php?vp=1"); 
 
-}}
+}
+}
