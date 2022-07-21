@@ -138,6 +138,10 @@ $programa = $_GET['pro'];
         <?php
         }
         ?>
+        <tr>
+        <td colspan="3" style="text-align: center;">Resultados</td>
+        <td colspan="1" style="text-align: center;">Instructor asignado</td>
+        </tr>
   </table>
   <script>
     window.addEventListener("load", window.print());

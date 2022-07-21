@@ -1264,7 +1264,7 @@ CREATE TABLE `competencias` (
 CREATE TABLE `resultados` (
   `id` int(11) NOT NULL,
   `resultados` text DEFAULT NULL,
-  `instructor` varchar(25),
+  `instructor_resultados` varchar(25),
   `programas_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 

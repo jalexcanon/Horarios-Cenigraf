@@ -57,7 +57,7 @@ if($dataCode_resultados >0){
     $queryCode_resultados  	= mysqli_query($conn, $sqlCode_resultados);
     if(mysqli_num_rows($queryCode_resultados)>0){
         }else{
-            $queryInsertCode_resultados = "INSERT INTO `resultados` (`id`, `resultados`,`instructor`,`programas_id`) 
+            $queryInsertCode_resultados = "INSERT INTO `resultados` (`id`, `resultados`,`instructor_resultados`,`programas_id`) 
             VALUES (null,'$resultados_programa[$i]','$resultados_instructor[$i]', '$newid');";
             $resultado = mysqli_query($conn, $queryInsertCode_resultados);
         }

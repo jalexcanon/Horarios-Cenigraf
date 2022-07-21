@@ -41,7 +41,7 @@ include("parte_superior.php");
                     <td>
                       <div class="btn-group">
                       <a href="competencias-resultados.php?ubP=<?php echo $progcon["id_program"] ?>">
-                          <button type="submit" class="btn btn-secondary btn-sm">Competencias
+                          <button type="submit" class="btn btn-secondary btn-sm">Competencias y resultados
                           </button></a>
                         <a href="update-programa.php?ubP=<?php echo $progcon["id_program"] ?>">
                           <button type="submit" class="btn btn-success btn-sm"><i class="bi-pencil-square"></i>
