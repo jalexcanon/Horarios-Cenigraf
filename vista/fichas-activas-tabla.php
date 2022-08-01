@@ -37,7 +37,7 @@ include("parte_superior.php");
                     <td><?php echo $fcon1["Trimestre"]; ?></td>
                     <td>
                       <div class="btn-group">
-                        <button class="btn btn-secondary btn-sm" onclick="window.open('horarios_ficha.php?ficha=<?php echo $fcon1['ID_F'] ?>','_Self')">Horario</button>
+                        <button class="btn btn-secondary btn-sm" onclick="window.open('horarios_ficha.php?ficha=<?php echo $fcon1['ID_F']?>&pro=<?php echo $fcon1['id_program']?>','_Self')">Horario</button>
                         <a href="update-ficha.php?ubf=<?php echo $fcon1["ID_F"] ?>"><button type="submit" class="btn btn-success btn-sm"><i class="bi-pencil-square"></i></button></a>
                         <a href="../controlador/deleteF.php?eliF=<?php echo $fcon1['ID_F'] ?>"><button type="submit" class="btn btn-info btn-sm" onclick="return elif()"><i class="bi-trash"></i></button></a>
                       </div>

@@ -100,7 +100,7 @@ $programa = $_GET['pro'];
               echo "</tr>";
             }
                 ?>
-      <tr style="color: black;">
+      <tr>
         <th colspan="4">COMPETENCIAS A DESARROLLAR</th>
         <?php
         $instructor = mysqli_query($conn, "SELECT * FROM instructor,tb_trimestre, ficha
@@ -109,15 +109,14 @@ $programa = $_GET['pro'];
       AND tb_trimestre.Trimestre='$trim_f'");
         $ins = mysqli_fetch_assoc($instructor);
         ?>
-
         <th colspan="3">Instructor: <?php echo $ins['Nombre'] . " " . $ins['Apellido'] ?>
         </th>
       </tr>
       <tr>
-        <td colspan="2" style="text-align: center;">Competencia</td>
-        <td colspan="1" style="text-align: center;">Fecha de inicio y fin</td>
-        <td colspan="1" style="text-align: center;">Instructor</td>
-        <td colspan="3">
+        <th colspan="2" style="text-align: center;">Competencia</th>
+        <th colspan="1" style="text-align: center;">Fecha de inicio y fin</th>
+        <th colspan="1" style="text-align: center;">Instructor a cargo de la competencia</th>
+        <td colspan="3" rowspan="3">
           Observaciones:
         </td>
       </tr>
@@ -133,15 +132,31 @@ $programa = $_GET['pro'];
             <td colspan="2"><?php echo $row['competencias']; ?></td>
             <td><?php echo $row["fecha_ini"]." - ".$row["fecha_fin"]; ?></td>
             <td><?php echo $row["instructor"]; ?></td>
-            <td colspan="3">&nbsp</td>
           </tr>
         <?php
         }
         ?>
         <tr>
-        <td colspan="3" style="text-align: center;">Resultados</td>
-        <td colspan="1" style="text-align: center;">Instructor asignado</td>
+        <th colspan="3" style="text-align: center;">Resultados</th>
+        <th colspan="1" style="text-align: center;">Instructor asignado</th>
         </tr>
+
+        <?php
+        $resultados = mysqli_query($conn, "SELECT * FROM resultados, programa,
+        ficha WHERE ficha.fc_id_programa=programa.id_program
+        AND resultados.programas_id = programa.id_program
+        AND resultados.programas_id = $programa
+        AND ficha.ID_F=$id_f ");
+        while ($row = mysqli_fetch_assoc($resultados)) {
+        ?>
+          <tr>
+            <td colspan="3"><?php echo $row['resultados']; ?></td>
+            <td><?php echo $row["instructor_resultados"]; ?></td>
+          </tr>
+        <?php
+        }
+        ?>
+
   </table>
   <script>
     window.addEventListener("load", window.print());
