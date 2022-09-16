@@ -12,27 +12,23 @@ $rol=$_SESSION['rol'];
 }
 
 
-$fich=$_POST['fich'];
-$cantap=$_POST['can_apren'];
-$jor=$_POST['jornad'];
-$tipf=$_POST['tipof'];
-$cod_prog=$_POST['program'];
-$dateI=$_POST['date_i'];
-$dateF=$_POST['date_f'];
+$ficha=$_POST['fich'];
+$cantidad_aprendices=$_POST['can_apren'];
+$jornada=$_POST['jornad'];
+$tipo_formacion=$_POST['tipof'];
+$instructor_tecnico=$_POST['instructor_tecnico'];
+$programa=$_POST['program'];
 
+$verificar_ficha= mysqli_query($conn,"SELECT * FROM `ficha` where `Nº ficha`='$ficha'");
 
-
-
-
-$verificarficha= mysqli_query($conn,"SELECT * FROM `ficha` where `Nº ficha`='$fich'");
-
-if (mysqli_num_rows($verificarficha) > 0) {
+if (mysqli_num_rows($verificar_ficha) > 0) {
 
     //-----------fichaexise
 	
     header("location:../vista/create-ficha.php?vl=2");	
-}else{
-	 $query = "INSERT INTO `ficha` (`ID_F`, `Nº ficha`,`fc_cant_aprend`,`fc_jornada`,`fc_tipo_formacion`,`fic_date_I`,`fic_date_F`,`fc_id_programa`) VALUES (NULL, '$fich', '$cantap', '$jor', '$tipf','$dateI','$dateF','$cod_prog')";
+} else  {
+	 $query = "INSERT INTO `ficha` (`ID_F`, `Nº ficha`,`fc_cant_aprend`,`fc_jornada`,`fc_tipo_formacion`,`id_instructor`,`fc_id_programa`) 
+     VALUES (NULL, '$ficha', '$cantidad_aprendices', '$jornada', '$tipo_formacion','$instructor_tecnico','$programa')";
   
    
     header("location:../../vista/create-ficha.php?vl=1"); 

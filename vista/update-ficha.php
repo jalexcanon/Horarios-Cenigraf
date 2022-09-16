@@ -8,8 +8,10 @@ include("parte_superior.php");
     <?php
     $idfc = $_GET['ubf']; //id de la ficha------------------------------------------------------
 
-    $queryf = "SELECT * FROM ficha,programa where `ID_F`='$idfc' and ficha.fc_id_programa=programa.id_program";
-    $result = mysqli_query($conn, $queryf);
+    $query_ficha = "SELECT * FROM ficha, programa, instructor
+    WHERE `ID_F`='$idfc' AND ficha.fc_id_programa=programa.id_program
+    AND id_instructor = ID";
+    $result = mysqli_query($conn, $query_ficha);
     $rows = $result->fetch_array();
     ?>
     <div class="row" style="display: contents;">
@@ -43,6 +45,22 @@ include("parte_superior.php");
             </div>
             <div class="form-group">
               <?php
+              $instructor = mysqli_query($conn, "SELECT * FROM instructor");
+              ?>
+              <label for="instructor_t">Instructor técnico:</label>
+              <select class="form-control" id="instructor_t" name="instructor_tecnico" required="">
+                <option value="<?php echo $rows['ID'] ?>"><?php echo $rows['Nombre']." ".$rows['Apellido'] ?></option>
+                <?php
+                while ($query_instructor = mysqli_fetch_assoc($instructor)) {
+                ?>
+                  <option value="<?php echo $query_instructor['ID'] ?>"><?php echo $query_instructor['Nombre']." ".$query_instructor['Apellido'] ?></option>
+                <?php
+                }
+                ?>
+              </select>
+            </div>
+            <div class="form-group">
+              <?php
               $prog = "SELECT * FROM programa";
               $cons = mysqli_query($conn, $prog);
               ?>
@@ -57,14 +75,6 @@ include("parte_superior.php");
                 }
                 ?>
               </select>
-            </div>
-            <div class="form-group">
-              <label for="f_i">Fecha inicio:</label>
-              <input type="date" class="form-control" value="<?php echo $rows['fic_date_I'] ?>" name="date_i" id="f_i" required="">
-            </div>
-            <div class="form-group">
-              <label for="f_f">Fecha Fin:</label>
-              <input type="date" class="form-control" value="<?php echo $rows['fic_date_F'] ?>" name="date_f" id="f_f" required="">
             </div>
             <div class="btn-group">
               <button type="button" class="btn btn-secondary" onclick="window.open('show-ficha.php','_Self')"><i class="bi-arrow-left"></i>Atrás</button>

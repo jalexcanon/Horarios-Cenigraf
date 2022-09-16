@@ -5,10 +5,10 @@ include("parte_superior.php");
 <div>
   <div class="row" style="display: contents;">
     <div class="col-sm-8 mx-auto">
-      <div class="container border" style="padding:5%; background-color: #a2a1a5a8; ">
+      <div class="container border" style="padding:5%; background-color: #a2a1a54a; ">
         <form action="../controlador/FichaControllers/create.php" method="POST">
           <div class="form-group">
-            <label for="fi">Numero de ficha:</label>
+            <label for="fi">Número de ficha:</label>
             <input type="number" max="9999999" class="mr-sm-2 form-control" placeholder="Ficha (Maximo 7 caracteres)" name="fich" id="fi" required="">
           </div>
           <div class="form-group">
@@ -33,6 +33,22 @@ include("parte_superior.php");
             </select>
           </div>
           <div class="form-group">
+          <?php
+            $int = mysqli_query($conn, "SELECT * FROM instructor");
+            ?>
+            <label for="instructor_t">Instructor técnico:</label>
+            <select class="form-control" id="instructor_t" name="instructor_tecnico" required>
+              <option value="">Seleccione</option>
+              <?php
+              while ($instructor = mysqli_fetch_assoc($int)) {
+              ?>
+                <option value="<?php echo $instructor['ID'] ?>"><?php echo $instructor['Nombre'] . " " . $instructor['Apellido']; ?> </option>
+              <?php
+              }
+              ?>
+            </select>
+          </div>
+          <div class="form-group">
             <?php
             $prog = "SELECT * FROM programa";
             $cons = mysqli_query($conn, $prog);
@@ -48,14 +64,6 @@ include("parte_superior.php");
               }
               ?>
             </select>
-          </div>
-          <div class="form-group">
-            <label for="f_i">Fecha inicio:</label>
-            <input type="date" class="form-control" name="date_i" id="f_i" required="">
-          </div>
-          <div class="form-group">
-            <label for="f_f">Fecha Fin:</label>
-            <input type="date" class="form-control" name="date_f" id="f_f" required="">
           </div>
           <button type="submit" class="btn btn-dark">Registrar</button>
         </form>

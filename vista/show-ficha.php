@@ -9,7 +9,6 @@ include("parte_superior.php");
       <div class="container">
         <!--Collapse_Ficha_Ficha secl-->
         <div id="accordion">
-          <a type="button" class="btn btn-outline-secondary mt-4" href="fichas-activas-tabla.php">Consultar fichas activas</a>
           <div id="collapseOne" class="collapse show" data-parent="#accordion">
           <?php
             if (isset($_GET['v'])) {
@@ -32,8 +31,8 @@ include("parte_superior.php");
             ?>
             <div class="card-body">
               <?php
-              $tablaf = "SELECT * FROM ficha,programa WHERE ficha.fc_id_programa = programa.id_program";
-              $contf = mysqli_query($conn, $tablaf);
+              $query = mysqli_query($conn, "SELECT * FROM ficha, programa, instructor 
+              WHERE ficha.fc_id_programa = programa.id_program AND id_instructor = ID");
               ?>
               <div class="table-responsive">
                 <table id="table" class="table table-bordered table-striped">
@@ -43,13 +42,14 @@ include("parte_superior.php");
                       <th>Nombre del programa</th>
                       <th>Nivel de formacion</th>
                       <th>Jornada </th>
-                      <th>Trimestres</th>
+                      <th>Instructor Técnico</th>
+                      <th>Horario</th>
                       <th>Opciones</th>
                     </tr>
                   </thead>
                   <tbody>
                     <?php
-                    while ($fcon = mysqli_fetch_assoc($contf)) {
+                    while ($fcon = mysqli_fetch_assoc($query)) {
                     ?>
                       <tr>
 
@@ -57,11 +57,18 @@ include("parte_superior.php");
                         <td><?php echo $fcon["Nom_program"]; ?></td>
                         <td><?php echo $fcon["nivel_form"]; ?></td>
                         <td><?php echo $fcon["fc_jornada"]; ?></td>
-                        <th class="d-flex justify-content-center"> <a href="update_trimestre.php?upfech=<?php echo $fcon["ID_F"] ?>"><button type="submit" class="btn btn-light btn-sm"><i class="fa-solid fa-calendar-days"></i></button></a></th>
+                        <td><?php echo $fcon["Nombre"]." ".$fcon['Apellido']; ?></td>
                         <td>
                           <div class="btn-group">
-                            <button class="btn btn-secondary btn-sm" 
-                            onclick="window.open('horarios_ficha.php?ficha=<?php echo $fcon['ID_F']?>&pro=<?php echo $fcon['id_program']?>','_Self')">Horario</button>
+                          <button class="btn btn-primary btn-sm">
+                          <a href="" data-toggle="modal" data-target="#myModal" style="color:white;">Ver</a></button>
+                            <button class="btn btn-secondary btn-sm"
+                            onclick="window.open('admin/horarios_fic.php?ficha=<?php echo $fcon['ID_F']?>&pro=<?php echo $fcon['id_program']?>','_Self')">
+                            Crear</button>
+                          </div>
+                        </td>
+                        <td>
+                          <div class="btn-group">
                             <a href="update-ficha.php?ubf=<?php echo $fcon["ID_F"] ?>"><button type="submit" class="btn btn-success btn-sm"><i class="bi-pencil-square"></i></button></a>
                             <a href="../controlador/FichaControllers/delete.php?eliF=<?php echo $fcon['ID_F'] ?>"><button type="submit" class="btn btn-info btn-sm" onclick="return delete_('¿Está seguro de eliminar esta ficha?', 'Se eliminó la ficha exitosamente.')"><i class="bi-trash"></i></button></a>
                           </div>
@@ -82,9 +89,44 @@ include("parte_superior.php");
   </div>
 </div>
 </div>
+<!--
+<div class="modal" tabindex="-1" role="dialog" id="myModal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Selecciona el trimestre</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <select name="trimestre" id="">
+        <option value="1">Trimestre I</option>
+        <option value="2">Trimestre II</option>
+      </select>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div> -->
+<?php
+    if (isset($_GET['trimestre'])) {
+      $nil = $_GET['nivel_F'];
+      $trim_ = $_GET['Trimestre'];
+      $_SESSION['trim'] = $trim_; //variable de trimreste para consulta y registro del horario
+      $query = "SELECT * FROM ficha,programa,tb_trimestre WHERE programa.nivel_form='$nil' 
+      and ficha.fc_id_programa=programa.id_program AND tb_trimestre.id_fch=ficha.ID_F AND tb_trimestre.Trimestre='$trim_'";
+      $cont = mysqli_query($conn, $query);
+      echo "<center><h3>" . $nil . " " . $trim_ . " </h3></center>";
+    ?>
+    <?php
+    }
+    ?>
 <script src="js.js">
 </script>
 
 <?php
 include("parte_inferior.php")
 ?>
+  </div>

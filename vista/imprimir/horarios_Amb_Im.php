@@ -30,7 +30,7 @@ $id_amb = $_GET['amb'];
       <td>Versión: 03</td>
     </tr>
     <tr>
-      <td colspan="2">Fecha: <?php echo date('M-Y'); ?></td>
+      <td colspan="2" rowspan="2">Fecha: <?php echo date('M-Y'); ?></td>
     </tr>
     <tr>
     </tr>

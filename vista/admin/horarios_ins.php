@@ -65,10 +65,10 @@ include("plantilla-horarios.php");
                   <?php } ?>
 
                   <?php
-                  $querys = "SELECT * FROM horarios,ficha,instructor,dias,horas,ambiente,tb_trimestre,programa
-                            WHERE horarios.dia=$day AND ficha.fc_id_programa=programa.id_program AND horarios.hora=$hour 
+                  $querys = "SELECT * FROM horarios,ficha,instructor,dias,horas,ambiente,programa
+                          WHERE horarios.dia=$day AND ficha.fc_id_programa=programa.id_program AND horarios.hora=$hour 
                            AND horarios.dia=dias.id AND horarios.ficha=ficha.ID_F AND horarios.instructor = instructor.ID 
-                           AND horarios.hora = horas.id_h and horarios.id_trim_fch=tb_trimestre.id_T 
+                           AND horarios.hora = horas.id_h
                            and horarios.instructor=$id_ins";
                   /* $querys = "SELECT * FROM horarios,ficha,instructor,dias,horas,ambiente,tb_trimestre,programa WHERE horarios.dia=$day AND ficha.fc_id_programa=programa.id_program AND horarios.hora=$hour AND horarios.dia=dias.id AND horarios.ficha=ficha.ID_F AND horarios.instructor = instructor.ID AND horarios.id_ambiente=ambiente.id_A AND horarios.hora = horas.id_h and horarios.id_trim_fch=tb_trimestre.id_T and tb_trimestre.Trimestre='$Trimest' and horarios.instructor=$id_ins"; */
                   $result = mysqli_query($conn, $querys);
@@ -76,7 +76,6 @@ include("plantilla-horarios.php");
                   if (isset($row)) { ?>
                     <ul class="list-unstyled">
                       <li><?php echo "Ficha: " . $row['Nº ficha']; ?></li>
-                      <li><?php echo $row['Trimestre']; ?></li>
                       <li><?php echo "Prog: " . $row['Nom_program']; ?></li>
                       <li><?php echo "Amb: " . $row['Nombre_ambiente']; ?></li>
                       <li><?php echo $row['descripcion']; ?></li>
@@ -91,7 +90,8 @@ include("plantilla-horarios.php");
                       ?>
             </tr>
             <?php
-            $sumas = "SELECT SUM(horas_instructor) as total FROM horarios,tb_trimestre WHERE horarios.id_trim_fch=tb_trimestre.id_T AND horarios.instructor=$id_ins AND tb_trimestre.estatus_trim_H=0 ";
+            $sumas = "SELECT SUM(horas_instructor) as total FROM horarios 
+            WHERE horarios.id_trim_fch=tb_trimestre.id_T AND horarios.instructor=$id_ins AND tb_trimestre.estatus_trim_H=0 ";
             $hins = "SELECT SUM(horas_inst) as totalinst FROM instructor WHERE instructor.ID=$id_ins ";
             $resulsuma = mysqli_query($conn, $sumas);
             $resulinstructores = mysqli_query($conn, $hins);

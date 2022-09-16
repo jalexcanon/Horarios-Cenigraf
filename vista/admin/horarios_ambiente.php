@@ -29,9 +29,6 @@ include("plantilla-horarios.php");
   </a>
   <div class="sidebar">
     <div class="user-panel mt-4 pb-4 mb-4 d-flex">
-      <div class="image">
-        <img src="../../img/perfil.png" class="img-circle" alt="User Image">
-      </div>
       <div class="info">
         <a href="#" class="d-block" style="color:white;">ADMIN-<?php echo $inst; ?></a>
       </div>

@@ -88,15 +88,7 @@ $ins = mysqli_query($conn, "SELECT * FROM instructor"); // consulta select crear
   </a>
   <div class="sidebar">
     <?php if ($rol == 1) { ?>
-      <div class="user-panel mt-4 pb-4 mb-4 d-flex">
-        <div class="image">
-          <img src="../img/horario.png" alt="User Image">
-        </div>
-        <div class="info">
-          <a href="http://localhost/horarios/vista/admin/horarios_ficha.php" style="color: white;">Crear Horario Ficha</a>
-        </div>
-      </div>
-      <nav class="mt-2">
+      <nav class="mt-4">
         <ul class="nav nav-pills nav-sidebar flex-column" role="menu">
           <li class="nav-item">
             <a class="nav-link" href="show-instructor.php" style="cursor: pointer; color: white;">
@@ -135,6 +127,14 @@ $ins = mysqli_query($conn, "SELECT * FROM instructor"); // consulta select crear
               <i class="nav-icon fas fa-building fa-2x"></i>
               <p>
                 Consulta Sede
+              </p>
+            </a>
+          </li><br>
+          <li class="nav-item">
+            <a class="nav-link" href="show-sede.php" style="cursor: pointer; color: white;">
+              <i class="nav-icon fas fa-building fa-2x"></i>
+              <p>
+                Consulta Trimestres
               </p>
             </a>
           </li>
